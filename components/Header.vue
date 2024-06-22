@@ -2,7 +2,7 @@
   <header>
     <NuxtLink to="/">
       <div id="logo">
-        <img src="~/assets/KJ.svg" alt="Kevin Jeremy" height="48" width="auto" />
+        <img src="/KJ.svg" alt="Kevin Jeremy" height="48" width="auto" />
       </div>
     </NuxtLink>
     <nav class="desktop">
@@ -21,7 +21,7 @@
 
   <aside v-if="menu">
     <div>
-      <img src="~/assets/KJ.svg" alt="Kevin Jeremy" height="48" width="auto" />
+      <img src="/KJ.svg" alt="Kevin Jeremy" height="48" width="auto" />
       <button @click="toggleMenu">
         <Icon name="material-symbols:close" />
       </button>  

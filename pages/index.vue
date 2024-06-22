@@ -73,7 +73,7 @@
 import { onMounted, ref } from 'vue'
 
 useSeoMeta({
-  title: 'Welcome to kevinjeremy.com'
+  title: "Welcome to Kevin Jeremy's blog & portfolio"
 })
 
 /* Formats the ISO date to a text date */

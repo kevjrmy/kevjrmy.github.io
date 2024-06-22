@@ -1,8 +1,10 @@
 <template>
   <main>
     <h1>Contact</h1>
+    <ClientOnly>
     <div class="form-layout">
-      <form name="contact-form" @submit.prevent="sendEmail" autocomplete="on" ref="form">
+      <!-- <form name="contact-form" @submit.prevent="sendEmail" autocomplete="on" ref="form"> -->
+        <form name="contact-form" action="https://formspree.io/f/xzzppeor" method="POST" autocomplete="on" ref="form">
         <legend>Fill this form to contact me for any professional inquiry.</legend>      
         <input
           name="name"
@@ -19,11 +21,13 @@
           name="email"
           type="email"
           placeholder="Email"
+          required
         />
         <textarea
           name="message"
           placeholder="Your message"
           rows="4"
+          required
         ></textarea>
         <div class="btn">
           <button type="submit">GO!</button>
@@ -38,44 +42,49 @@
         </ul>
       </div>
     </div>
+  </ClientOnly>
   </main>
 </template>
 
 <script setup>
+  // import {ref } from 'vue'
   import jsonFile from '~/data.json'
-
   const data = jsonFile
 
-  let form = ref({
-    name: null,
-    tel: null,
-    email: null,
-    message: null
-  })
+  // let form = ref({
+  //   name: null,
+  //   tel: null,
+  //   email: null,
+  //   message: null
+  // })
 
-  async function sendEmail() {
-    let contact = form.value
-    try {
-      let res = await $fetch('/api/email', {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: {
-          name: contact.name.value,
-          tel: contact.tel.value,
-          email: contact.email.value,
-          message: contact.message.value
-        }
-      })
-      if (res === 201) {
-        alert("Message successfully sent")
-      } else {
-        alert("Oops. Sorry, something went wrong: message couldn't be sent")
-      }
-    }
-    catch(err) {
-      console.error(err)
-    }
-  }
+  // async function sendEmail() {
+  //   console.log("send Email")
+  //   let contact = form.value
+  //   try {
+  //     let res = await $fetch('/api/email', {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       lazy: true,
+  //       server: true,
+  //       immediate: false,
+  //       body: {
+  //         name: contact.name.value,
+  //         tel: contact.tel.value,
+  //         email: contact.email.value,
+  //         message: contact.message.value
+  //       }
+  //     })
+  //     if (res === 201) {
+  //       alert("Message successfully sent")
+  //     } else {
+  //       alert("Oops. Sorry, something went wrong: message couldn't be sent")
+  //     }
+  //   }
+  //   catch(err) {
+  //     console.error(err)
+  //   }
+  // }
 </script>
 
 <style scoped>

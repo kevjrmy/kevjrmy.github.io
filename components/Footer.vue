@@ -1,7 +1,7 @@
 <template>
   <footer>
     <NuxtLink>
-      <img src="~/assets/KJ.svg" alt="Kevin Jeremy" height="32" width="auto" />
+      <img src="/KJ.svg" alt="Kevin Jeremy" height="32" width="auto" />
     </NuxtLink>
     <ul role="list">
       <li><a :href="data.linkedin" rel="noopener noreferrer" aria-label="My linkedin" title="linkedin" target="_blank"><Icon name="ri:linkedin-fill" /></a></li>

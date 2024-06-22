@@ -23,7 +23,7 @@ export default defineNuxtConfig({
         { property: 'og:type', content: 'website' },
         { property: 'og:title', content: 'Kevin Jeremy - Web artisan & SEO blogger' },
         { property: 'og:description', content: 'Nuxt, Laravel, SEO, Freelance, UI/UX' },
-        { property: 'og:image', content: process.env.SITE_URL + '/profil.webp' },
+        { property: 'og:image', content: process.env.SITE_URL + '/KJ.svg' },
         { property: 'og:image:alt', content: process.env.SITE_URL + 'opengraph preview image' },
 	      { property: 'og:url', content: process.env.SITE_URL },
         { property: 'og:site_name', content: 'Kevin Jeremy' },
@@ -35,7 +35,7 @@ export default defineNuxtConfig({
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:site', content: '@kevjrmy' },
         { name: 'twitter:description', content: 'Nuxt, Laravel, SEO, Freelance, UI/UX' },
-        { name: 'twitter:image', content: process.env.SITE_URL + '/profil.webp' },
+        { name: 'twitter:image', content: process.env.SITE_URL + '/KJ.svg' },
         { name: 'twitter:image:alt', content: process.env.SITE_URL + 'opengraph preview image' }
       ]
     }
@@ -71,6 +71,7 @@ export default defineNuxtConfig({
     },
     EMAIL_HOST: process.env.EMAIL_HOST,
     EMAIL_ADDRESS: process.env.EMAIL_ADDRESS,
-    EMAIL_TOKEN: process.env.EMAIL_TOKEN
+    EMAIL_TOKEN: process.env.EMAIL_TOKEN,
+    FORMSPREE_TOKEN: process.env.FORMSPREE_TOKEN
   }
 })
