@@ -23,9 +23,9 @@ export default defineNuxtConfig({
         { property: 'og:type', content: 'website' },
         { property: 'og:title', content: 'Kevin Jeremy - Web artisan & SEO blogger' },
         { property: 'og:description', content: 'Nuxt, Laravel, SEO, Freelance, UI/UX' },
-        { property: 'og:image', content: 'https://kj.com/profil.webp' },
-        { property: 'og:image:alt', content: 'https://kj.com opengraph preview image' },
-	      { property: 'og:url', content: 'https://kj.com/' },
+        { property: 'og:image', content: process.env.SITE_URL + '/profil.webp' },
+        { property: 'og:image:alt', content: process.env.SITE_URL + 'opengraph preview image' },
+	      { property: 'og:url', content: process.env.SITE_URL },
         { property: 'og:site_name', content: 'Kevin Jeremy' },
         { property: 'og:locale', content: 'en_EN' },
         { property: 'og:image:width', content: '724' },
@@ -35,8 +35,8 @@ export default defineNuxtConfig({
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:site', content: '@kevjrmy' },
         { name: 'twitter:description', content: 'Nuxt, Laravel, SEO, Freelance, UI/UX' },
-        { name: 'twitter:image', content: 'https://kj.com/profil.webp' },
-        { name: 'twitter:image:alt', content: 'https://kj.com opengraph preview image' }
+        { name: 'twitter:image', content: process.env.SITE_URL + '/profil.webp' },
+        { name: 'twitter:image:alt', content: process.env.SITE_URL + 'opengraph preview image' }
       ]
     }
   },

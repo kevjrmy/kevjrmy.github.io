@@ -40,7 +40,7 @@ section {
   margin: 4rem 0;
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 6rem;
 }
 
 article a > * {
@@ -73,7 +73,14 @@ p:last-child {
   max-height: calc(var(--max-lines) * 1em * var(--line-height));
   height: fit-content;
   text-align: justify;
-  margin-top: 1rem;
+  margin: 1rem 0;
+}
+
+/* Responsive (mobile) */
+@media screen and (max-width: 480px) {
+  h2 {
+    margin-top: 1rem;
+  }
 }
 
 /* Responsive (lg mobile > tablet > pc) */

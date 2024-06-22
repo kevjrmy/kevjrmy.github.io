@@ -6,7 +6,7 @@
 
 <script setup>
 useHead({
-  title: 'KJ English',
+  title: 'Welcome to Kevin Jeremy blog & portfolio',
   htmlAttrs: { lang: 'en' }
 })
 </script>

@@ -88,11 +88,11 @@ ul {
 }
 
 a {
-  min-width: 200px;
+  display: block;
   border: 1px solid var(--clr-gray-20);
   padding: 1rem 4rem;
   font-weight: 500;
-  text-align: center;
+  margin: auto;
   box-shadow: 8px 8px 8px var(--clr-primary-50);
   cursor: pointer;
   transition: all 500ms;
@@ -105,5 +105,19 @@ a:hover {
 
 a:active {
   scale: .98;
+}
+
+/* Responsive (mobile) */
+@media screen and (max-width: 600px) {
+  a {
+    width: 100%;
+  }
+}
+
+/* Responsive (desktop) */
+@media screen and (min-width: 600px) {
+  a {
+    width: 240px;
+  }
 }
 </style>

@@ -99,10 +99,6 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-  font-size: 3em;
-}
-
-h2 {
   font-size: 2em;
 }
 
