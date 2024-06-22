@@ -41,18 +41,24 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useNuxtApp } from '#app'
 
 let menu = ref(false)
 
 function toggleMenu() {
-  menu.value = !menu.value
+  menu.value = !menu.value  
   const body = document.querySelector("body")
   if (menu.value) {
     body.style.overflowY = "hidden"
+    scroll()
   }
   else {
     body.style.overflowY = "auto"
   }
+}
+
+function scroll() {
+  window.scrollTo(0, 0)
 }
 </script>
 
@@ -113,7 +119,7 @@ button {
     background-color: var(--clr-white);
     width: 100%;
     height: 100%;
-    height: 100svh;
+    height: 100vh;
     top: 0;
     left: 0;
     padding: 2rem 1rem;
@@ -142,7 +148,7 @@ button {
     text-align: center;
     font-size: 0.8rem;
     position: absolute;
-    bottom: 2rem;
+    bottom: 4rem;
     width: 100%;
   }
 }
