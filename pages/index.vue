@@ -8,7 +8,7 @@
         <ContentQuery path="/blog" :where="{ featured: true }" :limit=3 :sort="{ date: -1 }" v-slot="{ data }">
           <article v-for="featured of data" :key="featured._path">
             <NuxtLink :to="featured._path">
-              <img :src=featured.image.src :alt=featured.image.alt>
+              <img :src=featured.image.src :alt=featured.image.alt loading="lazy">
               <div>
                 <h3 @click="$router.push(featured._path)">{{ featured.title }}</h3>
                 <time>{{ formattedDate(featured.date) }}</time>

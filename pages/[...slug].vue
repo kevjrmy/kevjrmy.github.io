@@ -8,7 +8,7 @@
           <time>{{ formattedDate(doc.date) }}</time>
           <p>{{ doc.description }}</p>
           <figure v-if="doc.image">
-            <img :src=doc.image.src :alt=doc.image.alt>
+            <img :src=doc.image.src :alt=doc.image.alt loading="lazy">
             <figcaption>{{ doc.image.alt }}</figcaption>
           </figure>
           <ContentRenderer :value="doc" class="content" />

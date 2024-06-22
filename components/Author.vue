@@ -2,7 +2,7 @@
   <section>
     <h2>About {{ author }}</h2>
     <div>
-      <img src="~/assets/Kevin_Jeremy.png" alt="my profile picture" height="80" width="80">
+      <img src="~/assets/Kevin_Jeremy.png" alt="my profile picture" height="80" width="80" loading="lazy">
       <h3>Kevin Jeremy</h3>
       <p>I am passionate about web development not only from a technical standpoint but also because of the human element behind these projects and the economic aspects.
         My goal is to gather, select and share what I learn about these topics.</p>
@@ -54,6 +54,7 @@ h3 {
 
   h3 {
     grid-area: name;
+    text-align: left;
   }
 
   p {

@@ -7,7 +7,7 @@
       <NuxtLink to="/blog">Explore</NuxtLink>
     </div>
     <div>
-      <img src="~/assets/welcome.svg" alt="Welcome hero image">
+      <img src="~/assets/welcome.webp" alt="Welcome hero image" loading="lazy">
     </div>      
   </section>
 </template>

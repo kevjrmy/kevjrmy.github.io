@@ -49,7 +49,7 @@ A good starting point is to look at what others do. For this purpose there's a p
 Let's have a look at BBVA's stack, a well established international bank. What can we see ?
 
 <figure>
-  <img src="/uploads/original/stackshare.io_bbva.webp" alt="BBVA StackShare.io screenshot">
+  <img src="/uploads/original/stackshare.io_bbva.webp" alt="BBVA StackShare.io screenshot" loading="lazy">
   <figcaption>Screenshot of https://stackshare.io/bbva/bbva</figcaption>
 </figure>
 
@@ -59,7 +59,7 @@ I would describe this stack as classical, traditional, and old-fashioned, yet si
 Now let's take a another look, this time at Glovo
 
 <figure>
-  <img src="/uploads/original/stackshare.io_glovo.webp" alt="Glovo StackShare.io screenshot">
+  <img src="/uploads/original/stackshare.io_glovo.webp" alt="Glovo StackShare.io screenshot" loading="lazy">
   <figcaption>Screenshot of https://stackshare.io/glovo/glovo</figcaption>
 </figure>
 

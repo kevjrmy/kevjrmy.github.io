@@ -6,7 +6,7 @@
       <ContentList :query="query" v-slot="{ list }">
         <article v-for="article in list" :key="article._path">
           <NuxtLink :to="article._path">
-            <img :src=article.image.src :alt=article.image.alt>
+            <img :src=article.image.src :alt=article.image.alt loading="lazy">
             <h2 @click="$router.push(article._path)">{{ article.title }}</h2>
             <time>{{ formattedDate(article.date) }}</time>
             <p>{{ article.description }}</p>
