@@ -25,7 +25,12 @@ div {
   display: grid;
 }
 
-/* Responsive (lg mobile > tablet > pc) */
+h3 {
+  text-align: center;
+  width: 100%;
+}
+
+/* Responsive (mobile) */
 @media screen and (max-width: 480px) {
   div {
     grid-row-gap: 1rem;
