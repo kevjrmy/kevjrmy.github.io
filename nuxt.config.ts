@@ -38,7 +38,8 @@ export default defineNuxtConfig({
         { name: 'twitter:image', content: process.env.SITE_URL + '/KJ.svg' },
         { name: 'twitter:image:alt', content: process.env.SITE_URL + 'opengraph preview image' }
       ]
-    }
+    },
+    pageTransition: { name: 'page', mode: 'out-in' }
   },
   content: {
     highlight: {

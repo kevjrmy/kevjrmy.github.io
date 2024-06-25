@@ -26,7 +26,7 @@
           </ul>
         </div>  
       </div>
-      <p>✨ Interested ? To see my pricings and plans <NuxtLink to="/services">click here</NuxtLink>.</p>
+      <p>Interested ? To see my pricings and plans <NuxtLink to="/services">click here</NuxtLink>.</p>
     </section>
 </template>
 
