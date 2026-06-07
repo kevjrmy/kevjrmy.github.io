@@ -25,7 +25,10 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+
+    /* Github pages */
+    "ignoreDeprecations": "6.0"
   },
   "include": ["src"]
 }
