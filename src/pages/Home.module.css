@@ -1,0 +1,113 @@
+/* ══════════════════════════════════════════════════════
+   Home — hero section layout
+   ══════════════════════════════════════════════════════ */
+
+/* ── Hero wrapper ─────────────────────────────────────── */
+.hero {
+  position: relative;
+  /* stacking context for ::before */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3xl);
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--space-3xl) var(--content-padding);
+  overflow: hidden;
+  /* clips the ::before beyond the section */
+}
+
+/* ── Isometric tile background ────────────────────────── */
+/*
+   One ::before, zero extra HTML.
+   The SVG tile is a single isometric diamond (rhombus):
+     - 60px wide × 51.96px tall (60 × sin 60°)
+     - stroke only, no fill → stacks cleanly on any bg
+   Faded with a radial gradient mask:
+     - opaque in the corners/edges
+     - transparent toward the center-bottom (where text lives)
+*/
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  /* Isometric diamond tile (stroke #e5e5e5, the --border-default value) */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='51.96'%3E%3Cpolygon points='30,0 60,25.98 30,51.96 0,25.98' fill='none' stroke='%23e5e5e5' stroke-width='0.75'/%3E%3C/svg%3E");
+  background-size: 60px 51.96px;
+  background-repeat: repeat;
+
+  /*
+    Mask: radial gradient that keeps the grid visible
+    near the edges/corners and fades it out in the center
+    so content remains easy to read.
+    A second linear gradient fades it to nothing at the bottom.
+  */
+  mask-image:
+    radial-gradient(ellipse 80% 70% at 50% 40%,
+      transparent 30%,
+      rgba(0, 0, 0, 0.3) 55%,
+      rgba(0, 0, 0, 0.7) 75%,
+      black 100%),
+    linear-gradient(to top,
+      black 50%,
+      transparent 100%);
+  mask-composite: intersect;
+
+  -webkit-mask-image:
+    radial-gradient(ellipse 80% 70% at 50% 40%,
+      transparent 30%,
+      rgba(0, 0, 0, 0.3) 55%,
+      rgba(0, 0, 0, 0.7) 75%,
+      black 100%),
+    linear-gradient(to top,
+      black 50%,
+      transparent 100%);
+  -webkit-mask-composite: destination-in;
+
+  /* Subtle overall opacity — grid is a hint, not a feature */
+  opacity: 5;
+}
+
+/* Ensure content sits above the pseudo-element */
+.hero>* {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Right column ──────────────────────────────────────── */
+.heroVisual {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 520px;
+}
+
+.services {
+  background-color: var(--surface-secondary);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+/* ── Responsive ────────────────────────────────────────── */
+@media screen and (max-width: 900px) {
+  .hero {
+    gap: var(--space-2xl);
+  }
+
+  .heroVisual {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+/* ── Reduced motion — keep the grid, skip any future animations ── */
+@media (prefers-reduced-motion: reduce) {
+  .hero::before {
+    animation: none;
+  }
+}

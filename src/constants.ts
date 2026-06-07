@@ -1,0 +1,1 @@
+export const SITE_DOMAIN: string = 'kevjrmy.github.io'

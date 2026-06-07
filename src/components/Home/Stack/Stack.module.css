@@ -1,0 +1,147 @@
+/* ══════════════════════════════════════════════════════
+   Stack — scrolling tech marquee
+   ══════════════════════════════════════════════════════ */
+
+/* ── Section wrapper ──────────────────────────────────── */
+.section {
+  width: 100%;
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  /* clips the scrolling track */
+  background-color: var(--surface-primary);
+}
+
+/* ── Left label strip ─────────────────────────────────── */
+.label {
+  flex-shrink: 0;
+  display: none;
+  /* hidden on mobile */
+  align-items: center;
+  padding: var(--space-md) var(--space-xl);
+  border-right: 1px solid var(--border-light);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  background-color: var(--surface-secondary);
+}
+
+/* ── Marquee outer (masks + contains) ────────────────── */
+.marqueeWrapper {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  position: relative;
+
+  /* Edge fade masks */
+  mask-image: linear-gradient(to right,
+      transparent 0%,
+      black 8%,
+      black 92%,
+      transparent 100%);
+  -webkit-mask-image: linear-gradient(to right,
+      transparent 0%,
+      black 8%,
+      black 92%,
+      transparent 100%);
+}
+
+/* ── Scrolling track (holds both list copies) ─────────── */
+.track {
+  display: flex;
+  width: max-content;
+  animation: scroll 40s linear infinite;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Pause on hover */
+.section:hover .track {
+  animation-play-state: paused;
+}
+
+/* ── The icon list ────────────────────────────────────── */
+.list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 0;
+}
+
+/* ── Each tech pill ───────────────────────────────────── */
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-xl);
+  border-right: 1px solid var(--border-light);
+  color: var(--text-light);
+  transition:
+    color var(--duration-fast) var(--ease-default),
+    background-color var(--duration-fast) var(--ease-default);
+  cursor: default;
+  height: 100px;
+}
+
+.item:hover {
+  color: var(--text-dark);
+  background-color: var(--surface-secondary);
+}
+
+/* ── Icon container ───────────────────────────────────── */
+.iconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: inherit;
+}
+
+/* ── Tech name label ──────────────────────────────────── */
+.itemLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: inherit;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* ── Reduced motion ───────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media screen and (min-width: 640px) {
+  .label {
+    display: flex;
+  }
+
+  .marqueeWrapper {
+    mask-image: linear-gradient(to right,
+        transparent 0%,
+        black 5%,
+        black 95%,
+        transparent 100%);
+    -webkit-mask-image: linear-gradient(to right,
+        transparent 0%,
+        black 5%,
+        black 95%,
+        transparent 100%);
+  }
+}

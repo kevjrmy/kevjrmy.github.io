@@ -1,0 +1,160 @@
+/* ══════════════════════════════════════════════════════
+   Services — homepage preview (3 featured cards)
+   ══════════════════════════════════════════════════════ */
+
+/* ── Section wrapper ──────────────────────────────────── */
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2xl);
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--space-4xl) var(--content-padding);
+}
+
+/* ── Intro block ──────────────────────────────────────── */
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  text-align: center;
+}
+
+.heading {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.2;
+}
+
+.subline {
+  font-size: 1rem;
+  color: var(--text-light);
+  max-width: 40ch;
+}
+
+/* ── Card grid ────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  width: 100%;
+}
+
+/* ── Card ─────────────────────────────────────────────── */
+.card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: var(--space-lg) var(--space-xl);
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius-lg);
+  background-color: var(--surface-primary);
+  transition:
+    border-color var(--duration-fast) var(--ease-default),
+    box-shadow var(--duration-fast) var(--ease-default),
+    background-color var(--duration-fast) var(--ease-default),
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+  transition-delay: var(--card-delay, 0ms);
+
+  /* hidden until IntersectionObserver fires */
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card:hover {
+  border-color: var(--border-strong);
+  background-color: var(--surface-secondary);
+  box-shadow: var(--shadow-md);
+}
+
+/* ── Icon wrapper ─────────────────────────────────────── */
+.iconWrap {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--clr-light-red);
+  color: var(--clr-dark-red);
+}
+
+/* ── Card body ────────────────────────────────────────── */
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  justify-content: center;
+}
+
+.cardTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.2;
+}
+
+.cardDescription {
+  font-size: 0.875rem;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+/* ── CTA link ─────────────────────────────────────────── */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-medium);
+  transition: color var(--duration-fast) var(--ease-default);
+}
+
+.cta:hover {
+  color: var(--clr-dark-red);
+}
+
+.cta svg {
+  transition: transform var(--duration-fast) var(--ease-default);
+}
+
+.cta:hover svg {
+  transform: translateX(3px);
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media screen and (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .card {
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+}
+
+/* ── Reduced motion ───────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .cta svg {
+    transition: none;
+  }
+}

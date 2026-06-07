@@ -1,0 +1,201 @@
+/* ══════════════════════════════════════════════════════
+   BootSequence — TUI boot sequence
+   ══════════════════════════════════════════════════════ */
+
+/* ── Terminal window ───────────────────────────────── */
+.terminal {
+  width: 100%;
+  max-width: 520px;
+  border-radius: var(--radius-lg);
+  border: 1px solid #313244;
+  background-color: #1e1e2e;
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+
+  animation: terminalIn var(--duration-slow) var(--ease-out) both;
+}
+
+@keyframes terminalIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Title bar ─────────────────────────────────────── */
+.titleBar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background-color: #181825;
+  border-bottom: 1px solid #313244;
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.dot {
+  width: 11px;
+  height: 11px;
+  border-radius: var(--radius-full);
+}
+
+.dot[data-color="red"] {
+  background-color: #ff5f57;
+}
+
+.dot[data-color="yellow"] {
+  background-color: #febc2e;
+}
+
+.dot[data-color="green"] {
+  background-color: #28c840;
+}
+
+.title {
+  margin-left: var(--space-sm);
+  font-size: 0.75rem;
+  color: #6c7086;
+  letter-spacing: 0.03em;
+}
+
+/* ── Body ──────────────────────────────────────────── */
+.body {
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* ── Each line ─────────────────────────────────────── */
+.line {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+  opacity: 0;
+  transform: translateX(-6px);
+  animation: lineIn 220ms var(--ease-out) var(--delay, 0s) forwards;
+}
+
+@keyframes lineIn {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.lastLine {
+  margin-top: var(--space-sm);
+  padding-top: var(--space-sm);
+  border-top: 1px solid #313244;
+}
+
+/* ── Prefix symbols ────────────────────────────────── */
+.pfx {
+  flex-shrink: 0;
+  width: 1em;
+  text-align: center;
+}
+
+.arrow {
+  color: #ff8080;
+}
+
+/* --clr-medium-red  */
+.ok {
+  color: #a6e3a1;
+}
+
+/* success green     */
+.prompt {
+  color: #ff2a2a;
+}
+
+/* --clr-dark-red    */
+
+/* ── Label ─────────────────────────────────────────── */
+.label {
+  color: #cdd6f4;
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Value ─────────────────────────────────────────── */
+.value {
+  margin-left: auto;
+  text-align: right;
+  white-space: nowrap;
+  padding-left: var(--space-md);
+}
+
+.val {
+  color: #ffd5d5;
+}
+
+/* --clr-light-red  */
+.valGreen {
+  color: #a6e3a1;
+}
+
+/* success green    */
+
+/* ── Blinking cursor ───────────────────────────────── */
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 0.85em;
+  background-color: #ff2a2a;
+  vertical-align: text-bottom;
+  margin-left: 3px;
+  border-radius: 1px;
+  animation: blink 1s step-end infinite;
+  animation-delay: calc(6 * 0.35s + 300ms);
+  opacity: 0;
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ── Reduced motion ────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .terminal {
+    animation: none;
+  }
+
+  .line {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .cursor {
+    animation: none;
+    opacity: 1;
+  }
+}
