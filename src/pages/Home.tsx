@@ -6,6 +6,8 @@ import CliPrompt from '@/components/Home/CliPrompt/CliPrompt'
 import Stack from '@/components/Home/Stack/Stack'
 import Services from '@/components/Home/Services/Services'
 import FeaturedWorks from '@/components/Home/FeaturedWorks/FeaturedWorks'
+import About from '@/components/Home/About/About'
+import Cta from '@/components/Home/CTA/Cta'
 
 const Home: React.FC = () => { // React.FC is a generic type for React functional components
   return (
@@ -31,11 +33,13 @@ const Home: React.FC = () => { // React.FC is a generic type for React functiona
         <FeaturedWorks />
       </section>
 
-      {/* ── About ────────────────────────────────────── */}
-      {/* TODO */}
+      <section className={styles.about}>
+        <About />
+      </section>
 
-      {/* ── CTA band ─────────────────────────────────── */}
-      {/* TODO */}
+      <section>
+        <Cta />
+      </section>
     </>
   )
 }

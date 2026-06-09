@@ -1,0 +1,95 @@
+/* ══════════════════════════════════════════════════════
+   Cta — full-width call-to-action band
+   ══════════════════════════════════════════════════════ */
+
+/* ── Section ──────────────────────────────────────────── */
+.section {
+  width: 100%;
+}
+
+/* ── Centered divider ─────────────────────────────────── */
+.divider {
+  width: 160px;
+  height: 1px;
+  background-color: var(--border-default);
+  margin: 0 auto;
+}
+
+/* ── Inner wrapper ────────────────────────────────────── */
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xl);
+  text-align: center;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--space-4xl) var(--content-padding);
+}
+
+/* ── Text block ───────────────────────────────────────── */
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.heading {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.2;
+}
+
+.subline {
+  font-size: 1rem;
+  color: var(--text-medium);
+  max-width: 44ch;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ── Button (pill) ────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius-full);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: var(--clr-dark-red);
+  background-color: var(--clr-light-red);
+}
+
+.btn svg {
+  transition: transform var(--duration-fast) var(--ease-default);
+}
+
+.btn:hover svg {
+  transform: translateX(4px);
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media screen and (min-width: 640px) {
+  .inner {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  .subline {
+    margin: 0;
+  }
+
+  .btn {
+    flex-shrink: 0;
+  }
+}
+
+/* ── Reduced motion ───────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .btn svg {
+    transition: none;
+  }
+}

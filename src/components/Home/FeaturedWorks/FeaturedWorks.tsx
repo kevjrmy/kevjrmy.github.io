@@ -15,10 +15,37 @@ const Placeholder: React.FC<{ title: string }> = ({ title }) => (
   </div>
 )
 
-// ── Stack badge ───────────────────────────────────────────────────────────────
-const Badge: React.FC<{ label: string }> = ({ label }) => (
-  <span className={styles.badge}>{label}</span>
-)
+// ── Icon map (label → Iconify icon string) ────────────────────────────────────
+const techIcons: Record<string, string> = {
+  'Laravel': 'logos:laravel',
+  'Vue': 'vscode-icons:file-type-vue',
+  'React': 'vscode-icons:file-type-reactjs',
+  'TypeScript': 'vscode-icons:file-type-typescript-official',
+  'Node.js': 'vscode-icons:file-type-node',
+  'Vite': 'vscode-icons:file-type-vite',
+  'Next.js': 'logos:nextjs-icon',
+  'PHP': 'vscode-icons:file-type-php',
+  'Kotlin': 'vscode-icons:file-type-kotlin',
+  'Git': 'vscode-icons:file-type-git',
+  'WordPress': 'mdi:wordpress',
+  'Nuxt': 'vscode-icons:file-type-nuxt',
+  'JavaScript': 'vscode-icons:file-type-js-official',
+  'PWA': 'tabler:device-mobile-code',
+  'Android': 'tabler:brand-android',
+  'CSS': 'logos:css-3',
+  'Markdown': 'vscode-icons:file-type-markdown'
+}
+
+// ── Stack badge (icon + label pill) ──────────────────────────────────────────
+const Badge: React.FC<{ label: string }> = ({ label }) => {
+  const icon = techIcons[label]
+  return (
+    <span className={styles.badge}>
+      {icon && <Icon icon={icon} width={14} height={14} aria-hidden="true" />}
+      {label}
+    </span>
+  )
+}
 
 // ── Panel (active project) ────────────────────────────────────────────────────
 const Panel: React.FC<{ project: Project }> = ({ project }) => {
@@ -89,7 +116,7 @@ const FeaturedWorks: React.FC = () => {
       {/* Intro */}
       <div className={styles.intro}>
         <h2 id="work-heading" className={styles.heading}>Selected Work</h2>
-        <p className={styles.subline}>A few things I've built: more on the portfolio page.</p>
+        <p className={styles.subline}>A few things I've built (see more on the portfolio page).</p>
       </div>
 
       {/* Tabbed interface */}

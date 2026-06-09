@@ -8,9 +8,8 @@ const Footer: React.FC = () => {
   const year = new Date().getFullYear()
 
   const socials = [
-    { icon: 'lucide:linkedin', href: 'https://linkedin.com', label: 'My LinkedIn', title: 'LinkedIn' },
-    { icon: 'lucide:twitter', href: 'https://x.com', label: 'My X (Twitter)', title: 'X (Twitter)' },
-    { icon: 'lucide:github', href: 'https://github.com/kevjrmy', label: 'My GitHub', title: 'GitHub' },
+    { icon: 'mdi:linkedin', href: 'https://linkedin.com/in/kevin-jeremy-gautier', label: 'My LinkedIn', title: 'LinkedIn' },
+    { icon: 'mdi:github', href: 'https://github.com/kevjrmy', label: 'My GitHub', title: 'GitHub' },
   ]
 
   return (

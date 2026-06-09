@@ -106,6 +106,7 @@
     opacity: 0;
     transform: translateY(6px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -148,13 +149,11 @@
   font-size: 0.875rem;
   background-color: var(--surface-tertiary);
   background-image:
-    repeating-linear-gradient(
-      45deg,
+    repeating-linear-gradient(45deg,
       transparent,
       transparent 8px,
       rgba(0, 0, 0, 0.02) 8px,
-      rgba(0, 0, 0, 0.02) 16px
-    );
+      rgba(0, 0, 0, 0.02) 16px);
 }
 
 /* ── Right — metadata ─────────────────────────────────── */
@@ -210,6 +209,7 @@
 .badge {
   display: inline-flex;
   align-items: center;
+  gap: 0.3em;
   padding: 0.2em 0.6em;
   border-radius: var(--radius-full);
   font-size: 0.75rem;

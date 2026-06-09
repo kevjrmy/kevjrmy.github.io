@@ -13,7 +13,7 @@ export const projects: Project[] = [
     client: 'Food delivery startup',
     type: 'Web Application',
     excerpt: 'Fresh food delivery platform for the French Riviera. Built for speed — orders, menus, and availability in one lightweight JS app.',
-    stack: ['JavaScript', 'HTML', 'CSS'],
+    stack: ['JavaScript', 'Vue', 'CSS'],
     tags: ['frontend', 'food', 'delivery'],
     year: 2024,
     status: 'live',
