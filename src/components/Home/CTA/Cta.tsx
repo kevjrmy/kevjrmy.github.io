@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { Icon } from '@iconify/react'
 import styles from './Cta.module.css'
 

@@ -5,6 +5,7 @@ import Home from '@/pages/Home'
 import Contact from '@/pages/contact/Contact'
 import About from '@/pages/about/About'
 import Portfolio from '@/pages/portfolio/Portfolio'
+import Services from './pages/services/Services'
 
 export default function App() {
   return (
@@ -29,6 +30,9 @@ export default function App() {
 
           {/* About page */}
           <Route path="/about" element={<About />} />
+
+          {/* Services page */}
+          <Route path="/services" element={<Services />} />
 
         </Route>
       </Routes>

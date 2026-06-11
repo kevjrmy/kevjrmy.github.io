@@ -1,0 +1,171 @@
+/* ══════════════════════════════════════════════════════
+   Services page — /services
+   ══════════════════════════════════════════════════════ */
+
+/* ── Page header ──────────────────────────────────────── */
+.header {
+  border-bottom: 1px solid var(--border-light);
+}
+
+.headerInner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--space-4xl) var(--content-padding);
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--clr-dark-red);
+}
+
+.h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.lead {
+  font-size: 1rem;
+  color: var(--text-light);
+  line-height: 1.7;
+  max-width: 48ch;
+}
+
+.headerCta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--clr-dark-red);
+  transition: gap var(--duration-fast) var(--ease-default);
+}
+
+.headerCta:hover {
+  gap: var(--space-sm);
+}
+
+/* ── Grid section ─────────────────────────────────────── */
+.gridSection {
+  background-color: var(--surface-secondary);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.gridInner {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--space-4xl) var(--content-padding);
+}
+
+/* ── Grid ─────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+/* ── Card ─────────────────────────────────────────────── */
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  padding: var(--space-xl);
+  background-color: var(--surface-primary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition:
+    box-shadow var(--duration-fast) var(--ease-default),
+    border-color var(--duration-fast) var(--ease-default);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-strong);
+}
+
+.cardTop {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+/* ── Icon ─────────────────────────────────────────────── */
+.iconWrap {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--clr-light-red);
+  color: var(--clr-dark-red);
+  box-shadow: var(--shadow-xs);
+}
+
+/* ── Card body ────────────────────────────────────────── */
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.cardTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.2;
+}
+
+.cardDescription {
+  font-size: 0.875rem;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+/* ── Price ────────────────────────────────────────────── */
+.price {
+  font-size: 0.8125rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--clr-dark-red);
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media screen and (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .cardTop {
+    flex-direction: column;
+  }
+}
+
+/* ── Reduced motion ───────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+
+  .headerCta {
+    transition: none;
+  }
+}

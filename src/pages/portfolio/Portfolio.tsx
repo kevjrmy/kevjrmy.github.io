@@ -23,11 +23,15 @@ const techIcons: Record<string, string> = {
   'PWA': 'tabler:device-mobile-code',
   'Android': 'tabler:brand-android',
   'CSS': 'logos:css-3',
+  'Markdown': 'vscode-icons:file-type-markdown'
 }
 
 // ── Filter categories ─────────────────────────────────────────────────────────
 
-const categories: ProjectType[] = ['All', 'Laravel', 'Web Application', 'Mobile App', 'PWA', 'WordPress']
+const TYPE_ORDER: ProjectType[] = ['Web Application', 'PWA', 'WordPress', 'Mobile App', 'Landing Page', 'Laravel', 'Consulting']
+
+const usedTypes = new Set(projects.map(p => p.type))
+const categories: ProjectType[] = ['All', ...TYPE_ORDER.filter(t => usedTypes.has(t))]
 
 // ── Badge ─────────────────────────────────────────────────────────────────────
 
