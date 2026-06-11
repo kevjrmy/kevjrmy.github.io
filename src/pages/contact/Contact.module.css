@@ -1,5 +1,128 @@
-.contact {
+/* ══════════════════════════════════════════════════════
+   Contact page — /contact
+   ══════════════════════════════════════════════════════ */
+
+.section {
   max-width: var(--content-width);
   margin: 0 auto;
   padding: var(--space-4xl) var(--content-padding);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xl);
+  max-width: 560px;
+}
+
+/* ── Intro ────────────────────────────────────────────── */
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--clr-dark-red);
+}
+
+.h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-top: var(--space-xs);
+}
+
+.lead {
+  font-size: 1rem;
+  color: var(--text-light);
+  line-height: 1.7;
+  margin-top: var(--space-sm);
+}
+
+/* ── List ─────────────────────────────────────────────── */
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.list li {
+  border-bottom: 1px solid var(--border-light);
+}
+
+.list li:first-child {
+  border-top: 1px solid var(--border-light);
+}
+
+/* ── Item ─────────────────────────────────────────────── */
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) 0;
+}
+
+/* ── Icon wrap ────────────────────────────────────────── */
+
+.iconWrap {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--clr-light-red);
+  color: var(--clr-dark-red);
+  box-shadow: var(--shadow-xs);
+}
+
+/* ── Item text ────────────────────────────────────────── */
+
+.itemText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.itemLabel {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.2;
+}
+
+.itemValue {
+  font-size: 0.8125rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Arrow ────────────────────────────────────────────── */
+
+.itemArrow {
+  flex-shrink: 0;
+  color: var(--text-muted);
+  transition: transform var(--duration-fast) var(--ease-default);
+}
+
+.item:hover .itemArrow {
+  color: var(--clr-dark-red);
+  transform: translate(2px, -2px);
+}
+
+/* ── Reduced motion ───────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .itemArrow {
+    transition: none;
+  }
 }

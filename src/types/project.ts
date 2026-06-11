@@ -5,6 +5,8 @@
 export type ProjectStatus = 'live' | 'archived' | 'wip'
 
 export type ProjectType =
+  | 'All'
+  | 'Laravel'
   | 'Web Application'
   | 'Mobile App'
   | 'WordPress'

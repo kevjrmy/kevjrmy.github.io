@@ -12,14 +12,20 @@ const Cta: React.FC = () => {
             Have a project in mind?
           </h2>
           <p className={styles.subline}>
-            Let's figure out if I'm the right fit — no commitment, no pitch,
+            Let's figure out if I'm the right fit, no commitment, no pitch,
             just a conversation.
           </p>
         </div>
-        <Link to="/contact" className={styles.btn}>
+        <a
+          href="https://wa.me/34632936909"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.btn}
+          aria-label="Chat on WhatsApp — opens in a new tab"
+        >
           Let's talk
-          <Icon icon="tabler:arrow-right" width={18} height={18} aria-hidden="true" />
-        </Link>
+          <Icon icon="tabler:brand-whatsapp" width={18} height={18} aria-hidden="true" />
+        </a>
       </div>
     </section>
   )

@@ -4,6 +4,7 @@ import MainLayout from './layouts/MainLayout'
 import Home from '@/pages/Home'
 import Contact from '@/pages/contact/Contact'
 import About from '@/pages/about/About'
+import Portfolio from '@/pages/portfolio/Portfolio'
 
 export default function App() {
   return (
@@ -19,6 +20,9 @@ export default function App() {
 
           {/* Home page is set to render on the root route */}
           <Route path="/" element={<Home />} />
+
+          {/* Portfolio page */}
+          <Route path="/portfolio" element={<Portfolio />} />
 
           {/* Contact page */}
           <Route path="/contact" element={<Contact />} />

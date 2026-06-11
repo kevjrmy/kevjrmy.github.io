@@ -47,7 +47,7 @@ const Header = () => {
   // Navigation links data
   const navLinks = [
     { to: '/', label: 'Home', icon: 'tabler:home' },
-    { to: '/blog', label: 'Blog', icon: 'tabler:pencil' },
+    // { to: '/blog', label: 'Blog', icon: 'tabler:pencil' },
     { to: '/portfolio', label: 'Portfolio', icon: 'tabler:briefcase' },
     { to: '/services', label: 'Services', icon: 'tabler:terminal' },
     { to: '/contact', label: 'Contact', icon: 'tabler:mail' }
