@@ -17,20 +17,26 @@
 
 /* ── Intro ────────────────────────────────────────────── */
 
+/* Reads like a slash command typed into a CLI agent: "/about me" */
 .eyebrow {
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-transform: lowercase;
+  color: var(--text-medium);
+}
+
+.eyebrow::before {
+  content: '/';
   color: var(--clr-dark-red);
 }
 
 .h1 {
   font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text-dark);
   line-height: 1.1;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.035em;
   margin-top: var(--space-xs);
 }
 

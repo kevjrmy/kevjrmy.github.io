@@ -55,20 +55,27 @@
   gap: var(--space-sm);
 }
 
+/* Reads like a slash command typed into a CLI agent: "/about me" */
 .eyebrow {
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-transform: lowercase;
+  color: var(--text-medium);
+}
+
+.eyebrow::before {
+  content: '/';
   color: var(--clr-dark-red);
 }
 
 .heading {
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 600;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 500;
   color: var(--text-dark);
-  line-height: 1.2;
+  line-height: 1.15;
   margin-top: var(--space-xs);
+  letter-spacing: -0.03em;
 }
 
 .body {
@@ -127,24 +134,33 @@
 .cta {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-xs);
-  font-size: 0.875rem;
+  gap: var(--space-sm);
+  padding: 0.5rem 0.875rem;
+  font-size: 0.9375rem;
   font-weight: 500;
-  color: var(--text-medium);
-  transition: color var(--duration-fast) var(--ease-default);
+  color: var(--text-dark);
+  background-color: var(--surface-primary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+  transition:
+    border-color var(--duration-fast) var(--ease-default),
+    box-shadow var(--duration-fast) var(--ease-default);
   align-self: flex-start;
 }
 
 .cta:hover {
-  color: var(--clr-dark-red);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-sm);
 }
 
 .cta svg {
+  color: var(--clr-dark-red);
   transition: transform var(--duration-fast) var(--ease-default);
 }
 
 .cta:hover svg {
-  transform: translateX(3px);
+  transform: translate(2px, -2px);
 }
 
 /* ── Responsive — two-column on wider screens ─────────── */

@@ -104,6 +104,12 @@ function spaFallback(): Plugin {
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), bundledIcons(), spaFallback()],
+  // Own port: on Vite's default 5173, a dev service worker left by another project
+  // (vite-plugin-pwa) keeps serving that project's index.html to the browser.
+  server: {
+    port: 5180,
+    strictPort: true
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')

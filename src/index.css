@@ -17,6 +17,15 @@
   font-display: swap;
 }
 
+/* Code face: latin subset, used for a few words only (the slash command in the hero) */
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url('/fonts/JetBrains_Mono/JetBrainsMono-VariableFont_wght-latin.woff2') format('woff2');
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* ── Accent colors ────────────────────────────────── */
   --clr-dark-red: #ff2a2a;
@@ -44,6 +53,7 @@
   --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
   --font-serif: serif;
   --font-mono: ui-monospace, Consolas, monospace;
+  --font-code: "JetBrains Mono", var(--font-mono);
 
   /* ── Spacing scale ────────────────────────────────── */
   --space-xs: 0.25rem;
@@ -111,6 +121,8 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  /* keeps #anchors clear of the sticky header */
   -webkit-text-size-adjust: 100%;
 }
 
@@ -226,11 +238,59 @@ button:active {
 main {
   flex: 1;
   width: 100%;
+  /* Page transition: MainLayout re-creates <main> on every route change, which
+     replays this. "backwards" leaves no transform behind once it has finished. */
+  animation: pageIn var(--duration-normal) var(--ease-out) backwards;
+}
+
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
 }
 
 main>section>h2,
 main>section>h2+p {
   text-align: center;
+}
+
+
+/* ══════════════════════════════════════════════════════
+   Section frame
+   A hairline between page sections, with a red tick at
+   each end. Drawn above every section but the first, and
+   under the last one (main::after). Top-level sections
+   must be full width and keep ::after free.
+   ══════════════════════════════════════════════════════ */
+
+main,
+main>section {
+  position: relative;
+}
+
+main>section+section::after,
+main::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 7px;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--clr-dark-red), var(--clr-dark-red)) left / 3px 100% no-repeat,
+    linear-gradient(var(--clr-dark-red), var(--clr-dark-red)) right / 3px 100% no-repeat,
+    linear-gradient(var(--border-default), var(--border-default)) center / 100% 1px no-repeat;
+}
+
+main>section+section::after {
+  top: 0;
+  transform: translateY(-50%);
+}
+
+main::after {
+  bottom: 0;
+  transform: translateY(50%);
 }
 
 

@@ -6,7 +6,6 @@
 .section {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: var(--space-2xl);
   max-width: var(--content-width);
   margin: 0 auto;
@@ -17,87 +16,181 @@
 .intro {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--space-sm);
-  text-align: center;
 }
 
 .heading {
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 600;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 500;
   color: var(--text-dark);
-  line-height: 1.2;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
 }
 
 .subline {
-  font-size: 1rem;
+  font-size: 1.0625rem;
   color: var(--text-light);
-  max-width: 40ch;
+  max-width: 52ch;
 }
 
-/* ── Widget (tabs + panel together) ──────────────────── */
+/* ── Widget (pill tab bar above the panel card) ──────── */
 .widget {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
   width: 100%;
-  border: 1px solid var(--border-default);
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  background-color: var(--surface-primary);
-  box-shadow: var(--shadow-lg);
 }
 
 /* ── Tab bar ──────────────────────────────────────────── */
+/* Wrapper: only as wide as the tabs need, and the anchor for the chevrons */
+.tabBarWrap {
+  position: relative;
+  align-self: flex-start;
+  max-width: 100%;
+}
+
 .tabBar {
   display: flex;
+  gap: var(--space-xs);
   overflow-x: auto;
+  scroll-behavior: smooth;
   scrollbar-width: none;
   -ms-overflow-style: none;
   background-color: var(--surface-secondary);
-  border-bottom: 1px solid var(--border-default);
-
-  /* Prevent tab bar itself from having a bottom gap */
-  gap: 0;
+  /* The inset is a border, not padding: a scroll container clips at the inner
+     edge of its border, so a tab scrolled to the end stops short of the rim
+     instead of running under the padding. The hairline is the outer ring. */
+  border: var(--space-xs) solid var(--surface-secondary);
+  border-radius: 1.625rem;
+  box-shadow: 0 0 0 1px var(--border-default);
 }
 
 .tabBar::-webkit-scrollbar {
   display: none;
 }
 
+/* Edge fades: one row that scrolls sideways, with a fade on whichever side
+   still has tabs out of view (classes set from the scroll position).
+   Sticky pseudo-elements stay pinned to the edges while the tabs scroll;
+   the negative margin gives back the space they and the gap would take. */
+.tabBar::before,
+.tabBar::after {
+  content: '';
+  position: sticky;
+  z-index: 1;
+  flex: 0 0 3rem;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--ease-default);
+}
+
+.tabBar::before {
+  left: 0;
+  margin-right: calc(-3rem - var(--space-xs));
+  background: linear-gradient(to right, var(--surface-secondary) 15%, transparent);
+}
+
+.tabBar::after {
+  right: 0;
+  margin-left: calc(-3rem - var(--space-xs));
+  background: linear-gradient(to left, var(--surface-secondary) 15%, transparent);
+}
+
+.fadeStart::before,
+.fadeEnd::after {
+  opacity: 1;
+}
+
+/* Chevrons: shown over the fade on the side that still hides tabs.
+   Not on a touch phone, where the row is swiped instead. */
+.tabArrow {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  color: var(--text-dark);
+  background-color: var(--surface-primary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-50%);
+  transition:
+    opacity var(--duration-fast) var(--ease-default),
+    visibility var(--duration-fast) var(--ease-default),
+    border-color var(--duration-fast) var(--ease-default);
+}
+
+.tabArrow:hover {
+  border-color: var(--border-strong);
+}
+
+.tabArrow:active {
+  transform: translateY(-50%) scale(0.94);
+}
+
+.tabArrowPrev {
+  left: var(--space-sm);
+}
+
+.tabArrowNext {
+  right: var(--space-sm);
+}
+
+.tabArrowVisible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Any device with a mouse or trackpad, and any screen from tablet width up */
+@media (hover: hover) and (pointer: fine), (min-width: 768px) {
+  .tabArrow {
+    display: flex;
+  }
+}
+
 /* ── Tab button ───────────────────────────────────────── */
 .tab {
   flex-shrink: 0;
-  padding: var(--space-md) var(--space-lg);
-  font-size: 0.875rem;
+  padding: var(--space-sm) var(--space-md);
+  font-size: 0.9375rem;
   font-weight: 500;
   color: var(--text-light);
   background-color: transparent;
-  border: none;
-  border-bottom: 2px solid transparent;
-
-  /* Offset so active border sits flush at the bottom */
-  margin-bottom: -1px;
-
+  border-radius: var(--radius-full);
   cursor: pointer;
   transition:
     color var(--duration-fast) var(--ease-default),
-    background-color var(--duration-fast) var(--ease-default);
-
+    background-color var(--duration-fast) var(--ease-default),
+    box-shadow var(--duration-fast) var(--ease-default);
   white-space: nowrap;
 }
 
 .tab:hover {
   color: var(--text-dark);
-  background-color: var(--surface-tertiary);
 }
 
-/* Active tab — connected to the panel below */
+/* Active tab — raised white pill */
 .tabActive {
-  color: var(--clr-dark-red);
+  color: var(--text-dark);
   background-color: var(--surface-primary);
-  border-bottom-color: var(--clr-dark-red);
+  box-shadow: var(--shadow-sm);
 }
 
 /* ── Panel wrapper ────────────────────────────────────── */
 .panelWrap {
+  overflow: hidden;
+  background-color: var(--surface-primary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  /* soft red ring around the card, then the drop shadow */
+  box-shadow: 0 0 0 6px rgb(255 42 42 / 0.07), var(--shadow-lg);
   animation: panelIn var(--duration-normal) var(--ease-out) both;
 }
 
@@ -258,23 +351,33 @@
 .cta {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-xs);
-  font-size: 0.875rem;
+  gap: var(--space-sm);
+  padding: 0.5rem 0.875rem;
+  font-size: 0.9375rem;
   font-weight: 500;
-  color: var(--text-medium);
-  transition: color var(--duration-fast) var(--ease-default);
+  color: var(--text-dark);
+  background-color: var(--surface-primary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+  transition:
+    border-color var(--duration-fast) var(--ease-default),
+    box-shadow var(--duration-fast) var(--ease-default);
+  align-self: flex-start;
 }
 
 .cta:hover {
-  color: var(--clr-dark-red);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-sm);
 }
 
 .cta svg {
+  color: var(--clr-dark-red);
   transition: transform var(--duration-fast) var(--ease-default);
 }
 
 .cta:hover svg {
-  transform: translateX(3px);
+  transform: translate(2px, -2px);
 }
 
 /* ── Responsive — split layout on wider screens ───────── */

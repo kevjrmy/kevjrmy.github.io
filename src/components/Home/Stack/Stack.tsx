@@ -11,6 +11,8 @@ type StackItem = {
 }
 
 const items: StackItem[] = [
+  { icon: 'logos:claude-code', label: 'Claude Code' },
+  { icon: 'logos:cursor-icon', label: 'Cursor' },
   { icon: 'logos:laravel', label: 'Laravel' },
   { icon: 'vscode-icons:file-type-vue', label: 'Vue' },
   { icon: 'vscode-icons:file-type-reactjs', label: 'React' },

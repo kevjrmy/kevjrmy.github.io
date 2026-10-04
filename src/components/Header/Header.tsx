@@ -3,9 +3,23 @@ import { Link, useLocation } from 'react-router-dom'
 import { Icon } from '@iconify/react'
 import styles from './Header.module.css'
 
+// ── Navigation ────────────────────────────────────────────────────────────────
+
+const navLinks = [
+  { to: '/', label: 'Home' },
+  // { to: '/blog', label: 'Blog' },
+  { to: '/portfolio', label: 'Portfolio' },
+  { to: '/services', label: 'Services' },
+]
+
+// Contact is the call to action: a button at the end, not one more link in the row
+const cta = { to: '/contact', label: 'Contact' }
+
+// ── Component ─────────────────────────────────────────────────────────────────
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const menuRef = useRef<HTMLElement>(null)
+  const [isScrolled, setIsScrolled] = useState(() => window.scrollY > 8)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
   const location = useLocation()
 
@@ -16,6 +30,14 @@ const Header = () => {
   const closeMenu = () => {
     setIsMenuOpen(false)
   }
+
+  // Sticky header: switch to the blurred backdrop once the page has moved
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 8)
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   // Handle body scroll lock
   useEffect(() => {
@@ -44,22 +66,13 @@ const Header = () => {
     return () => window.removeEventListener('keydown', handleEsc)
   }, [isMenuOpen])
 
-  // Navigation links data
-  const navLinks = [
-    { to: '/', label: 'Home', icon: 'tabler:home' },
-    // { to: '/blog', label: 'Blog', icon: 'tabler:pencil' },
-    { to: '/portfolio', label: 'Portfolio', icon: 'tabler:briefcase' },
-    { to: '/services', label: 'Services', icon: 'tabler:terminal' },
-    { to: '/contact', label: 'Contact', icon: 'tabler:mail' }
-  ]
-
   return (
     <>
-      <header className={styles.header}>
+      <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
         <div className={styles.container}>
           <Link to="/" className={styles.logoLink} onClick={closeMenu}>
             <div id="logo">
-              <img src="/logo.svg" alt="Kevin Jeremy" height={36} width="auto" />
+              <img src="/logo.svg" alt="Kevin Jeremy Gautier" height={36} width="auto" />
             </div>
           </Link>
 
@@ -73,9 +86,81 @@ const Header = () => {
                     <Link
                       to={link.to}
                       className={`${styles.navLink} ${isActive ? styles.activeLink : ''}`}
+                      aria-current={isActive ? 'page' : undefined}
                     >
-                      <Icon icon={link.icon} width={20} height={20} />
                       {link.label}
+                    </Link>
+                  </li>
+                )
+              })}
+              <li>
+                <Link
+                  to={cta.to}
+                  className={styles.navCta}
+                  aria-current={location.pathname === cta.to ? 'page' : undefined}
+                >
+                  {cta.label}
+                  <Icon icon="tabler:arrow-right" width={16} height={16} aria-hidden="true" />
+                </Link>
+              </li>
+            </ul>
+          </nav>
+
+          {/* Mobile Menu Button */}
+          <button
+            className={`${styles.menuButton} ${styles.openButton}`}
+            onClick={toggleMenu}
+            aria-label="Menu"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
+          >
+            <Icon icon="tabler:menu" width={24} height={24} aria-hidden="true" />
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile Menu — full-screen sheet */}
+      {isMenuOpen && (
+        <aside
+          id="mobile-menu"
+          className={styles.mobileMenu}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu"
+        >
+          {/* Same metrics as the page header, so the logo does not move */}
+          <div className={styles.mobileMenuHeader}>
+            <Link to="/" className={styles.logoLink} onClick={closeMenu}>
+              <img src="/logo.svg" alt="Kevin Jeremy Gautier" height={36} width="auto" />
+            </Link>
+            <button
+              ref={closeButtonRef}
+              onClick={closeMenu}
+              aria-label="Close menu"
+              className={styles.menuButton}
+            >
+              <Icon icon="tabler:x" width={24} height={24} aria-hidden="true" />
+            </button>
+          </div>
+
+          <nav className={styles.mobileNav} aria-label="Mobile navigation">
+            <ul role="list" className={styles.mobileNavList}>
+              {navLinks.map((link, i) => {
+                const isActive = location.pathname === link.to
+                return (
+                  <li
+                    key={link.to}
+                    className={styles.mobileNavItem}
+                    style={{ '--item-delay': `${i * 40}ms` } as React.CSSProperties}
+                  >
+                    <Link
+                      to={link.to}
+                      onClick={closeMenu}
+                      className={`${styles.mobileNavLink} ${isActive ? styles.activeMobileLink : ''}`}
+                      aria-current={isActive ? 'page' : undefined}
+                    >
+                      {link.label}
+                      <Icon icon="tabler:arrow-right" width={22} height={22} aria-hidden="true" />
                     </Link>
                   </li>
                 )
@@ -83,66 +168,14 @@ const Header = () => {
             </ul>
           </nav>
 
-          {/* Mobile Menu Button */}
-          <button
-            className={styles.mobileMenuButton}
-            onClick={toggleMenu}
-            aria-label="Menu"
-            aria-expanded={isMenuOpen}
-            aria-controls="mobile-menu"
-          >
-            <Icon icon="tabler:menu" width={24} height={24} />
-          </button>
-        </div>
-      </header>
-
-      {/* Mobile Menu Overlay */}
-      {isMenuOpen && (
-        <>
-          <div className={styles.overlay} onClick={closeMenu} aria-hidden="true" />
-          <aside
-            id="mobile-menu"
-            ref={menuRef}
-            className={styles.mobileMenu}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Mobile navigation menu"
-          >
-            <div className={styles.mobileMenuHeader}>
-              <img src="/logo.svg" alt="Kevin Jeremy" height={36} width="auto" />
-              <button
-                ref={closeButtonRef}
-                onClick={closeMenu}
-                aria-label="Close menu"
-                className={styles.closeButton}
-              >
-                <Icon icon="tabler:x" width={24} height={24} />
-              </button>
-            </div>
-
-            <nav className={styles.mobileNav} aria-label="Mobile navigation">
-              <ul role="list" className={styles.mobileNavList}>
-                {navLinks.map(link => {
-                  const isActive = location.pathname === link.to
-                  return (
-                    <li key={link.to}>
-                      <Link
-                        to={link.to}
-                        onClick={closeMenu}
-                        className={`${styles.mobileNavLink} ${isActive ? styles.activeMobileLink : ''}`}
-                      >
-                        <Icon icon={link.icon} width={24} height={24} />
-                        {link.label}
-                      </Link>
-                    </li>
-                  )
-                })}
-              </ul>
-            </nav>
-
-            <p className={styles.mobileFooter}>Words are magic</p>
-          </aside>
-        </>
+          <div className={styles.mobileMenuFooter}>
+            <Link to={cta.to} onClick={closeMenu} className={styles.mobileCta}>
+              {cta.label}
+              <Icon icon="tabler:arrow-right" width={18} height={18} aria-hidden="true" />
+            </Link>
+            <p className={styles.mobileTagline}>Words are magic</p>
+          </div>
+        </aside>
       )}
     </>
   )

@@ -84,19 +84,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 520px;
-}
-
-/* ── Services ────────────────────────────────────────────── */
-.services {
-  background-color: var(--surface-secondary);
-  border-top: 1px solid var(--border-light);
-  border-bottom: 1px solid var(--border-light);
-}
-
-/* ── About ─────────────────────────────────────────────── */
-.about {
-  border-top: 1px solid var(--border-light);
+  width: 100%;
+  max-width: 680px;
 }
 
 /* ── Responsive ────────────────────────────────────────── */

@@ -14,10 +14,10 @@ type Service = {
 
 const services: Service[] = [
   {
-    icon: 'mdi:wordpress',
-    title: 'WordPress',
-    description: 'Maintenance, redesigns, new sites. Meant to start quickly and economically.',
-    price: 'From 200€ / project',
+    icon: 'tabler:settings-automation',
+    title: 'AI Automation',
+    description: 'Spreadsheets and repetitive admin turned into a tool that does the work for you. Built with AI agents, like the accounting app that replaced one client\'s Excel workbook.',
+    price: 'Let\'s talk',
   },
   {
     icon: 'tabler:zoom-check',
@@ -55,6 +55,12 @@ const services: Service[] = [
     description: 'Native Android or cross-platform apps with React Native.',
     price: 'Let\'s talk',
   },
+  {
+    icon: 'mdi:wordpress',
+    title: 'WordPress',
+    description: 'Maintenance and redesigns for existing sites, and new ones when WordPress is the right fit.',
+    price: 'From 200€ / project',
+  },
 ]
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -64,12 +70,13 @@ const Services: React.FC = () => {
     <>
 
       {/* ── Page header ───────────────────────────────── */}
-      <section className={styles.header} aria-labelledby="services-heading">
+      <section aria-labelledby="services-heading">
         <div className={styles.headerInner}>
           <p className={styles.eyebrow}>Services</p>
           <h1 id="services-heading" className={styles.h1}>What I can do for you</h1>
           <p className={styles.lead}>
             Whether you need a quick fix or a product built from scratch, I've got a service for that.
+            I build with AI agents and answer for the result, so you get it sooner with the same care.
           </p>
           <Link to="/contact" className={styles.headerCta}>
             Get in touch

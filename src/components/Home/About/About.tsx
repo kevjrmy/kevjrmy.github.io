@@ -44,7 +44,7 @@ const About: React.FC = () => {
         <div className={styles.photoWrap}>
           <img
             src="/kevjrmy.webp"
-            alt="Kevin Jeremy — full-stack developer based in Valencia"
+            alt="Kevin Jeremy Gautier — full-stack developer based in Valencia"
             className={styles.photo}
             loading="lazy"
             width={160}
@@ -63,13 +63,13 @@ const About: React.FC = () => {
             Who am I ?
           </h2>
           <p className={styles.body}>
-            I'm Kevin Jeremy, a full-stack developer based in Valencia, Spain.
-            I graduated in 2021 as Node.js Developer and started freelancing right after doing WordPress websites at first, then I evolved to modern frameworks for the web and now I'm diving into AI with tools like Claude Code, CodeX & Antigravity.
+            I'm Kevin Jeremy Gautier, a full-stack developer based in Valencia, Spain.
+            I graduated in 2021 as a Node.js web developer with OpenClassrooms and started freelancing right away, first with WordPress sites, then with modern web frameworks. Today I build with AI agents: Claude Code above all, after working with Codex, OpenCode and Antigravity.
           </p>
           <p className={styles.body}>
-            My stack spans Laravel, Vue, React, and native Android. From a
-            WordPress refresh to a production-grade web app. I focus on
-            shipping work that is fast, accessible, and built to last.
+            My stack spans Laravel, Vue, React, and native Android, from a
+            quick MVP to a production-grade web app. I focus on shipping
+            work that is fast, accessible, and built to last.
           </p>
         </div>
 
@@ -89,9 +89,9 @@ const About: React.FC = () => {
         </ul>
 
         {/* CTA */}
-        <Link to="/about" className={styles.cta} aria-label="Learn more about Kevin Jeremy">
+        <Link to="/about" className={styles.cta} aria-label="Learn more about Kevin Jeremy Gautier">
           Learn more about me
-          <Icon icon="tabler:arrow-right" width={16} height={16} />
+          <Icon icon="tabler:arrow-up-right" width={16} height={16} aria-hidden="true" />
         </Link>
 
       </div>

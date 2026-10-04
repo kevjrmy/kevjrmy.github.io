@@ -19,20 +19,26 @@
   gap: var(--space-sm);
 }
 
+/* Reads like a slash command typed into a CLI agent: "/about me" */
 .eyebrow {
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-transform: lowercase;
+  color: var(--text-medium);
+}
+
+.eyebrow::before {
+  content: '/';
   color: var(--clr-dark-red);
 }
 
 .h1 {
   font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text-dark);
   line-height: 1.1;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.035em;
 }
 
 .lead {
@@ -46,39 +52,50 @@
 /* ── Filters ──────────────────────────────────────────── */
 .filters {
   display: flex;
-  flex-wrap: wrap;
+  align-self: flex-start;
+  max-width: 100%;
   gap: var(--space-xs);
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  background-color: var(--surface-secondary);
+  /* Border as inset, ring as hairline: see the tab bar in FeaturedWorks.module.css */
+  border: var(--space-xs) solid var(--surface-secondary);
+  border-radius: 1.625rem;
+  box-shadow: 0 0 0 1px var(--border-default);
+}
+
+.filters::-webkit-scrollbar {
+  display: none;
 }
 
 .filter {
-  padding: 0.375rem 0.875rem;
+  flex-shrink: 0;
+  padding: var(--space-sm) var(--space-md);
   border-radius: var(--radius-full);
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   font-weight: 500;
-  color: var(--text-medium);
-  background-color: var(--surface-secondary);
-  border: 1px solid var(--border-default);
+  color: var(--text-light);
+  white-space: nowrap;
   cursor: pointer;
   transition:
     color var(--duration-fast) var(--ease-default),
     background-color var(--duration-fast) var(--ease-default),
-    border-color var(--duration-fast) var(--ease-default);
+    box-shadow var(--duration-fast) var(--ease-default);
 }
 
 .filter:hover {
-  border-color: var(--border-strong);
   color: var(--text-dark);
 }
 
 .filterActive {
-  color: var(--clr-dark-red);
-  background-color: var(--clr-light-red);
-  border-color: var(--clr-medium-red);
+  color: var(--text-dark);
+  background-color: var(--surface-primary);
+  box-shadow: var(--shadow-sm);
 }
 
 .filterActive:hover {
-  color: var(--clr-dark-red);
-  border-color: var(--clr-medium-red);
+  color: var(--text-dark);
 }
 
 /* ── Grid ─────────────────────────────────────────────── */

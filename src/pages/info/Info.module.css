@@ -1,0 +1,101 @@
+/* ══════════════════════════════════════════════════════
+   Info page — /info (terms of use + privacy)
+   ══════════════════════════════════════════════════════ */
+
+.section {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--space-4xl) var(--content-padding);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xl);
+  max-width: 680px;
+}
+
+/* ── Intro ────────────────────────────────────────────── */
+
+/* Reads like a slash command typed into a CLI agent: "/about me" */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-transform: lowercase;
+  color: var(--text-medium);
+}
+
+.eyebrow::before {
+  content: '/';
+  color: var(--clr-dark-red);
+}
+
+.h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 500;
+  color: var(--text-dark);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  margin-top: var(--space-xs);
+}
+
+.lead {
+  font-size: 1rem;
+  color: var(--text-light);
+  line-height: 1.7;
+  margin-top: var(--space-sm);
+}
+
+.updated {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin-top: var(--space-md);
+}
+
+/* ── Text block (one per topic) ───────────────────────── */
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding-top: var(--space-2xl);
+  border-top: 1px solid var(--border-light);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+.h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 500;
+  color: var(--text-dark);
+  line-height: 1.15;
+  margin-bottom: var(--space-sm);
+  letter-spacing: -0.03em;
+}
+
+.h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.3;
+  margin-top: var(--space-lg);
+}
+
+.list {
+  list-style: disc;
+  padding-left: var(--space-lg);
+}
+
+.block a {
+  color: var(--text-dark);
+  text-decoration: underline;
+  text-decoration-color: var(--clr-medium-red);
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+  transition: color var(--duration-fast) var(--ease-default);
+}
+
+.block a:hover {
+  color: var(--clr-dark-red);
+}

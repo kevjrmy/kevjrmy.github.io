@@ -14,7 +14,7 @@ const timeline: TimelineEntry[] = [
   {
     year: '2021',
     title: 'Graduated & went freelance',
-    body: 'Finished my Node.js developer program and immediately started taking on clients — mostly WordPress sites for small businesses and local shops.',
+    body: 'Earned the Web Developer (Node.js) diploma from OpenClassrooms, listed in France\'s national register of professional certifications (RNCP), and immediately started taking on clients — mostly WordPress sites for small businesses and local shops.',
   },
   {
     year: '2022',
@@ -33,8 +33,8 @@ const timeline: TimelineEntry[] = [
   },
   {
     year: '2025 → now',
-    title: 'AI-accelerated development',
-    body: 'Integrating AI tooling (Claude Code, CodeX, Antigravity) into the daily workflow, not to replace craft, but to ship better work faster.',
+    title: 'AI-first development',
+    body: 'Most of my work now runs through AI agents. Claude Code is my main one, after time with Codex, OpenCode and Antigravity, and Cursor is my editor. The agents write fast; I direct, review and answer for the result.',
   },
 ]
 
@@ -48,12 +48,26 @@ type StackGroup = {
 
 const stackGroups: StackGroup[] = [
   {
+    label: 'AI',
+    icon: 'tabler:sparkles',
+    items: [
+      { icon: 'logos:claude-code', label: 'Claude Code' },
+      { icon: 'logos:cursor-icon', label: 'Cursor' },
+      { icon: 'logos:codex', label: 'Codex' },
+      { icon: 'logos:opencode-icon', label: 'OpenCode' },
+      { icon: 'logos:antigravity', label: 'Antigravity' },
+      { icon: 'logos:grok-icon', label: 'Grok' },
+    ],
+  },
+  {
     label: 'Backend',
     icon: 'tabler:server',
     items: [
       { icon: 'logos:laravel', label: 'Laravel' },
       { icon: 'vscode-icons:file-type-php', label: 'PHP' },
       { icon: 'vscode-icons:file-type-node', label: 'Node.js' },
+      { icon: 'logos:express', label: 'Express' },
+      { icon: 'vscode-icons:file-type-sql', label: 'SQL' },
     ],
   },
   {
@@ -79,9 +93,37 @@ const stackGroups: StackGroup[] = [
     label: 'Tools & other',
     icon: 'tabler:tools',
     items: [
-      { icon: 'mdi:wordpress', label: 'WordPress' },
       { icon: 'vscode-icons:file-type-git', label: 'Git' },
+      { icon: 'logos:linux-tux', label: 'Linux' },
       { icon: 'logos:css-3', label: 'CSS' },
+      { icon: 'mdi:wordpress', label: 'WordPress' },
+    ],
+  },
+]
+
+// ── Credentials ───────────────────────────────────────────────────────────────
+
+type CredentialGroup = {
+  label: string
+  icon: string
+  items: { label: string; detail: string }[]
+}
+
+const credentialGroups: CredentialGroup[] = [
+  {
+    label: 'Education',
+    icon: 'tabler:certificate',
+    items: [
+      { label: 'Web Developer (Node.js)', detail: 'OpenClassrooms — RNCP-registered diploma' },
+    ],
+  },
+  {
+    label: 'Languages',
+    icon: 'tabler:language',
+    items: [
+      { label: 'French', detail: 'Native' },
+      { label: 'English', detail: 'C1 — Cambridge' },
+      { label: 'Spanish', detail: 'C1 — DELE, Instituto Cervantes' },
     ],
   },
 ]
@@ -119,7 +161,7 @@ const About: React.FC = () => {
     <>
 
       {/* ── Page header ───────────────────────────────── */}
-      <section className={styles.header} aria-labelledby="about-heading">
+      <section aria-labelledby="about-heading">
         <div className={styles.headerInner}>
 
           <div className={styles.headerText}>
@@ -128,16 +170,17 @@ const About: React.FC = () => {
               A developer who<br />gives a damn.
             </h1>
             <p className={styles.lead}>
-              I'm Kevin Jeremy — full-stack developer based in Valencia, Spain.
-              Self-taught, freelance since 2021, and genuinely excited about building
-              things that work well and look the part.
+              I'm Kevin Jeremy Gautier — full-stack developer based in Valencia, Spain.
+              Certified web developer, freelance since 2021, working in French, English
+              and Spanish. These days I build with AI agents, and I still care that
+              things work well and look the part.
             </p>
           </div>
 
           <div className={styles.headerPhoto}>
             <img
               src="/kevjrmy.webp"
-              alt="Kevin Jeremy — full-stack developer based in Valencia, Spain"
+              alt="Kevin Jeremy Gautier — full-stack developer based in Valencia, Spain"
               className={styles.photo}
               width={320}
               height={320}
@@ -148,7 +191,7 @@ const About: React.FC = () => {
       </section>
 
       {/* ── Story timeline ────────────────────────────── */}
-      <section className={styles.timelineSection} aria-labelledby="timeline-heading">
+      <section aria-labelledby="timeline-heading">
         <div className={styles.sectionInner}>
 
           <div className={styles.sectionIntro}>
@@ -167,6 +210,25 @@ const About: React.FC = () => {
               </li>
             ))}
           </ol>
+
+          <div className={styles.credentials}>
+            {credentialGroups.map((group) => (
+              <div key={group.label} className={styles.stackGroup}>
+                <div className={styles.stackGroupHeader}>
+                  <Icon icon={group.icon} width={18} height={18} aria-hidden="true" />
+                  <span className={styles.stackGroupLabel}>{group.label}</span>
+                </div>
+                <ul className={styles.stackItems} role="list">
+                  {group.items.map((item) => (
+                    <li key={item.label} className={styles.credential}>
+                      <span className={styles.credentialLabel}>{item.label}</span>
+                      <span className={styles.credentialDetail}>{item.detail}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
 
         </div>
       </section>
@@ -206,7 +268,7 @@ const About: React.FC = () => {
       </section>
 
       {/* ── Values ────────────────────────────────────── */}
-      <section className={styles.valuesSection} aria-labelledby="values-heading">
+      <section aria-labelledby="values-heading">
         <div className={styles.sectionInner}>
 
           <div className={styles.sectionIntro}>

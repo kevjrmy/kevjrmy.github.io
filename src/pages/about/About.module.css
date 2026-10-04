@@ -18,19 +18,26 @@
   gap: var(--space-xs);
 }
 
+/* Reads like a slash command typed into a CLI agent: "/about me" */
 .eyebrow {
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-transform: lowercase;
+  color: var(--text-medium);
+}
+
+.eyebrow::before {
+  content: '/';
   color: var(--clr-dark-red);
 }
 
 .h2 {
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 600;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 500;
   color: var(--text-dark);
-  line-height: 1.2;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
 }
 
 .sectionSubline {
@@ -42,10 +49,6 @@
 /* ══════════════════════════════════════════════════════
    1. Page header
    ══════════════════════════════════════════════════════ */
-
-.header {
-  border-bottom: 1px solid var(--border-light);
-}
 
 .headerInner {
   display: flex;
@@ -64,10 +67,10 @@
 
 .h1 {
   font-size: clamp(2rem, 5vw, 3.25rem);
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text-dark);
   line-height: 1.1;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.035em;
 }
 
 .lead {
@@ -121,10 +124,6 @@
 /* ══════════════════════════════════════════════════════
    2. Timeline
    ══════════════════════════════════════════════════════ */
-
-.timelineSection {
-  border-bottom: 1px solid var(--border-light);
-}
 
 .timeline {
   display: flex;
@@ -218,14 +217,42 @@
   }
 }
 
+/* ── Credentials (education + languages, below the timeline) ── */
+.credentials {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+}
+
+.credential {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-xs) var(--space-sm);
+  font-size: 0.9375rem;
+}
+
+.credentialLabel {
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.credentialDetail {
+  color: var(--text-light);
+}
+
+@media screen and (min-width: 640px) {
+  .credentials {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 /* ══════════════════════════════════════════════════════
    3. Stack
    ══════════════════════════════════════════════════════ */
 
 .stackSection {
   background-color: var(--surface-secondary);
-  border-top: 1px solid var(--border-light);
-  border-bottom: 1px solid var(--border-light);
 }
 
 .stackGrid {
@@ -272,17 +299,19 @@
 
 @media screen and (min-width: 640px) {
   .stackGrid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .stackGrid {
+    grid-template-columns: repeat(5, 1fr);
   }
 }
 
 /* ══════════════════════════════════════════════════════
    4. Values
    ══════════════════════════════════════════════════════ */
-
-.valuesSection {
-  border-bottom: 1px solid var(--border-light);
-}
 
 .valuesGrid {
   display: grid;

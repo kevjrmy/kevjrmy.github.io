@@ -23,12 +23,17 @@ const techIcons: Record<string, string> = {
   'PWA': 'tabler:device-mobile-code',
   'Android': 'tabler:brand-android',
   'CSS': 'logos:css-3',
-  'Markdown': 'vscode-icons:file-type-markdown'
+  'Markdown': 'vscode-icons:file-type-markdown',
+  'SQLite': 'vscode-icons:file-type-sqlite',
+  'Firebase': 'logos:firebase-icon',
+  'Astro': 'logos:astro-icon',
+  'Claude Code': 'logos:claude-code',
+  'WooCommerce': 'logos:woocommerce-icon'
 }
 
 // ── Filter categories ─────────────────────────────────────────────────────────
 
-const TYPE_ORDER: ProjectType[] = ['Web Application', 'PWA', 'WordPress', 'Mobile App', 'Landing Page', 'Laravel', 'Consulting']
+const TYPE_ORDER: ProjectType[] = ['Web Application', 'PWA', 'Mobile App', 'Landing Page', 'Laravel', 'Consulting', 'WordPress']
 
 const usedTypes = new Set(projects.map(p => p.type))
 const categories: ProjectType[] = ['All', ...TYPE_ORDER.filter(t => usedTypes.has(t))]
@@ -124,7 +129,7 @@ const Portfolio: React.FC = () => {
         <p className={styles.eyebrow}>Portfolio</p>
         <h1 id="portfolio-heading" className={styles.h1}>Selected work</h1>
         <p className={styles.lead}>
-          A range of projects — from WordPress sites to full-stack apps and mobile.
+          Full-stack apps, PWAs and websites. The recent ones are built with AI agents.
         </p>
       </div>
 
@@ -134,7 +139,10 @@ const Portfolio: React.FC = () => {
           <button
             key={cat}
             className={`${styles.filter} ${active === cat ? styles.filterActive : ''}`}
-            onClick={() => setActive(cat)}
+            onClick={(e) => {
+              setActive(cat)
+              e.currentTarget.scrollIntoView({ inline: 'center', block: 'nearest' })
+            }}
             aria-pressed={active === cat}
           >
             {cat}

@@ -1,6 +1,5 @@
 /* ── Footer ────────────────────────────────────────── */
 .footer {
-  border-top: 1px solid var(--border-light);
   padding: var(--space-lg) var(--content-padding);
   display: flex;
   flex-direction: column;

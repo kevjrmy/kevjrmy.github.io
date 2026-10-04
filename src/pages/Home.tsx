@@ -6,6 +6,7 @@ import CliPrompt from '@/components/Home/CliPrompt/CliPrompt'
 import Stack from '@/components/Home/Stack/Stack'
 import Services from '@/components/Home/Services/Services'
 import FeaturedWorks from '@/components/Home/FeaturedWorks/FeaturedWorks'
+import StartupWeekend from '@/components/Home/StartupWeekend/StartupWeekend'
 import About from '@/components/Home/About/About'
 import Cta from '@/components/Home/CTA/Cta'
 
@@ -21,11 +22,11 @@ const Home: React.FC = () => { // React.FC is a generic type for React functiona
         </div>
       </section>
 
-      <section className={styles.stack}>
+      <section>
         <Stack />
       </section>
 
-      <section className={styles.services}>
+      <section>
         <Services />
       </section>
 
@@ -33,7 +34,11 @@ const Home: React.FC = () => { // React.FC is a generic type for React functiona
         <FeaturedWorks />
       </section>
 
-      <section className={styles.about}>
+      <section>
+        <StartupWeekend />
+      </section>
+
+      <section>
         <About />
       </section>
 

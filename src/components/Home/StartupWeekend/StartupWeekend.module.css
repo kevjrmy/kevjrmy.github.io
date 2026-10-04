@@ -1,0 +1,243 @@
+/* ══════════════════════════════════════════════════════
+   StartupWeekend — award section with a photo carousel
+   ══════════════════════════════════════════════════════ */
+
+/* ── Section wrapper ──────────────────────────────────── */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--space-4xl) var(--content-padding);
+}
+
+/* ── Text column ──────────────────────────────────────── */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+/* Reads like a slash command typed into a CLI agent: "/about me" */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-transform: lowercase;
+  color: var(--text-medium);
+}
+
+.eyebrow::before {
+  content: '/';
+  color: var(--clr-dark-red);
+}
+
+.heading {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 500;
+  color: var(--text-dark);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.body {
+  font-size: 1.0625rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  max-width: 46ch;
+}
+
+/* ── Checklist ────────────────────────────────────────── */
+.facts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-top: var(--space-xs);
+}
+
+.fact {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  font-size: 1rem;
+  line-height: 1.4;
+  color: var(--text-dark);
+}
+
+.fact svg {
+  flex-shrink: 0;
+  margin-top: 0.1em;
+  color: var(--clr-dark-red);
+}
+
+/* ── CTA (outlined button) ────────────────────────────── */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+  padding: 0.5rem 0.875rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  background-color: var(--surface-primary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+  transition:
+    border-color var(--duration-fast) var(--ease-default),
+    box-shadow var(--duration-fast) var(--ease-default);
+}
+
+.cta:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-sm);
+}
+
+.cta svg {
+  color: var(--clr-dark-red);
+  transition: transform var(--duration-fast) var(--ease-default);
+}
+
+.cta:hover svg {
+  transform: translate(2px, -2px);
+}
+
+/* ── Gallery ──────────────────────────────────────────── */
+.gallery {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background-color: var(--text-dark);
+  /* soft red ring, as on the featured works card */
+  box-shadow: 0 0 0 6px rgb(255 42 42 / 0.07), var(--shadow-lg);
+}
+
+/* Scroll-snap row: one slide per view, swipeable */
+.track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.slide {
+  position: relative;
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+}
+
+.photo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+/* Caption over a bottom fade */
+.caption {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-3xl) var(--space-lg) var(--space-lg);
+  color: var(--text-inverse);
+  background: linear-gradient(to top, rgb(0 0 0 / 0.72), transparent);
+  pointer-events: none;
+}
+
+.captionTitle {
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.captionMeta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.8;
+}
+
+/* ── Arrows ───────────────────────────────────────────── */
+.arrow {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--text-inverse);
+  opacity: 0.85;
+  filter: drop-shadow(0 1px 3px rgb(0 0 0 / 0.6));
+  transform: translateY(-50%);
+  transition: opacity var(--duration-fast) var(--ease-default);
+}
+
+.arrow:hover {
+  opacity: 1;
+}
+
+.arrow:active {
+  transform: translateY(-50%) scale(0.94);
+}
+
+.arrowPrev {
+  left: var(--space-xs);
+}
+
+.arrowNext {
+  right: var(--space-xs);
+}
+
+/* ── Counter ──────────────────────────────────────────── */
+.counter {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  padding: 0.125rem 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-inverse);
+  background-color: rgb(0 0 0 / 0.45);
+  border-radius: var(--radius-full);
+  pointer-events: none;
+}
+
+/* ── Responsive — text left, gallery right ────────────── */
+@media screen and (min-width: 900px) {
+  .section {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-3xl);
+  }
+
+  .content {
+    flex: 4;
+  }
+
+  .gallery {
+    flex: 6;
+    min-width: 0;
+  }
+}
+
+/* ── Reduced motion ───────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .cta svg,
+  .arrow {
+    transition: none;
+  }
+}

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Icon } from '@iconify/react'
 import { featuredProjects } from '@/data/projects'
@@ -33,7 +33,12 @@ const techIcons: Record<string, string> = {
   'PWA': 'tabler:device-mobile-code',
   'Android': 'tabler:brand-android',
   'CSS': 'logos:css-3',
-  'Markdown': 'vscode-icons:file-type-markdown'
+  'Markdown': 'vscode-icons:file-type-markdown',
+  'SQLite': 'vscode-icons:file-type-sqlite',
+  'Firebase': 'logos:firebase-icon',
+  'Astro': 'logos:astro-icon',
+  'Claude Code': 'logos:claude-code',
+  'WooCommerce': 'logos:woocommerce-icon'
 }
 
 // ── Stack badge (icon + label pill) ──────────────────────────────────────────
@@ -110,6 +115,32 @@ const FeaturedWorks: React.FC = () => {
   const [activeSlug, setActiveSlug] = useState(featuredProjects[0]?.slug ?? '')
   const activeProject = featuredProjects.find(p => p.slug === activeSlug)
 
+  // The tab bar is one row that scrolls sideways: track which sides still hide tabs
+  const tabBarRef = useRef<HTMLDivElement>(null)
+  const [hidden, setHidden] = useState({ start: false, end: false })
+
+  const updateHidden = () => {
+    const bar = tabBarRef.current
+    if (!bar) return
+    const start = bar.scrollLeft > 1
+    const end = bar.scrollLeft + bar.clientWidth < bar.scrollWidth - 1
+    setHidden(prev => (prev.start === start && prev.end === end ? prev : { start, end }))
+  }
+
+  useEffect(() => {
+    const bar = tabBarRef.current
+    if (!bar) return
+    const observer = new ResizeObserver(updateHidden) // also fires once on observe
+    observer.observe(bar)
+    return () => observer.disconnect()
+  }, [])
+
+  // Chevrons, for pointers that cannot swipe: move the row by most of its width
+  const scrollTabs = (direction: -1 | 1) => {
+    const bar = tabBarRef.current
+    if (bar) bar.scrollBy({ left: direction * bar.clientWidth * 0.6 })
+  }
+
   return (
     <section className={styles.section} aria-labelledby="work-heading">
 
@@ -123,20 +154,47 @@ const FeaturedWorks: React.FC = () => {
       <div className={styles.widget}>
 
         {/* Tab bar */}
-        <div className={styles.tabBar} role="tablist" aria-label="Featured projects">
-          {featuredProjects.map(project => (
-            <button
-              key={project.slug}
-              role="tab"
-              aria-selected={project.slug === activeSlug}
-              aria-controls={`panel-${project.slug}`}
-              id={`tab-${project.slug}`}
-              className={`${styles.tab} ${project.slug === activeSlug ? styles.tabActive : ''}`}
-              onClick={() => setActiveSlug(project.slug)}
-            >
-              {project.title}
-            </button>
-          ))}
+        <div className={styles.tabBarWrap}>
+          <div
+            ref={tabBarRef}
+            className={`${styles.tabBar} ${hidden.start ? styles.fadeStart : ''} ${hidden.end ? styles.fadeEnd : ''}`}
+            role="tablist"
+            aria-label="Featured projects"
+            onScroll={updateHidden}
+          >
+            {featuredProjects.map(project => (
+              <button
+                key={project.slug}
+                role="tab"
+                aria-selected={project.slug === activeSlug}
+                aria-controls={`panel-${project.slug}`}
+                id={`tab-${project.slug}`}
+                className={`${styles.tab} ${project.slug === activeSlug ? styles.tabActive : ''}`}
+                onClick={(e) => {
+                  setActiveSlug(project.slug)
+                  // The bar scrolls sideways: bring the chosen tab into view, which reveals its neighbours
+                  e.currentTarget.scrollIntoView({ inline: 'center', block: 'nearest' })
+                }}
+              >
+                {project.title}
+              </button>
+            ))}
+          </div>
+
+          <button
+            className={`${styles.tabArrow} ${styles.tabArrowPrev} ${hidden.start ? styles.tabArrowVisible : ''}`}
+            onClick={() => scrollTabs(-1)}
+            aria-label="Show previous projects"
+          >
+            <Icon icon="tabler:chevron-left" width={16} height={16} aria-hidden="true" />
+          </button>
+          <button
+            className={`${styles.tabArrow} ${styles.tabArrowNext} ${hidden.end ? styles.tabArrowVisible : ''}`}
+            onClick={() => scrollTabs(1)}
+            aria-label="Show more projects"
+          >
+            <Icon icon="tabler:chevron-right" width={16} height={16} aria-hidden="true" />
+          </button>
         </div>
 
         {/* Active panel */}
@@ -157,7 +215,7 @@ const FeaturedWorks: React.FC = () => {
       {/* CTA */}
       <Link to="/portfolio" className={styles.cta} aria-label="See all projects">
         See all projects
-        <Icon icon="tabler:arrow-right" width={16} height={16} />
+        <Icon icon="tabler:arrow-up-right" width={16} height={16} aria-hidden="true" />
       </Link>
 
     </section>

@@ -11,9 +11,9 @@ type Service = {
 
 const services: Service[] = [
   {
-    icon: 'tabler:device-mobile',
-    title: 'Mobile App',
-    description: 'Native Android or cross-platform apps.',
+    icon: 'tabler:settings-automation',
+    title: 'AI Automation',
+    description: 'Manual spreadsheet work, turned into a tool that does it for you.',
   },
   {
     icon: 'tabler:server',
@@ -21,9 +21,9 @@ const services: Service[] = [
     description: 'Full-stack products, from MVP to production.',
   },
   {
-    icon: 'mdi:wordpress',
-    title: 'WordPress',
-    description: 'The most common CMS used worldwide.',
+    icon: 'tabler:device-mobile-code',
+    title: 'PWA',
+    description: 'Installable, offline-ready web apps.',
   },
 ]
 
@@ -55,7 +55,7 @@ const Services: React.FC = () => {
 
       <div className={styles.intro}>
         <h2 id="services-heading" className={styles.heading}>My Services</h2>
-        <p className={styles.subline}>Featured previews of my services.</p>
+        <p className={styles.subline}>What I build most, with AI agents in the loop.</p>
       </div>
 
       <ul ref={gridRef} className={styles.grid} role="list">
@@ -78,7 +78,7 @@ const Services: React.FC = () => {
 
       <Link to="/services" className={styles.cta} aria-label="See all services">
         See all services
-        <Icon icon="tabler:arrow-right" width={16} height={16} />
+        <Icon icon="tabler:arrow-up-right" width={16} height={16} aria-hidden="true" />
       </Link>
 
     </section>

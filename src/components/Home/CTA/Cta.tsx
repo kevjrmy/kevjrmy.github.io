@@ -4,7 +4,6 @@ import styles from './Cta.module.css'
 const Cta: React.FC = () => {
   return (
     <section className={styles.section} aria-labelledby="cta-heading">
-      <div className={styles.divider} aria-hidden="true" />
       <div className={styles.inner}>
         <div className={styles.text}>
           <h2 id="cta-heading" className={styles.heading}>

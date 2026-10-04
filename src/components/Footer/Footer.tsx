@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
     <footer className={styles.footer}>
       {/* Logo */}
       <Link to="/" className={styles.logoLink}>
-        <img src="/logo.svg" alt="Kevin Jeremy" height={32} />
+        <img src="/logo.svg" alt="Kevin Jeremy Gautier" height={32} />
       </Link>
 
       {/* Social icons */}
@@ -43,8 +43,8 @@ const Footer: React.FC = () => {
           {SITE_DOMAIN} © {year} — All Rights Reserved
         </p>
         <ul className={styles.legal} role="list">
-          <li><Link to="/info" className={styles.legalLink}>Terms of use</Link></li>
-          <li><Link to="/info" className={styles.legalLink}>Privacy</Link></li>
+          <li><Link to="/info#terms" className={styles.legalLink}>Terms of use</Link></li>
+          <li><Link to="/info#privacy" className={styles.legalLink}>Privacy</Link></li>
         </ul>
       </div>
     </footer>

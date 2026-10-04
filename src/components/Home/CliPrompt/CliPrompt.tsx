@@ -1,71 +1,101 @@
 import { useEffect, useRef, useState } from 'react'
+import { Icon } from '@iconify/react'
 import styles from './CliPrompt.module.css'
 
-const COMMAND = 'whoami'
+// Styled after a Claude Code session: the command is typed in the prompt box at
+// the bottom, moves up into the transcript when "sent", and the answer prints below it.
+// A second prompt is then typed into the box and left there, unsent.
+
+const COMMAND = '/whoami'
+const NEXT_PROMPT = 'ready to build'
+
+const NAME = 'Kevin Jeremy Gautier'
 
 type OutputLine = {
   key: string
   value: string
-  valueClass?: string
 }
 
 const output: OutputLine[] = [
-  { key: 'name', value: 'Kevin Jeremy' },
   { key: 'role', value: 'Full-stack developer' },
   { key: 'stack', value: 'Laravel · Vue · React · TS · Node' },
-  { key: 'city', value: 'Valencia, Spain' },
-  { key: 'status', value: '● ready to build', valueClass: 'green' },
+  { key: 'ai', value: 'Claude Code · Cursor' },
+  { key: 'langs', value: 'FR · EN · ES' },
 ]
 
+// The name line counts as the first line of the answer
+const LINE_COUNT = output.length + 1
+
+type Phase = 'idle' | 'typing' | 'running' | 'retyping' | 'done'
+
+const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
 const CliPrompt: React.FC = () => {
-  const [phase, setPhase] = useState<'idle' | 'typing' | 'running' | 'done'>('idle')
-  const [typed, setTyped] = useState('')
-  const [visibleLines, setVisible] = useState(0)
-  const rafRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  // With reduced motion the finished session is shown straight away
+  const [phase, setPhase] = useState<Phase>(() => (prefersReducedMotion() ? 'done' : 'idle'))
+  const [typed, setTyped] = useState(() => (prefersReducedMotion() ? NEXT_PROMPT : ''))
+  const [visibleLines, setVisible] = useState(() => (prefersReducedMotion() ? LINE_COUNT : 0))
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
+    if (prefersReducedMotion()) return
+
     const INITIAL_PAUSE = 600   // wait before typing starts — feels more natural
-    const CHAR_DELAY = 75    // ms between each character
-    const SUBMIT_PAUSE = 500   // pause after command is fully typed
-    const LINE_DELAY = 140   // ms between each output line appearing
+    const CHAR_DELAY = 75       // ms between each character
+    const SUBMIT_PAUSE = 500    // pause after command is fully typed
+    const LINE_DELAY = 140      // ms between each output line appearing
 
     let i = 0
+    let j = 0
+
+    // Last step: type the next prompt into the box and leave the cursor after it
+    const typeNextPrompt = () => {
+      if (j < NEXT_PROMPT.length) {
+        j++
+        setTyped(NEXT_PROMPT.slice(0, j))
+        timerRef.current = setTimeout(typeNextPrompt, CHAR_DELAY)
+      } else {
+        setPhase('done')
+      }
+    }
 
     const typeChar = () => {
       if (i < COMMAND.length) {
         i++
         setTyped(COMMAND.slice(0, i))
-        rafRef.current = setTimeout(typeChar, CHAR_DELAY)
+        timerRef.current = setTimeout(typeChar, CHAR_DELAY)
       } else {
-        // Finished typing — pause, then "run" the command
-        rafRef.current = setTimeout(() => {
+        // Finished typing — pause, then "send" the command
+        timerRef.current = setTimeout(() => {
           setPhase('running')
+          setTyped('')
           let line = 0
           const revealLine = () => {
-            if (line < output.length) {
+            if (line < LINE_COUNT) {
               line++
               setVisible(line)
-              rafRef.current = setTimeout(revealLine, LINE_DELAY)
+              timerRef.current = setTimeout(revealLine, LINE_DELAY)
             } else {
-              setPhase('done')
+              setPhase('retyping')
+              timerRef.current = setTimeout(typeNextPrompt, SUBMIT_PAUSE)
             }
           }
-          revealLine()
+          timerRef.current = setTimeout(revealLine, LINE_DELAY * 2)
         }, SUBMIT_PAUSE)
       }
     }
 
     // Small initial pause so the terminal entrance animation finishes first
-    rafRef.current = setTimeout(() => {
+    timerRef.current = setTimeout(() => {
       setPhase('typing')
       typeChar()
     }, INITIAL_PAUSE)
 
-    return () => { if (rafRef.current) clearTimeout(rafRef.current) }
+    return () => { if (timerRef.current) clearTimeout(timerRef.current) }
   }, [])
 
-  // Cursor is visible while typing and after all lines are shown; hidden while output loads
-  const showCursor = phase === 'typing' || phase === 'done'
+  const sent = phase !== 'idle' && phase !== 'typing'
+  const lineClass = (i: number) => `${styles.line} ${i < visibleLines ? styles.lineVisible : ''}`
 
   return (
     <figure className={styles.terminal} aria-hidden="true">
@@ -73,48 +103,50 @@ const CliPrompt: React.FC = () => {
       {/* Title bar */}
       <div className={styles.titleBar}>
         <div className={styles.dots}>
-          <span className={styles.dot} data-color="red" />
-          <span className={styles.dot} data-color="yellow" />
-          <span className={styles.dot} data-color="green" />
+          <span className={styles.dot} />
+          <span className={styles.dot} />
+          <span className={styles.dot} />
         </div>
-        <span className={styles.title}>kevjrmy@bash:</span>
+        <span className={styles.title}>
+          <Icon icon="logos:claude-code" width={16} height={10} />
+          kevjrmy — claude code
+        </span>
       </div>
 
-      {/* Body — always fully rendered to prevent CLS */}
+      {/* Body — every row is always in the DOM, so nothing shifts as it fills in */}
       <div className={styles.body}>
 
-        {/* Command line */}
-        <div className={styles.cmdLine}>
-          <span className={styles.ps1}>~$</span>
+        {/* Transcript: the command, once sent */}
+        <p className={`${styles.sent} ${sent ? styles.sentVisible : ''}`}>
+          <span className={styles.chevron}>&gt;</span>
+          {COMMAND}
+        </p>
 
-          {/*
-            Grid overlap trick:
-            - .cmdPlaceholder reserves the full command width (invisible)
-            - .cmdTyped overlays it with the growing typed text + cursor
-            Both share grid-area 1/1 so the line height/width never shifts.
-          */}
-          <span className={styles.cmdGrid}>
-            <span className={styles.cmdPlaceholder} aria-hidden="true">{COMMAND}</span>
-            <span className={styles.cmdTyped}>
-              <span className={styles.cmd}>{typed}</span>
-              {showCursor && <span className={`${styles.cursor} ${phase === 'done' ? styles.cursorIdle : ''}`} />}
-            </span>
-          </span>
+        {/* Transcript: the answer */}
+        <div className={styles.answer}>
+          <p className={`${styles.name} ${lineClass(0)}`}>
+            <span className={styles.bullet} />
+            {NAME}
+          </p>
+          {output.map((line, i) => (
+            <p key={line.key} className={`${styles.row} ${lineClass(i + 1)}`}>
+              <span className={styles.rowKey}>{line.key}</span>
+              <span className={styles.rowValue}>{line.value}</span>
+            </p>
+          ))}
         </div>
 
-        {/* Output block — always in DOM, lines revealed via opacity + slide */}
-        <div className={styles.outputBlock}>
-          {output.map((line, i) => (
-            <div
-              key={line.key}
-              className={`${styles.outputLine} ${i < visibleLines ? styles.outputLineVisible : ''}`}
-            >
-              <span className={styles.outKey}>{line.key}</span>
-              <span className={`${styles.outVal} ${line.valueClass === 'green' ? styles.outValGreen : ''}`}>
-                {line.value}
-              </span>
-            </div>
-          ))}
+        {/* Prompt box: where both prompts are typed, and where the cursor waits */}
+        <div className={styles.promptBox}>
+          {phase === 'running' ? (
+            <span className={styles.working}>✻ working…</span>
+          ) : (
+            <>
+              <span className={styles.chevron}>&gt;</span>
+              <span className={styles.typed}>{typed}</span>
+              <span className={`${styles.cursor} ${phase === 'done' ? styles.cursorIdle : ''}`} />
+            </>
+          )}
         </div>
 
       </div>

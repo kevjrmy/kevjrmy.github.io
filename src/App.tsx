@@ -6,6 +6,7 @@ import Contact from '@/pages/contact/Contact'
 import About from '@/pages/about/About'
 import Portfolio from '@/pages/portfolio/Portfolio'
 import Services from './pages/services/Services'
+import Info from '@/pages/info/Info'
 
 export default function App() {
   return (
@@ -33,6 +34,9 @@ export default function App() {
 
           {/* Services page */}
           <Route path="/services" element={<Services />} />
+
+          {/* Terms of use + privacy (linked from the footer) */}
+          <Route path="/info" element={<Info />} />
 
         </Route>
       </Routes>
