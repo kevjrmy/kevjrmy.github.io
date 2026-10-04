@@ -81,7 +81,7 @@ Adding a font means downloading the file and its license into `public/fonts/`; d
 
 - `public/images/projects/<slug>.webp`: one per project (`docs/projects.md`).
 - `public/images/startup-weekend/`: the award carousel photos, two sizes each (`docs/content.md`).
-- `public/logo.svg` is the header and footer logo; `public/favicon.svg`, `favicon.png`, and `apple-touch-icon.png` are generated from it, squared.
+- `public/logo.svg` is the header and footer logo, kept optimised (about 2 KB; an Inkscape export of it is close to 200 KB, so run it through SVGO before replacing it). `public/favicon.svg`, `favicon.png`, and `apple-touch-icon.png` are generated from it, squared.
 
 ## Unused on purpose
 

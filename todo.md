@@ -21,8 +21,6 @@
 
 ## Later
 
-- [ ] **`public/logo.svg` is 189 KB**, almost all of it invisible Inkscape leftovers. Optimised, the same logo is under 2 KB (the favicon was made that way). It loads in the header and footer of every page.
-- [ ] **`@iconify-json/lucide` is installed and unused.** `npm rm @iconify-json/lucide` removes it.
 - [ ] **Deep links answer with a 404 status** (see `docs/architecture.md`). Prerendering each route would fix it, and would matter for a blog.
 - [ ] **One monospace everywhere.** The terminal and the slash labels use the visitor's system monospace, so they look different on each device. JetBrains Mono is already loaded for the headline and could cover them too.
 
