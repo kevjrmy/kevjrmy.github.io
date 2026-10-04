@@ -16,6 +16,42 @@ Rejected `HashRouter`, which would put `#/` in every URL. The cost is that deep 
 **Icons are bundled at build time, keeping the string API.**
 Previously every icon was fetched from the Iconify API at runtime. A small Vite plugin now extracts the icons used from the `@iconify-json/*` packages. Rejected importing whole icon sets (thousands of icons in the bundle) and rejected switching to per-icon component imports (would have meant rewriting every data array that stores an icon name).
 
+**The dev server runs on port 5180, not Vite's default 5173.**
+Other local projects that use `vite-plugin-pwa` leave a dev service worker registered on `localhost:5173`. It stays active after that project stops and serves its own `index.html` for `/`, so this site showed a blank page with "@vitejs/plugin-react can't detect preamble". A port of its own gives this project an origin no other project's service worker can claim. `strictPort` is on so it never silently falls back to a shared port.
+
+**The laravel.com home page is the design reference, and the site was restyled to it.**
+Applied across all pages: the section frame with red ticks, monospace eyebrows (bracketed at first, slash commands since), lighter and tighter headings, left-aligned section intros, two button kinds only, pill tab bars, and the grid texture behind the CTA band. The grey band behind the homepage services section was dropped in favor of the frame. Details in `docs/design.md`.
+
+**Claude Code is the second design inspiration; Laravel stays the main one.**
+Kevin wants the site to show that he works the AI way. Claude Code's terminal look supplies accents (slash-command eyebrows, the hero terminal, monospace meta text) while Laravel keeps deciding layout, color, and components. The limits are in `docs/design.md`.
+
+**The site is positioned AI-first; WordPress moves to the back.**
+The work shifted from WordPress to building with AI agents while this site was being made. WordPress stays for history and for clients who still need it, but last in every list and never in a highlighted spot. The tool list and the wording rules are in `docs/content.md`, Positioning.
+
+**Page transitions are a CSS enter animation on a re-keyed `<main>`, not the View Transitions API.**
+React has no built-in equivalent of Vue's `<Transition>`. React Router can drive the browser's View Transitions API (old page fades out as the new one fades in), but only with its data router (`createBrowserRouter`) and a `viewTransition` prop on every link; this app uses `BrowserRouter`. The other route is an animation library such as Motion. A keyed `<main>` with a CSS animation costs four lines and no dependency, at the price of having no exit animation.
+
+**The homepage project tabs stay on one row and scroll; they do not wrap.**
+Nine tabs do not fit the content width. Wrapping onto a second row was tried and rejected. The row scrolls sideways instead, with a fade and a small chevron on the side that hides tabs, and a clicked tab is brought to the center.
+
+**Contact is a button in the navigation, not a link.**
+On desktop it is the red button at the end of the row; on mobile it is the full-width button at the bottom of the menu. It gives every page one constant call to action.
+
+**The AI service is called "AI Automation", not "AI Integration".**
+The reference case (Limpiezas El Imperio) replaced a hand-filled spreadsheet with a custom app built with AI agents; no AI model runs inside the client's software. "Integration" would promise that. See `docs/content.md`, Services.
+
+**The hero headline ends in `/ai-agents`, in JetBrains Mono with a red slash.**
+Four pixel fonts (Pixelify Sans, Doto, Silkscreen) and two monospaces (Geist Mono, JetBrains Mono) were tried on the words "AI agents". The slash-command version won because it ties the headline to the slash labels and to the `/whoami` terminal under it. The fonts not kept were removed.
+
+**The terms and privacy page is short and plain, and does not list a tax ID or postal address.**
+Same choice as on a client's site. Spanish law (LSSI) normally expects a site that offers paid services to identify its owner more fully; this is noted in `todo.md` as a risk to revisit.
+
+**Marcas que dejan huellas was taken off the portfolio rather than shown without a working link or image.**
+Its domain expired. See `todo.md`.
+
+**The section frame is one global rule, not a per-component border.**
+Every page gets it without each stylesheet repeating it, and a new section cannot forget it. The cost is the constraint on top-level sections described in `docs/architecture.md`.
+
 ## Earlier
 
 Carried over from the original home page spec. Dates were not recorded.

@@ -2,15 +2,56 @@
 
 The look and feel the site is aiming for. The tokens themselves are in `src/index.css`; this file is the intent behind them.
 
+## Reference
+
+The visual reference is the laravel.com home page. A full-page mobile capture is kept locally as `.private/laravel.png` (not in git). When a design question comes up, the answer is "what does the reference do". Its vocabulary, as applied here:
+
+- **Section frame.** Sections are separated by a full-width hairline with a small red tick at each end, against the edges of the page. No alternating colored bands needed to tell sections apart. Implemented once, in `src/index.css` (see `docs/architecture.md`).
+- **Display headings.** Hero and CTA headings are large, weight 400, very tight tracking (-0.045em), centered. Section and page headings are weight 500, tracking around -0.03em, left-aligned.
+- **Eyebrows.** Styled as a slash command typed into a CLI agent: monospace, lowercase, grey, with a red `/` in front, as in `/about me`. The slash comes from `::before`, not from the text. This one comes from Claude Code, not from Laravel, whose labels are bracketed and uppercase.
+- **Buttons.** Two kinds only. Primary: solid red, white text, medium radius, with an arrow. Secondary: white, hairline border, faint shadow; when it leads somewhere it carries a red up-right arrow. No pill buttons, no tinted buttons.
+- **Pill tab bar.** Tabs and filters sit in a rounded track; the active one is a raised white pill. No underlines. Always a single row. When the tabs do not fit, the track scrolls sideways, the side with hidden tabs fades out, and a clicked tab is brought to the center, which reveals its neighbours. A small round chevron also appears on that side, except on touch phones, where the row is swiped.
+- **Cards.** White, hairline border, large radius, soft shadow. A featured card can take a soft red ring (the featured-works panel).
+- **Grid texture.** The faint isometric tile appears behind the two centered moments: the hero and the CTA band.
+- **Navigation.** Desktop: links are quiet pills that grey on hover, the current page is a raised white pill (the secondary-button look), and Contact is the one primary red button at the end. Mobile: the menu is a full-screen sheet whose top row matches the header exactly, with large display-type rows separated by hairlines, a red tick on the current page (the section-frame tick), and Contact as a full-width primary button at the bottom. The sheet fades in and its rows rise in a short stagger.
+- **Sticky header.** Solid white at the top of the page. Once the page scrolls it turns translucent with a backdrop blur, over a slow fade (`--duration-slow`). No shadow, no height change.
+- **Photo carousel.** One slide per view in a rounded card, thin white chevrons on the sides, a caption over a bottom fade with a monospace place-and-date line. Taken from the events block above the reference's footer; used for the Startup Weekend section.
+- **Checklist.** Short facts with a red check mark, as in the reference's feature sections.
+- **One dark element.** The hero terminal, as the reference has its dark testimonial cards.
+
+Not taken from the reference: testimonials, newsletter form, multi-column footer, logo wall of clients. The site has no content for them.
+
+## Second inspiration: Claude Code
+
+Claude Code's terminal interface is the second source, after Laravel. Laravel decides layout, spacing, color, type, and components. Claude Code supplies the terminal accent that says "this developer works with an AI agent", in small doses.
+
+Taken from it so far:
+
+- Eyebrows written as slash commands: `/about me`, `/services`.
+- The hero terminal, laid out as a Claude Code session: the command is typed in a bordered prompt box at the bottom, moves up into the transcript when sent, the answer prints line by line, and a second prompt ("ready to build") is then typed into the box and left there with the cursor after it. Its title bar carries the Claude Code mascot.
+- Monospace for small meta text: captions' place and date, counters, years, prices.
+- Claude Code named on the page, with its mascot icon, in the stack marquee, the toolkit, and project badges (see Positioning in `docs/content.md`).
+
+What else it offers, when a new element needs a voice: prompt lines, terse lowercase labels, status-line rows of short facts, plain monospace panels.
+
+Limits, so it stays an accent:
+
+- Red remains the only accent color. Claude's orange appears only inside its own logo.
+- One blinking cursor on the site, in the hero terminal.
+- The hero terminal stays the one dark element. Do not turn other sections into terminal windows.
+- When the two sources disagree, Laravel wins.
+
 ## Direction
 
-- Inspiration: laravel.com and nextjs.org. Clean, modern, professional.
+- Inspiration: laravel.com first (see Reference), Claude Code second (see above), and nextjs.org. Clean, modern, professional.
 - Minimalist and elegant, with a warm and welcoming tone.
 - Soft colors, generous whitespace, friendly and readable typography.
 - Light theme only.
 - Red is the single accent (`--clr-dark-red`, `--clr-medium-red`, `--clr-light-red`), on neutral greys.
 - Typeface: Instrument Sans, self-hosted from `public/fonts/`.
-- The hero terminal (`CliPrompt`) uses the Catppuccin Mocha palette and is the one deliberately dark element.
+- Code face: JetBrains Mono (`--font-code`), also self-hosted, latin subset. Claude Code has no font of its own (it uses the terminal's), so this stands in for it. Used in one place: the hero headline ends in `/ai-agents`, set in this face with a red slash, like a slash command. Everything else monospace still uses `--font-mono`, the visitor's system monospace.
+- The hero terminal (`CliPrompt`) is the one deliberately dark element. Its palette is neutral near-black with the site red for the prompt and cursor and one green for "ready"; the colors are defined locally in its stylesheet, not in the global tokens. It gets the same soft red ring as the featured cards.
+- Body copy under headings is grey (`--text-light`), not black.
 
 ## Animation
 
@@ -18,6 +59,7 @@ Conservative by default: subtle signals, not theatrical entrances.
 
 - The hero typewriter is the one on-load attention effect. Hero text only fades in (opacity, 300ms, no slide, no delay) so it does not compete.
 - Scroll reveals use a one-shot `IntersectionObserver` that adds a class. Stagger comes from a `--card-delay` custom property set inline per card.
+- Page transition: on every navigation the new page fades in and rises 8px over 250ms. Enter only; the old page does not animate out.
 - Prefer CSS animations over JS-driven ones.
 - Everything must respect `prefers-reduced-motion`. The global rule in `index.css` covers durations; elements that start hidden need their own visible fallback.
 
@@ -30,5 +72,5 @@ Conservative by default: subtle signals, not theatrical entrances.
 
 - Stock photos.
 - Long paragraphs above the fold.
-- More than one primary CTA visible at once.
+- More than one primary button in the same section. The red Contact button in the header is the one that is always there; each section adds at most one of its own.
 - Listing every technology known: pick the 5 or 6 that matter most.

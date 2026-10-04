@@ -5,7 +5,7 @@ Not built. This file holds what is already known so the work does not start from
 ## Known so far
 
 - Planned route: `/blog`.
-- The nav entry already exists, commented out, in the `navLinks` array of `src/components/Header/Header.tsx` (`tabler:pencil`).
+- The nav entry already exists, commented out, in the `navLinks` array of `src/components/Header/Header.tsx`.
 - `src/index.css` has a "Content / Markdown styling" block (`.content h2`, `.content p`) intended for long-form text. Nothing uses the `.content` class yet.
 
 ## Constraints from the rest of the site

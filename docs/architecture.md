@@ -6,14 +6,20 @@ How the app is put together, and the places where one change has to be made in t
 
 `src/App.tsx` declares every route as a child of `MainLayout`, which renders `Header`, `<main>`, and `Footer`. `MainLayout` sets `<main id>` from the pathname (`/` becomes `home`, `/about` becomes `about`).
 
-Current routes: `/`, `/portfolio`, `/services`, `/contact`, `/about`. There is no catch-all route, so an unknown URL renders the header and footer around an empty `<main>`.
+Current routes: `/`, `/portfolio`, `/services`, `/contact`, `/about`, `/info`. There is no catch-all route, so an unknown URL renders the header and footer around an empty `<main>`.
 
 Adding a page touches two places:
 
 1. The route in `App.tsx`.
-2. The `navLinks` array in `src/components/Header/Header.tsx`. One array drives both the desktop nav and the mobile drawer.
+2. The `navLinks` array in `src/components/Header/Header.tsx`. One array drives both the desktop nav and the mobile menu. Contact is kept apart in `cta`, because it is rendered as the primary button in both.
 
-`/about` is routed but deliberately absent from the nav.
+`/about` is routed but deliberately absent from the nav. `/info` (terms of use and privacy) is reached only from the footer, which links to its `#terms` and `#privacy` anchors.
+
+`MainLayout` gives `<main>` a `key` equal to the pathname, so React builds a new `<main>` on each route change and the `pageIn` animation in `src/index.css` replays: that is the page transition. A change of `#anchor` on the same page does not replay it.
+
+`MainLayout` also handles scrolling, which React Router does not: on navigation it jumps to the `#anchor` if the URL has one, otherwise to the top. Back and forward are left to the browser, which restores the previous position.
+
+The header is sticky (`z-index: 40`); the mobile menu is a full-screen sheet above it (`z-index: 50`), rendered next to the header, not inside it. `html` has `scroll-padding-top: 5rem` so anchors stop below the header.
 
 ## Deep links on GitHub Pages
 
@@ -23,7 +29,7 @@ The HTTP status of such a response is still 404, so only `/` is a real 200 for c
 
 ## Pages vs. home sections
 
-`src/pages/` holds route components. `src/components/Home/<Name>/` holds the sections that `src/pages/Home.tsx` stacks in order: Hero + CliPrompt, Stack, Services, FeaturedWorks, About, Cta.
+`src/pages/` holds route components. `src/components/Home/<Name>/` holds the sections that `src/pages/Home.tsx` stacks in order: Hero + CliPrompt, Stack, Services, FeaturedWorks, StartupWeekend, About, Cta.
 
 Two names exist in both trees and are different components:
 
@@ -52,8 +58,30 @@ Plain CSS with CSS Modules, one `*.module.css` beside each component.
 
 - `src/index.css` is the design system: color, spacing, radius, shadow, easing, and layout tokens as custom properties on `:root`, plus the reset.
 - Global rules there affect every page. `main > section > h2` (and the `p` right after it) are centered. A global `prefers-reduced-motion` rule neutralizes all animation and transition durations.
-- Breakpoints are mobile-first `min-width` queries at 640px, 768px, and 1024px.
+- The section frame is global too. Every direct `<section>` child of `<main>` except the first gets a hairline across its full width, with a red tick at each end, at its top, drawn by `main > section + section::after`; `main::after` draws the one under the last section. Consequences:
+  - A top-level section must be full width, with its `max-width` on an inner wrapper: the line is as wide as the section. Sections that constrain themselves (the hero, and the single sections of the portfolio, contact, and info pages) are fine only because they come first and so draw no line.
+  - A top-level section must leave its own `::after` free (use `::before` for decoration, as the hero and the CTA band do) and must not set `overflow: hidden`, or the line is clipped.
+  - Do not add `border-top` / `border-bottom` to sections; the frame is the separator.
+- Breakpoints are mobile-first `min-width` queries at 640px, 768px, and 1024px. Two components also switch at 900px (the hero and the Startup Weekend section).
 - Page width comes from `--content-width` (1100px) and `--content-padding`.
+
+## Fonts
+
+Self-hosted in `public/fonts/`, each folder with its license file, and declared with `@font-face` at the top of `src/index.css`:
+
+| Token | Font | Use |
+|-------|------|-----|
+| `--font-sans` | Instrument Sans (variable TTF) | Everything |
+| `--font-code` | JetBrains Mono (latin subset, WOFF2) | The `/ai-agents` words of the hero headline |
+| `--font-mono` | The visitor's system monospace, no file | Terminal, slash labels, badges, small meta text |
+
+Adding a font means downloading the file and its license into `public/fonts/`; do not link to Google Fonts or any CDN.
+
+## Images
+
+- `public/images/projects/<slug>.webp`: one per project (`docs/projects.md`).
+- `public/images/startup-weekend/`: the award carousel photos, two sizes each (`docs/content.md`).
+- `public/logo.svg` is the header and footer logo; `public/favicon.svg`, `favicon.png`, and `apple-touch-icon.png` are generated from it, squared.
 
 ## Unused on purpose
 
