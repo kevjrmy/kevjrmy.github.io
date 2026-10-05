@@ -20,7 +20,7 @@ const photos: Photo[] = [
   {
     name: 'kevin',
     alt: 'Kevin Jeremy Gautier holding the Grand Prize certificate in front of the Techstars Startup Weekend Valencia banner',
-    caption: 'Grand Prize, in hand',
+    caption: '1st place, in hand',
   },
   {
     name: 'certificate',
@@ -82,11 +82,12 @@ const StartupWeekend: React.FC = () => {
       <div className={styles.content}>
         <p className={styles.eyebrow}>Award</p>
         <h2 id="award-heading" className={styles.heading}>
-          Grand Prize at Techstars Startup Weekend Valencia
+          1st place at Techstars Startup Weekend Valencia
         </h2>
         <p className={styles.body}>
-          In June 2026 our team, Cuanto Cuesta, won with a simple idea: real,
-          verified prices for local services in Spain.
+          In June 2026 our team, Cuanto Cuesta, won the competition's Grand
+          Prize with a simple idea: real, verified prices for local services in
+          Spain.
         </p>
 
         <ul className={styles.facts} role="list">

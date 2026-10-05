@@ -91,6 +91,7 @@ The WhatsApp number, LinkedIn, GitHub, and email are hard-coded in four places. 
 Kevin's team, Cuanto Cuesta, won the Grand Prize at Techstars Startup Weekend Valencia in June 2026 (54 hours, team of six). Cuanto Cuesta is price comparison for local services in Spain; its public site is https://cuantocuesta.eu. The homepage has a section for it with a photo carousel.
 
 - Photos are in `public/images/startup-weekend/`, each as `<name>.webp` (1440x960) and `<name>-720.webp`, cropped to 3:2. The originals are not in git.
+- Lead with "1st place": the award's official name, "Grand Prize", does not say on its own that it was a competition or that the team came first. The official name stays in the supporting text, since it is what the certificate in the photos reads.
 - Only say about Cuanto Cuesta what its public site says. The project's working notes are private.
 
 ## Work to showcase
