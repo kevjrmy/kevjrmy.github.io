@@ -43,6 +43,9 @@ The reference case (Limpiezas El Imperio) replaced a hand-filled spreadsheet wit
 **The hero headline ends in `/ai-agents`, in JetBrains Mono with a red slash.**
 Four pixel fonts (Pixelify Sans, Doto, Silkscreen) and two monospaces (Geist Mono, JetBrains Mono) were tried on the words "AI agents". The slash-command version won because it ties the headline to the slash labels and to the `/whoami` terminal under it. The fonts not kept were removed.
 
+**The slash of that headline is drawn as pixels, flat rather than isometric.**
+It ties the headline to the logo, which is built from cubes. A solid red staircase was kept over versions shaded with the logo's lighter reds, which turned muddy at phone sizes. It comes from a `::before` with background gradients, so the `/` is no longer in the text of the heading.
+
 **The terms and privacy page is short and plain, and does not list a tax ID or postal address.**
 Same choice as on a client's site. Spanish law (LSSI) normally expects a site that offers paid services to identify its owner more fully; this is noted in `todo.md` as a risk to revisit.
 

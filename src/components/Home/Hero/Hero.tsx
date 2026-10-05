@@ -7,7 +7,7 @@ const Hero: React.FC = () => {
     <div className={styles.heroContainer}>
       <h1 className={styles.h1}>
         <span>Building crafted projects</span>{' '}<br />
-        <span>with <span className={styles.command}><span className={styles.slash} aria-hidden="true">/</span>ai-agents</span></span>
+        <span>with <span className={styles.command}>ai-agents</span></span>
       </h1>
       <p className={styles.lead}>Hi, I'm Kevin Jeremy Gautier, a full-stack developer specialized in JavaScript (Node.js, React, TypeScript) and PHP (Laravel), now building with Claude Code.</p>
       <div className={styles.ctaRow}>

@@ -40,8 +40,23 @@
   white-space: nowrap;
 }
 
-.slash {
-  color: var(--clr-dark-red);
+/* The slash is drawn, not typed: four red pixels climbing a 4 by 8 grid, a flat
+   nod to the cubes of the logo. Where round() is supported the width snaps to
+   a multiple of 4px, so each pixel lands on whole screen pixels. */
+.command::before {
+  --pixel: linear-gradient(var(--clr-dark-red), var(--clr-dark-red));
+  content: '';
+  display: inline-block;
+  width: 0.52em;
+  width: round(0.52em, 4px);
+  aspect-ratio: 1 / 2;
+  margin: 0 0.08em 0 0.05em;
+  vertical-align: -0.14em;
+  background:
+    var(--pixel) 0 100% / 25% 25% no-repeat,
+    var(--pixel) 33.333% 66.667% / 25% 25% no-repeat,
+    var(--pixel) 66.667% 33.333% / 25% 25% no-repeat,
+    var(--pixel) 100% 0 / 25% 25% no-repeat;
 }
 
 /* The forced line break only fits from tablet width up */

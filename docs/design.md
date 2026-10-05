@@ -49,7 +49,7 @@ Limits, so it stays an accent:
 - Light theme only.
 - Red is the single accent (`--clr-dark-red`, `--clr-medium-red`, `--clr-light-red`), on neutral greys.
 - Typeface: Instrument Sans, self-hosted from `public/fonts/`.
-- Code face: JetBrains Mono (`--font-code`), also self-hosted, latin subset. Claude Code has no font of its own (it uses the terminal's), so this stands in for it. Used in one place: the hero headline ends in `/ai-agents`, set in this face with a red slash, like a slash command. Everything else monospace still uses `--font-mono`, the visitor's system monospace.
+- Code face: JetBrains Mono (`--font-code`), also self-hosted, latin subset. Claude Code has no font of its own (it uses the terminal's), so this stands in for it. Used in one place: the hero headline ends in `/ai-agents`, set in this face like a slash command. Its red slash is not a glyph: it is drawn in CSS as four pixels climbing a staircase, a flat echo of the cubes of the logo. It is the only pixelated mark on the page; the eyebrow slashes stay typed. Everything else monospace still uses `--font-mono`, the visitor's system monospace.
 - The hero terminal (`CliPrompt`) is the one deliberately dark element. Its palette is neutral near-black with the site red for the prompt and cursor and one green for "ready"; the colors are defined locally in its stylesheet, not in the global tokens. It gets the same soft red ring as the featured cards.
 - Body copy under headings is grey (`--text-light`), not black.
 
