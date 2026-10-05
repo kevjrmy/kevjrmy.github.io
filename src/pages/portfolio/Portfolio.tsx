@@ -27,6 +27,7 @@ const techIcons: Record<string, string> = {
   'Markdown': 'vscode-icons:file-type-markdown',
   'SQLite': 'vscode-icons:file-type-sqlite',
   'Firebase': 'logos:firebase-icon',
+  'Supabase': 'logos:supabase-icon',
   'Astro': 'logos:astro-icon',
   'Claude Code': 'logos:claude-code',
   'WooCommerce': 'logos:woocommerce-icon'

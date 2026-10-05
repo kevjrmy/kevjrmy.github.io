@@ -15,6 +15,8 @@
   - The sentences about how he works with AI agents: "The agents write fast; I direct, review and answer for the result" (About timeline) and "I build with AI agents and answer for the result, so you get it sooner with the same care" (Services).
   - "Certified web developer" on the About page, which replaced "Self-taught".
   - The title "El Imperio Contabilidad" and the client label "Wellness startup" for SUNspot.
+  - Le Petit Cours (added 2026-10-05): its excerpt, the label "Personal project", and its place in the list (fifth, after the client sites built with Claude Code).
+- [ ] **Le Petit Cours is filed as a PWA before it works offline.** Its repo says the service worker is not installed yet, so the portfolio excerpt does not mention offline use. Once it is, the excerpt can say so.
 - [ ] **AI Automation has no price.** It shows "Let's talk" on the services page.
 - [ ] **Legal identification on `/info`.** The page does not give a tax ID or postal address. A site offering paid services from Spain is normally expected to (LSSI). Decide whether to add them.
 - [ ] **"Jev".** One of the two AI tools Kevin plans to learn next (with Hermes). The spelling is unconfirmed, and neither is on the site yet.

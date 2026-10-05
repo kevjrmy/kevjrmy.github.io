@@ -84,6 +84,25 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: 'le-petit-cours',
+    title: 'Le Petit Cours',
+    client: 'Personal project',
+    type: 'PWA',
+    excerpt: 'Free, open-source French course written for Spanish speakers — short lessons, drills and reading, with optional accounts that sync progress across devices. A personal project, built with Claude Code on Next.js and Supabase.',
+    stack: ['Claude Code', 'Next.js', 'Supabase', 'PWA'],
+    tags: ['ai', 'claude-code', 'pwa', 'education', 'french', 'open-source', 'supabase'],
+    year: 2026,
+    status: 'live',
+    lang: 'fr',
+    link: 'https://lepetitcours.vercel.app',
+    featured: true,
+    order: 5,
+    image: {
+      src: '/images/projects/le-petit-cours.webp',
+      alt: 'Le Petit Cours — home and lesson screens of the PWA',
+    },
+  },
+  {
     slug: 'planetax',
     title: 'PlanetaX',
     client: 'Radio station',
@@ -96,7 +115,7 @@ export const projects: Project[] = [
     lang: 'es',
     link: 'https://planetax.netlify.app',
     featured: true,
-    order: 5,
+    order: 6,
     image: {
       src: '/images/projects/planetax.webp',
       alt: 'PlanetaX — radio PWA screenshot',
@@ -115,7 +134,7 @@ export const projects: Project[] = [
     lang: 'es',
     link: null,
     featured: true,
-    order: 6,
+    order: 7,
     image: {
       src: '/images/projects/el-imperio-contabilidad.webp',
       alt: 'Limpiezas El Imperio logo',
@@ -134,7 +153,7 @@ export const projects: Project[] = [
     lang: 'en',
     link: null,
     featured: true,
-    order: 7,
+    order: 8,
     image: {
       src: '/images/projects/fesma.webp',
       alt: 'Fesma — artist website screenshot',
@@ -153,7 +172,7 @@ export const projects: Project[] = [
     lang: 'fr',
     link: 'https://rachel-blot.com',
     featured: true,
-    order: 8,
+    order: 9,
     image: {
       src: '/images/projects/rachel-blot.webp',
       alt: 'Rachel Blot — author website screenshot',
@@ -172,7 +191,7 @@ export const projects: Project[] = [
     lang: 'es',
     link: 'https://ethicaanabelorzaez.com',
     featured: true,
-    order: 9,
+    order: 10,
     image: {
       src: '/images/projects/ethica.webp',
       alt: 'Ethica Anabel Orzáez — beauty salon website screenshot',

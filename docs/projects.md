@@ -17,8 +17,9 @@ Fields rendered today: `title`, `client`, `excerpt`, `stack`, `year`, `link`, `i
 2. Set `featured` and `order`. Every tab on the homepage is one featured project, so each `featured: true` adds a tab. Keep `order` in step with the position in the array, since the portfolio page uses array order and the homepage uses `order`. WordPress projects go last.
 3. Check `type`. The portfolio filter buttons are derived: a category appears only if some project uses it, in the order given by `TYPE_ORDER` in `Portfolio.tsx`. A new type must be added to both the `ProjectType` union and `TYPE_ORDER`.
 4. If the project was built with Claude Code, put `'Claude Code'` first in `stack` (see Positioning in `docs/content.md`). Then check each `stack` label against the `techIcons` map. The map is duplicated in `FeaturedWorks.tsx` and `Portfolio.tsx`; a label missing from it renders as a badge with no icon. Add new labels to both copies.
-5. Set `link` to `null` for a private or offline project. The "Visit site" link is hidden when it is null.
-6. Add the screenshot (below).
+5. A project of Kevin's own, with no client, takes `client: 'Personal project'` (Le Petit Cours is the first). Client work is listed ahead of it.
+6. Set `link` to `null` for a private or offline project. The "Visit site" link is hidden when it is null.
+7. Add the screenshot (below).
 
 ## Screenshots
 

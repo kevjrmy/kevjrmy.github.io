@@ -103,7 +103,7 @@ What the portfolio is meant to cover, for writing copy and choosing projects:
 - SSR: Nuxt (Rachel Blot, Fesma), Next.js (Limpiezas El Imperio: the public website and a private accounting app for the same client, both 2026).
 - Laravel: 1 past project and 2 current (1 going to production soon, French client).
 - Kotlin Android app.
-- PWAs: PlanetaX (live), SUNspot (Vue + Firebase, live since 2026).
+- PWAs: PlanetaX (live), SUNspot (Vue + Firebase, live since 2026), Le Petit Cours (Next.js + Supabase, Kevin's own open-source French course for Spanish speakers, built with Claude Code, 2026).
 - Vector and logo design (Inkscape).
 - Video editing: DaVinci Resolve, Kdenlive, and AI video (Google Flow / Veo / Nano Banana).
 - AI agents: see Positioning above.
