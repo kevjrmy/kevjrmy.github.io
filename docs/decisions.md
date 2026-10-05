@@ -2,6 +2,23 @@
 
 Choices that are not obvious from the code, with the reason. Read before reversing one. Add an entry when making a new one: what was chosen, what was rejected, why.
 
+## 2026-10-05
+
+**The slash of that headline is drawn as pixels, flat rather than isometric.**
+It ties the headline to the logo, which is built from cubes. A solid red staircase was kept over versions shaded with the logo's lighter reds, which turned muddy at phone sizes. It comes from a `::before` with background gradients, so the `/` is no longer in the text of the heading.
+
+**"ai-agents" in the headline went back to the headline's own face, and JetBrains Mono was removed.**
+Once the slash was drawn as pixels it carried the slash-command idea by itself, and a second typeface on two words was one signal too many. Nothing else used JetBrains Mono, so its file, `@font-face` and `--font-code` token went with it (about 40 KB less to load).
+
+**The site has a dark theme, and the system setting chooses it; there is no toggle.**
+The site was light only. Visitors whose system is in dark mode now get a dark version. A toggle was left out: it needs a control in the header, a stored preference (the privacy page says the site stores nothing), and a script that runs before first paint to avoid a flash of the wrong theme. Following the system needs none of that and is pure CSS.
+
+**Dark is the same tokens with second values, not a set of per-component overrides.**
+One media query in `src/index.css` redefines the color, shadow and texture tokens. To make that enough, raised surfaces were moved from `--surface-primary` to `--surface-elevated` (the two are the same white on the light theme), and the last literal colors were turned into tokens (`--ring-accent`, `--grid-tile`). Rejected: `light-dark()` in every declaration (noisier, and newer browser support) and a `.dark` class on `<html>` (only useful with a toggle).
+
+**Dark-ink brand logos are inverted with a CSS filter rather than swapped for light variants.**
+Swapping needs either two icons in the DOM or JavaScript watching the theme. A filter (`invert` plus a hue rotation that restores colored parts) is one rule; the cost is a hand-kept list of which logos need it, in `src/data/inkLogos.ts`.
+
 ## 2026-10-04
 
 **`AGENTS.md` is the single source of agent guidance; `CLAUDE.md` only imports it.**
@@ -40,11 +57,8 @@ On desktop it is the red button at the end of the row; on mobile it is the full-
 **The AI service is called "AI Automation", not "AI Integration".**
 The reference case (Limpiezas El Imperio) replaced a hand-filled spreadsheet with a custom app built with AI agents; no AI model runs inside the client's software. "Integration" would promise that. See `docs/content.md`, Services.
 
-**The hero headline ends in `/ai-agents`, in JetBrains Mono with a red slash.**
+**The hero headline ends in `/ai-agents`, in JetBrains Mono with a red slash.** (The typeface was dropped on 2026-10-05; the slash command stays.)
 Four pixel fonts (Pixelify Sans, Doto, Silkscreen) and two monospaces (Geist Mono, JetBrains Mono) were tried on the words "AI agents". The slash-command version won because it ties the headline to the slash labels and to the `/whoami` terminal under it. The fonts not kept were removed.
-
-**The slash of that headline is drawn as pixels, flat rather than isometric.**
-It ties the headline to the logo, which is built from cubes. A solid red staircase was kept over versions shaded with the logo's lighter reds, which turned muddy at phone sizes. It comes from a `::before` with background gradients, so the `/` is no longer in the text of the heading.
 
 **The terms and privacy page is short and plain, and does not list a tax ID or postal address.**
 Same choice as on a client's site. Spanish law (LSSI) normally expects a site that offers paid services to identify its owner more fully; this is noted in `todo.md` as a risk to revisit.

@@ -124,10 +124,7 @@ const CliPrompt: React.FC = () => {
 
         {/* Transcript: the answer */}
         <div className={styles.answer}>
-          <p className={`${styles.name} ${lineClass(0)}`}>
-            <span className={styles.bullet} />
-            {NAME}
-          </p>
+          <p className={`${styles.name} ${lineClass(0)}`}>{NAME}</p>
           {output.map((line, i) => (
             <p key={line.key} className={`${styles.row} ${lineClass(i + 1)}`}>
               <span className={styles.rowKey}>{line.key}</span>

@@ -83,7 +83,7 @@
   font-size: 0.9375rem;
   font-weight: 500;
   color: var(--text-dark);
-  background-color: var(--surface-primary);
+  background-color: var(--surface-elevated);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-xs);
@@ -111,9 +111,9 @@
   position: relative;
   overflow: hidden;
   border-radius: var(--radius-xl);
-  background-color: var(--text-dark);
+  background-color: var(--surface-tertiary);
   /* soft red ring, as on the featured works card */
-  box-shadow: 0 0 0 6px rgb(255 42 42 / 0.07), var(--shadow-lg);
+  box-shadow: var(--ring-accent), var(--shadow-lg);
 }
 
 /* Scroll-snap row: one slide per view, swipeable */

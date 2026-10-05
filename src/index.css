@@ -17,16 +17,10 @@
   font-display: swap;
 }
 
-/* Code face: latin subset, used for a few words only (the slash command in the hero) */
-@font-face {
-  font-family: "JetBrains Mono";
-  src: url('/fonts/JetBrains_Mono/JetBrainsMono-VariableFont_wght-latin.woff2') format('woff2');
-  font-weight: 100 800;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
+  /* Both themes are supported; the dark values are in the media query below */
+  color-scheme: light dark;
+
   /* ── Accent colors ────────────────────────────────── */
   --clr-dark-red: #ff2a2a;
   --clr-medium-red: #ff8080;
@@ -36,6 +30,7 @@
   --surface-primary: #ffffff;
   --surface-secondary: #fafafa;
   --surface-tertiary: #f5f5f5;
+  /* Anything raised above the page: cards, secondary buttons, active pills */
   --surface-elevated: #ffffff;
 
   /* ── Borders ──────────────────────────────────────── */
@@ -53,7 +48,6 @@
   --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
   --font-serif: serif;
   --font-mono: ui-monospace, Consolas, monospace;
-  --font-code: "JetBrains Mono", var(--font-mono);
 
   /* ── Spacing scale ────────────────────────────────── */
   --space-xs: 0.25rem;
@@ -86,6 +80,13 @@
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.04);
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.06), 0 4px 6px rgba(0, 0, 0, 0.04);
   --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.08), 0 8px 10px rgba(0, 0, 0, 0.04);
+  /* Soft red ring around the featured panels (hero terminal, featured work, photos) */
+  --ring-accent: 0 0 0 6px rgb(255 42 42 / 0.07);
+
+  /* ── Textures ─────────────────────────────────────── */
+  /* Isometric diamond tile behind the hero and the CTA band. A data URI cannot
+     read a custom property, so its stroke repeats the --border-default value. */
+  --grid-tile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='51.96'%3E%3Cpolygon points='30,0 60,25.98 30,51.96 0,25.98' fill='none' stroke='%23e5e5e5' stroke-width='0.75'/%3E%3C/svg%3E");
 
   /* ── Transitions ──────────────────────────────────── */
   --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
@@ -104,6 +105,46 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Dark theme ───────────────────────────────────────
+   Follows the visitor's system setting; there is no toggle. Only colors,
+   shadows and the grid tile change. Raised surfaces get lighter instead of
+   casting a visible shadow, so they must use --surface-elevated. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* The red tints step down towards the page instead of up towards white */
+    --clr-light-red: #4a1a1a;
+
+    --surface-primary: #0a0a0a;
+    --surface-secondary: #121212;
+    --surface-tertiary: #222222;
+    --surface-elevated: #171717;
+
+    --border-light: #1c1c1c;
+    --border-default: #2a2a2a;
+    --border-strong: #3d3d3d;
+
+    --text-dark: #ededed;
+    --text-medium: #a8a8a8;
+    --text-light: #8f8f8f;
+    --text-muted: #707070;
+
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5), 0 4px 6px rgba(0, 0, 0, 0.4);
+    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.6), 0 8px 10px rgba(0, 0, 0, 0.4);
+    --ring-accent: 0 0 0 6px rgb(255 42 42 / 0.12);
+
+    --grid-tile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='51.96'%3E%3Cpolygon points='30,0 60,25.98 30,51.96 0,25.98' fill='none' stroke='%232a2a2a' stroke-width='0.75'/%3E%3C/svg%3E");
+  }
+
+  /* Brand marks drawn in dark ink (listed in src/data/inkLogos.ts): the ink turns
+     light, and the hue rotation gives any colored part its own hue back */
+  .ink-logo {
+    filter: invert(1) hue-rotate(180deg);
+  }
 }
 
 

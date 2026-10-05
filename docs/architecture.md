@@ -57,6 +57,10 @@ All icons are `<Icon icon="prefix:name" />` from `@iconify/react`, addressed by 
 Plain CSS with CSS Modules, one `*.module.css` beside each component.
 
 - `src/index.css` is the design system: color, spacing, radius, shadow, easing, and layout tokens as custom properties on `:root`, plus the reset.
+- The dark theme is one `@media (prefers-color-scheme: dark)` block right under `:root`, which gives the color, shadow and texture tokens a second value. Component stylesheets hold no dark-mode rules: a color that goes through a token follows the theme by itself, and a literal color does not. Three things outside that block have to be kept in step with it by hand:
+  - The `theme-color` meta tags in `index.html` repeat the two `--surface-primary` values.
+  - The grid tile (`--grid-tile`) is an SVG data URI, which cannot read a custom property, so each theme carries its own copy with the stroke color written in.
+  - Brand logos drawn in dark ink are listed in `src/data/inkLogos.ts`; `inkLogoClass()` gives them the global `.ink-logo` class, which inverts them on the dark theme. A new logo that disappears in dark mode goes in that list.
 - Global rules there affect every page. `main > section > h2` (and the `p` right after it) are centered. A global `prefers-reduced-motion` rule neutralizes all animation and transition durations.
 - The section frame is global too. Every direct `<section>` child of `<main>` except the first gets a hairline across its full width, with a red tick at each end, at its top, drawn by `main > section + section::after`; `main::after` draws the one under the last section. Consequences:
   - A top-level section must be full width, with its `max-width` on an inner wrapper: the line is as wide as the section. Sections that constrain themselves (the hero, and the single sections of the portfolio, contact, and info pages) are fine only because they come first and so draw no line.
@@ -67,12 +71,11 @@ Plain CSS with CSS Modules, one `*.module.css` beside each component.
 
 ## Fonts
 
-Self-hosted in `public/fonts/`, each folder with its license file, and declared with `@font-face` at the top of `src/index.css`:
+Self-hosted in `public/fonts/`, with its license file, and declared with `@font-face` at the top of `src/index.css`:
 
 | Token | Font | Use |
 |-------|------|-----|
 | `--font-sans` | Instrument Sans (variable TTF) | Everything |
-| `--font-code` | JetBrains Mono (latin subset, WOFF2) | The `/ai-agents` words of the hero headline |
 | `--font-mono` | The visitor's system monospace, no file | Terminal, slash labels, badges, small meta text |
 
 Adding a font means downloading the file and its license into `public/fonts/`; do not link to Google Fonts or any CDN.

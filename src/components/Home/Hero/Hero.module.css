@@ -31,12 +31,9 @@
   text-wrap: balance;
 }
 
-/* "/ai-agents": written as a slash command in a terminal face, like the page
-   labels and the /whoami of the terminal below */
+/* "/ai-agents": written as a slash command, like the page labels and the
+   /whoami of the terminal below. Same face as the rest of the headline. */
 .command {
-  font-family: var(--font-code);
-  font-size: 0.86em;
-  letter-spacing: -0.02em;
   white-space: nowrap;
 }
 
@@ -47,11 +44,11 @@
   --pixel: linear-gradient(var(--clr-dark-red), var(--clr-dark-red));
   content: '';
   display: inline-block;
-  width: 0.52em;
-  width: round(0.52em, 4px);
+  width: 0.45em;
+  width: round(0.45em, 4px);
   aspect-ratio: 1 / 2;
-  margin: 0 0.08em 0 0.05em;
-  vertical-align: -0.14em;
+  margin: 0 0.07em 0 0.04em;
+  vertical-align: -0.12em;
   background:
     var(--pixel) 0 100% / 25% 25% no-repeat,
     var(--pixel) 33.333% 66.667% / 25% 25% no-repeat,
@@ -122,7 +119,7 @@
 
 .btnGhost {
   border: 1px solid var(--border-default);
-  background-color: var(--surface-primary);
+  background-color: var(--surface-elevated);
   box-shadow: var(--shadow-xs);
   color: var(--text-dark);
 }

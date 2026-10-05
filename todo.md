@@ -22,7 +22,8 @@
 ## Later
 
 - [ ] **Deep links answer with a 404 status** (see `docs/architecture.md`). Prerendering each route would fix it, and would matter for a blog.
-- [ ] **One monospace everywhere.** The terminal and the slash labels use the visitor's system monospace, so they look different on each device. JetBrains Mono is already loaded for the headline and could cover them too.
+- [ ] **No theme toggle.** The dark theme follows the system setting only. A manual switch would need a header control, a stored preference (and a line on the privacy page), and an inline script against a flash on load. See `docs/decisions.md`, 2026-10-05.
+- [ ] **One monospace everywhere.** The terminal and the slash labels use the visitor's system monospace, so they look different on each device. A self-hosted monospace would fix it; JetBrains Mono was used for the headline until 2026-10-05 and is in git history.
 
 - [ ] **Codex config import.** A Codex config exists at `~/.codex/config.toml` and has not been imported into Claude Code. To pick it up: `/import` in Claude Code to list what is importable (MCP servers, slash commands, subagents, skills, instructions), then `/import --yes=<digest>` to apply. From a terminal: `claude import`.
 

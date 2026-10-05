@@ -51,7 +51,7 @@
   border: 1px solid var(--border-default);
   box-shadow: var(--shadow-xs);
   border-radius: var(--radius-lg);
-  background-color: var(--surface-primary);
+  background-color: var(--surface-elevated);
   transition:
     border-color var(--duration-fast) var(--ease-default),
     box-shadow var(--duration-fast) var(--ease-default),
@@ -120,7 +120,7 @@
   font-size: 0.9375rem;
   font-weight: 500;
   color: var(--text-dark);
-  background-color: var(--surface-primary);
+  background-color: var(--surface-elevated);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-xs);

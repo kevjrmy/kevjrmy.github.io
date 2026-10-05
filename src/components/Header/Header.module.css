@@ -76,7 +76,7 @@
 .activeLink,
 .activeLink:hover {
   color: var(--text-dark);
-  background-color: var(--surface-primary);
+  background-color: var(--surface-elevated);
   border-color: var(--border-default);
   box-shadow: var(--shadow-xs);
 }

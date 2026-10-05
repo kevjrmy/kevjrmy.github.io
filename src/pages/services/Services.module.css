@@ -85,7 +85,7 @@
   justify-content: space-between;
   gap: var(--space-lg);
   padding: var(--space-xl);
-  background-color: var(--surface-primary);
+  background-color: var(--surface-elevated);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);

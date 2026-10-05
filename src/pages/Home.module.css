@@ -35,8 +35,8 @@
   pointer-events: none;
   z-index: 0;
 
-  /* Isometric diamond tile (stroke #e5e5e5, the --border-default value) */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='51.96'%3E%3Cpolygon points='30,0 60,25.98 30,51.96 0,25.98' fill='none' stroke='%23e5e5e5' stroke-width='0.75'/%3E%3C/svg%3E");
+  /* Isometric diamond tile, one per theme (src/index.css) */
+  background-image: var(--grid-tile);
   background-size: 60px 51.96px;
   background-repeat: repeat;
 

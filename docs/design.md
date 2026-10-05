@@ -17,7 +17,7 @@ The visual reference is the laravel.com home page. A full-page mobile capture is
 - **Sticky header.** Solid white at the top of the page. Once the page scrolls it turns translucent with a backdrop blur, over a slow fade (`--duration-slow`). No shadow, no height change.
 - **Photo carousel.** One slide per view in a rounded card, thin white chevrons on the sides, a caption over a bottom fade with a monospace place-and-date line. Taken from the events block above the reference's footer; used for the Startup Weekend section.
 - **Checklist.** Short facts with a red check mark, as in the reference's feature sections.
-- **One dark element.** The hero terminal, as the reference has its dark testimonial cards.
+- **One dark element** (on the light theme). The hero terminal, as the reference has its dark testimonial cards.
 
 Not taken from the reference: testimonials, newsletter form, multi-column footer, logo wall of clients. The site has no content for them.
 
@@ -46,12 +46,28 @@ Limits, so it stays an accent:
 - Inspiration: laravel.com first (see Reference), Claude Code second (see above), and nextjs.org. Clean, modern, professional.
 - Minimalist and elegant, with a warm and welcoming tone.
 - Soft colors, generous whitespace, friendly and readable typography.
-- Light theme only.
+- Two themes, light and dark, chosen by the visitor's system setting (see Dark theme). Light is the one the design was drawn in.
 - Red is the single accent (`--clr-dark-red`, `--clr-medium-red`, `--clr-light-red`), on neutral greys.
 - Typeface: Instrument Sans, self-hosted from `public/fonts/`.
-- Code face: JetBrains Mono (`--font-code`), also self-hosted, latin subset. Claude Code has no font of its own (it uses the terminal's), so this stands in for it. Used in one place: the hero headline ends in `/ai-agents`, set in this face like a slash command. Its red slash is not a glyph: it is drawn in CSS as four pixels climbing a staircase, a flat echo of the cubes of the logo. It is the only pixelated mark on the page; the eyebrow slashes stay typed. Everything else monospace still uses `--font-mono`, the visitor's system monospace.
-- The hero terminal (`CliPrompt`) is the one deliberately dark element. Its palette is neutral near-black with the site red for the prompt and cursor and one green for "ready"; the colors are defined locally in its stylesheet, not in the global tokens. It gets the same soft red ring as the featured cards.
+- The hero headline ends in `/ai-agents`, a slash command set in the same face as the rest of the headline. What marks it is the red slash, which is not a glyph: it is drawn in CSS as four pixels climbing a staircase, a flat echo of the cubes of the logo. It is the only pixelated mark on the page; the eyebrow slashes stay typed.
+- Monospace is `--font-mono`, the visitor's system monospace. No code font is loaded.
+- The hero terminal (`CliPrompt`) is the one deliberately dark element. Its palette is neutral near-black with the site red for the prompt and cursor, and no other color; the colors are defined locally in its stylesheet, not in the global tokens. It gets the same soft red ring as the featured cards.
 - Body copy under headings is grey (`--text-light`), not black.
+
+## Dark theme
+
+Some visitors have their system in dark mode, and the site follows it. There is no toggle: the system setting decides, through `prefers-color-scheme`.
+
+- It is the same design with the tokens swapped, not a second design. Layout, type, spacing and components do not change.
+- Neutral near-black page (`#0a0a0a`), light grey text, the same red. No blue or tinted greys.
+- Depth is reversed. On the light theme a card is the page color lifted by a shadow; on a dark page a shadow shows nothing, so raised surfaces are a step lighter than the page instead (`--surface-elevated`). Bands and tracks (`--surface-secondary`) sit between the two.
+- `--clr-dark-red` and `--clr-medium-red` are the same in both themes. `--clr-light-red` is the faintest tint, so on the dark theme it becomes a deep red: it is the hairline around icon tiles and the text selection color, not a "light" color there.
+- `--text-inverse` stays white in both themes: it is text on a red button or over a photo, not the opposite of the page.
+- The hero terminal keeps its own palette and is no longer the only dark thing; there it reads as one more raised panel, marked by its red ring.
+- Screenshots and photos are shown as they are, not dimmed.
+- Brand logos keep their colors. The few drawn in dark ink (Cursor, Codex, Grok, Express and so on) are inverted so they stay visible; the list is in `src/data/inkLogos.ts`.
+
+Checking a change: switch the system theme, or in Chrome DevTools use Rendering, "Emulate CSS media feature prefers-color-scheme".
 
 ## Animation
 

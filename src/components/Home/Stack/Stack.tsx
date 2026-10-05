@@ -1,4 +1,5 @@
 import { Icon } from '@iconify/react'
+import { inkLogoClass } from '@/data/inkLogos'
 import styles from './Stack.module.css'
 
 // ── Tech stack items ──────────────────────────────────────────────────────────
@@ -47,7 +48,7 @@ const Stack: React.FC = () => {
               {items.map((item) => (
                 <li key={item.label} className={styles.item}>
                   <div className={styles.iconWrap}>
-                    <Icon icon={item.icon} width={28} height={28} />
+                    <Icon icon={item.icon} width={28} height={28} className={inkLogoClass(item.icon)} />
                   </div>
                   <span className={styles.itemLabel}>{item.label}</span>
                 </li>

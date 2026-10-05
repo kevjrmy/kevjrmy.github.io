@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Icon } from '@iconify/react'
 import { featuredProjects } from '@/data/projects'
+import { inkLogoClass } from '@/data/inkLogos'
 import type { Project } from '@/types/project'
 import styles from './FeaturedWorks.module.css'
 
@@ -46,7 +47,7 @@ const Badge: React.FC<{ label: string }> = ({ label }) => {
   const icon = techIcons[label]
   return (
     <span className={styles.badge}>
-      {icon && <Icon icon={icon} width={14} height={14} aria-hidden="true" />}
+      {icon && <Icon icon={icon} width={14} height={14} className={inkLogoClass(icon)} aria-hidden="true" />}
       {label}
     </span>
   )

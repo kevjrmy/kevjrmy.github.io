@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Icon } from '@iconify/react'
 import { projects } from '@/data/projects'
+import { inkLogoClass } from '@/data/inkLogos'
 import type { Project, ProjectType } from '@/types/project'
 import styles from './Portfolio.module.css'
 
@@ -44,7 +45,7 @@ const Badge: React.FC<{ label: string }> = ({ label }) => {
   const icon = techIcons[label]
   return (
     <span className={styles.badge}>
-      {icon && <Icon icon={icon} width={13} height={13} aria-hidden="true" />}
+      {icon && <Icon icon={icon} width={13} height={13} className={inkLogoClass(icon)} aria-hidden="true" />}
       {label}
     </span>
   )

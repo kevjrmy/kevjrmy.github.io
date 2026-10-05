@@ -16,7 +16,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='51.96'%3E%3Cpolygon points='30,0 60,25.98 30,51.96 0,25.98' fill='none' stroke='%23e5e5e5' stroke-width='0.75'/%3E%3C/svg%3E");
+  background-image: var(--grid-tile);
   background-size: 60px 51.96px;
   mask-image: radial-gradient(ellipse 70% 90% at 50% 50%, transparent 35%, black 100%);
   -webkit-mask-image: radial-gradient(ellipse 70% 90% at 50% 50%, transparent 35%, black 100%);

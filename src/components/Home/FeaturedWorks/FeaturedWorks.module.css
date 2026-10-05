@@ -114,7 +114,7 @@
   width: 28px;
   height: 28px;
   color: var(--text-dark);
-  background-color: var(--surface-primary);
+  background-color: var(--surface-elevated);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-full);
   box-shadow: var(--shadow-sm);
@@ -179,18 +179,18 @@
 /* Active tab — raised white pill */
 .tabActive {
   color: var(--text-dark);
-  background-color: var(--surface-primary);
+  background-color: var(--surface-elevated);
   box-shadow: var(--shadow-sm);
 }
 
 /* ── Panel wrapper ────────────────────────────────────── */
 .panelWrap {
   overflow: hidden;
-  background-color: var(--surface-primary);
+  background-color: var(--surface-elevated);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-xl);
   /* soft red ring around the card, then the drop shadow */
-  box-shadow: 0 0 0 6px rgb(255 42 42 / 0.07), var(--shadow-lg);
+  box-shadow: var(--ring-accent), var(--shadow-lg);
   animation: panelIn var(--duration-normal) var(--ease-out) both;
 }
 
@@ -245,8 +245,8 @@
     repeating-linear-gradient(45deg,
       transparent,
       transparent 8px,
-      rgba(0, 0, 0, 0.02) 8px,
-      rgba(0, 0, 0, 0.02) 16px);
+      color-mix(in srgb, var(--text-dark) 2%, transparent) 8px,
+      color-mix(in srgb, var(--text-dark) 2%, transparent) 16px);
 }
 
 /* ── Right — metadata ─────────────────────────────────── */
@@ -356,7 +356,7 @@
   font-size: 0.9375rem;
   font-weight: 500;
   color: var(--text-dark);
-  background-color: var(--surface-primary);
+  background-color: var(--surface-elevated);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-xs);

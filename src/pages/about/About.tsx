@@ -1,5 +1,6 @@
 import { Icon } from '@iconify/react'
 import Cta from '@/components/Home/CTA/Cta'
+import { inkLogoClass } from '@/data/inkLogos'
 import styles from './About.module.css'
 
 // ── Timeline ──────────────────────────────────────────────────────────────────
@@ -255,7 +256,7 @@ const About: React.FC = () => {
                 <ul className={styles.stackItems} role="list">
                   {group.items.map((item) => (
                     <li key={item.label} className={styles.stackItem}>
-                      <Icon icon={item.icon} width={20} height={20} aria-hidden="true" />
+                      <Icon icon={item.icon} width={20} height={20} className={inkLogoClass(item.icon)} aria-hidden="true" />
                       <span>{item.label}</span>
                     </li>
                   ))}
