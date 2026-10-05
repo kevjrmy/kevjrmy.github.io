@@ -37,7 +37,7 @@ Every push to `main` deploys to GitHub Pages via `.github/workflows/deploy.yml`.
 - Import from `src/` via the `@/` alias.
 - Plain CSS with CSS Modules, one `*.module.css` beside its component. No Tailwind, no CSS-in-JS.
 - Use the design tokens (custom properties) from `src/index.css` instead of literal values.
-- The site has a light and a dark theme, switched by the visitor's system setting. Anything raised above the page (card, secondary button, active pill) takes `--surface-elevated`, not `--surface-primary`, and every visual change is checked in both themes (`docs/design.md`, Dark theme).
+- The site has a light and a dark theme: the visitor's system setting decides, and a switch in the header overrides it. Anything raised above the page (card, secondary button, active pill) takes `--surface-elevated`, not `--surface-primary`, and every visual change is checked in both themes (`docs/design.md`, Dark theme).
 - Prefer CSS-only and pseudo-element solutions over extra DOM nodes.
 - Icons are `<Icon icon="prefix:name" />` with the name written as a complete string literal. Tabler first (`tabler:*`), then MDI (`mdi:*`). Do not use Lucide.
 - Animation is conservative and must respect `prefers-reduced-motion`.

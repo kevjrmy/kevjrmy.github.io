@@ -18,7 +18,7 @@ const Info: React.FC = () => {
             The short version: this is a portfolio. It doesn't track you and it
             doesn't ask you for anything.
           </p>
-          <p className={styles.updated}>Last updated: 4 October 2026</p>
+          <p className={styles.updated}>Last updated: 5 October 2026</p>
         </div>
 
         {/* ── Terms of use ──────────────────────────────── */}
@@ -77,6 +77,15 @@ const Info: React.FC = () => {
             <li>No forms, accounts or newsletter.</li>
             <li>No fonts, icons or scripts loaded from third parties: everything is served from this site.</li>
           </ul>
+
+          <h3 className={styles.h3}>The one thing saved in your browser</h3>
+          <p>
+            The site follows your device's light or dark setting. If you pick
+            the other one with the switch in the header, that choice is saved
+            in your browser so the site remembers it on your next visit. It is
+            the word "light" or "dark", nothing else; it never leaves your
+            device, and switching back removes it.
+          </p>
 
           <h3 className={styles.h3}>Hosting</h3>
           <p>

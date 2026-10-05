@@ -8,10 +8,22 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="light dark" />
-  <!-- Browser chrome on phones: the two --surface-primary values of src/index.css -->
+  <!-- Browser chrome on phones: the two --surface-primary values of src/index.css.
+       useTheme.ts overwrites both when the visitor switches theme by hand. -->
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
   <title>Kevjrmy</title>
+  <script>
+    // Theme before first paint, so the page never flashes the wrong one: the visitor's
+    // choice if they made one with the header switch, else the system setting.
+    // Kept in step afterwards by src/hooks/useTheme.ts.
+    (function () {
+      var choice = null
+      try { choice = localStorage.getItem('theme') } catch (e) { /* storage blocked */ }
+      var dark = choice ? choice === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches
+      document.documentElement.dataset.theme = dark ? 'dark' : 'light'
+    })()
+  </script>
 </head>
 
 <body>

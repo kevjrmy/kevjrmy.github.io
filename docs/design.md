@@ -46,7 +46,7 @@ Limits, so it stays an accent:
 - Inspiration: laravel.com first (see Reference), Claude Code second (see above), and nextjs.org. Clean, modern, professional.
 - Minimalist and elegant, with a warm and welcoming tone.
 - Soft colors, generous whitespace, friendly and readable typography.
-- Two themes, light and dark, chosen by the visitor's system setting (see Dark theme). Light is the one the design was drawn in.
+- Two themes, light and dark: the visitor's system setting decides, and a switch in the header overrides it (see Dark theme). Light is the one the design was drawn in.
 - Red is the single accent (`--clr-dark-red`, `--clr-medium-red`, `--clr-light-red`), on neutral greys.
 - Typeface: Instrument Sans, self-hosted from `public/fonts/`.
 - The hero headline ends in `/ai-agents`, a slash command set in the same face as the rest of the headline. What marks it is the red slash, which is not a glyph: it is drawn in CSS as four pixels climbing a staircase, a flat echo of the cubes of the logo. It is the only pixelated mark on the page; the eyebrow slashes stay typed.
@@ -56,7 +56,10 @@ Limits, so it stays an accent:
 
 ## Dark theme
 
-Some visitors have their system in dark mode, and the site follows it. There is no toggle: the system setting decides, through `prefers-color-scheme`.
+Some visitors have their system in dark mode, and the site follows it. A switch in the header lets anyone pick the other theme.
+
+- **The switch.** A quiet icon button: a moon on the light theme, a sun on the dark one (it shows where a click leads). On desktop it sits at the end of the nav links, just before Contact, so Contact stays the last and only loud thing in the row. On mobile it sits beside the menu button, and again in the menu sheet, whose top row has to match the header. It is not a nav link and not a second primary button: no border, no label.
+- **What it remembers.** Only a choice that goes against the system setting is saved. Switching back to what the system says forgets it, and the site follows the system again, including when the system changes on its own at night.
 
 - It is the same design with the tokens swapped, not a second design. Layout, type, spacing and components do not change.
 - Neutral near-black page (`#0a0a0a`), light grey text, the same red. No blue or tinted greys.
@@ -67,7 +70,7 @@ Some visitors have their system in dark mode, and the site follows it. There is 
 - Screenshots and photos are shown as they are, not dimmed.
 - Brand logos keep their colors. The few drawn in dark ink (Cursor, Codex, Grok, Express and so on) are inverted so they stay visible; the list is in `src/data/inkLogos.ts`.
 
-Checking a change: switch the system theme, or in Chrome DevTools use Rendering, "Emulate CSS media feature prefers-color-scheme".
+Checking a change: use the header switch.
 
 ## Animation
 

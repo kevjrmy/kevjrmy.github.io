@@ -18,8 +18,8 @@
 }
 
 :root {
-  /* Both themes are supported; the dark values are in the media query below */
-  color-scheme: light dark;
+  /* Light is the base theme; the dark values are in the block below */
+  color-scheme: light;
 
   /* ── Accent colors ────────────────────────────────── */
   --clr-dark-red: #ff2a2a;
@@ -108,43 +108,45 @@
 }
 
 /* ── Dark theme ───────────────────────────────────────
-   Follows the visitor's system setting; there is no toggle. Only colors,
-   shadows and the grid tile change. Raised surfaces get lighter instead of
-   casting a visible shadow, so they must use --surface-elevated. */
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* The red tints step down towards the page instead of up towards white */
-    --clr-light-red: #4a1a1a;
+   data-theme is set on <html> before first paint by the inline script in
+   index.html, then kept up to date by src/hooks/useTheme.ts: the system
+   setting, unless the visitor picked the other theme with the header switch.
+   Only colors, shadows and the grid tile change. Raised surfaces get lighter
+   instead of casting a visible shadow, so they must use --surface-elevated. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
 
-    --surface-primary: #0a0a0a;
-    --surface-secondary: #121212;
-    --surface-tertiary: #222222;
-    --surface-elevated: #171717;
+  /* The red tints step down towards the page instead of up towards white */
+  --clr-light-red: #4a1a1a;
 
-    --border-light: #1c1c1c;
-    --border-default: #2a2a2a;
-    --border-strong: #3d3d3d;
+  --surface-primary: #0a0a0a;
+  --surface-secondary: #121212;
+  --surface-tertiary: #222222;
+  --surface-elevated: #171717;
 
-    --text-dark: #ededed;
-    --text-medium: #a8a8a8;
-    --text-light: #8f8f8f;
-    --text-muted: #707070;
+  --border-light: #1c1c1c;
+  --border-default: #2a2a2a;
+  --border-strong: #3d3d3d;
 
-    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.4);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5), 0 4px 6px rgba(0, 0, 0, 0.4);
-    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.6), 0 8px 10px rgba(0, 0, 0, 0.4);
-    --ring-accent: 0 0 0 6px rgb(255 42 42 / 0.12);
+  --text-dark: #ededed;
+  --text-medium: #a8a8a8;
+  --text-light: #8f8f8f;
+  --text-muted: #707070;
 
-    --grid-tile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='51.96'%3E%3Cpolygon points='30,0 60,25.98 30,51.96 0,25.98' fill='none' stroke='%232a2a2a' stroke-width='0.75'/%3E%3C/svg%3E");
-  }
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5), 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.6), 0 8px 10px rgba(0, 0, 0, 0.4);
+  --ring-accent: 0 0 0 6px rgb(255 42 42 / 0.12);
 
-  /* Brand marks drawn in dark ink (listed in src/data/inkLogos.ts): the ink turns
-     light, and the hue rotation gives any colored part its own hue back */
-  .ink-logo {
-    filter: invert(1) hue-rotate(180deg);
-  }
+  --grid-tile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='51.96'%3E%3Cpolygon points='30,0 60,25.98 30,51.96 0,25.98' fill='none' stroke='%232a2a2a' stroke-width='0.75'/%3E%3C/svg%3E");
+}
+
+/* Brand marks drawn in dark ink (listed in src/data/inkLogos.ts): the ink turns
+   light, and the hue rotation gives any colored part its own hue back */
+[data-theme="dark"] .ink-logo {
+  filter: invert(1) hue-rotate(180deg);
 }
 
 

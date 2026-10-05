@@ -10,11 +10,20 @@ It ties the headline to the logo, which is built from cubes. A solid red stairca
 **"ai-agents" in the headline went back to the headline's own face, and JetBrains Mono was removed.**
 Once the slash was drawn as pixels it carried the slash-command idea by itself, and a second typeface on two words was one signal too many. Nothing else used JetBrains Mono, so its file, `@font-face` and `--font-code` token went with it (about 40 KB less to load).
 
-**The site has a dark theme, and the system setting chooses it; there is no toggle.**
-The site was light only. Visitors whose system is in dark mode now get a dark version. A toggle was left out: it needs a control in the header, a stored preference (the privacy page says the site stores nothing), and a script that runs before first paint to avoid a flash of the wrong theme. Following the system needs none of that and is pure CSS.
+**The site has a dark theme; the system setting chooses it and a header switch overrides it.**
+The site was light only. The first version followed the system through a media query and had no switch; Kevin asked for one the same day. That brought the three costs the first version avoided: a control in the header, a stored preference (now stated on the privacy page), and an inline script before first paint against a flash of the wrong theme.
+
+**The switch sits just before Contact on desktop, and beside the menu button on mobile.**
+Rejected: after Contact (Contact is meant to be the last thing in the row and the only loud one), inside the mobile menu only (two taps for something that should take one), and the footer (Kevin asked for the header).
+
+**The switch has two states, and only a choice against the system is stored.**
+Rejected a three-way control (system / light / dark): it needs a menu or a cycling icon to explain a state most visitors never think about. Clearing the stored choice when it matches the system gives the same result, since "follow the system" comes back by itself.
+
+**The theme is a `data-theme` attribute on `<html>`, always set, not a media query plus an override.**
+Keeping the media query would have meant writing the dark tokens twice, once for the system case and once for the override. The site cannot render without JavaScript anyway, so letting a script resolve the theme costs nothing.
 
 **Dark is the same tokens with second values, not a set of per-component overrides.**
-One media query in `src/index.css` redefines the color, shadow and texture tokens. To make that enough, raised surfaces were moved from `--surface-primary` to `--surface-elevated` (the two are the same white on the light theme), and the last literal colors were turned into tokens (`--ring-accent`, `--grid-tile`). Rejected: `light-dark()` in every declaration (noisier, and newer browser support) and a `.dark` class on `<html>` (only useful with a toggle).
+One block in `src/index.css` redefines the color, shadow and texture tokens. To make that enough, raised surfaces were moved from `--surface-primary` to `--surface-elevated` (the two are the same white on the light theme), and the last literal colors were turned into tokens (`--ring-accent`, `--grid-tile`). Rejected: `light-dark()` in every declaration (noisier, newer browser support, and no help for shadows or the grid tile).
 
 **Dark-ink brand logos are inverted with a CSS filter rather than swapped for light variants.**
 Swapping needs either two icons in the DOM or JavaScript watching the theme. A filter (`invert` plus a hue rotation that restores colored parts) is one rule; the cost is a hand-kept list of which logos need it, in `src/data/inkLogos.ts`.

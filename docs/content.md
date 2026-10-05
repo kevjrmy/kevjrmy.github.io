@@ -84,7 +84,7 @@ The WhatsApp number, LinkedIn, GitHub, and email are hard-coded in four places. 
 
 ## Privacy page
 
-`/info` states that the site uses no cookies, analytics, forms, or third-party fonts, icons, or scripts. That is true today. Adding any of those (an analytics script, a contact form, a font or icon loaded from a CDN) makes the page wrong: update `src/pages/info/Info.tsx` in the same change.
+`/info` states that the site uses no cookies, analytics, forms, or third-party fonts, icons, or scripts, and that the one thing it saves in the browser is the light or dark choice made with the header switch (`localStorage`, key `theme`). That is true today. Adding any of those (an analytics script, a contact form, a font or icon loaded from a CDN, anything else saved in the browser) makes the page wrong: update `src/pages/info/Info.tsx` in the same change.
 
 ## Startup Weekend
 

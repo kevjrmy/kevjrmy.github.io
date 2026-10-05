@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Icon } from '@iconify/react'
+import { useTheme } from '@/hooks/useTheme'
 import styles from './Header.module.css'
 
 // ── Navigation ────────────────────────────────────────────────────────────────
@@ -22,6 +23,20 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(() => window.scrollY > 8)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
   const location = useLocation()
+  const { theme, toggleTheme } = useTheme()
+
+  // Rendered three times: in the desktop nav, beside the menu button, and in the menu sheet
+  const themeSwitch = (
+    <button
+      className={styles.themeButton}
+      onClick={toggleTheme}
+      aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+    >
+      {theme === 'dark'
+        ? <Icon icon="tabler:sun" width={20} height={20} aria-hidden="true" />
+        : <Icon icon="tabler:moon" width={20} height={20} aria-hidden="true" />}
+    </button>
+  )
 
   const toggleMenu = () => {
     setIsMenuOpen(prev => !prev)
@@ -93,6 +108,7 @@ const Header = () => {
                   </li>
                 )
               })}
+              <li>{themeSwitch}</li>
               <li>
                 <Link
                   to={cta.to}
@@ -106,16 +122,19 @@ const Header = () => {
             </ul>
           </nav>
 
-          {/* Mobile Menu Button */}
-          <button
-            className={`${styles.menuButton} ${styles.openButton}`}
-            onClick={toggleMenu}
-            aria-label="Menu"
-            aria-expanded={isMenuOpen}
-            aria-controls="mobile-menu"
-          >
-            <Icon icon="tabler:menu" width={24} height={24} aria-hidden="true" />
-          </button>
+          {/* Mobile: theme switch and menu button */}
+          <div className={styles.actions}>
+            {themeSwitch}
+            <button
+              className={styles.menuButton}
+              onClick={toggleMenu}
+              aria-label="Menu"
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-menu"
+            >
+              <Icon icon="tabler:menu" width={24} height={24} aria-hidden="true" />
+            </button>
+          </div>
         </div>
       </header>
 
@@ -133,14 +152,17 @@ const Header = () => {
             <Link to="/" className={styles.logoLink} onClick={closeMenu}>
               <img src="/logo.svg" alt="Kevin Jeremy Gautier" height={36} width="auto" />
             </Link>
-            <button
-              ref={closeButtonRef}
-              onClick={closeMenu}
-              aria-label="Close menu"
-              className={styles.menuButton}
-            >
-              <Icon icon="tabler:x" width={24} height={24} aria-hidden="true" />
-            </button>
+            <div className={styles.actions}>
+              {themeSwitch}
+              <button
+                ref={closeButtonRef}
+                onClick={closeMenu}
+                aria-label="Close menu"
+                className={styles.menuButton}
+              >
+                <Icon icon="tabler:x" width={24} height={24} aria-hidden="true" />
+              </button>
+            </div>
           </div>
 
           <nav className={styles.mobileNav} aria-label="Mobile navigation">

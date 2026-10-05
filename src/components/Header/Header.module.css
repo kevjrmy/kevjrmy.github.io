@@ -108,6 +108,41 @@
   transform: translateX(2px);
 }
 
+/* ── Theme switch ──────────────────────────────────── */
+/* An icon the size of a nav link, just before Contact. On mobile it sits beside
+   the menu button, in the header and in the sheet, at that button's size. */
+.themeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  color: var(--text-medium);
+  border-radius: var(--radius-md);
+  transition:
+    color var(--duration-fast) var(--ease-default),
+    background-color var(--duration-fast) var(--ease-default);
+}
+
+.themeButton:hover {
+  color: var(--text-dark);
+  background-color: var(--surface-tertiary);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.actions .themeButton {
+  width: 40px;
+  height: 40px;
+  /* keeps the header at the logo's height */
+  margin: -2px 0;
+  color: var(--text-dark);
+}
+
 /* ── Menu buttons (open + close) ───────────────────── */
 .menuButton {
   display: flex;
@@ -259,7 +294,7 @@
 
 /* ── Responsive ────────────────────────────────────── */
 @media screen and (min-width: 768px) {
-  .openButton {
+  .container>.actions {
     display: none;
   }
 
