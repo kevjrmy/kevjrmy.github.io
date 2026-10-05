@@ -53,12 +53,13 @@ Limits, so it stays an accent:
 - Monospace is `--font-mono`, the visitor's system monospace. No code font is loaded.
 - The hero terminal (`CliPrompt`) is the one deliberately dark element. Its palette is neutral near-black with the site red for the prompt and cursor, and no other color; the colors are defined locally in its stylesheet, not in the global tokens. It gets the same soft red ring as the featured cards.
 - Body copy under headings is grey (`--text-light`), not black.
+- The home hero ends at the fold. On a screen taller than its content it grows to fill the first screen, with the headline and the terminal centered in it as one group, so the stack marquee starts under the fold and never shows as a cut-off strip (nor does its frame line). On a screen shorter than its content (most phones) it keeps its natural height and the terminal runs past the fold.
 
 ## Dark theme
 
 Some visitors have their system in dark mode, and the site follows it. A switch in the header lets anyone pick the other theme.
 
-- **The switch.** A quiet icon button: a moon on the light theme, a sun on the dark one (it shows where a click leads). On desktop it sits at the end of the nav links, just before Contact, so Contact stays the last and only loud thing in the row. On mobile it sits beside the menu button, and again in the menu sheet, whose top row has to match the header. It is not a nav link and not a second primary button: no border, no label.
+- **The switch.** A quiet icon button with one icon for both themes: a disc in two tones, not a sun and a moon. On desktop it sits at the end of the nav links, just before Contact, so Contact stays the last and only loud thing in the row. On mobile it sits beside the menu button, and again in the menu sheet, whose top row has to match the header. It is not a nav link and not a second primary button: no border, no label. The disc is drawn for the site: a circle in two tones of the text color, split on a diagonal that climbs like the hero slash. Its solid half is the tone a click leads to, light on the dark theme and dark on the light one, which happens by itself since both tones come from the text color. Keep it that quiet: tones of one color, no red.
 - **What it remembers.** Only a choice that goes against the system setting is saved. Switching back to what the system says forgets it, and the site follows the system again, including when the system changes on its own at night.
 
 - It is the same design with the tokens swapped, not a second design. Layout, type, spacing and components do not change.

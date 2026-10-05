@@ -99,6 +99,12 @@
   /* ── Layout ───────────────────────────────────────── */
   --content-width: 1100px;
   --content-padding: var(--space-lg);
+  /* The header is held to this height (Header.module.css), so a page can
+     subtract it from the screen: the home hero does, to end at the fold */
+  --header-height: 4.375rem;
+  /* 70px */
+  /* Height of the red ticks of the section frame, below */
+  --frame-tick: 7px;
 
   /* ── Rendering ────────────────────────────────────── */
   font-synthesis: none;
@@ -318,7 +324,7 @@ main::after {
   position: absolute;
   left: 0;
   right: 0;
-  height: 7px;
+  height: var(--frame-tick);
   pointer-events: none;
   background:
     linear-gradient(var(--clr-dark-red), var(--clr-dark-red)) left / 3px 100% no-repeat,

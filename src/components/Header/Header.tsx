@@ -16,6 +16,18 @@ const navLinks = [
 // Contact is the call to action: a button at the end, not one more link in the row
 const cta = { to: '/contact', label: 'Contact' }
 
+// The theme switch has one icon for both themes, our own drawing rather than one
+// from a set: a disc in two tones of the text color, split on a diagonal that
+// climbs like the hero slash. The solid half is the tone a click leads to: light
+// on the dark theme, dark on the light one. It sits on top of the whole disc, so
+// no seam shows between the two.
+const ThemeIcon = () => (
+  <svg viewBox="0 0 24 24" width={20} height={20} fill="currentColor" aria-hidden="true">
+    <circle cx="12" cy="12" r="9.5" opacity="0.4" />
+    <path d="M5.28 18.72A9.5 9.5 0 0 1 18.72 5.28z" />
+  </svg>
+)
+
 // ── Component ─────────────────────────────────────────────────────────────────
 
 const Header = () => {
@@ -32,9 +44,7 @@ const Header = () => {
       onClick={toggleTheme}
       aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
     >
-      {theme === 'dark'
-        ? <Icon icon="tabler:sun" width={20} height={20} aria-hidden="true" />
-        : <Icon icon="tabler:moon" width={20} height={20} aria-hidden="true" />}
+      <ThemeIcon />
     </button>
   )
 

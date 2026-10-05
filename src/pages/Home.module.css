@@ -9,9 +9,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: var(--space-3xl);
   max-width: var(--content-width);
+  /* Ends at the fold: the screen minus the sticky header, so the stack marquee
+     starts just under it instead of showing a cut-off top edge. The half tick
+     pushes the frame line of that next section under the fold as well.
+     svh is the height with the mobile browser bars shown, as on arrival. */
+  min-height: calc(100vh - var(--header-height) + var(--frame-tick) / 2);
+  min-height: calc(100svh - var(--header-height) + var(--frame-tick) / 2);
   margin: 0 auto;
   padding: var(--space-3xl) var(--content-padding);
   overflow: hidden;
@@ -80,7 +86,6 @@
 
 /* ── Right column ──────────────────────────────────────── */
 .heroVisual {
-  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -21,6 +21,8 @@ Adding a page touches two places:
 
 The header is sticky (`z-index: 40`); the mobile menu is a full-screen sheet above it (`z-index: 50`), rendered next to the header, not inside it. `html` has `scroll-padding-top: 5rem` so anchors stop below the header.
 
+The header is `--header-height` tall (70px) on every screen: `min-height` on its container and on the top row of the menu sheet holds it there. The token exists so a page can subtract the header from the screen, as the home hero does to end at the fold (`docs/design.md`, Direction). If the header's content ever grows past it, raise the token too; a header shorter than the token cannot happen.
+
 ## Deep links on GitHub Pages
 
 The site uses `BrowserRouter`, and GitHub Pages has no rewrite rules. Deep links work because the `spa-fallback` plugin in `vite.config.ts` copies `dist/index.html` to `dist/404.html` at build time. Pages serves that file for any unknown path and React Router takes over.
@@ -51,6 +53,7 @@ All icons are `<Icon icon="prefix:name" />` from `@iconify/react`, addressed by 
 - An icon name that does not exist in its set fails the build with `Unknown icon "prefix:name"`.
 - To use a new icon set, install its package: `npm i @iconify-json/<prefix>`. A prefix with no installed package is ignored by the scan and would fall back to a runtime API fetch.
 - Sets in use: `tabler` and `mdi` for UI icons, `vscode-icons` and `logos` for tech and brand badges.
+- One icon is not from a set: the icon of the theme switch is an inline SVG drawn for the site, in `src/components/Header/Header.tsx` (`docs/design.md`, Dark theme). It is the exception, not a second way to add icons.
 
 ## Styling
 
@@ -66,7 +69,7 @@ Plain CSS with CSS Modules, one `*.module.css` beside each component.
   - The grid tile (`--grid-tile`) is an SVG data URI, which cannot read a custom property, so each theme carries its own copy with the stroke color written in.
   - Brand logos drawn in dark ink are listed in `src/data/inkLogos.ts`; `inkLogoClass()` gives them the global `.ink-logo` class, which inverts them on the dark theme. A new logo that disappears in dark mode goes in that list.
 - Global rules there affect every page. `main > section > h2` (and the `p` right after it) are centered. A global `prefers-reduced-motion` rule neutralizes all animation and transition durations.
-- The section frame is global too. Every direct `<section>` child of `<main>` except the first gets a hairline across its full width, with a red tick at each end, at its top, drawn by `main > section + section::after`; `main::after` draws the one under the last section. Consequences:
+- The section frame is global too. Every direct `<section>` child of `<main>` except the first gets a hairline across its full width, with a red tick at each end, at its top, drawn by `main > section + section::after`; `main::after` draws the one under the last section. The ticks are `--frame-tick` high and the line is centered on the section's top edge, so half a tick reaches into the section above. Consequences:
   - A top-level section must be full width, with its `max-width` on an inner wrapper: the line is as wide as the section. Sections that constrain themselves (the hero, and the single sections of the portfolio, contact, and info pages) are fine only because they come first and so draw no line.
   - A top-level section must leave its own `::after` free (use `::before` for decoration, as the hero and the CTA band do) and must not set `overflow: hidden`, or the line is clipped.
   - Do not add `border-top` / `border-bottom` to sections; the frame is the separator.
