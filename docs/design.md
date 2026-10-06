@@ -80,7 +80,7 @@ The stack is shown as two, AI and classic (`docs/content.md`, Two stacks), and t
 
 - **Home marquee.** Two rows, each with its label strip ("AI stack", "Classic stack"; on a phone the word "stack" is dropped so the strip stays narrow). The AI row is on top. The rows run in opposite directions, which is what stops them reading as one list cut in two.
 - **About toolkit.** Two titled blocks. The AI stack is one wrapping row with a secondary button to `/ai`; the classic stack keeps its four columns.
-- **`/ai` page.** The AI stack as small cards with a status in monospace. The agent used every day takes the soft red ring of a featured card. What is not learned yet sits apart, under "Learning next", and is not a card: a dashed outline with no fill, no shadow and no logo, labelled "coming soon", with one line saying what it is. Raised means real.
+- **`/ai` page.** The AI stack as small cards with a status in monospace. The main agent takes the soft red ring of a featured card, and it is the only one: Cursor is used every day too and says so, without the ring. What is not learned yet sits apart, under "Learning next", and is not a card: a dashed outline with no fill, no shadow and no logo, labelled "coming soon", with one line saying what it is. Raised means real.
 - In the journey, the step that has not happened yet ("Next") has a hollow dot.
 
 ## Animation

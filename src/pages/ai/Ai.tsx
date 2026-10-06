@@ -20,7 +20,7 @@ const facts = [
 
 const statusLabels: Record<AiToolStatus, string> = {
   main: 'every day',
-  current: 'in use',
+  daily: 'every day',
   occasional: 'sometimes',
   before: 'used before',
 }
@@ -39,8 +39,14 @@ const journey: JourneyEntry[] = [
   {
     when: '2022',
     title: 'It started with images',
-    body: 'DALL·E 2 was my first contact with generative AI: a sentence in, a picture out. I have followed the field ever since.',
+    body: 'DALL·E 2: a sentence in, a picture out. That was the moment I started following the field.',
     tools: ['DALL·E 2'],
+  },
+  {
+    when: '2022',
+    title: 'Copilot in the editor',
+    body: 'GitHub Copilot came to VS Code and I turned it on as soon as it was there. It was a helper then: hints and autocompletion as I typed, years before agents.',
+    tools: ['GitHub Copilot', 'VS Code'],
   },
   {
     when: 'Dec 2022',

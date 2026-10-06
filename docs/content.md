@@ -19,8 +19,8 @@ The tools, and how to present them:
 | Tool | Status | On the site |
 |------|--------|-------------|
 | Claude Code | Main agent, used daily | Named first, everywhere AI is mentioned |
-| Cursor | Main IDE | Named with Claude Code where there is room |
-| Codex, OpenCode, Antigravity, Google AI Studio | Used before | Listed as experience |
+| Cursor | Main IDE, used daily | Named with Claude Code where there is room |
+| Codex, OpenCode, Antigravity, Google AI Studio, GitHub Copilot | Used before | Listed as experience |
 | Grok | Used sometimes, in voice mode | AI stack lists only |
 | DeepSeek | Used since R1 came out (January 2025); still used, but not often | AI stack lists and the journey on `/ai` |
 | Hermes (Hermes Agent, the open-source agent by Nous Research), Jev (TypeSafe AI's first "System One" model: typed decisions with a confidence score, announced September 2026), local and open-source LLMs (Ollama to start with) | Planned, not learned yet. Kevin has never run a model on his own machine | On the `/ai` page only, under "Learning next", labelled "coming soon", with no logo. Hermes and Jev link to their own sites. Nowhere else until actually used |
@@ -43,24 +43,25 @@ Kevin presents his stack as two, and the difference is the point: it shows that 
 
 Both are data in `src/data/stack.ts`. Every tool belongs to exactly one, and no list on the site mixes the two. "Classic" is Kevin's word for it; keep it.
 
-The AI stack carries a status per tool (`main`, `current`, `occasional`, `before`), shown only on the `/ai` page. Tools Kevin plans to learn are a separate list (`upcomingAiTools`) and appear only there, as "coming soon". The page is expected to grow: Hermes moves into the AI stack once Kevin has built something with it.
+The AI stack carries a status per tool, shown only on the `/ai` page: `main` (Claude Code, "every day", the one card with the red ring), `daily` (Cursor, "every day"), `occasional` (Grok, DeepSeek, "sometimes") and `before` ("used before"). Tools Kevin plans to learn are a separate list (`upcomingAiTools`) and appear only there, as "coming soon". The page is expected to grow: Hermes moves into the AI stack once Kevin has built something with it.
 
 ## AI journey
 
 What Kevin told about his path, for the journey on the `/ai` page (`src/pages/ai/Ai.tsx`). The order is his; he may add steps later.
 
 1. DALL·E 2, his first contact (2022).
-2. ChatGPT: account created a few days after its release, December 2022, when it ran on GPT-3.5.
-3. Image generation: Midjourney, and free models on Hugging Face.
-4. Bard, before it was renamed Gemini.
-5. Claude: account opened on 30 June 2024 (read from his account data; the site says "June 2024"). Kevin's own memory is "around 2023, I guess". The page keeps the account date: claude.ai only opened in Europe on 14 May 2024. If he used Claude earlier some other way, he has to say how before the page says 2023.
-6. Video generators: Veo 3, Sora, Magnific. He places them in 2024; Veo 3 came out in May 2025, so the page says "2024 → 25".
-7. DeepSeek: started right after DeepSeek-R1 was released (20 January 2025).
-8. Antigravity, in the IDE.
-9. The AI course on OpenClassrooms (its exact title is not known here).
-10. Grok, in voice mode.
-11. Agents: Google AI Studio in the browser, then OpenCode and Codex in the terminal.
-12. Claude Code, his main agent since (first run on his machine: April 2026).
+2. GitHub Copilot in VS Code, as a hint and autocompletion helper, "as soon as VS Code implemented it". He gave no year, and it could be either: the technical preview opened in June 2021 (on a waitlist) and it became available to everyone in June 2022. The page says 2022 and does not say whether it came before or after DALL·E 2. If it was the 2021 preview, the page's "since 2022" (headline and status line) becomes 2021.
+3. ChatGPT: account created a few days after its release, December 2022, when it ran on GPT-3.5.
+4. Image generation: Midjourney, and free models on Hugging Face.
+5. Bard, before it was renamed Gemini.
+6. Claude: account opened on 30 June 2024 (read from his account data; the site says "June 2024"). Kevin's own memory is "around 2023, I guess". The page keeps the account date: claude.ai only opened in Europe on 14 May 2024. If he used Claude earlier some other way, he has to say how before the page says 2023.
+7. Video generators: Veo 3, Sora, Magnific. He places them in 2024; Veo 3 came out in May 2025, so the page says "2024 → 25".
+8. DeepSeek: started right after DeepSeek-R1 was released (20 January 2025).
+9. Antigravity, in the IDE.
+10. The AI course on OpenClassrooms (its exact title is not known here).
+11. Grok, in voice mode.
+12. Agents: Google AI Studio in the browser, then OpenCode and Codex in the terminal.
+13. Claude Code, his main agent since (first run on his machine: April 2026).
 
 Around it: he knew Markdown before any of this, he goes to AI meetups such as AI Tinkerers with friends and they share tips, and he has never used Ollama or run a model locally.
 

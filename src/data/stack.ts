@@ -10,11 +10,12 @@ import type { AiTool, StackGroup, StackItem, UpcomingAiTool } from '@/types/stac
 
 export const aiStack: AiTool[] = [
   { icon: 'logos:claude-code', label: 'Claude Code', role: 'Main agent', status: 'main' },
-  { icon: 'logos:cursor-icon', label: 'Cursor', role: 'Editor', status: 'current' },
+  { icon: 'logos:cursor-icon', label: 'Cursor', role: 'Editor', status: 'daily' },
   { icon: 'logos:codex', label: 'Codex', role: 'Terminal agent', status: 'before' },
   { icon: 'logos:opencode-icon', label: 'OpenCode', role: 'Terminal agent', status: 'before' },
   { icon: 'logos:antigravity', label: 'Antigravity', role: 'Agentic IDE', status: 'before' },
   { icon: 'logos:google-aistudio', label: 'Google AI Studio', role: 'Agents in the browser', status: 'before' },
+  { icon: 'logos:github-copilot', label: 'GitHub Copilot', role: 'Editor autocomplete', status: 'before' },
   { icon: 'logos:grok-icon', label: 'Grok', role: 'Voice mode', status: 'occasional' },
   { icon: 'logos:deepseek-icon', label: 'DeepSeek', role: 'Open reasoning model', status: 'occasional' },
 ]

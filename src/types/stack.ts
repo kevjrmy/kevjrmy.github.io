@@ -17,12 +17,12 @@ export type StackGroup = {
 }
 
 /**
- * main: the agent used every day
- * current: in use
+ * main: the agent used every day; the one featured card
+ * daily: used every day, beside the main agent
  * occasional: still used, but not often
  * before: used on real work, then replaced
  */
-export type AiToolStatus = 'main' | 'current' | 'occasional' | 'before'
+export type AiToolStatus = 'main' | 'daily' | 'occasional' | 'before'
 
 export type AiTool = StackItem & {
   /** What the tool is, in a few words */

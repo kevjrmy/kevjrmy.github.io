@@ -7,6 +7,7 @@ const inkLogos = new Set([
   'logos:opencode-icon',
   'logos:grok-icon',
   'logos:google-aistudio',
+  'logos:github-copilot',
   'logos:express',
   'logos:astro-icon',
   'vscode-icons:file-type-markdown',
