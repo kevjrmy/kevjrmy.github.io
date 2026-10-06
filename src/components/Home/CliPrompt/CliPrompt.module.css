@@ -1,6 +1,8 @@
 /* ══════════════════════════════════════════════════════
    CliPrompt — the hero terminal, styled after a Claude Code session
    The one dark element on the site: its palette is local to this file.
+   Neutral greys, the site red for the cursor, and one green: the $ of
+   the prompt, as in a real shell.
    ══════════════════════════════════════════════════════ */
 
 /* ── Terminal window ───────────────────────────────── */
@@ -11,6 +13,9 @@
   --term-text: #ededed;
   --term-muted: #8b8b8b;
   --term-faint: #5c5c5c;
+  --term-green: #4ac26b;
+  /* between the $ and what is typed after it: a clear space, a little over one character */
+  --prompt-gap: 1.5ch;
 
   width: 100%;
   max-width: 680px;
@@ -82,16 +87,17 @@
   padding: var(--space-lg);
 }
 
-.chevron {
+/* The shell prompt sign, in the transcript and in the prompt box */
+.sign {
   flex-shrink: 0;
-  color: var(--clr-dark-red);
+  color: var(--term-green);
   user-select: none;
 }
 
 /* ── Transcript: the sent command ──────────────────── */
 .sent {
   display: flex;
-  gap: var(--space-sm);
+  gap: var(--prompt-gap);
   color: var(--term-text);
   opacity: 0;
   transition: opacity 200ms var(--ease-out);
@@ -102,10 +108,12 @@
 }
 
 /* ── Transcript: the answer ────────────────────────── */
+/* Pulled up towards the command it answers: half the gap the body gives its blocks */
 .answer {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  margin-top: calc(var(--space-sm) * -1);
 }
 
 /* Each line starts hidden and slides in when revealed */
@@ -123,7 +131,7 @@
 }
 
 .name {
-  margin-bottom: var(--space-xs);
+  margin-bottom: var(--space-sm);
   font-weight: 600;
   color: #ffffff;
 }
@@ -148,7 +156,7 @@
 .promptBox {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
+  gap: var(--prompt-gap);
   margin-top: var(--space-xs);
   padding: 0.5rem var(--space-md);
   min-height: 2.5rem;
@@ -167,7 +175,7 @@
   width: 0.55em;
   height: 1.15em;
   /* sits right after the typed text, without the flex gap */
-  margin-left: calc(var(--space-sm) * -1 + 1px);
+  margin-left: calc(var(--prompt-gap) * -1 + 1px);
   background-color: var(--clr-dark-red);
   border-radius: 1px;
 }

@@ -118,7 +118,7 @@ const CliPrompt: React.FC = () => {
 
         {/* Transcript: the command, once sent */}
         <p className={`${styles.sent} ${sent ? styles.sentVisible : ''}`}>
-          <span className={styles.chevron}>&gt;</span>
+          <span className={styles.sign}>$</span>
           {COMMAND}
         </p>
 
@@ -139,7 +139,7 @@ const CliPrompt: React.FC = () => {
             <span className={styles.working}>✻ working…</span>
           ) : (
             <>
-              <span className={styles.chevron}>&gt;</span>
+              <span className={styles.sign}>$</span>
               <span className={styles.typed}>{typed}</span>
               <span className={`${styles.cursor} ${phase === 'done' ? styles.cursorIdle : ''}`} />
             </>

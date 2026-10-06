@@ -4,6 +4,9 @@ Choices that are not obvious from the code, with the reason. Read before reversi
 
 ## 2026-10-06
 
+**The prompt sign of the hero terminal is a green `$`, not a red `>`.**
+Kevin's request, to look more like a real terminal. Both signs changed, the one in the transcript and the one in the prompt box, so the two stay the same glyph. It is the one green on the site and it is local to the terminal's stylesheet; the cursor and "working…" stay red. The space after the sign went from one character to one and a half, since a `$` fills its cell where a `>` did not. In the same change the name moved closer to the command it answers (8px instead of 16px) and got a little more room under it (8px instead of 4px).
+
 **A tab of the selected works crossfades with a direction; it does not scroll the row.**
 The first swipeable version jumped on a tab: the old project vanished and the new one rose in. Kevin asked for a better, very smooth transition on phone and desktop. Rejected: a smooth scroll to the chosen project, which is right between neighbours but drags four or five screenshots across the card on a longer jump, and whose speed and easing the browser decides. The crossfade lasts the same whatever the distance. So that the screenshot of a far project is already there when it fades in, all screenshots load at the first sign of interest in the widget (pointer over it, touch, focus) instead of lazily.
 
