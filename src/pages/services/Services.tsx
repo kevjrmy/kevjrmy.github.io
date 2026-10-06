@@ -23,31 +23,31 @@ const services: Service[] = [
     icon: 'tabler:zoom-check',
     title: 'Audit',
     description: 'Performance, SEO, accessibility: know exactly what to fix and to optimize.',
-    price: 'From 30€ / hour',
+    price: 'From 45€ / hour',
   },
   {
     icon: 'tabler:school',
     title: 'Training & Classes',
     description: 'Private JS/TS classes/tutoring sessions.',
-    price: 'From 30€ / hour',
+    price: 'From 45€ / hour',
   },
   {
     icon: 'tabler:device-mobile-code',
     title: 'PWA',
     description: 'Installable, offline-ready web apps built with Vue or React.',
-    price: 'From 1600€ / project',
+    price: 'From 1500€ / project',
   },
   {
     icon: 'tabler:server',
     title: 'Web Application',
     description: 'Full-stack apps with Laravel or Node.js, from MVP to production.',
-    price: 'From 2400€ / project',
+    price: 'From 2500€ / project',
   },
   {
     icon: 'tabler:map-route',
     title: 'Consulting',
     description: 'Architecture review, tech choices, roadmap. Planning before building.',
-    price: 'From 100€ / session',
+    price: 'From 150€ / session',
   },
   {
     icon: 'tabler:device-mobile',
@@ -59,7 +59,7 @@ const services: Service[] = [
     icon: 'mdi:wordpress',
     title: 'WordPress',
     description: 'Maintenance and redesigns for existing sites, and new ones when WordPress is the right fit.',
-    price: 'From 400€ / project',
+    price: 'From 500€ / project',
   },
 ]
 

@@ -4,6 +4,9 @@ Choices that are not obvious from the code, with the reason. Read before reversi
 
 ## 2026-10-06
 
+**The prices follow a friend's figures, which replaced the plain doubling below.**
+The same friend then gave numbers: 45€ an hour where it was 15€ (audit and classes, the two hourly services), PWA 1500€, web application 2500€, consulting 150€ a session, WordPress 500€. Against the doubled prices that is higher for the hourly work, consulting and WordPress, 100€ lower for a PWA and 100€ higher for a web application. Still "from" prices; the two "Let's talk" services did not change.
+
 **Every listed price was doubled.**
 On a friend's advice ("double your prices"), and Kevin's decision. Audit and classes went from 15€ to 30€ an hour, PWA from 800€ to 1600€, web application from 1200€ to 2400€, consulting from 50€ to 100€ a session, WordPress from 200€ to 400€. The two "Let's talk" services have no figure and did not change. These are still "from" prices, as the terms page says.
 
