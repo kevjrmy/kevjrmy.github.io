@@ -4,20 +4,20 @@ How portfolio projects are stored and shown, and what to do when adding one.
 
 ## Where they live
 
-`src/data/projects.ts` is the single source, typed by `Project` in `src/types/project.ts`. Two views read it:
+`src/data/projects.ts` is the single source for what is the same in every language, typed by `Project` in `src/types/project.ts`. A project's three sentences (the client label, the excerpt, the screenshot's alt text) are in the `projects` section of `src/i18n/messages/`, once per language, under the project's slug. Two views read both:
 
-- Homepage tabs (`components/Home/FeaturedWorks`): `featuredProjects`, which is every project with `featured: true`, sorted by `order`. Each one is also a slide of the swipeable row under the tabs, and all the slides are as tall as the tallest: a much longer `excerpt` on one project makes every card taller on a phone.
+- Homepage tabs (`components/Home/FeaturedWorks`): `featuredProjects`, which is every project with `featured: true`, sorted by `order`. Each one is also a slide of the swipeable row under the tabs, and all the slides are as tall as the tallest: a much longer `excerpt` on one project makes every card taller on a phone. That holds per language, and the French and Spanish excerpts run a little longer than the English.
 - Portfolio page (`pages/portfolio/Portfolio`): the full list, in array order, with filter buttons by `type`.
 
-Fields rendered today: `title`, `client`, `excerpt`, `stack`, `year`, `link`, `image`. The fields `status`, `lang`, and `tags` are stored but not displayed or used for filtering yet.
+Rendered today: `title`, `stack`, `year`, `link`, `image`, and from the messages `client`, `excerpt`, `alt`. The fields `status`, `lang`, and `tags` are stored but not displayed or used for filtering yet.
 
 ## Adding a project
 
-1. Add an entry to the `projects` array. `slug` is unique and kebab-case; it is the React key and the screenshot filename.
+1. Add its `client`, `excerpt` and `alt` under a new slug in the `projects` section of `en.ts`, then of `fr.ts` and `es.ts`: the build fails until all three have it. Then add an entry with that `slug` to the `projects` array. The slug is unique and kebab-case; it is also the React key and the screenshot filename.
 2. Set `featured` and `order`. Every tab on the homepage is one featured project, so each `featured: true` adds a tab. Keep `order` in step with the position in the array, since the portfolio page uses array order and the homepage uses `order`. WordPress projects go last.
 3. Check `type`. The portfolio filter buttons are derived: a category appears only if some project uses it, in the order given by `TYPE_ORDER` in `Portfolio.tsx`. A new type must be added to both the `ProjectType` union and `TYPE_ORDER`.
-4. If the project was built with Claude Code, put `'Claude Code'` first in `stack` (see Positioning in `docs/content.md`). Then check each `stack` label against the `techIcons` map. The map is duplicated in `FeaturedWorks.tsx` and `Portfolio.tsx`; a label missing from it renders as a badge with no icon. Add new labels to both copies.
-5. A project of Kevin's own, with no client, takes `client: 'Personal project'` (Le Petit Cours is the first). Client work is listed ahead of it.
+4. If the project was built with Claude Code, put `'Claude Code'` first in `stack` (see Positioning in `docs/content.md`). Then check each `stack` label against the `techIcons` map in `src/data/techIcons.ts`, which both project views read: a label missing from it renders as a badge with no icon.
+5. A project of Kevin's own, with no client, takes the client label "Personal project" ("Projet personnel", "Proyecto personal"; Le Petit Cours is the first). Client work is listed ahead of it.
 6. Set `link` to `null` for a private or offline project. The "Visit site" link is hidden when it is null.
 7. Add the screenshot (below).
 
@@ -32,6 +32,21 @@ Fields rendered today: `title`, `client`, `excerpt`, `stack`, `year`, `link`, `i
   - Websites and web apps: a desktop capture of the home page, 1440x810.
   - PWAs: one or two mobile captures (390x844 viewport), each in a phone frame, centered on a 1600x900 canvas in `--surface-tertiary` (`#f5f5f5`). A raw portrait capture would be cropped to a thin strip by the 16:9 box.
   - Private apps that cannot be shown: the client's logo centered on a 1600x900 canvas in the logo's own background color. `el-imperio-contabilidad` uses this.
+
+## What the portfolio is meant to cover
+
+What the portfolio is meant to cover, for writing copy and choosing projects:
+
+- Static sites: Astro (Pickleball Valencia, rebuilt from WordPress in 2026).
+- SPA: Vue (PlanetaX PWA), React.
+- SSR: Nuxt (Rachel Blot, Fesma), Next.js (Limpiezas El Imperio: the public website and a private accounting app for the same client, both 2026).
+- Laravel: 1 past project and 2 current (1 going to production soon, French client).
+- Kotlin Android app.
+- PWAs: PlanetaX (live), SUNspot (Vue + Firebase, live since 2026), Le Petit Cours (Next.js + Supabase, Kevin's own open-source French course for Spanish speakers, built with Claude Code, 2026).
+- Vector and logo design (Inkscape), image editing (GIMP).
+- Video editing: DaVinci Resolve, Kdenlive, and AI video (Google Flow / Veo / Nano Banana).
+- AI agents: see Positioning in `docs/content.md`.
+- WordPress (kept last): Ethica Anabel Orzáez, a beauty salon site with a WooCommerce shop (2026). Also Marcas que dejan huellas (early work), which is off the site while its domain is down; see `todo.md`.
 
 ## Not yet in the data
 

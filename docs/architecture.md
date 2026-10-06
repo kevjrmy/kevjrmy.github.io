@@ -1,25 +1,26 @@
 # Architecture
 
-How the app is put together, and the places where one change has to be made in two files.
+How the app is put together, and the places where one change has to be made in two files. The CSS has its own file, `docs/styling.md`, and so do the languages, `docs/i18n.md`.
 
 ## Routing and layout
 
-`src/App.tsx` declares every route as a child of `MainLayout`, which renders `Header`, `<main>`, and `Footer`. `MainLayout` sets `<main id>` from the pathname (`/` becomes `home`, `/about` becomes `about`).
+`src/App.tsx` declares every page once, in its `pages` array, and registers each one three times as a child of `MainLayout`: at its English path and under `/fr` and `/es` (`docs/i18n.md`). `MainLayout` renders `Header`, `<main>`, and `Footer`, reads the language from the URL, and sets `<main id>` from the page (`/` becomes `home`, `/about` and `/fr/about` become `about`).
 
-Current routes: `/`, `/portfolio`, `/services`, `/ai`, `/contact`, `/about`, `/info`. There is no catch-all route, so an unknown URL renders the header and footer around an empty `<main>`.
+Current pages: `/`, `/portfolio`, `/services`, `/ai`, `/contact`, `/about`, `/info`. There is no catch-all route, so an unknown URL renders the header and footer around an empty `<main>`.
 
-Adding a page touches two places:
+Adding a page touches three places:
 
-1. The route in `App.tsx`.
+1. The `pages` array in `App.tsx`.
 2. The `navLinks` array in `src/components/Header/Header.tsx`. One array drives both the desktop nav and the mobile menu. Contact is kept apart in `cta`, because it is rendered as the primary button in both.
+3. Its words, and its nav label under `header.nav`, in the three files of `src/i18n/messages/`.
 
 `/about` is in the nav, last of the links (since 2026-10-06; before that it was reached only from inside the pages). The homepage About section links to it too, and the home strip and the `/ai` page link to its `#stack` anchor (the classic stack). `/info` (terms of use and privacy) is reached only from the footer, which links to its `#terms` and `#privacy` anchors.
 
-`MainLayout` gives `<main>` a `key` equal to the pathname, so React builds a new `<main>` on each route change and the `pageIn` animation in `src/index.css` replays: that is the page transition. A change of `#anchor` on the same page does not replay it.
+`MainLayout` gives `<main>` a `key` equal to the page (the path without its language), so React builds a new `<main>` on each change of page and the `pageIn` animation in `src/index.css` replays: that is the page transition. A change of `#anchor` on the same page does not replay it, and neither does a change of language.
 
-`MainLayout` also handles scrolling, which React Router does not: on navigation it jumps to the `#anchor` if the URL has one, otherwise to the top. Back and forward are left to the browser, which restores the previous position.
+`MainLayout` also handles scrolling, which React Router does not: on navigation it jumps to the `#anchor` if the URL has one, otherwise to the top. Back and forward are left to the browser, which restores the previous position. A change of language is the same place on the same page, and does not scroll.
 
-The header is sticky (`z-index: 40`); the mobile menu is a full-screen sheet above it (`z-index: 50`), rendered next to the header, not inside it. `html` has `scroll-padding-top: 5rem` so anchors stop below the header.
+The header is sticky (`z-index: 40`); the mobile menu is a full-screen sheet above it (`z-index: 50`), rendered next to the header, not inside it. Both carry the two switches, language then theme. The language switch is its own component (`components/LanguageSwitch`) and takes its size from custom properties the header sets (`--switch-size`, `--switch-color`, `--switch-margin`), so it matches the buttons around it in each of its three places. `html` has `scroll-padding-top: 5rem` so anchors stop below the header.
 
 The header is `--header-height` tall (70px) on every screen: `min-height` on its container and on the top row of the menu sheet holds it there. The token exists so a page can subtract the header from the screen, as the home hero does to end at the fold (`docs/design.md`, Direction). If the header's content ever grows past it, raise the token too; a header shorter than the token cannot happen.
 
@@ -35,18 +36,18 @@ The HTTP status of such a response is still 404, so only `/` is a real 200 for c
 
 Two names exist in both trees and are different components:
 
-- `components/Home/Services` is the 3-card homepage teaser. `pages/services/Services` is the full priced list. Each has its own hard-coded `services` array.
+- `components/Home/Services` is the 3-card homepage teaser. `pages/services/Services` is the full list. Each has its own `services` array (the order and the icons; the words are in the messages).
 - `components/Home/About` is the homepage section. `pages/about/About` is the full page.
 
-`components/Home/CTA/Cta` is reused outside Home (the services, about, and AI pages render it).
+`components/Home/CTA/Cta` is reused outside Home (the services, about, and AI pages render it). It takes an optional `heading` and `subline`; the services page passes its own, the others use the defaults.
 
 ## Content as data
 
-Content lives in source files: typed data in `src/data/`, or arrays declared at the top of the component that renders them. Details per topic are in `docs/projects.md` and `docs/content.md`.
+Content lives in source files, in two parts. What is not a sentence (order, icons, links, years, brand names) is typed data in `src/data/`, or an array declared at the top of the component that renders it. Every sentence is in `src/i18n/messages/`, once per language, under the `id` or the slug that the data gives the entry (`docs/i18n.md`). Details per topic are in `docs/projects.md` and `docs/content.md`.
 
-`src/data/stack.ts` is the one list of technologies, split in two: the AI stack and the classic stack (`docs/content.md`, Two stacks). Three places read it: the home strip (one group per stack), the toolkit of the About page, and the `/ai` page. A tool added to the AI stack shows in all three only while it is in current use (status `main` or `daily`, exported as `currentAiStack`); a `before` tool is shown in none of them and only lends its logo to the journey on `/ai`. The classic group of the home strip is its own short list, `classicPicks`. The same file holds `creativeTools`, the graphics and video tools of the About page, which are not a stack. Do not declare a stack array in a component again.
+Nothing unused is kept in the tree for reference: a component, a layout or an asset that is no longer rendered is deleted, and git history is the archive.
 
-The home strip (`components/Home/Stack`) is static. Below 768px its tools are laid out three per line by a grid, not left to wrap, so six picks never break as five and one; the column gap at 1024px is a `clamp()` because the two groups only just fit side by side there.
+The list of technologies, `src/data/stack.ts`, has its own file: `docs/stacks.md`.
 
 ## Icons
 
@@ -59,44 +60,8 @@ All icons are `<Icon icon="prefix:name" />` from `@iconify/react`, addressed by 
 - Sets in use: `tabler` and `mdi` for UI icons, `vscode-icons` and `logos` for tech and brand badges, and `simple-icons` for the brand marks those two lack (Android Studio and the graphics tools). `simple-icons` is one color and takes the text color, so it needs no entry in `inkLogos.ts`; check that a mark is readable at 20px before using it (its GitHub Pages mark is a wordmark and is not).
 - Two marks are not from a set, and are inline SVGs drawn for the site: the icon of the theme switch, in `src/components/Header/Header.tsx` (`docs/design.md`, Dark theme), and the pixel chevron of the hero terminal's prompt box, in `components/Home/CliPrompt`. They are the exceptions, not a second way to add icons.
 
-## Styling
-
-Plain CSS with CSS Modules, one `*.module.css` beside each component.
-
-- `src/index.css` is the design system: color, spacing, radius, shadow, easing, and layout tokens as custom properties on `:root`, plus the reset.
-- The dark theme is one `:root[data-theme="dark"]` block right under `:root`, which gives the color, shadow and texture tokens a second value. Component stylesheets hold no dark-mode rules: a color that goes through a token follows the theme by itself, and a literal color does not.
-- `data-theme` on `<html>` is always set, to `light` or `dark`, from two places that must agree:
-  - An inline script in `index.html` sets it before first paint (the stored choice, else the system setting), so the page never flashes the wrong theme. It has to stay inline and in `<head>`: the app's own script is a deferred module.
-  - `src/hooks/useTheme.ts` takes over once React runs: the header switch, the `theme` key in `localStorage`, and a listener that follows the system while no choice is stored. Both read the same key.
-- Three things outside the dark block have to be kept in step with it by hand:
-  - The `theme-color` meta tags in `index.html` repeat the two `--surface-primary` values (after load, `useTheme.ts` rewrites them from the token itself).
-  - The grid tile (`--grid-tile`) is an SVG data URI, which cannot read a custom property, so each theme carries its own copy with the stroke color written in.
-  - Brand logos drawn in dark ink are listed in `src/data/inkLogos.ts`; `inkLogoClass()` gives them the global `.ink-logo` class, which inverts them on the dark theme. A new logo that disappears in dark mode goes in that list.
-- Global rules there affect every page. `main > section > h2` (and the `p` right after it) are centered. A global `prefers-reduced-motion` rule neutralizes all animation and transition durations.
-- The section frame is global too. Every direct `<section>` child of `<main>` except the first gets a hairline across its full width, with a red tick at each end, at its top, drawn by `main > section + section::after`; `main::after` draws the one under the last section. The ticks are `--frame-tick` high and the line is centered on the section's top edge, so half a tick reaches into the section above. Consequences:
-  - A top-level section must be full width, with its `max-width` on an inner wrapper: the line is as wide as the section. Sections that constrain themselves (the hero, and the single sections of the portfolio, contact, and info pages) are fine only because they come first and so draw no line.
-  - A top-level section must leave its own `::after` free (use `::before` for decoration, as the hero and the CTA band do) and must not set `overflow: hidden`, or the line is clipped.
-  - Do not add `border-top` / `border-bottom` to sections; the frame is the separator.
-- Breakpoints are mobile-first `min-width` queries at 640px, 768px, and 1024px. Two components also switch at 900px (the hero and the Startup Weekend section).
-- Page width comes from `--content-width` (1100px) and `--content-padding`.
-
-## Fonts
-
-Self-hosted in `public/fonts/`, with its license file, and declared with `@font-face` at the top of `src/index.css`:
-
-| Token | Font | Use |
-|-------|------|-----|
-| `--font-sans` | Instrument Sans (variable TTF) | Everything |
-| `--font-mono` | The visitor's system monospace, no file | Terminal, slash labels, badges, small meta text |
-
-Adding a font means downloading the file and its license into `public/fonts/`; do not link to Google Fonts or any CDN.
-
 ## Images
 
 - `public/images/projects/<slug>.webp`: one per project (`docs/projects.md`).
 - `public/images/startup-weekend/`: the award carousel photos, two sizes each (`docs/content.md`).
 - `public/logo.svg` is the header and footer logo, kept optimised (about 2 KB; an Inkscape export of it is close to 200 KB, so run it through SVGO before replacing it). `public/favicon.svg`, `favicon.png`, and `apple-touch-icon.png` are generated from it, squared.
-
-## Unused on purpose
-
-`components/Home/BootSequence` (superseded by `CliPrompt`) and `layouts/AltLayout.tsx` are kept for reference and not rendered.

@@ -1,0 +1,1 @@
+- [Business status is private](business-status-private.md) — never on the site or in this public repo; the status itself is written nowhere, ask Kevin when a task needs it

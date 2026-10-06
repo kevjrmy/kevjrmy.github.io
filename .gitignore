@@ -15,6 +15,9 @@ dist-ssr
 # Personal documents
 .private/
 
+# Claude Code settings of this device (the memory path, see scripts/link-memory.mjs)
+.claude/settings.local.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

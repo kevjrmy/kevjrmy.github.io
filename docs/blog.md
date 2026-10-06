@@ -5,8 +5,9 @@ Not built. This file holds what is already known so the work does not start from
 ## Known so far
 
 - Planned route: `/blog`.
-- The nav entry already exists, commented out, in the `navLinks` array of `src/components/Header/Header.tsx`.
-- `src/index.css` has a "Content / Markdown styling" block (`.content h2`, `.content p`) intended for long-form text. Nothing uses the `.content` class yet.
+- The nav entry is one line to add to the `navLinks` array of `src/components/Header/Header.tsx`, with its label under `header.nav` in the three message files. With six links, check that the desktop row still fits at 768px in every language (`docs/design.md`, Language switch).
+- Adding the page to the `pages` array of `App.tsx` gives it `/blog`, `/fr/blog` and `/es/blog` at once (`docs/i18n.md`).
+- Long-form text has no styles yet: the placeholder rule that waited in `src/index.css` (`.content h2`, `.content p`) was unused and went on 2026-10-07. The blog brings its own.
 
 ## Constraints from the rest of the site
 
@@ -18,4 +19,4 @@ Not built. This file holds what is already known so the work does not start from
 - Post format and location (Markdown files, and where).
 - How posts become pages (build-time plugin, or runtime fetch and parse).
 - Whether to prerender routes for SEO.
-- Language: English only, or per-post.
+- Language. The rest of the site is in English, French and Spanish, and the pages around a post (list, labels, dates) can follow that. The posts themselves are the open question: written once in English, translated into all three, or each in the language it was written in. The site's rule that a missing translation fails the build is meant for interface copy, not for long posts.

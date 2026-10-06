@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "memory:link": "node scripts/link-memory.mjs",
+    "prepare": "node scripts/link-memory.mjs"
   },
   "dependencies": {
     "@iconify-json/logos": "^1.2.15",

@@ -1,5 +1,7 @@
 # TODO
 
+Open work on the site. Wording, dates and choices that wait for Kevin's answer are not work to do: they are in `to-confirm.md`.
+
 ## Waiting
 
 - [ ] **Final project screenshots.** The images in `public/images/projects/` are first-pass captures taken automatically from the live sites on 2026-10-04 (home page, above the fold). Replace any that are not good enough; keep the same filenames. See `docs/projects.md` for the format.
@@ -8,40 +10,14 @@
 ## Open
 
 - [ ] **Marcas que dejan huellas is off the portfolio for now.** Removed from `projects.ts` on 2026-10-04: marcasquedejanhuellas.com has expired (Hostinger "Your domain is expired" page), so there was no live site to link to or capture, and the archived copies on the Wayback Machine render without their styles. Put it back once the site is online again (the Laravel rebuild is in `Clients/MQDHpress`); the old entry is in git history.
-- [ ] **No catch-all route.** Any unknown URL renders the header and footer around an empty page. Now that GitHub Pages serves the app for every path (`404.html` fallback), a mistyped URL lands there too. A `path="*"` not-found page would fix it.
-
-- [ ] **To confirm with Kevin.** Wording written on his behalf that he has not explicitly approved:
-  - The Startup Weekend fact "I have kept building its web side since: landing page, consumer app and business dashboard", and that the five teammates in the photos (two named in a caption) are fine with appearing.
-  - The sentences about how he works with AI agents: "The agents write fast; I direct, review and answer for the result" (About timeline) and "I build with AI agents and answer for the result, so you get it sooner with the same care" (Services).
-  - "Certified web developer" on the About page, which replaced "Self-taught".
-  - The title "El Imperio Contabilidad" and the client label "Wellness startup" for SUNspot.
-  - Le Petit Cours (added 2026-10-05): its excerpt, the label "Personal project", and its place in the list (fifth, after the client sites built with Claude Code).
+- [ ] **No catch-all route.** Any unknown URL renders the header and footer around an empty page, in English, or in French or Spanish if it starts with `/fr/` or `/es/`. Now that GitHub Pages serves the app for every path (`404.html` fallback), a mistyped URL lands there too. A `path="*"` not-found page would fix it.
 - [ ] **Le Petit Cours is filed as a PWA before it works offline.** Its repo says the service worker is not installed yet, so the portfolio excerpt does not mention offline use. Once it is, the excerpt can say so.
-- [ ] **AI Automation has no price.** It shows "Let's talk" on the services page.
-- [ ] **Legal identification on `/info`.** The page does not give a tax ID or postal address. A site offering paid services from Spain is normally expected to (LSSI). Decide whether to add them.
-- [ ] **AI page (`/ai`, added 2026-10-06): to confirm with Kevin.**
-  - The years that were inferred, not given: Midjourney and Hugging Face in 2023, Bard in 2023, Grok voice mode in 2025, Antigravity, the OpenClassrooms course, Google AI Studio, OpenCode and Codex in "2025 → 26", Claude Code from 2026.
-  - Claude: the page says "opened my Claude account in June 2024" (account data); he remembers using it around 2023. See `docs/content.md`, AI journey.
-  - The one-line descriptions of Hermes and Jev under "Learning next", written from their own sites, and the one of Linear ("The issue tracker where the work is planned, and where tasks can be handed to coding agents."), written without knowing why he needs it.
-  - The exact title of the AI course on OpenClassrooms, and whether it gave a certificate worth listing under Education on the About page.
-  - Statuses in `src/data/stack.ts`: Kevin named GitHub Copilot, DeepSeek and Google AI Studio as "the rest"; Codex, OpenCode and Antigravity went with them. (Grok is settled: out of the stack, kept in the journey.)
-  - The journey sentence "I also began talking to Grok in voice mode, which I still do outside of work."
-  - Markdown's card: the role "Context files" and the status "every day".
-  - Journey logos that are the maker's mark, not the product's: OpenAI's for DALL·E 2 and Sora, Google's for Veo 3 and Google Flow, Gemini's for Nano Banana. Magnific and OpenClassrooms have none in the installed icon sets and stay plain tags.
-  - The home strip: the six classic picks (Laravel, Vue, React, TypeScript, Node.js, Next.js; PHP, Kotlin, Vite and Git are no longer on the home page) and the two link labels, "How I work with AI" and "The full stack".
-  - Wording written on his behalf: the headline "Using AI since 2022. Building with agents every day.", the intro, the four practice cards, and "From then on, AI was something I worked with, not a demo I watched".
-  - Magnific is listed with the video generators, as he said it.
-  - New sentences in the journey: "I made my own AI videos in Google Flow, with Nano Banana for the images." and "Outside the terminal, I use Claude in its desktop app."
-  - The "plugged in" sentence: "Claude Code does not work alone: I extend it with the ecosystem around it."
-  - Cursor is one of the three current tools and has no step of its own in the journey: when he started with it is not known.
-- [ ] **Classic stack: three left out without an answer.** WooCommerce, SQLite and plain JavaScript are badges on projects but not on the About page (WordPress, SQL and TypeScript stand in for them). Kevin was told and did not ask for them.
 - [ ] **AI page: things that would make it stronger.** Links from the journey to real work (the projects built with Claude Code), and something to show for the meetups (a photo, a talk).
 
 ## Later
 
-- [ ] **Deep links answer with a 404 status** (see `docs/architecture.md`). Prerendering each route would fix it, and would matter for a blog.
+- [ ] **Deep links answer with a 404 status** (see `docs/architecture.md`). Prerendering each route would fix it, and would matter for a blog. It now covers every French and Spanish page too, home included (`/fr`, `/es`), and prerendering is also what would let each language have its own `<html lang>` and `hreflang` links in the served HTML (`docs/i18n.md`, Limits).
 - [ ] **One monospace everywhere.** The terminal and the slash labels use the visitor's system monospace, so they look different on each device. A self-hosted monospace would fix it; JetBrains Mono was used for the headline until 2026-10-05 and is in git history.
-
 - [ ] **Codex config import.** A Codex config exists at `~/.codex/config.toml` and has not been imported into Claude Code. To pick it up: `/import` in Claude Code to list what is importable (MCP servers, slash commands, subagents, skills, instructions), then `/import --yes=<digest>` to apply. From a terminal: `claude import`.
 
 ## Carried over from the old home page spec
