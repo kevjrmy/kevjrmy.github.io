@@ -55,8 +55,7 @@ const Badge: React.FC<{ label: string }> = ({ label }) => {
 }
 
 // ── Panel (one project) ───────────────────────────────────────────────────────
-// `eager`: the slide shown on arrival loads its screenshot at once; the others wait
-// until they are about to be seen
+// `eager`: load the screenshot at once instead of waiting until it is about to be seen
 const Panel: React.FC<{ project: Project; eager: boolean }> = ({ project, eager }) => {
   const [imgError, setImgError] = useState(false)
 
@@ -116,6 +115,20 @@ const Panel: React.FC<{ project: Project; eager: boolean }> = ({ project, eager 
   )
 }
 
+// ── Tab transition ────────────────────────────────────────────────────────────
+// A tab does not scroll the row past every project in between. The project in view
+// fades out, the row jumps while nothing shows, and the chosen project fades in
+// from the side it sits on. A swipe needs none of this: the finger moves the row.
+type Move = {
+  from: number
+  to: number
+  direction: 1 | -1
+  phase: 'out' | 'in'
+}
+
+// How long the project in view takes to leave. The stylesheet reads the same value
+const LEAVE_MS = 140
+
 // ── FeaturedWorks ──────────────────────────────────────────────────────────────
 const FeaturedWorks: React.FC = () => {
   // Every project is a slide in one scroll-snap row, so a swipe (or a trackpad)
@@ -124,23 +137,42 @@ const FeaturedWorks: React.FC = () => {
   const trackRef = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
 
-  // The slide a tab jumped to fades in. One reached by a swipe does not: it slid in.
-  const [jumpedTo, setJumpedTo] = useState<number | null>(null)
+  const [move, setMove] = useState<Move | null>(null)
+
+  // Screenshots load lazily, except the first. A tab can jump to a project far down
+  // the row, whose screenshot would then pop in after the fade: so the first sign of
+  // interest in the widget (pointer over it, finger on it, focus in it) loads them all.
+  const [armed, setArmed] = useState(false)
+  const arm = () => setArmed(true)
 
   const goTo = (index: number) => {
     const track = trackRef.current
     if (!track) return
-    setJumpedTo(index)
+    const from = Math.round(track.scrollLeft / track.clientWidth)
     setActiveIndex(index)
-    track.scrollTo({ left: index * track.clientWidth, behavior: 'instant' })
+    setMove(index === from ? null : { from, to: index, direction: index > from ? 1 : -1, phase: 'out' })
   }
+
+  // Once the project in view has left, jump to the chosen one and let it come in
+  useEffect(() => {
+    if (move?.phase !== 'out') return
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const timer = window.setTimeout(() => {
+      const track = trackRef.current
+      if (!track) return
+      track.scrollTo({ left: move.to * track.clientWidth, behavior: 'instant' })
+      setMove({ ...move, phase: 'in' })
+    }, reducedMotion ? 0 : LEAVE_MS)
+    return () => window.clearTimeout(timer)
+  }, [move])
 
   const onTrackScroll = () => {
     const track = trackRef.current
-    if (!track) return
+    // A tab was just chosen: the jump that follows decides, not a scroll still settling
+    if (!track || move?.phase === 'out') return
     const index = Math.round(track.scrollLeft / track.clientWidth)
     setActiveIndex(index)
-    setJumpedTo(jumped => (jumped === index ? jumped : null))
+    setMove(current => (current?.to === index ? current : null))
   }
 
   // The tab bar is one row that scrolls sideways: track which sides still hide tabs
@@ -188,7 +220,7 @@ const FeaturedWorks: React.FC = () => {
       </div>
 
       {/* Tabbed interface */}
-      <div className={styles.widget}>
+      <div className={styles.widget} onPointerEnter={arm} onFocus={arm}>
 
         {/* Tab bar */}
         <div className={styles.tabBarWrap}>
@@ -232,7 +264,12 @@ const FeaturedWorks: React.FC = () => {
 
         {/* Panels: one slide per project, swiped on a phone */}
         <div className={styles.panelWrap}>
-          <div ref={trackRef} className={styles.track} onScroll={onTrackScroll}>
+          <div
+            ref={trackRef}
+            className={styles.track}
+            style={{ '--leave': `${LEAVE_MS}ms`, '--direction': move?.direction ?? 1 } as React.CSSProperties}
+            onScroll={onTrackScroll}
+          >
             {featuredProjects.map((project, i) => (
               <div
                 key={project.slug}
@@ -240,9 +277,13 @@ const FeaturedWorks: React.FC = () => {
                 id={`panel-${project.slug}`}
                 aria-labelledby={`tab-${project.slug}`}
                 inert={i !== activeIndex}
-                className={`${styles.slide} ${i === jumpedTo ? styles.slideIn : ''}`}
+                className={[
+                  styles.slide,
+                  move?.phase === 'out' && i === move.from ? styles.slideOut : '',
+                  move?.phase === 'in' && i === move.to ? styles.slideIn : '',
+                ].join(' ')}
               >
-                <Panel project={project} eager={i === 0} />
+                <Panel project={project} eager={armed || i === 0} />
               </div>
             ))}
           </div>

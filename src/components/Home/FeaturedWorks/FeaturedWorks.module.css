@@ -212,24 +212,36 @@
   display: flex;
   flex: 0 0 100%;
   min-width: 0;
+  /* clips the panel while it moves, so it never widens the row */
+  overflow: hidden;
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
 
-/* Reached by a tab, not by a swipe */
-.slideIn {
-  animation: panelIn var(--duration-normal) var(--ease-out) both;
+/* ── Tab transition ───────────────────────────────────── */
+/* A tab crossfades instead of scrolling past every project in between. The project
+   in view leaves a little towards the side it is left on, then the chosen one comes
+   in from the side it sits on. --direction is 1 going forward, -1 going back; both
+   it and --leave are set on the track by the component. Opacity and transform only,
+   so it stays smooth on a phone. A swipe uses none of this. */
+.slideOut .panel {
+  opacity: 0;
+  transform: translateX(calc(var(--direction) * -1 * var(--space-md)));
+}
+
+.slideIn .panel {
+  animation: panelIn var(--duration-slow) var(--ease-out) both;
 }
 
 @keyframes panelIn {
   from {
     opacity: 0;
-    transform: translateY(6px);
+    transform: translateX(calc(var(--direction) * var(--space-xl)));
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 }
 
@@ -239,6 +251,9 @@
   flex: 1;
   flex-direction: column;
   min-width: 0;
+  transition:
+    opacity var(--leave) var(--ease-in),
+    transform var(--leave) var(--ease-in);
 }
 
 /* ── Left — screenshot ────────────────────────────────── */
@@ -431,7 +446,11 @@
 
 /* ── Reduced motion ───────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .slideIn {
+  .panel {
+    transition: none;
+  }
+
+  .slideIn .panel {
     animation: none;
   }
 

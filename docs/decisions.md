@@ -4,6 +4,9 @@ Choices that are not obvious from the code, with the reason. Read before reversi
 
 ## 2026-10-06
 
+**A tab of the selected works crossfades with a direction; it does not scroll the row.**
+The first swipeable version jumped on a tab: the old project vanished and the new one rose in. Kevin asked for a better, very smooth transition on phone and desktop. Rejected: a smooth scroll to the chosen project, which is right between neighbours but drags four or five screenshots across the card on a longer jump, and whose speed and easing the browser decides. The crossfade lasts the same whatever the distance. So that the screenshot of a far project is already there when it fades in, all screenshots load at the first sign of interest in the widget (pointer over it, touch, focus) instead of lazily.
+
 **The selected works on the home page can be swiped.**
 Kevin asked for it on mobile. The panel used to render the one active project; it now renders every featured project as a slide in a scroll-snap row, and the active one is read back from the scroll position, as the Startup Weekend carousel does. That makes it work with a trackpad on desktop too, at no extra cost. Rejected: listening for touch events and switching on a threshold, which does not follow the finger. The cost: all slides are in the page, so the screenshots after the first load lazily, the slides not in view are `inert`, and every card is as tall as the tallest one.
 
