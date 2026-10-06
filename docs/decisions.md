@@ -4,6 +4,9 @@ Choices that are not obvious from the code, with the reason. Read before reversi
 
 ## 2026-10-06
 
+**Every listed price was doubled.**
+On a friend's advice ("double your prices"), and Kevin's decision. Audit and classes went from 15€ to 30€ an hour, PWA from 800€ to 1600€, web application from 1200€ to 2400€, consulting from 50€ to 100€ a session, WordPress from 200€ to 400€. The two "Let's talk" services have no figure and did not change. These are still "from" prices, as the terms page says.
+
 **The stack is split in two, AI and classic, everywhere it is shown.**
 Kevin wants the site to show that he takes AI seriously and professionally, and one list with Claude Code beside Node.js said the opposite: an agent filed as one more technology. The two stacks are now separate data (`src/data/stack.ts`) and separate on screen: two marquee rows on the home page, two blocks on the About page. "Classic" is his word. Rejected: keeping "AI" as one group among Backend, Frontend and Mobile, which is what the About page did.
 
