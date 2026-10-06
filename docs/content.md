@@ -20,19 +20,22 @@ The tools, and how to present them:
 |------|--------|-------------|
 | Claude Code | Main agent, used daily | Named first, everywhere AI is mentioned |
 | Cursor | Main IDE, used daily | Named with Claude Code where there is room |
-| Codex, OpenCode, Antigravity, Google AI Studio, GitHub Copilot | Used before | Listed as experience |
-| Grok | Used sometimes, in voice mode | AI stack lists only |
-| DeepSeek | Used since R1 came out (January 2025); still used, but not often | AI stack lists and the journey on `/ai` |
-| Hermes (Hermes Agent, the open-source agent by Nous Research), Jev (TypeSafe AI's first "System One" model: typed decisions with a confidence score, announced September 2026), local and open-source LLMs (Ollama to start with) | Planned, not learned yet. Kevin has never run a model on his own machine | On the `/ai` page only, under "Learning next", labelled "coming soon", with no logo. Hermes and Jev link to their own sites. Nowhere else until actually used |
+| Markdown | The format of the context files the agents read, written daily. Kevin knew it before any of this | Third and last of the current combo, after Claude Code and Cursor |
+| Codex, OpenCode, Antigravity, Google AI Studio, GitHub Copilot | Used before | History: the journey on `/ai`, with their logos. Not on the home page. Still listed after the current three in the About toolkit (open question in `todo.md`) |
+| DeepSeek (since R1 came out, January 2025) | History "for the moment", in Kevin's words (2026-10-06). It was "used sometimes" before that, and may come back | Same as the line above |
+| Grok (voice mode) | Still used, but for personal things, not for coding | Not in the AI stack at all (no card, not in the home strip, not in the About toolkit): those list what he builds with. It must stay mentioned somewhere, and that place is the journey on `/ai`, which says he still talks to it outside of work |
+| Hermes (Hermes Agent, the open-source agent by Nous Research), Jev (TypeSafe AI's first "System One" model: typed decisions with a confidence score, announced September 2026), local and open-source LLMs (Ollama to start with), Linear (the issue tracker; added 2026-10-06, "I'll need to learn Linear") | Planned, not learned yet. Kevin has never run a model on his own machine | On the `/ai` page only, under "Learning next", labelled "coming soon", with no logo. Hermes, Jev and Linear link to their own sites. Nowhere else until actually used |
+| Claude desktop app | Used, outside the terminal (confirmed 2026-10-06) | The last step of the journey on `/ai`. Not a card: the combo is three |
+| Zapier, n8n, GitHub Copilot CLI | Never used. The Copilot CLI is installed on his machine, which proves nothing: he never ran it | Not on the site. Kevin left them out on purpose: the site lists only what he has used, or says plainly that it is still to learn |
 
 Rules:
 
 - Write "Claude Code" or "AI agents", not a vague "AI" or "AI tools". The `/ai` page is the one place where plain "AI" is right, because it covers the whole field (images, chat, video, voice), not only agents; its nav label is "AI" for the same reason.
 - A project built with Claude Code gets the `Claude Code` badge first in its `stack`.
 - The framing: the agents write fast; Kevin directs, reviews, and answers for the result.
-- **WordPress is last.** It stays on the site for history and for existing clients who still need it, but it goes at the end of every list (projects, services, toolkit, marquee, filters) and never in a highlighted spot such as the homepage service cards.
+- **WordPress is last.** It stays on the site for history and for existing clients who still need it, but it goes at the end of every list (projects, services, toolkit, filters) and never in a highlighted spot such as the homepage service cards.
 
-Where it shows today: hero headline (`/ai-agents`) and intro, `/whoami` terminal, the AI row of the stack marquee, homepage services subline and About paragraph, About page intro, timeline and AI stack block, the whole `/ai` page, services page intro, portfolio intro, project badges.
+Where it shows today: hero headline (`/ai-agents`) and intro, `/whoami` terminal, the AI group of the home stack strip, homepage services subline and About paragraph, About page intro, timeline and AI stack block, the whole `/ai` page, services page intro, portfolio intro, project badges.
 
 ## Two stacks
 
@@ -43,7 +46,11 @@ Kevin presents his stack as two, and the difference is the point: it shows that 
 
 Both are data in `src/data/stack.ts`. Every tool belongs to exactly one, and no list on the site mixes the two. "Classic" is Kevin's word for it; keep it.
 
-The AI stack carries a status per tool, shown only on the `/ai` page: `main` (Claude Code, "every day", the one card with the red ring), `daily` (Cursor, "every day"), `occasional` (Grok, DeepSeek, "sometimes") and `before` ("used before"). Tools Kevin plans to learn are a separate list (`upcomingAiTools`) and appear only there, as "coming soon". The page is expected to grow: Hermes moves into the AI stack once Kevin has built something with it.
+The AI stack carries a status per tool: `main` (Claude Code, the one card with the red ring), `daily` (Cursor, Markdown) and `before` (everything else). The current combo is those three, Claude Code + Cursor + Markdown, and on the `/ai` page only they are cards under "What I work with". A `before` tool is history: it is not shown in the same section as the current ones, and appears in the journey, with its logo. Tools Kevin plans to learn are a separate list (`upcomingAiTools`) and appear only on that page, as "coming soon". The page is expected to grow: Hermes moves into the AI stack once Kevin has built something with it.
+
+The `/ai` page also says that Claude Code is extended with plugins, skills and connectors, in one line under the cards. It names the three kinds and nothing more. That is Kevin's rule: the message is that he uses the ecosystem around the agent, "not a list". Do not name the plugins, skills or connectors one by one (a first version did: Vercel, Stripe, a Laravel Cloud skill, Google Drive).
+
+The home strip follows the same rule as `/ai`: its AI group is the current three only (`currentAiStack`), and its classic group is six picks (`classicPicks`: Laravel, Vue, React, TypeScript, Node.js, Next.js; WordPress is not one of them). The About toolkit is the one place that still shows the whole AI stack in one row, the current three first, then the five from history; whether it should is an open question in `todo.md`.
 
 ## AI journey
 
@@ -55,13 +62,13 @@ What Kevin told about his path, for the journey on the `/ai` page (`src/pages/ai
 4. Image generation: Midjourney, and free models on Hugging Face.
 5. Bard, before it was renamed Gemini.
 6. Claude: account opened on 30 June 2024 (read from his account data; the site says "June 2024"). Kevin's own memory is "around 2023, I guess". The page keeps the account date: claude.ai only opened in Europe on 14 May 2024. If he used Claude earlier some other way, he has to say how before the page says 2023.
-7. Video generators: Veo 3, Sora, Magnific. He places them in 2024; Veo 3 came out in May 2025, so the page says "2024 → 25".
+7. Video generators: Veo 3, Sora, Magnific. He places them in 2024; Veo 3 came out in May 2025, so the page says "2024 → 25". He also used Google Flow and Nano Banana (confirmed 2026-10-06, no date given; both are from 2025), for AI video of his own.
 8. DeepSeek: started right after DeepSeek-R1 was released (20 January 2025).
 9. Antigravity, in the IDE.
 10. The AI course on OpenClassrooms (its exact title is not known here).
 11. Grok, in voice mode.
 12. Agents: Google AI Studio in the browser, then OpenCode and Codex in the terminal.
-13. Claude Code, his main agent since (first run on his machine: April 2026).
+13. Claude Code, his main agent since (first run on his machine: April 2026). Beside it, the Claude desktop app.
 
 Around it: he knew Markdown before any of this, he goes to AI meetups such as AI Tinkerers with friends and they share tips, and he has never used Ollama or run a model locally.
 
@@ -84,8 +91,8 @@ All copy is hard-coded in components. There are no content files or translations
 |---------|------|
 | Hero headline, intro, buttons | `src/components/Home/Hero/Hero.tsx` |
 | Terminal `/whoami` answer and closing prompt | `src/components/Home/CliPrompt/CliPrompt.tsx` |
-| Both stacks (home marquee, About toolkit, `/ai` page) | `src/data/stack.ts` |
-| AI page: intro, journey, practice cards | `src/pages/ai/Ai.tsx` |
+| Both stacks (home strip, About toolkit, `/ai` page), what is still to learn | `src/data/stack.ts` |
+| AI page: intro, the "plugged in" line, journey (and the logos of its tools), practice cards | `src/pages/ai/Ai.tsx` |
 | Startup Weekend award: text, facts, photo captions | `src/components/Home/StartupWeekend/StartupWeekend.tsx` |
 | Homepage trust signals | `src/components/Home/About/About.tsx` |
 | Timeline, education, languages, values | `src/pages/about/About.tsx` |

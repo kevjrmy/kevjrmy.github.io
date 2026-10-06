@@ -12,7 +12,7 @@
   justify-content: center;
   gap: var(--space-3xl);
   max-width: var(--content-width);
-  /* Ends at the fold: the screen minus the sticky header, so the stack marquee
+  /* Ends at the fold: the screen minus the sticky header, so the stack strip
      starts just under it instead of showing a cut-off top edge. The half tick
      pushes the frame line of that next section under the fold as well.
      svh is the height with the mobile browser bars shown, as on arrival. */

@@ -44,9 +44,9 @@ Two names exist in both trees and are different components:
 
 Content lives in source files: typed data in `src/data/`, or arrays declared at the top of the component that renders them. Details per topic are in `docs/projects.md` and `docs/content.md`.
 
-`src/data/stack.ts` is the one list of technologies, split in two: the AI stack and the classic stack (`docs/content.md`, Two stacks). Three places read it: the home marquee (one row per stack), the toolkit of the About page, and the `/ai` page. A tool added there shows up in all three; do not declare a stack array in a component again.
+`src/data/stack.ts` is the one list of technologies, split in two: the AI stack and the classic stack (`docs/content.md`, Two stacks). Three places read it: the home strip (one group per stack), the toolkit of the About page, and the `/ai` page. A tool added to the AI stack shows up in the About toolkit; on the home strip and on `/ai` it shows only while it is in current use (status `main` or `daily`, exported as `currentAiStack`), and otherwise lends its logo to the journey. The classic group of the home strip is its own short list, `classicPicks`. Do not declare a stack array in a component again.
 
-The home marquee repeats a short list until one copy is wider than a large screen (`MIN_ITEMS` in `components/Home/Stack/Stack.tsx`), because a copy narrower than the screen leaves a gap in the loop. Its two rows share a label column through `subgrid`.
+The home strip (`components/Home/Stack`) is static. Below 768px its tools are laid out three per line by a grid, not left to wrap, so six picks never break as five and one; the column gap at 1024px is a `clamp()` because the two groups only just fit side by side there.
 
 ## Icons
 

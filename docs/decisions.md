@@ -4,6 +4,24 @@ Choices that are not obvious from the code, with the reason. Read before reversi
 
 ## 2026-10-06
 
+**The home marquee became a still strip: the three AI tools beside six classic picks.**
+Kevin's words: two rows was noise. The rows ran in opposite directions, and the AI one had come to mix his three current tools with five from history. Four options were put to him: a still strip, one marquee with the AI tools pinned in front of it, a full section of two cards, and removing the stack from the home page. He chose the strip. It keeps the two stacks apart and labelled, shows only the current combo on the AI side, cuts the classic side from eleven tools to six, and gives each group a link to its full page. The marquee code is in git history.
+
+**The `/ai` page says that Claude Code is extended with plugins, skills and connectors, and does not say with which.**
+The AI stack is defined as "the agents and the tools around them", and the page showed only the first half. Kevin asked for the three kinds to be mentioned. The first version was a panel with a row per kind and every installed plugin, skill and connector named with its logo. He turned it down the same day: the message is that he leverages the AI ecosystem, "not a list". It is now one line under the cards with the three kinds as tags. Rejected with it: a card per plugin, which would have drowned the three-tool combo.
+
+**Google Flow, Nano Banana and the Claude desktop app joined the journey; the Copilot CLI did not.**
+All four were found by looking at his notes and at what is installed on his machine, then put to him. He confirmed the first three and said he never used the Copilot CLI, although it is installed. An installed tool is a question to ask, not a fact to publish.
+
+**Linear joined "Learning next", as a fourth outline.**
+Kevin's request: he will need to learn it. It is an issue tracker, not an AI tool, and sits in the block all the same: the block is what he has yet to learn, and Linear is where work gets handed to agents. Its one line was written from that and is his to confirm (`todo.md`). The block went from three columns to four (two by two under 1024px) so the fourth is not left alone on a row.
+
+**Grok left the AI stack and is only named in the journey.**
+Kevin still uses it, in voice mode, but for personal things and not for coding. The marquee and the About toolkit sit under "What I build with", which was no longer true for it, so it came out of `src/data/stack.ts` altogether. He asked that it stay mentioned somewhere, "maybe the timeline": the 2025 step of the journey on `/ai` keeps it, with its logo, and says he still talks to it outside of work. Do not drop that mention.
+
+**On `/ai`, the AI stack is the current combo only: Claude Code, Cursor and Markdown. Everything else moved to the journey, which gained logos.**
+Kevin's words: the combo to show is those three, and the rest (he named GitHub Copilot, DeepSeek and Google AI Studio) "belong to history for the moment so it can't be in the same section as the current ones". The nine cards with a status each ("every day", "sometimes", "used before") became three, and the six other tools are told where the history already was, in the journey, whose tags now carry logos so they are still seen. Grok was not named and went with "the rest"; Kevin then said he still uses it, for personal things and not for coding, so it stays out of the cards (the combo is the one he works with) and the journey says he still uses it outside of work. The `occasional` status went away with it: with history out of the section there was nothing left to tell apart. Markdown joined the AI stack data as the third current tool, so it also shows in the home marquee and the About toolkit. Rejected: a second grid of "used before" cards under the first, which keeps the two in one section, the thing he asked to end. This reverses the earlier line that journey tags have no logos.
+
 **The prices are shown as they are, with no "+ VAT" beside them.**
 A friend suggested adding it, since most clients are professionals. Kevin declined: the listed figure is the amount a client pays. Do not add a VAT mention to the prices or the terms unless he says that has changed.
 

@@ -3,22 +3,28 @@ import type { AiTool, StackGroup, StackItem, UpcomingAiTool } from '@/types/stac
 // The stack comes in two kinds, and every tool belongs to exactly one:
 //   AI      — the agents and the tools around them (Claude Code)
 //   Classic — languages, frameworks and platforms (Node.js)
-// The home marquee, the About toolkit and the /ai page all read from here.
+// The home strip, the About toolkit and the /ai page all read from here.
 
 // ── AI stack ──────────────────────────────────────────────────────────────────
-// Claude Code first, everywhere (docs/content.md, Positioning)
+// Claude Code first, everywhere (docs/content.md, Positioning).
+// What Kevin works with today comes first: Claude Code, Cursor and Markdown.
+// The rest is history ('before'). Grok is not here: he uses it, but not for work,
+// so it is only named in the journey of the /ai page.
 
 export const aiStack: AiTool[] = [
   { icon: 'logos:claude-code', label: 'Claude Code', role: 'Main agent', status: 'main' },
   { icon: 'logos:cursor-icon', label: 'Cursor', role: 'Editor', status: 'daily' },
+  { icon: 'vscode-icons:file-type-markdown', label: 'Markdown', role: 'Context files', status: 'daily' },
   { icon: 'logos:codex', label: 'Codex', role: 'Terminal agent', status: 'before' },
   { icon: 'logos:opencode-icon', label: 'OpenCode', role: 'Terminal agent', status: 'before' },
   { icon: 'logos:antigravity', label: 'Antigravity', role: 'Agentic IDE', status: 'before' },
   { icon: 'logos:google-aistudio', label: 'Google AI Studio', role: 'Agents in the browser', status: 'before' },
   { icon: 'logos:github-copilot', label: 'GitHub Copilot', role: 'Editor autocomplete', status: 'before' },
-  { icon: 'logos:grok-icon', label: 'Grok', role: 'Voice mode', status: 'occasional' },
-  { icon: 'logos:deepseek-icon', label: 'DeepSeek', role: 'Open reasoning model', status: 'occasional' },
+  { icon: 'logos:deepseek-icon', label: 'DeepSeek', role: 'Open reasoning model', status: 'before' },
 ]
+
+// The working combo: the cards of the /ai page and the AI group of the home strip
+export const currentAiStack = aiStack.filter((tool) => tool.status !== 'before')
 
 // Planned, not learned yet: shown on the /ai page only, labelled "coming soon"
 export const upcomingAiTools: UpcomingAiTool[] = [
@@ -35,6 +41,11 @@ export const upcomingAiTools: UpcomingAiTool[] = [
   {
     label: 'Local LLMs',
     role: 'Open-source models running on my own machine, starting with Ollama.',
+  },
+  {
+    label: 'Linear',
+    role: 'The issue tracker where the work is planned, and where tasks can be handed to coding agents.',
+    href: 'https://linear.app/',
   },
 ]
 
@@ -84,17 +95,12 @@ export const classicStack: StackGroup[] = [
   },
 ]
 
-// The classic row of the home marquee: a shorter pick, in its own order
-export const classicMarquee: StackItem[] = [
+// The classic group of the home strip: the six that matter most, in their own order
+export const classicPicks: StackItem[] = [
   { icon: 'logos:laravel', label: 'Laravel' },
   { icon: 'vscode-icons:file-type-vue', label: 'Vue' },
   { icon: 'vscode-icons:file-type-reactjs', label: 'React' },
   { icon: 'vscode-icons:file-type-typescript-official', label: 'TypeScript' },
   { icon: 'vscode-icons:file-type-node', label: 'Node.js' },
-  { icon: 'vscode-icons:file-type-vite', label: 'Vite' },
   { icon: 'logos:nextjs-icon', label: 'Next.js' },
-  { icon: 'vscode-icons:file-type-php', label: 'PHP' },
-  { icon: 'vscode-icons:file-type-kotlin', label: 'Kotlin' },
-  { icon: 'vscode-icons:file-type-git', label: 'Git' },
-  { icon: 'mdi:wordpress', label: 'WordPress' },
 ]

@@ -22,11 +22,19 @@
 - [ ] **AI page (`/ai`, added 2026-10-06): to confirm with Kevin.**
   - The years that were inferred, not given: Midjourney and Hugging Face in 2023, Bard in 2023, Grok voice mode in 2025, Antigravity, the OpenClassrooms course, Google AI Studio, OpenCode and Codex in "2025 → 26", Claude Code from 2026.
   - Claude: the page says "opened my Claude account in June 2024" (account data); he remembers using it around 2023. See `docs/content.md`, AI journey.
-  - The one-line descriptions of Hermes and Jev under "Learning next", written from their own sites.
+  - The one-line descriptions of Hermes and Jev under "Learning next", written from their own sites, and the one of Linear ("The issue tracker where the work is planned, and where tasks can be handed to coding agents."), written without knowing why he needs it.
   - The exact title of the AI course on OpenClassrooms, and whether it gave a certificate worth listing under Education on the About page.
-  - Statuses in `src/data/stack.ts`: Grok as "sometimes" and Google AI Studio as "used before" (Cursor "every day" and DeepSeek "sometimes" are confirmed).
+  - Statuses in `src/data/stack.ts`: Kevin named GitHub Copilot, DeepSeek and Google AI Studio as "the rest"; Codex, OpenCode and Antigravity went with them. (Grok is settled: out of the stack, kept in the journey.)
+  - The journey sentence "I also began talking to Grok in voice mode, which I still do outside of work."
+  - Markdown's card: the role "Context files" and the status "every day".
+  - Journey logos that are the maker's mark, not the product's: OpenAI's for DALL·E 2 and Sora, Google's for Veo 3 and Google Flow, Gemini's for Nano Banana. Magnific and OpenClassrooms have none in the installed icon sets and stay plain tags.
+  - The About toolkit still lists the whole AI stack in one row (the current three first, then the five from history). Decide whether it should show the current combo only, as `/ai` and the home strip now do.
+  - The home strip: the six classic picks (Laravel, Vue, React, TypeScript, Node.js, Next.js; PHP, Kotlin, Vite and Git are no longer on the home page) and the two link labels, "How I work with AI" and "The full stack".
   - Wording written on his behalf: the headline "Using AI since 2022. Building with agents every day.", the intro, the four practice cards, and "From then on, AI was something I worked with, not a demo I watched".
   - Magnific is listed with the video generators, as he said it.
+  - New sentences in the journey: "I made my own AI videos in Google Flow, with Nano Banana for the images." and "Outside the terminal, I use Claude in its desktop app."
+  - The "plugged in" sentence: "Claude Code does not work alone: I extend it with the ecosystem around it."
+  - Cursor is one of the three current tools and has no step of its own in the journey: when he started with it is not known.
 - [ ] **AI page: things that would make it stronger.** Links from the journey to real work (the projects built with Claude Code), and something to show for the meetups (a photo, a talk).
 
 ## Later

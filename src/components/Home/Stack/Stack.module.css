@@ -1,170 +1,168 @@
 /* ══════════════════════════════════════════════════════
-   Stack — two scrolling marquees, AI and classic
+   Stack — one still strip, two groups: AI and classic
+   On a phone the groups are stacked. From 1024px they sit
+   side by side, each on one line, with a hairline between.
    ══════════════════════════════════════════════════════ */
 
-/* ── Section wrapper ──────────────────────────────────── */
-/* A grid, so the two label strips share one column and the
-   marquees start on the same vertical line */
 .section {
   width: 100%;
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  overflow: hidden;
-  /* clips the scrolling tracks */
-  background-color: var(--surface-primary);
 }
 
-/* ── One row per kind of stack ────────────────────────── */
-.row {
-  grid-column: 1 / -1;
+.inner {
   display: grid;
-  grid-template-columns: subgrid;
+  grid-template-columns: minmax(0, 1fr);
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--space-xl) var(--content-padding);
 }
 
-.row + .row {
+/* ── One group per kind of stack ──────────────────────── */
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  min-width: 0;
+}
+
+.group+.group {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-lg);
   border-top: 1px solid var(--border-light);
 }
 
-/* ── Left label strip ─────────────────────────────────── */
+/* ── Label on the left, link to the full page on the right ── */
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-lg);
+}
+
+/* Reads like a slash command typed into a CLI agent: "/ai stack" */
 .label {
-  display: flex;
-  align-items: center;
-  padding: var(--space-md);
-  border-right: 1px solid var(--border-light);
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-transform: lowercase;
+  color: var(--text-medium);
   white-space: nowrap;
-  background-color: var(--surface-secondary);
 }
 
-/* "AI" and "Classic" alone on a phone, to leave the width to the marquee */
-.labelWord {
-  display: none;
+.label::before {
+  content: '/';
+  color: var(--clr-dark-red);
 }
 
-/* ── Marquee outer (masks + contains) ────────────────── */
-.marqueeWrapper {
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
-  position: relative;
-
-  /* Edge fade masks */
-  mask-image: linear-gradient(to right,
-      transparent 0%,
-      black 8%,
-      black 92%,
-      transparent 100%);
-  -webkit-mask-image: linear-gradient(to right,
-      transparent 0%,
-      black 8%,
-      black 92%,
-      transparent 100%);
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-light);
+  white-space: nowrap;
+  transition: color var(--duration-fast) var(--ease-default);
 }
 
-/* ── Scrolling track (holds both list copies) ─────────── */
-.track {
-  display: flex;
-  width: max-content;
-  animation: scroll var(--marquee-duration, 40s) linear infinite;
+.link:hover {
+  color: var(--text-dark);
 }
 
-/* The classic row runs the other way */
-.reverse {
-  animation-direction: reverse;
+.link svg {
+  color: var(--clr-dark-red);
+  transition: transform var(--duration-fast) var(--ease-default);
 }
 
-@keyframes scroll {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
+.link:hover svg {
+  transform: translate(2px, -2px);
 }
 
-/* Pause the row under the pointer */
-.row:hover .track {
-  animation-play-state: paused;
-}
-
-/* ── The icon list ────────────────────────────────────── */
+/* ── The tools ────────────────────────────────────────── */
+/* A little smaller on a phone. Three per line, so the AI group is one line and the
+   classic picks are three and three, never five and one. Under 360px three do not
+   fit, and the list falls back to wrapping where it has to. */
 .list {
   display: flex;
-  align-items: center;
-  list-style: none;
-  gap: 0;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-md);
 }
 
-/* ── Each tech pill ───────────────────────────────────── */
 .item {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-md) var(--space-xl);
-  border-right: 1px solid var(--border-light);
-  color: var(--text-light);
-  transition:
-    color var(--duration-fast) var(--ease-default),
-    background-color var(--duration-fast) var(--ease-default);
-  cursor: default;
-  height: 84px;
-}
-
-.item:hover {
-  color: var(--text-dark);
-  background-color: var(--surface-secondary);
-}
-
-/* ── Icon container ───────────────────────────────────── */
-.iconWrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  color: inherit;
-}
-
-/* ── Tech name label ──────────────────────────────────── */
-.itemLabel {
+  gap: 0.375rem;
   font-size: 0.875rem;
   font-weight: 500;
-  color: inherit;
+  color: var(--text-medium);
   white-space: nowrap;
-  line-height: 1;
+}
+
+.item svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+@media screen and (min-width: 360px) {
+  .list {
+    display: grid;
+    grid-template-columns: repeat(3, max-content);
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .list {
+    column-gap: var(--space-lg);
+  }
+
+  .item {
+    gap: var(--space-sm);
+    font-size: 0.9375rem;
+  }
+
+  .item svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* Wide enough for the six classic picks on one line */
+@media screen and (min-width: 768px) {
+  .list {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+}
+
+/* ── Side by side ─────────────────────────────────────── */
+/* The AI group is as wide as its three tools; the classic group takes the rest
+   and spreads its picks across it */
+@media screen and (min-width: 1024px) {
+  .inner {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .group+.group {
+    margin-top: 0;
+    margin-left: var(--space-xl);
+    padding-top: 0;
+    padding-left: var(--space-xl);
+    border-top: 0;
+    border-left: 1px solid var(--border-light);
+  }
+
+  /* The gap is tight at 1024px, where the two groups only just fit side by side,
+     and opens up to its full size as the screen widens */
+  .list {
+    column-gap: clamp(var(--space-md), 10vw - 5.4rem, var(--space-lg));
+    justify-content: space-between;
+  }
 }
 
 /* ── Reduced motion ───────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .track {
-    animation: none;
-  }
-}
-
-/* ── Responsive ───────────────────────────────────────── */
-@media screen and (min-width: 640px) {
-  .label {
-    padding: var(--space-md) var(--space-xl);
-  }
-
-  .labelWord {
-    display: inline;
-  }
-
-  .marqueeWrapper {
-    mask-image: linear-gradient(to right,
-        transparent 0%,
-        black 5%,
-        black 95%,
-        transparent 100%);
-    -webkit-mask-image: linear-gradient(to right,
-        transparent 0%,
-        black 5%,
-        black 95%,
-        transparent 100%);
+  .link,
+  .link svg {
+    transition: none;
   }
 }

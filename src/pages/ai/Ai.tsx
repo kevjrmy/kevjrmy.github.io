@@ -2,8 +2,7 @@ import { Link } from 'react-router-dom'
 import { Icon } from '@iconify/react'
 import Cta from '@/components/Home/CTA/Cta'
 import { inkLogoClass } from '@/data/inkLogos'
-import { aiStack, upcomingAiTools } from '@/data/stack'
-import type { AiToolStatus } from '@/types/stack'
+import { aiStack, currentAiStack, upcomingAiTools } from '@/data/stack'
 import styles from './Ai.module.css'
 
 // ── Status line ───────────────────────────────────────────────────────────────
@@ -16,14 +15,16 @@ const facts = [
 ]
 
 // ── AI stack ──────────────────────────────────────────────────────────────────
-// The tools themselves are in src/data/stack.ts
+// The tools themselves are in src/data/stack.ts. Only what is used today gets a card;
+// what came before is history, and is told in the journey
 
-const statusLabels: Record<AiToolStatus, string> = {
-  main: 'every day',
-  daily: 'every day',
-  occasional: 'sometimes',
-  before: 'used before',
-}
+// The kinds of things plugged into the agent. The kinds only: the point is that the
+// ecosystem is used, not an inventory of what is installed
+const extensionKinds = [
+  { icon: 'tabler:puzzle', label: 'plugins' },
+  { icon: 'tabler:list-check', label: 'skills' },
+  { icon: 'tabler:plug-connected', label: 'connectors' },
+]
 
 // ── Journey ───────────────────────────────────────────────────────────────────
 // Oldest first. `when` is a year only where the year is known (docs/content.md, AI journey)
@@ -34,6 +35,37 @@ type JourneyEntry = {
   body: string
   tools: string[]
 }
+
+// Logo of each tool named in the journey. The AI stack brings its own; the others
+// are here. A product with no mark of its own takes its maker's, and a tool with
+// no entry stays a plain tag: that includes what is not learned yet
+const journeyIcons: Record<string, string> = {
+  ...Object.fromEntries(aiStack.map((tool) => [tool.label, tool.icon])),
+  'DALL·E 2': 'logos:openai-icon',
+  'VS Code': 'logos:visual-studio-code',
+  'ChatGPT': 'logos:openai-icon',
+  'Midjourney': 'logos:midjourney',
+  'Hugging Face': 'logos:hugging-face-icon',
+  'Bard': 'logos:google-bard-icon',
+  'Gemini': 'logos:google-gemini-icon',
+  'Claude': 'logos:claude-icon',
+  'Claude desktop': 'logos:claude-icon',
+  'Grok': 'logos:grok-icon',
+  'Sora': 'logos:openai-icon',
+  'Veo 3': 'logos:google-icon',
+  'Google Flow': 'logos:google-icon',
+  'Nano Banana': 'logos:google-gemini-icon',
+}
+
+// ── Tag (logo + name) ─────────────────────────────────────────────────────────
+// Used by the journey and by the line about what is plugged into the agent
+
+const Chip: React.FC<{ label: string; icon?: string }> = ({ label, icon }) => (
+  <li className={styles.chip}>
+    {icon && <Icon icon={icon} width={14} height={14} className={inkLogoClass(icon)} aria-hidden="true" />}
+    {label}
+  </li>
+)
 
 const journey: JourneyEntry[] = [
   {
@@ -69,13 +101,13 @@ const journey: JourneyEntry[] = [
   {
     when: '2024 → 25',
     title: 'Video',
-    body: 'I went through the video generators as they came out, Magnific, Sora and Veo 3 among them.',
-    tools: ['Magnific', 'Sora', 'Veo 3'],
+    body: 'I went through the video generators as they came out, Magnific, Sora and Veo 3 among them. I made my own AI videos in Google Flow, with Nano Banana for the images.',
+    tools: ['Magnific', 'Sora', 'Veo 3', 'Google Flow', 'Nano Banana'],
   },
   {
     when: '2025',
     title: 'DeepSeek-R1, and voice',
-    body: 'I started with DeepSeek right after R1, its open reasoning model, was released in January 2025. I also began talking to Grok in voice mode.',
+    body: 'I started with DeepSeek right after R1, its open reasoning model, was released in January 2025. I also began talking to Grok in voice mode, which I still do outside of work.',
     tools: ['DeepSeek', 'Grok'],
   },
   {
@@ -87,14 +119,14 @@ const journey: JourneyEntry[] = [
   {
     when: '2026 → now',
     title: 'Claude Code',
-    body: 'I switched to Claude Code and stayed. It is my main agent today, and the recent projects in my portfolio are built with it.',
-    tools: ['Claude Code', 'Cursor'],
+    body: 'I switched to Claude Code and stayed. It is my main agent today, and the recent projects in my portfolio are built with it. Outside the terminal, I use Claude in its desktop app.',
+    tools: ['Claude Code', 'Cursor', 'Claude desktop'],
   },
   {
     when: 'Next',
     title: 'Still on the list',
-    body: 'Hermes and Jev come next, and open-source models in general: I have not run one on my own machine yet, and I will.',
-    tools: ['Hermes', 'Jev', 'Ollama'],
+    body: 'Hermes, Jev and Linear come next, and open-source models in general: I have not run one on my own machine yet, and I will.',
+    tools: ['Hermes', 'Jev', 'Ollama', 'Linear'],
   },
 ]
 
@@ -167,28 +199,46 @@ const Ai: React.FC = () => {
             <p className={styles.eyebrow}>AI stack</p>
             <h2 id="ai-stack-heading" className={styles.h2}>What I work with</h2>
             <p className={styles.sectionSubline}>
-              The agents and the tools around them. The languages and frameworks they
-              write in are my classic stack.
+              Claude Code as the agent, Cursor as the editor, Markdown for the context
+              they both read. The languages and frameworks they write in are my classic
+              stack.
             </p>
           </div>
 
-          <ul className={styles.tools} role="list">
-            {aiStack.map((tool) => (
-              <li
-                key={tool.label}
-                className={`${styles.tool} ${tool.status === 'main' ? styles.toolMain : ''}`}
-              >
-                <div className={styles.toolIcon}>
-                  <Icon icon={tool.icon} width={22} height={22} className={inkLogoClass(tool.icon)} aria-hidden="true" />
-                </div>
-                <div className={styles.toolText}>
-                  <h3 className={styles.toolName}>{tool.label}</h3>
-                  <p className={styles.toolRole}>{tool.role}</p>
-                </div>
-                <span className={styles.toolStatus}>{statusLabels[tool.status]}</span>
-              </li>
-            ))}
-          </ul>
+          <div className={styles.current}>
+            <ul className={styles.tools} role="list">
+              {currentAiStack.map((tool) => (
+                <li
+                  key={tool.label}
+                  className={`${styles.tool} ${tool.status === 'main' ? styles.toolMain : ''}`}
+                >
+                  <div className={styles.toolIcon}>
+                    <Icon icon={tool.icon} width={22} height={22} className={inkLogoClass(tool.icon)} aria-hidden="true" />
+                  </div>
+                  <div className={styles.toolText}>
+                    <h3 className={styles.toolName}>{tool.label}</h3>
+                    <p className={styles.toolRole}>{tool.role}</p>
+                  </div>
+                  <span className={styles.toolStatus}>every day</span>
+                </li>
+              ))}
+            </ul>
+
+            {/* Around the agent: one line, attached to the cards */}
+            <div className={styles.plugged}>
+              <p className={styles.pluggedKey}>plugged in</p>
+              <div className={styles.pluggedBody}>
+                <p className={styles.toolRole}>
+                  Claude Code does not work alone: I extend it with the ecosystem around it.
+                </p>
+                <ul className={styles.chips} role="list">
+                  {extensionKinds.map((kind) => (
+                    <Chip key={kind.label} label={kind.label} icon={kind.icon} />
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
 
           {/* Not learned yet: outlines, not cards */}
           <div className={styles.upcoming}>
@@ -248,7 +298,7 @@ const Ai: React.FC = () => {
                   <p className={styles.journeyBody}>{entry.body}</p>
                   <ul className={styles.chips} role="list" aria-label="Tools">
                     {entry.tools.map((tool) => (
-                      <li key={tool} className={styles.chip}>{tool}</li>
+                      <Chip key={tool} label={tool} icon={journeyIcons[tool]} />
                     ))}
                   </ul>
                 </div>

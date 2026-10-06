@@ -30,7 +30,7 @@ Taken from it so far:
 - Eyebrows written as slash commands: `/about me`, `/services`.
 - The hero terminal, laid out as a Claude Code session: the command is typed in a bordered prompt box at the bottom, moves up into the transcript when sent, the answer prints line by line, and a second prompt ("ready to build") is then typed into the box and left there with the cursor after it. Its title bar carries the Claude Code mascot.
 - Monospace for small meta text: captions' place and date, counters, years, prices.
-- Claude Code named on the page, with its mascot icon, in the stack marquee, the toolkit, and project badges (see Positioning in `docs/content.md`).
+- Claude Code named on the page, with its mascot icon, in the home stack strip, the toolkit, and project badges (see Positioning in `docs/content.md`).
 - A status line of short facts under the intro of the `/ai` page (`since 2022`, `main agent Claude Code`): monospace, grey keys, no box around it.
 
 What else it offers, when a new element needs a voice: prompt lines, terse lowercase labels, status-line rows of short facts, plain monospace panels.
@@ -54,7 +54,7 @@ Limits, so it stays an accent:
 - Monospace is `--font-mono`, the visitor's system monospace. No code font is loaded.
 - The hero terminal (`CliPrompt`) is the one deliberately dark element. Its palette is neutral near-black with the site red for the prompt and cursor, and no other color; the colors are defined locally in its stylesheet, not in the global tokens. It gets the same soft red ring as the featured cards.
 - Body copy under headings is grey (`--text-light`), not black.
-- The home hero ends at the fold. On a screen taller than its content it grows to fill the first screen, with the headline and the terminal centered in it as one group, so the stack marquee starts under the fold and never shows as a cut-off strip (nor does its frame line). On a screen shorter than its content (most phones) it keeps its natural height and the terminal runs past the fold.
+- The home hero ends at the fold. On a screen taller than its content it grows to fill the first screen, with the headline and the terminal centered in it as one group, so the stack strip starts under the fold and never shows cut off (nor does its frame line). On a screen shorter than its content (most phones) it keeps its natural height and the terminal runs past the fold.
 
 ## Dark theme
 
@@ -78,10 +78,10 @@ Checking a change: use the header switch.
 
 The stack is shown as two, AI and classic (`docs/content.md`, Two stacks), and the layout has to make that readable at a glance.
 
-- **Home marquee.** Two rows, each with its label strip ("AI stack", "Classic stack"; on a phone the word "stack" is dropped so the strip stays narrow). The AI row is on top. The rows run in opposite directions, which is what stops them reading as one list cut in two.
+- **Home strip.** One still strip under the hero, two groups: the AI stack (the three current tools) and the classic stack (six picks). Each group has its slash-command label, a quiet link to its full page (`/ai`, `/about#stack`), and its tools as logo and name. From 1024px the groups sit side by side on one line, a hairline between them; below that they are stacked, and on a phone the tools go three per line. Nothing moves: it replaced a two-row marquee whose rows ran in opposite directions, which read as noise. Do not bring motion back to it.
 - **About toolkit.** Two titled blocks. The AI stack is one wrapping row with a secondary button to `/ai`; the classic stack keeps its four columns.
-- **`/ai` page.** The AI stack as small cards with a status in monospace. The main agent takes the soft red ring of a featured card, and it is the only one: Cursor is used every day too and says so, without the ring. What is not learned yet sits apart, under "Learning next", and is not a card: a dashed outline with no fill, no shadow and no logo, labelled "coming soon", with one line saying what it is. Raised means real.
-- In the journey, the step that has not happened yet ("Next") has a hollow dot.
+- **`/ai` page.** Three levels, and each looks different. What Kevin works with today is a small card with a status in monospace; only the current combo gets one. The main agent takes the soft red ring of a featured card, and it is the only one: Cursor and Markdown are used every day too and say so, without the ring. Right under the cards, attached to them, one full-width panel says the agent is extended: a monospace key ("plugged in"), one sentence, and the three kinds (plugins, skills, connectors) as small tags with a line icon. It is one line of fact, not a fourth card and not an inventory: the combo stays three. What he used before is not a card and not in that section: it is a tag in the journey. What is not learned yet sits apart, under "Learning next", four across on a wide screen and two by two below that: a dashed outline with no fill, no shadow and no logo, labelled "coming soon", with one line saying what it is. Raised means current.
+- **Journey tags.** Each tool of a step is a small monospace tag with its logo in front, at text size. A product with no mark of its own takes its maker's (DALL·E 2 and Sora carry OpenAI's, Veo 3 and Google Flow carry Google's, Nano Banana carries Gemini's); one with neither stays a plain tag. The step that has not happened yet ("Next") has a hollow dot and plain tags: no logo before it is learned, as under "Learning next".
 
 ## Animation
 
@@ -103,4 +103,4 @@ Conservative by default: subtle signals, not theatrical entrances.
 - Stock photos.
 - Long paragraphs above the fold.
 - More than one primary button in the same section. The red Contact button in the header is the one that is always there; each section adds at most one of its own.
-- Listing every technology known: pick the 5 or 6 that matter most. The journey on the `/ai` page is the exception, since it is a history and not a skills list: its tools are plain monospace tags, without logos.
+- Listing every technology known: pick the 5 or 6 that matter most. The journey on the `/ai` page is the exception, since it is a history and not a skills list: its tools are small tags, never cards.
