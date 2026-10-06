@@ -19,9 +19,9 @@ The tools, and how to present them:
 | Tool | Status | On the site |
 |------|--------|-------------|
 | Claude Code | Main agent, used daily | Named first, everywhere AI is mentioned |
-| Cursor | Main IDE, used daily | Named with Claude Code where there is room |
+| Cursor | Main IDE, used daily | Named with Claude Code where there is room. On `/ai` its card is highlighted the same way as Claude Code's |
 | Markdown | The format of the context files the agents read, written daily. Kevin knew it before any of this | Third and last of the current combo, after Claude Code and Cursor |
-| Codex, OpenCode, Antigravity, Google AI Studio, GitHub Copilot | Used before | History: the journey on `/ai`, with their logos. Not on the home page. Still listed after the current three in the About toolkit (open question in `todo.md`) |
+| Codex, OpenCode, Antigravity, Google AI Studio, GitHub Copilot | Used before | History: the journey on `/ai`, with their logos, and nowhere else. Not in any AI stack list |
 | DeepSeek (since R1 came out, January 2025) | History "for the moment", in Kevin's words (2026-10-06). It was "used sometimes" before that, and may come back | Same as the line above |
 | Grok (voice mode) | Still used, but for personal things, not for coding | Not in the AI stack at all (no card, not in the home strip, not in the About toolkit): those list what he builds with. It must stay mentioned somewhere, and that place is the journey on `/ai`, which says he still talks to it outside of work |
 | Hermes (Hermes Agent, the open-source agent by Nous Research), Jev (TypeSafe AI's first "System One" model: typed decisions with a confidence score, announced September 2026), local and open-source LLMs (Ollama to start with), Linear (the issue tracker; added 2026-10-06, "I'll need to learn Linear") | Planned, not learned yet. Kevin has never run a model on his own machine | On the `/ai` page only, under "Learning next", labelled "coming soon", with no logo. Hermes, Jev and Linear link to their own sites. Nowhere else until actually used |
@@ -46,11 +46,15 @@ Kevin presents his stack as two, and the difference is the point: it shows that 
 
 Both are data in `src/data/stack.ts`. Every tool belongs to exactly one, and no list on the site mixes the two. "Classic" is Kevin's word for it; keep it.
 
-The AI stack carries a status per tool: `main` (Claude Code, the one card with the red ring), `daily` (Cursor, Markdown) and `before` (everything else). The current combo is those three, Claude Code + Cursor + Markdown, and on the `/ai` page only they are cards under "What I work with". A `before` tool is history: it is not shown in the same section as the current ones, and appears in the journey, with its logo. Tools Kevin plans to learn are a separate list (`upcomingAiTools`) and appear only on that page, as "coming soon". The page is expected to grow: Hermes moves into the AI stack once Kevin has built something with it.
+The classic stack on the About page has to cover what the portfolio shows: a technology that is a badge on a project belongs in it. Nuxt, Astro, Supabase and Firebase were missing until 2026-10-06 and were added for that reason. Each framework sits beside the one built on it (Vue then Nuxt, React then Next.js). The same day Kevin added React Native, Android Studio (his wording, not "Android"), Electron, and a "Hosting & deploy" group (GitHub Pages, Vercel, Laravel Cloud). He said no to Leaflet and Filament, although both are in projects of his: do not add them.
+
+**Graphics and video are not a stack.** Inkscape, GIMP, DaVinci Resolve and Kdenlive are what Kevin draws and edits video with. They have their own block on the About page, "Graphics & video", under the two stacks, and are data of their own (`creativeTools`). They never go in the AI or the classic stack, nor on the home strip.
+
+The AI stack carries a status per tool: `main` (Claude Code and Cursor, the main agent and the main editor: the two cards with the red ring), `daily` (Markdown) and `before` (everything else). The current combo is those three, Claude Code + Cursor + Markdown, and on the `/ai` page only they are cards under "What I work with". A `before` tool is history: it is not shown in the same section as the current ones, and appears in the journey, with its logo. Tools Kevin plans to learn are a separate list (`upcomingAiTools`) and appear only on that page, as "coming soon". The page is expected to grow: Hermes moves into the AI stack once Kevin has built something with it.
 
 The `/ai` page also says that Claude Code is extended with plugins, skills and connectors, in one line under the cards. It names the three kinds and nothing more. That is Kevin's rule: the message is that he uses the ecosystem around the agent, "not a list". Do not name the plugins, skills or connectors one by one (a first version did: Vercel, Stripe, a Laravel Cloud skill, Google Drive).
 
-The home strip follows the same rule as `/ai`: its AI group is the current three only (`currentAiStack`), and its classic group is six picks (`classicPicks`: Laravel, Vue, React, TypeScript, Node.js, Next.js; WordPress is not one of them). The About toolkit is the one place that still shows the whole AI stack in one row, the current three first, then the five from history; whether it should is an open question in `todo.md`.
+The home strip follows the same rule as `/ai`: its AI group is the current three only (`currentAiStack`), and its classic group is six picks (`classicPicks`: Laravel, Vue, React, TypeScript, Node.js, Next.js; WordPress is not one of them). The About toolkit does the same since 2026-10-06. So the current three are the AI stack everywhere it is shown, and the history tools appear only in the journey.
 
 ## AI journey
 
@@ -146,7 +150,7 @@ What the portfolio is meant to cover, for writing copy and choosing projects:
 - Laravel: 1 past project and 2 current (1 going to production soon, French client).
 - Kotlin Android app.
 - PWAs: PlanetaX (live), SUNspot (Vue + Firebase, live since 2026), Le Petit Cours (Next.js + Supabase, Kevin's own open-source French course for Spanish speakers, built with Claude Code, 2026).
-- Vector and logo design (Inkscape).
+- Vector and logo design (Inkscape), image editing (GIMP).
 - Video editing: DaVinci Resolve, Kdenlive, and AI video (Google Flow / Veo / Nano Banana).
 - AI agents: see Positioning above.
 - WordPress (kept last): Ethica Anabel Orzáez, a beauty salon site with a WooCommerce shop (2026). Also Marcas que dejan huellas (early work), which is off the site while its domain is down; see `todo.md`.

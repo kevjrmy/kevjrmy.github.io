@@ -12,6 +12,7 @@ const navLinks = [
   { to: '/portfolio', label: 'Portfolio' },
   { to: '/services', label: 'Services' },
   { to: '/ai', label: 'AI' },
+  { to: '/about', label: 'About' },
 ]
 
 // Contact is the call to action: a button at the end, not one more link in the row

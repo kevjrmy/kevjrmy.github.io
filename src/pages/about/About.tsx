@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { Icon } from '@iconify/react'
 import Cta from '@/components/Home/CTA/Cta'
 import { inkLogoClass } from '@/data/inkLogos'
-import { aiStack, classicStack } from '@/data/stack'
+import { classicStack, creativeTools, currentAiStack } from '@/data/stack'
 import styles from './About.module.css'
 
 // ── Timeline ──────────────────────────────────────────────────────────────────
@@ -182,6 +182,7 @@ const About: React.FC = () => {
             <h2 id="stack-heading" className={styles.h2}>What I build with</h2>
             <p className={styles.sectionSubline}>
               Two stacks: the AI agents that write with me, and the classic one they write in.
+              Beside them, what I draw and edit video with.
             </p>
           </div>
 
@@ -194,7 +195,7 @@ const About: React.FC = () => {
               </Link>
             </div>
             <ul className={styles.aiItems} role="list">
-              {aiStack.map((item) => (
+              {currentAiStack.map((item) => (
                 <li key={item.label} className={styles.stackItem}>
                   <Icon icon={item.icon} width={20} height={20} className={inkLogoClass(item.icon)} aria-hidden="true" />
                   <span>{item.label}</span>
@@ -225,6 +226,21 @@ const About: React.FC = () => {
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* Not a stack: the design and video tools */}
+          <div className={styles.stackBlock}>
+            <div className={styles.stackBlockHeader}>
+              <h3 className={styles.stackBlockTitle}>Graphics &amp; video</h3>
+            </div>
+            <ul className={styles.aiItems} role="list">
+              {creativeTools.map((item) => (
+                <li key={item.label} className={styles.stackItem}>
+                  <Icon icon={item.icon} width={20} height={20} className={inkLogoClass(item.icon)} aria-hidden="true" />
+                  <span>{item.label}</span>
+                </li>
+              ))}
+            </ul>
           </div>
 
         </div>

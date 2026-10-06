@@ -311,7 +311,7 @@
   transform: translate(2px, -2px);
 }
 
-/* The AI stack is one list, not columns: it wraps as a row */
+/* The AI stack and the graphics tools are one list each, not columns: a wrapping row */
 .aiItems {
   display: flex;
   flex-wrap: wrap;
@@ -362,9 +362,16 @@
   color: var(--text-medium);
 }
 
-@media screen and (min-width: 768px) {
+/* Five groups in four columns: the first three are tall and take a column each,
+   the two short ones (hosting, then tools) share the fourth. Not before 1024px:
+   narrower columns break the longer group labels onto two lines */
+@media screen and (min-width: 1024px) {
   .stackGrid {
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  .stackGroup:nth-child(-n+3) {
+    grid-row: span 2;
   }
 }
 

@@ -10,6 +10,8 @@ const inkLogos = new Set([
   'logos:github-copilot',
   'logos:openai-icon',
   'logos:midjourney',
+  'logos:vercel-icon',
+  'logos:github-icon',
   'logos:express',
   'logos:astro-icon',
   'vscode-icons:file-type-markdown',

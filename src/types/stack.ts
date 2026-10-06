@@ -17,8 +17,8 @@ export type StackGroup = {
 }
 
 /**
- * main: the agent used every day; the one featured card
- * daily: used every day, beside the main agent
+ * main: the main agent and the main editor; the two featured cards
+ * daily: used every day, beside them
  * before: history. Not a card on the /ai page; it keeps its logo in the journey
  */
 export type AiToolStatus = 'main' | 'daily' | 'before'

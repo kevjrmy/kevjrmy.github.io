@@ -28,13 +28,13 @@
   - The journey sentence "I also began talking to Grok in voice mode, which I still do outside of work."
   - Markdown's card: the role "Context files" and the status "every day".
   - Journey logos that are the maker's mark, not the product's: OpenAI's for DALL·E 2 and Sora, Google's for Veo 3 and Google Flow, Gemini's for Nano Banana. Magnific and OpenClassrooms have none in the installed icon sets and stay plain tags.
-  - The About toolkit still lists the whole AI stack in one row (the current three first, then the five from history). Decide whether it should show the current combo only, as `/ai` and the home strip now do.
   - The home strip: the six classic picks (Laravel, Vue, React, TypeScript, Node.js, Next.js; PHP, Kotlin, Vite and Git are no longer on the home page) and the two link labels, "How I work with AI" and "The full stack".
   - Wording written on his behalf: the headline "Using AI since 2022. Building with agents every day.", the intro, the four practice cards, and "From then on, AI was something I worked with, not a demo I watched".
   - Magnific is listed with the video generators, as he said it.
   - New sentences in the journey: "I made my own AI videos in Google Flow, with Nano Banana for the images." and "Outside the terminal, I use Claude in its desktop app."
   - The "plugged in" sentence: "Claude Code does not work alone: I extend it with the ecosystem around it."
   - Cursor is one of the three current tools and has no step of its own in the journey: when he started with it is not known.
+- [ ] **Classic stack: three left out without an answer.** WooCommerce, SQLite and plain JavaScript are badges on projects but not on the About page (WordPress, SQL and TypeScript stand in for them). Kevin was told and did not ask for them.
 - [ ] **AI page: things that would make it stronger.** Links from the journey to real work (the projects built with Claude Code), and something to show for the meetups (a photo, a talk).
 
 ## Later

@@ -13,7 +13,7 @@ Adding a page touches two places:
 1. The route in `App.tsx`.
 2. The `navLinks` array in `src/components/Header/Header.tsx`. One array drives both the desktop nav and the mobile menu. Contact is kept apart in `cta`, because it is rendered as the primary button in both.
 
-`/about` is routed but deliberately absent from the nav. It is reached from the homepage About section and from the `/ai` page, which links to its `#stack` anchor (the classic stack). `/info` (terms of use and privacy) is reached only from the footer, which links to its `#terms` and `#privacy` anchors.
+`/about` is in the nav, last of the links (since 2026-10-06; before that it was reached only from inside the pages). The homepage About section links to it too, and the home strip and the `/ai` page link to its `#stack` anchor (the classic stack). `/info` (terms of use and privacy) is reached only from the footer, which links to its `#terms` and `#privacy` anchors.
 
 `MainLayout` gives `<main>` a `key` equal to the pathname, so React builds a new `<main>` on each route change and the `pageIn` animation in `src/index.css` replays: that is the page transition. A change of `#anchor` on the same page does not replay it.
 
@@ -44,7 +44,7 @@ Two names exist in both trees and are different components:
 
 Content lives in source files: typed data in `src/data/`, or arrays declared at the top of the component that renders them. Details per topic are in `docs/projects.md` and `docs/content.md`.
 
-`src/data/stack.ts` is the one list of technologies, split in two: the AI stack and the classic stack (`docs/content.md`, Two stacks). Three places read it: the home strip (one group per stack), the toolkit of the About page, and the `/ai` page. A tool added to the AI stack shows up in the About toolkit; on the home strip and on `/ai` it shows only while it is in current use (status `main` or `daily`, exported as `currentAiStack`), and otherwise lends its logo to the journey. The classic group of the home strip is its own short list, `classicPicks`. Do not declare a stack array in a component again.
+`src/data/stack.ts` is the one list of technologies, split in two: the AI stack and the classic stack (`docs/content.md`, Two stacks). Three places read it: the home strip (one group per stack), the toolkit of the About page, and the `/ai` page. A tool added to the AI stack shows in all three only while it is in current use (status `main` or `daily`, exported as `currentAiStack`); a `before` tool is shown in none of them and only lends its logo to the journey on `/ai`. The classic group of the home strip is its own short list, `classicPicks`. The same file holds `creativeTools`, the graphics and video tools of the About page, which are not a stack. Do not declare a stack array in a component again.
 
 The home strip (`components/Home/Stack`) is static. Below 768px its tools are laid out three per line by a grid, not left to wrap, so six picks never break as five and one; the column gap at 1024px is a `clamp()` because the two groups only just fit side by side there.
 
@@ -56,7 +56,7 @@ All icons are `<Icon icon="prefix:name" />` from `@iconify/react`, addressed by 
 - Icon names must be written as complete string literals. A name built at runtime (template string, concatenation) is not seen by the scan.
 - An icon name that does not exist in its set fails the build with `Unknown icon "prefix:name"`.
 - To use a new icon set, install its package: `npm i @iconify-json/<prefix>`. A prefix with no installed package is ignored by the scan and would fall back to a runtime API fetch.
-- Sets in use: `tabler` and `mdi` for UI icons, `vscode-icons` and `logos` for tech and brand badges.
+- Sets in use: `tabler` and `mdi` for UI icons, `vscode-icons` and `logos` for tech and brand badges, and `simple-icons` for the brand marks those two lack (Android Studio and the graphics tools). `simple-icons` is one color and takes the text color, so it needs no entry in `inkLogos.ts`; check that a mark is readable at 20px before using it (its GitHub Pages mark is a wordmark and is not).
 - One icon is not from a set: the icon of the theme switch is an inline SVG drawn for the site, in `src/components/Header/Header.tsx` (`docs/design.md`, Dark theme). It is the exception, not a second way to add icons.
 
 ## Styling
