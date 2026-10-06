@@ -6,14 +6,14 @@ How the app is put together, and the places where one change has to be made in t
 
 `src/App.tsx` declares every route as a child of `MainLayout`, which renders `Header`, `<main>`, and `Footer`. `MainLayout` sets `<main id>` from the pathname (`/` becomes `home`, `/about` becomes `about`).
 
-Current routes: `/`, `/portfolio`, `/services`, `/contact`, `/about`, `/info`. There is no catch-all route, so an unknown URL renders the header and footer around an empty `<main>`.
+Current routes: `/`, `/portfolio`, `/services`, `/ai`, `/contact`, `/about`, `/info`. There is no catch-all route, so an unknown URL renders the header and footer around an empty `<main>`.
 
 Adding a page touches two places:
 
 1. The route in `App.tsx`.
 2. The `navLinks` array in `src/components/Header/Header.tsx`. One array drives both the desktop nav and the mobile menu. Contact is kept apart in `cta`, because it is rendered as the primary button in both.
 
-`/about` is routed but deliberately absent from the nav. `/info` (terms of use and privacy) is reached only from the footer, which links to its `#terms` and `#privacy` anchors.
+`/about` is routed but deliberately absent from the nav. It is reached from the homepage About section and from the `/ai` page, which links to its `#stack` anchor (the classic stack). `/info` (terms of use and privacy) is reached only from the footer, which links to its `#terms` and `#privacy` anchors.
 
 `MainLayout` gives `<main>` a `key` equal to the pathname, so React builds a new `<main>` on each route change and the `pageIn` animation in `src/index.css` replays: that is the page transition. A change of `#anchor` on the same page does not replay it.
 
@@ -38,11 +38,15 @@ Two names exist in both trees and are different components:
 - `components/Home/Services` is the 3-card homepage teaser. `pages/services/Services` is the full priced list. Each has its own hard-coded `services` array.
 - `components/Home/About` is the homepage section. `pages/about/About` is the full page.
 
-`components/Home/CTA/Cta` is reused outside Home (the services and about pages render it).
+`components/Home/CTA/Cta` is reused outside Home (the services, about, and AI pages render it).
 
 ## Content as data
 
 Content lives in source files: typed data in `src/data/`, or arrays declared at the top of the component that renders them. Details per topic are in `docs/projects.md` and `docs/content.md`.
+
+`src/data/stack.ts` is the one list of technologies, split in two: the AI stack and the classic stack (`docs/content.md`, Two stacks). Three places read it: the home marquee (one row per stack), the toolkit of the About page, and the `/ai` page. A tool added there shows up in all three; do not declare a stack array in a component again.
+
+The home marquee repeats a short list until one copy is wider than a large screen (`MIN_ITEMS` in `components/Home/Stack/Stack.tsx`), because a copy narrower than the screen leaves a gap in the loop. Its two rows share a label column through `subgrid`.
 
 ## Icons
 

@@ -2,6 +2,32 @@
 
 Choices that are not obvious from the code, with the reason. Read before reversing one. Add an entry when making a new one: what was chosen, what was rejected, why.
 
+## 2026-10-06
+
+**The stack is split in two, AI and classic, everywhere it is shown.**
+Kevin wants the site to show that he takes AI seriously and professionally, and one list with Claude Code beside Node.js said the opposite: an agent filed as one more technology. The two stacks are now separate data (`src/data/stack.ts`) and separate on screen: two marquee rows on the home page, two blocks on the About page. "Classic" is his word. Rejected: keeping "AI" as one group among Backend, Frontend and Mobile, which is what the About page did.
+
+**AI has its own page, `/ai`, in the main navigation.**
+It holds the AI stack with a status per tool, the journey since 2022, and how Kevin works with agents. It is in the nav, unlike `/about`, because it is the positioning of the site and it is going to grow. Its label is "AI", the one place where the plain word is right (`docs/content.md`, Positioning). Rejected: a section on the About page, which has no nav link and would have buried it.
+
+**Hermes and Jev are shown before Kevin has used them, as "coming soon".**
+This reverses the earlier rule ("not shown until actually used"), at his request. What keeps it honest: they appear on `/ai` only, with no logo, in a dashed outline instead of a card, and never in the marquee or the About page, which list what he works with.
+
+**What Kevin has yet to learn is its own block, "Learning next": Hermes, Jev, and local LLMs.**
+First built as two dashed cards at the end of the AI stack grid, with a name and nothing else, because what Hermes and Jev were was not known. Kevin then gave their sources and added a third subject, local and open-source models (he has never used Ollama). Each now has one line saying what it is, and the two products link out. They left the grid so that the stack is only what he has worked with.
+
+**The Claude step keeps the account date, June 2024, against Kevin's memory of "around 2023".**
+His account was created on 30 June 2024, and claude.ai was not offered in Europe before 14 May 2024. He said "I guess", so the date that can be shown stays until he says otherwise.
+
+**Video generators are dated "2024 → 25".**
+Kevin remembers 2024. Of the three he named, Veo 3 dates from May 2025, so a single year would be wrong either way.
+
+**The journey gives a year only where one can be defended.**
+Kevin gave an order and two dates (ChatGPT in December 2022; the Claude account date was read from his account). The other steps are placed in the years the products existed, grouped into wide periods ("2025 → 26") rather than given a month. ChatGPT is given as running on GPT-3.5 at the time, which Kevin confirmed (he first remembered "3.1").
+
+**The marquee repeats its lists instead of adding tools to fill the width.**
+Split in two, each row is shorter than a wide screen, and a marquee copy narrower than the screen shows a gap. Padding the AI row with every tool from the journey would have turned "my stack" into "everything I tried".
+
 ## 2026-10-05
 
 **The theme switch has one icon in both themes: a custom two-tone disc, not a sun and a moon.**

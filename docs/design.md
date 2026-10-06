@@ -31,6 +31,7 @@ Taken from it so far:
 - The hero terminal, laid out as a Claude Code session: the command is typed in a bordered prompt box at the bottom, moves up into the transcript when sent, the answer prints line by line, and a second prompt ("ready to build") is then typed into the box and left there with the cursor after it. Its title bar carries the Claude Code mascot.
 - Monospace for small meta text: captions' place and date, counters, years, prices.
 - Claude Code named on the page, with its mascot icon, in the stack marquee, the toolkit, and project badges (see Positioning in `docs/content.md`).
+- A status line of short facts under the intro of the `/ai` page (`since 2022`, `main agent Claude Code`): monospace, grey keys, no box around it.
 
 What else it offers, when a new element needs a voice: prompt lines, terse lowercase labels, status-line rows of short facts, plain monospace panels.
 
@@ -73,6 +74,15 @@ Some visitors have their system in dark mode, and the site follows it. A switch 
 
 Checking a change: use the header switch.
 
+## The two stacks
+
+The stack is shown as two, AI and classic (`docs/content.md`, Two stacks), and the layout has to make that readable at a glance.
+
+- **Home marquee.** Two rows, each with its label strip ("AI stack", "Classic stack"; on a phone the word "stack" is dropped so the strip stays narrow). The AI row is on top. The rows run in opposite directions, which is what stops them reading as one list cut in two.
+- **About toolkit.** Two titled blocks. The AI stack is one wrapping row with a secondary button to `/ai`; the classic stack keeps its four columns.
+- **`/ai` page.** The AI stack as small cards with a status in monospace. The agent used every day takes the soft red ring of a featured card. What is not learned yet sits apart, under "Learning next", and is not a card: a dashed outline with no fill, no shadow and no logo, labelled "coming soon", with one line saying what it is. Raised means real.
+- In the journey, the step that has not happened yet ("Next") has a hollow dot.
+
 ## Animation
 
 Conservative by default: subtle signals, not theatrical entrances.
@@ -93,4 +103,4 @@ Conservative by default: subtle signals, not theatrical entrances.
 - Stock photos.
 - Long paragraphs above the fold.
 - More than one primary button in the same section. The red Contact button in the header is the one that is always there; each section adds at most one of its own.
-- Listing every technology known: pick the 5 or 6 that matter most.
+- Listing every technology known: pick the 5 or 6 that matter most. The journey on the `/ai` page is the exception, since it is a history and not a skills list: its tools are plain monospace tags, without logos.

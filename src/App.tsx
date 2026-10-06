@@ -6,6 +6,7 @@ import Contact from '@/pages/contact/Contact'
 import About from '@/pages/about/About'
 import Portfolio from '@/pages/portfolio/Portfolio'
 import Services from './pages/services/Services'
+import Ai from '@/pages/ai/Ai'
 import Info from '@/pages/info/Info'
 
 export default function App() {
@@ -34,6 +35,9 @@ export default function App() {
 
           {/* Services page */}
           <Route path="/services" element={<Services />} />
+
+          {/* AI page: the AI stack and the journey behind it */}
+          <Route path="/ai" element={<Ai />} />
 
           {/* Terms of use + privacy (linked from the footer) */}
           <Route path="/info" element={<Info />} />

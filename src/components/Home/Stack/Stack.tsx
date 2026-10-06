@@ -1,64 +1,80 @@
 import { Icon } from '@iconify/react'
 import { inkLogoClass } from '@/data/inkLogos'
+import { aiStack, classicMarquee } from '@/data/stack'
+import type { StackItem } from '@/types/stack'
 import styles from './Stack.module.css'
 
-// ── Tech stack items ──────────────────────────────────────────────────────────
-// icon: tabler: preferred, mdi: fallback
-// label: displayed below the icon
+// ── Rows ──────────────────────────────────────────────────────────────────────
+// One marquee per kind of stack (src/data/stack.ts). They run in opposite
+// directions, so the two rows read as two things and not as one long list.
 
-type StackItem = {
-  icon: string
+type Row = {
   label: string
+  items: StackItem[]
+  reverse?: boolean
 }
 
-const items: StackItem[] = [
-  { icon: 'logos:claude-code', label: 'Claude Code' },
-  { icon: 'logos:cursor-icon', label: 'Cursor' },
-  { icon: 'logos:laravel', label: 'Laravel' },
-  { icon: 'vscode-icons:file-type-vue', label: 'Vue' },
-  { icon: 'vscode-icons:file-type-reactjs', label: 'React' },
-  { icon: 'vscode-icons:file-type-typescript-official', label: 'TypeScript' },
-  { icon: 'vscode-icons:file-type-node', label: 'Node.js' },
-  { icon: 'vscode-icons:file-type-vite', label: 'Vite' },
-  { icon: 'logos:nextjs-icon', label: 'Next.js' },
-  { icon: 'vscode-icons:file-type-php', label: 'PHP' },
-  { icon: 'vscode-icons:file-type-kotlin', label: 'Kotlin' },
-  { icon: 'vscode-icons:file-type-git', label: 'Git' },
-  { icon: 'mdi:wordpress', label: 'WordPress' },
+const rows: Row[] = [
+  { label: 'AI', items: aiStack },
+  { label: 'Classic', items: classicMarquee, reverse: true },
 ]
+
+// A short list is repeated until one copy is wider than a large screen;
+// otherwise the loop would show a gap after its last item.
+const MIN_ITEMS = 16
+
+const fill = (items: StackItem[]) =>
+  Array.from({ length: Math.ceil(MIN_ITEMS / items.length) }, () => items).flat()
+
+// Seconds per item: both rows move at about the same speed whatever their length
+const SECONDS_PER_ITEM = 3
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
 const Stack: React.FC = () => {
   return (
     <section className={styles.section} aria-label="Tech stack">
+      {rows.map((row) => {
+        const items = fill(row.items)
 
-      {/* ── Label strip ─────────────────────────────── */}
-      <div className={styles.label}>
-        <span>My stack</span>
-      </div>
+        return (
+          <div key={row.label} className={styles.row}>
 
-      {/* ── Marquee track ───────────────────────────── */}
-      <div className={styles.marqueeWrapper} aria-hidden="true">
-        <div className={styles.track}>
+            {/* ── Label strip ─────────────────────────── */}
+            <div className={styles.label}>
+              <span>
+                {row.label}
+                <span className={styles.labelWord}> stack</span>
+              </span>
+            </div>
 
-          {/* Two identical lists for seamless loop */}
-          {[0, 1].map((pass) => (
-            <ul key={pass} className={styles.list} aria-hidden={pass === 1}>
-              {items.map((item) => (
-                <li key={item.label} className={styles.item}>
-                  <div className={styles.iconWrap}>
-                    <Icon icon={item.icon} width={28} height={28} className={inkLogoClass(item.icon)} />
-                  </div>
-                  <span className={styles.itemLabel}>{item.label}</span>
-                </li>
-              ))}
-            </ul>
-          ))}
+            {/* ── Marquee track ───────────────────────── */}
+            <div className={styles.marqueeWrapper} aria-hidden="true">
+              <div
+                className={`${styles.track} ${row.reverse ? styles.reverse : ''}`}
+                style={{ '--marquee-duration': `${items.length * SECONDS_PER_ITEM}s` } as React.CSSProperties}
+              >
 
-        </div>
-      </div>
+                {/* Two identical lists for seamless loop */}
+                {[0, 1].map((pass) => (
+                  <ul key={pass} className={styles.list}>
+                    {items.map((item, i) => (
+                      <li key={i} className={styles.item}>
+                        <div className={styles.iconWrap}>
+                          <Icon icon={item.icon} width={28} height={28} className={inkLogoClass(item.icon)} />
+                        </div>
+                        <span className={styles.itemLabel}>{item.label}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ))}
 
+              </div>
+            </div>
+
+          </div>
+        )
+      })}
     </section>
   )
 }

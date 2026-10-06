@@ -1,6 +1,8 @@
+import { Link } from 'react-router-dom'
 import { Icon } from '@iconify/react'
 import Cta from '@/components/Home/CTA/Cta'
 import { inkLogoClass } from '@/data/inkLogos'
+import { aiStack, classicStack } from '@/data/stack'
 import styles from './About.module.css'
 
 // ── Timeline ──────────────────────────────────────────────────────────────────
@@ -36,69 +38,6 @@ const timeline: TimelineEntry[] = [
     year: '2025 → now',
     title: 'AI-first development',
     body: 'Most of my work now runs through AI agents. Claude Code is my main one, after time with Codex, OpenCode and Antigravity, and Cursor is my editor. The agents write fast; I direct, review and answer for the result.',
-  },
-]
-
-// ── Stack groups ──────────────────────────────────────────────────────────────
-
-type StackGroup = {
-  label: string
-  icon: string
-  items: { icon: string; label: string }[]
-}
-
-const stackGroups: StackGroup[] = [
-  {
-    label: 'AI',
-    icon: 'tabler:sparkles',
-    items: [
-      { icon: 'logos:claude-code', label: 'Claude Code' },
-      { icon: 'logos:cursor-icon', label: 'Cursor' },
-      { icon: 'logos:codex', label: 'Codex' },
-      { icon: 'logos:opencode-icon', label: 'OpenCode' },
-      { icon: 'logos:antigravity', label: 'Antigravity' },
-      { icon: 'logos:grok-icon', label: 'Grok' },
-    ],
-  },
-  {
-    label: 'Backend',
-    icon: 'tabler:server',
-    items: [
-      { icon: 'logos:laravel', label: 'Laravel' },
-      { icon: 'vscode-icons:file-type-php', label: 'PHP' },
-      { icon: 'vscode-icons:file-type-node', label: 'Node.js' },
-      { icon: 'logos:express', label: 'Express' },
-      { icon: 'vscode-icons:file-type-sql', label: 'SQL' },
-    ],
-  },
-  {
-    label: 'Frontend',
-    icon: 'tabler:layout',
-    items: [
-      { icon: 'vscode-icons:file-type-vue', label: 'Vue' },
-      { icon: 'vscode-icons:file-type-reactjs', label: 'React' },
-      { icon: 'vscode-icons:file-type-typescript-official', label: 'TypeScript' },
-      { icon: 'vscode-icons:file-type-vite', label: 'Vite' },
-      { icon: 'logos:nextjs-icon', label: 'Next.js' },
-    ],
-  },
-  {
-    label: 'Mobile',
-    icon: 'tabler:device-mobile',
-    items: [
-      { icon: 'vscode-icons:file-type-kotlin', label: 'Kotlin' },
-      { icon: 'tabler:device-mobile-code', label: 'PWA' },
-    ],
-  },
-  {
-    label: 'Tools & other',
-    icon: 'tabler:tools',
-    items: [
-      { icon: 'vscode-icons:file-type-git', label: 'Git' },
-      { icon: 'logos:linux-tux', label: 'Linux' },
-      { icon: 'logos:css-3', label: 'CSS' },
-      { icon: 'mdi:wordpress', label: 'WordPress' },
-    ],
   },
 ]
 
@@ -234,35 +173,58 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      {/* ── Stack ─────────────────────────────────────── */}
-      <section className={styles.stackSection} aria-labelledby="stack-heading">
+      {/* ── Stack: AI and classic (src/data/stack.ts) ─── */}
+      <section id="stack" className={styles.stackSection} aria-labelledby="stack-heading">
         <div className={styles.sectionInner}>
 
           <div className={styles.sectionIntro}>
             <p className={styles.eyebrow}>Toolkit</p>
             <h2 id="stack-heading" className={styles.h2}>What I build with</h2>
             <p className={styles.sectionSubline}>
-              I pick the right tool for the job — here's what I reach for most.
+              Two stacks: the AI agents that write with me, and the classic one they write in.
             </p>
           </div>
 
-          <div className={styles.stackGrid}>
-            {stackGroups.map((group) => (
-              <div key={group.label} className={styles.stackGroup}>
-                <div className={styles.stackGroupHeader}>
-                  <Icon icon={group.icon} width={18} height={18} aria-hidden="true" />
-                  <span className={styles.stackGroupLabel}>{group.label}</span>
+          <div className={styles.stackBlock}>
+            <div className={styles.stackBlockHeader}>
+              <h3 className={styles.stackBlockTitle}>AI stack</h3>
+              <Link to="/ai" className={styles.stackBlockLink}>
+                How I work with AI
+                <Icon icon="tabler:arrow-up-right" width={16} height={16} aria-hidden="true" />
+              </Link>
+            </div>
+            <ul className={styles.aiItems} role="list">
+              {aiStack.map((item) => (
+                <li key={item.label} className={styles.stackItem}>
+                  <Icon icon={item.icon} width={20} height={20} className={inkLogoClass(item.icon)} aria-hidden="true" />
+                  <span>{item.label}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className={styles.stackBlock}>
+            <div className={styles.stackBlockHeader}>
+              <h3 className={styles.stackBlockTitle}>Classic stack</h3>
+            </div>
+            <div className={styles.stackGrid}>
+              {classicStack.map((group) => (
+                <div key={group.label} className={styles.stackGroup}>
+                  <div className={styles.stackGroupHeader}>
+                    <Icon icon={group.icon} width={18} height={18} aria-hidden="true" />
+                    <span className={styles.stackGroupLabel}>{group.label}</span>
+                  </div>
+                  <ul className={styles.stackItems} role="list">
+                    {group.items.map((item) => (
+                      <li key={item.label} className={styles.stackItem}>
+                        <Icon icon={item.icon} width={20} height={20} className={inkLogoClass(item.icon)} aria-hidden="true" />
+                        <span>{item.label}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <ul className={styles.stackItems} role="list">
-                  {group.items.map((item) => (
-                    <li key={item.label} className={styles.stackItem}>
-                      <Icon icon={item.icon} width={20} height={20} className={inkLogoClass(item.icon)} aria-hidden="true" />
-                      <span>{item.label}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
         </div>

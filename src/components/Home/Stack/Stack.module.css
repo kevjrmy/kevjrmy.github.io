@@ -1,24 +1,35 @@
 /* ══════════════════════════════════════════════════════
-   Stack — scrolling tech marquee
+   Stack — two scrolling marquees, AI and classic
    ══════════════════════════════════════════════════════ */
 
 /* ── Section wrapper ──────────────────────────────────── */
+/* A grid, so the two label strips share one column and the
+   marquees start on the same vertical line */
 .section {
   width: 100%;
-  display: flex;
-  align-items: stretch;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
   overflow: hidden;
-  /* clips the scrolling track */
+  /* clips the scrolling tracks */
   background-color: var(--surface-primary);
+}
+
+/* ── One row per kind of stack ────────────────────────── */
+.row {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+}
+
+.row + .row {
+  border-top: 1px solid var(--border-light);
 }
 
 /* ── Left label strip ─────────────────────────────────── */
 .label {
-  flex-shrink: 0;
-  display: none;
-  /* hidden on mobile */
+  display: flex;
   align-items: center;
-  padding: var(--space-md) var(--space-xl);
+  padding: var(--space-md);
   border-right: 1px solid var(--border-light);
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -27,6 +38,11 @@
   letter-spacing: 0.08em;
   white-space: nowrap;
   background-color: var(--surface-secondary);
+}
+
+/* "AI" and "Classic" alone on a phone, to leave the width to the marquee */
+.labelWord {
+  display: none;
 }
 
 /* ── Marquee outer (masks + contains) ────────────────── */
@@ -53,7 +69,12 @@
 .track {
   display: flex;
   width: max-content;
-  animation: scroll 40s linear infinite;
+  animation: scroll var(--marquee-duration, 40s) linear infinite;
+}
+
+/* The classic row runs the other way */
+.reverse {
+  animation-direction: reverse;
 }
 
 @keyframes scroll {
@@ -66,8 +87,8 @@
   }
 }
 
-/* Pause on hover */
-.section:hover .track {
+/* Pause the row under the pointer */
+.row:hover .track {
   animation-play-state: paused;
 }
 
@@ -91,7 +112,7 @@
     color var(--duration-fast) var(--ease-default),
     background-color var(--duration-fast) var(--ease-default);
   cursor: default;
-  height: 100px;
+  height: 84px;
 }
 
 .item:hover {
@@ -127,7 +148,11 @@
 /* ── Responsive ───────────────────────────────────────── */
 @media screen and (min-width: 640px) {
   .label {
-    display: flex;
+    padding: var(--space-md) var(--space-xl);
+  }
+
+  .labelWord {
+    display: inline;
   }
 
   .marqueeWrapper {

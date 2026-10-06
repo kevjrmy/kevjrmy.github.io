@@ -19,7 +19,15 @@
 - [ ] **Le Petit Cours is filed as a PWA before it works offline.** Its repo says the service worker is not installed yet, so the portfolio excerpt does not mention offline use. Once it is, the excerpt can say so.
 - [ ] **AI Automation has no price.** It shows "Let's talk" on the services page.
 - [ ] **Legal identification on `/info`.** The page does not give a tax ID or postal address. A site offering paid services from Spain is normally expected to (LSSI). Decide whether to add them.
-- [ ] **"Jev".** One of the two AI tools Kevin plans to learn next (with Hermes). The spelling is unconfirmed, and neither is on the site yet.
+- [ ] **AI page (`/ai`, added 2026-10-06): to confirm with Kevin.**
+  - The years that were inferred, not given: Midjourney and Hugging Face in 2023, Bard in 2023, Grok voice mode in 2025, Antigravity, the OpenClassrooms course, Google AI Studio, OpenCode and Codex in "2025 → 26", Claude Code from 2026.
+  - Claude: the page says "opened my Claude account in June 2024" (account data); he remembers using it around 2023. See `docs/content.md`, AI journey.
+  - The one-line descriptions of Hermes and Jev under "Learning next", written from their own sites.
+  - The exact title of the AI course on OpenClassrooms, and whether it gave a certificate worth listing under Education on the About page.
+  - Statuses in `src/data/stack.ts`: Cursor as "in use", Grok as "sometimes" (as DeepSeek, which he confirmed), Google AI Studio as "used before".
+  - Wording written on his behalf: the headline "Using AI since 2022. Building with agents every day.", the intro, the four practice cards, and "From then on, AI was something I worked with, not a demo I watched".
+  - Magnific is listed with the video generators, as he said it.
+- [ ] **AI page: things that would make it stronger.** Links from the journey to real work (the projects built with Claude Code), and something to show for the meetups (a photo, a talk).
 
 ## Later
 

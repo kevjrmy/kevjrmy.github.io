@@ -20,18 +20,51 @@ The tools, and how to present them:
 |------|--------|-------------|
 | Claude Code | Main agent, used daily | Named first, everywhere AI is mentioned |
 | Cursor | Main IDE | Named with Claude Code where there is room |
-| Codex, OpenCode, Antigravity | Used before | Listed as experience |
-| Grok | Used sometimes | Toolkit list only |
-| Hermes, "Jev" | Planned, not learned yet ("Jev" is as Kevin wrote it; spelling to confirm) | Not shown until actually used |
+| Codex, OpenCode, Antigravity, Google AI Studio | Used before | Listed as experience |
+| Grok | Used sometimes, in voice mode | AI stack lists only |
+| DeepSeek | Used since R1 came out (January 2025); still used, but not often | AI stack lists and the journey on `/ai` |
+| Hermes (Hermes Agent, the open-source agent by Nous Research), Jev (TypeSafe AI's first "System One" model: typed decisions with a confidence score, announced September 2026), local and open-source LLMs (Ollama to start with) | Planned, not learned yet. Kevin has never run a model on his own machine | On the `/ai` page only, under "Learning next", labelled "coming soon", with no logo. Hermes and Jev link to their own sites. Nowhere else until actually used |
 
 Rules:
 
-- Write "Claude Code" or "AI agents", not a vague "AI" or "AI tools".
+- Write "Claude Code" or "AI agents", not a vague "AI" or "AI tools". The `/ai` page is the one place where plain "AI" is right, because it covers the whole field (images, chat, video, voice), not only agents; its nav label is "AI" for the same reason.
 - A project built with Claude Code gets the `Claude Code` badge first in its `stack`.
 - The framing: the agents write fast; Kevin directs, reviews, and answers for the result.
 - **WordPress is last.** It stays on the site for history and for existing clients who still need it, but it goes at the end of every list (projects, services, toolkit, marquee, filters) and never in a highlighted spot such as the homepage service cards.
 
-Where it shows today: hero headline (`/ai-agents`) and intro, `/whoami` terminal, stack marquee, homepage services subline and About paragraph, About page intro, timeline and AI toolkit group, services page intro, portfolio intro, project badges.
+Where it shows today: hero headline (`/ai-agents`) and intro, `/whoami` terminal, the AI row of the stack marquee, homepage services subline and About paragraph, About page intro, timeline and AI stack block, the whole `/ai` page, services page intro, portfolio intro, project badges.
+
+## Two stacks
+
+Kevin presents his stack as two, and the difference is the point: it shows that working with AI agents is a skill of its own, with its own tools, next to the code.
+
+- **AI stack**: the agents and the tools around them. Claude Code goes here.
+- **Classic stack**: languages, frameworks and platforms. Node.js goes here.
+
+Both are data in `src/data/stack.ts`. Every tool belongs to exactly one, and no list on the site mixes the two. "Classic" is Kevin's word for it; keep it.
+
+The AI stack carries a status per tool (`main`, `current`, `occasional`, `before`), shown only on the `/ai` page. Tools Kevin plans to learn are a separate list (`upcomingAiTools`) and appear only there, as "coming soon". The page is expected to grow: Hermes moves into the AI stack once Kevin has built something with it.
+
+## AI journey
+
+What Kevin told about his path, for the journey on the `/ai` page (`src/pages/ai/Ai.tsx`). The order is his; he may add steps later.
+
+1. DALL·E 2, his first contact (2022).
+2. ChatGPT: account created a few days after its release, December 2022, when it ran on GPT-3.5.
+3. Image generation: Midjourney, and free models on Hugging Face.
+4. Bard, before it was renamed Gemini.
+5. Claude: account opened on 30 June 2024 (read from his account data; the site says "June 2024"). Kevin's own memory is "around 2023, I guess". The page keeps the account date: claude.ai only opened in Europe on 14 May 2024. If he used Claude earlier some other way, he has to say how before the page says 2023.
+6. Video generators: Veo 3, Sora, Magnific. He places them in 2024; Veo 3 came out in May 2025, so the page says "2024 → 25".
+7. DeepSeek: started right after DeepSeek-R1 was released (20 January 2025).
+8. Antigravity, in the IDE.
+9. The AI course on OpenClassrooms (its exact title is not known here).
+10. Grok, in voice mode.
+11. Agents: Google AI Studio in the browser, then OpenCode and Codex in the terminal.
+12. Claude Code, his main agent since (first run on his machine: April 2026).
+
+Around it: he knew Markdown before any of this, he goes to AI meetups such as AI Tinkerers with friends and they share tips, and he has never used Ollama or run a model locally.
+
+The dates that are certain: December 2022 (ChatGPT), January 2025 (DeepSeek-R1), June 2024 (the Claude account), and that DALL·E 2 came before ChatGPT. The other years on the page were placed from when each product existed and from the order above, and are listed in `todo.md` for Kevin to confirm. Do not add a precise date he has not given.
 
 ## Voice
 
@@ -50,10 +83,11 @@ All copy is hard-coded in components. There are no content files or translations
 |---------|------|
 | Hero headline, intro, buttons | `src/components/Home/Hero/Hero.tsx` |
 | Terminal `/whoami` answer and closing prompt | `src/components/Home/CliPrompt/CliPrompt.tsx` |
-| Stack marquee items | `src/components/Home/Stack/Stack.tsx` |
+| Both stacks (home marquee, About toolkit, `/ai` page) | `src/data/stack.ts` |
+| AI page: intro, journey, practice cards | `src/pages/ai/Ai.tsx` |
 | Startup Weekend award: text, facts, photo captions | `src/components/Home/StartupWeekend/StartupWeekend.tsx` |
 | Homepage trust signals | `src/components/Home/About/About.tsx` |
-| Timeline, education, languages, stack groups, values | `src/pages/about/About.tsx` |
+| Timeline, education, languages, values | `src/pages/about/About.tsx` |
 | CTA band | `src/components/Home/CTA/Cta.tsx` |
 | Navigation labels, mobile menu tagline | `src/components/Header/Header.tsx` |
 | Contact methods | `src/pages/contact/Contact.tsx` |

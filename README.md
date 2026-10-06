@@ -27,6 +27,7 @@ Every push to `main` builds and publishes to GitHub Pages through `.github/workf
 | `src/pages/` | One component per route |
 | `src/components/Home/` | The sections of the homepage |
 | `src/data/projects.ts` | The portfolio projects |
+| `src/data/stack.ts` | The two stacks: AI and classic |
 | `src/index.css` | Design tokens and global rules |
 | `public/` | Fonts, images, favicons |
 

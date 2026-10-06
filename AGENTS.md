@@ -45,6 +45,7 @@ Every push to `main` deploys to GitHub Pages via `.github/workflows/deploy.yml`.
 - Sections that sit directly in `<main>` get their separator line from a global rule: no `border-top` / `border-bottom`, no `overflow: hidden`, and leave `::after` free (`docs/architecture.md`, Styling).
 - Everything is served from the site itself: no fonts, scripts, icons, or analytics from a third party. The privacy page promises it.
 - In copy, say "Claude Code" or "AI agents", and put WordPress last in any list (`docs/content.md`, Positioning).
+- The stack is two stacks, AI and classic, and a tool belongs to one of them. Both are in `src/data/stack.ts`; never mix them in one list (`docs/content.md`, Two stacks).
 
 ## Map
 
@@ -64,7 +65,7 @@ Read the file that matches the task before starting. Each one is the single home
 |------|--------------|
 | `docs/architecture.md` | Adding or moving a page, route, or component; touching `vite.config.ts`, icons, fonts, or global CSS |
 | `docs/design.md` | Any visual change: layout, color, spacing, typography, animation. Names the two design references: laravel.com (main) and Claude Code (accent) |
-| `docs/content.md` | Writing or editing copy, services, pricing, or contact details. Holds the AI-first positioning and the list of AI tools |
+| `docs/content.md` | Writing or editing copy, services, pricing, or contact details. Holds the AI-first positioning, the two stacks, and Kevin's AI journey |
 | `docs/projects.md` | Adding or editing a portfolio project or its screenshot |
 | `docs/blog.md` | Starting the blog (not built yet) |
 | `README.md` | Never needed for a task: it is the short human introduction and repeats this file |
