@@ -24,14 +24,14 @@ Fields rendered today: `title`, `client`, `excerpt`, `stack`, `year`, `link`, `i
 ## Screenshots
 
 - Path: `public/images/projects/<slug>.webp`, referenced in data as `/images/projects/<slug>.webp`.
-- Both views show the image in a 16:9 box with `object-fit: cover` anchored to the top, so capture the top of the page in landscape. Anything below the 16:9 frame is cropped. On desktop the homepage panel drops the fixed ratio and fills the panel height, still anchored to the top.
+- **A screenshot is never cropped.** Kevin's rule (2026-10-06): the picture is shown whole, on every screen. The portfolio cards and the homepage card below 1024px hold it in a box that is 16:9 by construction. From 1024px the homepage card puts the screenshot beside the text; there it is fitted inside its box (`object-fit: contain`), which is 16:9 on a wide screen and leaves two thin bands where the text is the taller of the two. Do not let the box grow with the card under `cover`: that crops the sides.
+- A website is shown by its desktop capture on every device, phones included. That is Kevin's choice for Fraichup, Rachel Blot, Ethica and Pickleball Valencia, and the two other websites follow it. Do not swap in a mobile capture for small screens. Anything below the 16:9 frame is cropped. On desktop the homepage panel drops the fixed ratio and fills the panel height, still anchored to the top.
 - A missing file is handled: an `onError` handler swaps in a placeholder.
 - A site that is offline cannot be captured, and Wayback Machine copies often load without their styles. Take the project off the list and note it in `todo.md` rather than ship a broken image.
 - Every image is a 16:9 WebP. The conventions by kind of project:
   - Websites and web apps: a desktop capture of the home page, 1440x810.
   - PWAs: one or two mobile captures (390x844 viewport), each in a phone frame, centered on a 1600x900 canvas in `--surface-tertiary` (`#f5f5f5`). A raw portrait capture would be cropped to a thin strip by the 16:9 box.
   - Private apps that cannot be shown: the client's logo centered on a 1600x900 canvas in the logo's own background color. `el-imperio-contabilidad` uses this.
-- Keep the subject clear of the bottom 100px of the canvas: the desktop homepage panel can be wider than 16:9 and crops from the bottom.
 
 ## Not yet in the data
 

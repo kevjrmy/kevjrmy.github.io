@@ -35,7 +35,7 @@ Rules:
 - The framing: the agents write fast; Kevin directs, reviews, and answers for the result.
 - **WordPress is last.** It stays on the site for history and for existing clients who still need it, but it goes at the end of every list (projects, services, toolkit, filters) and never in a highlighted spot such as the homepage service cards.
 
-Where it shows today: hero headline (`/ai-agents`) and intro, `/whoami` terminal, the AI group of the home stack strip, homepage services subline and About paragraph, About page intro, timeline and AI stack block, the whole `/ai` page, services page intro, portfolio intro, project badges.
+Where it shows today: hero headline (`/ai-agents`) and intro, `whoami` terminal, the AI group of the home stack strip, homepage services subline and About paragraph, About page intro, timeline and AI stack block, the whole `/ai` page, services page intro, portfolio intro, project badges.
 
 ## Two stacks
 
@@ -94,7 +94,7 @@ All copy is hard-coded in components. There are no content files or translations
 | Content | File |
 |---------|------|
 | Hero headline, intro, buttons | `src/components/Home/Hero/Hero.tsx` |
-| Terminal `/whoami` answer and closing prompt | `src/components/Home/CliPrompt/CliPrompt.tsx` |
+| Terminal `whoami` answer and closing prompt | `src/components/Home/CliPrompt/CliPrompt.tsx` |
 | Both stacks (home strip, About toolkit, `/ai` page), what is still to learn | `src/data/stack.ts` |
 | AI page: intro, the "plugged in" line, journey (and the logos of its tools), practice cards | `src/pages/ai/Ai.tsx` |
 | Startup Weekend award: text, facts, photo captions | `src/components/Home/StartupWeekend/StartupWeekend.tsx` |

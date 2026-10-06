@@ -57,7 +57,7 @@ All icons are `<Icon icon="prefix:name" />` from `@iconify/react`, addressed by 
 - An icon name that does not exist in its set fails the build with `Unknown icon "prefix:name"`.
 - To use a new icon set, install its package: `npm i @iconify-json/<prefix>`. A prefix with no installed package is ignored by the scan and would fall back to a runtime API fetch.
 - Sets in use: `tabler` and `mdi` for UI icons, `vscode-icons` and `logos` for tech and brand badges, and `simple-icons` for the brand marks those two lack (Android Studio and the graphics tools). `simple-icons` is one color and takes the text color, so it needs no entry in `inkLogos.ts`; check that a mark is readable at 20px before using it (its GitHub Pages mark is a wordmark and is not).
-- One icon is not from a set: the icon of the theme switch is an inline SVG drawn for the site, in `src/components/Header/Header.tsx` (`docs/design.md`, Dark theme). It is the exception, not a second way to add icons.
+- Two marks are not from a set, and are inline SVGs drawn for the site: the icon of the theme switch, in `src/components/Header/Header.tsx` (`docs/design.md`, Dark theme), and the pixel chevron of the hero terminal's prompt box, in `components/Home/CliPrompt`. They are the exceptions, not a second way to add icons.
 
 ## Styling
 

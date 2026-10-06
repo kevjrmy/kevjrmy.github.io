@@ -87,8 +87,10 @@
   padding: var(--space-lg);
 }
 
-/* The shell prompt sign, in the transcript and in the prompt box */
-.sign {
+/* The two prompt signs, in the same green: the "$" of a shell before the sent
+   command, and a pixel chevron in the prompt box */
+.sign,
+.chevron {
   flex-shrink: 0;
   color: var(--term-green);
   user-select: none;

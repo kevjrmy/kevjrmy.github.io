@@ -4,6 +4,12 @@ Choices that are not obvious from the code, with the reason. Read before reversi
 
 ## 2026-10-06
 
+**In the hero terminal the command is a plain `whoami`, and the prompt box has a pixel chevron.**
+Two requests from Kevin after the green `$`. The slash went: `$ whoami` is what a shell shows, and the slash commands stay in the eyebrows and the headline. The `$` left the prompt box, which is the agent's input and not a shell, for a chevron drawn as five pixels in an inline SVG, 6 by 10 so each pixel is two screen pixels and stays sharp. It kept the green of the `$`: the two are the prompt signs. It is the second pixel mark on the home page, after the slash of the headline.
+
+**A project screenshot is never cropped, and a website keeps its desktop capture on a phone.**
+It began as a regression from making the works swipeable: the cards took one height, the image box could grow, and it filled the spare height by cropping the sides of the screenshot. Kevin saw it on Fraichup; eight of the ten projects had it. He then set the rule: Fraichup, Rachel Blot, Ethica and Pickleball Valencia show their desktop screenshot on every device, and the picture must not be cut. On a phone the box is 16:9 again and the spare height goes to the text. The older crop went too: between 768px and about 1150px the side-by-side card had always cut the sides (down to a square at 768px). The card now stays stacked up to 1024px, and beside the text the screenshot is fitted, not cropped. Rejected: a mobile capture for small screens, which he ruled out, and keeping `cover` with a taller card.
+
 **The prompt sign of the hero terminal is a green `$`, not a red `>`.**
 Kevin's request, to look more like a real terminal. Both signs changed, the one in the transcript and the one in the prompt box, so the two stay the same glyph. It is the one green on the site and it is local to the terminal's stylesheet; the cursor and "working…" stay red. The space after the sign went from one character to one and a half, since a `$` fills its cell where a `>` did not. In the same change the name moved closer to the command it answers (8px instead of 16px) and got a little more room under it (8px instead of 4px).
 

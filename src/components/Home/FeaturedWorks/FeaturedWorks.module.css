@@ -257,8 +257,11 @@
 }
 
 /* ── Left — screenshot ────────────────────────────────── */
+/* Stacked (phone): always 16:9, the ratio the screenshots are made in. The cards all
+   take the height of the tallest, and the room left over goes to the text below,
+   not to this box: a taller box would crop the sides of the screenshot */
 .panelImage {
-  flex: 1;
+  flex: none;
   aspect-ratio: 16 / 9;
   overflow: hidden;
   background-color: var(--surface-tertiary);
@@ -296,6 +299,7 @@
 /* ── Right — metadata ─────────────────────────────────── */
 .panelMeta {
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: space-between;
   gap: var(--space-lg);
@@ -425,7 +429,13 @@
 }
 
 /* ── Responsive — split layout on wider screens ───────── */
-@media screen and (min-width: 768px) {
+/* A screenshot is never cropped: it is a 16:9 capture and is shown whole.
+   Stacked, its box is 16:9 by construction. Side by side, the box is as tall as the
+   card, so the screenshot is fitted inside it (contain): on a wide screen the box
+   comes out 16:9 anyway, and where the text is the taller of the two the screenshot
+   keeps its shape between two thin bands. Not before 1024px: a narrower card would
+   leave the screenshot small between wide bands. */
+@media screen and (min-width: 1024px) {
   .panel {
     flex-direction: row;
     min-height: 360px;
@@ -436,6 +446,11 @@
     aspect-ratio: unset;
     border-bottom: none;
     border-right: 1px solid var(--border-default);
+  }
+
+  .screenshot {
+    object-fit: contain;
+    object-position: center;
   }
 
   .panelMeta {

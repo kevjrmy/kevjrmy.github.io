@@ -11,7 +11,7 @@ The visual reference is the laravel.com home page. A full-page mobile capture is
 - **Eyebrows.** Styled as a slash command typed into a CLI agent: monospace, lowercase, grey, with a red `/` in front, as in `/about me`. The slash comes from `::before`, not from the text. This one comes from Claude Code, not from Laravel, whose labels are bracketed and uppercase.
 - **Buttons.** Two kinds only. Primary: solid red, white text, medium radius, with an arrow. Secondary: white, hairline border, faint shadow; when it leads somewhere it carries a red up-right arrow. No pill buttons, no tinted buttons.
 - **Pill tab bar.** Tabs and filters sit in a rounded track; the active one is a raised white pill. No underlines. Always a single row. When the tabs do not fit, the track scrolls sideways, the side with hidden tabs fades out, and a clicked tab is brought to the center, which reveals its neighbours. A small round chevron also appears on that side, except on touch phones, where the row is swiped.
-- **Selected work.** The projects under the tab bar are one swipeable row inside the card: on a phone a swipe moves to the next project, one per swipe, and the tab bar follows. The card itself stays put and keeps one height for every project, so the page does not jump. A swipe slides, following the finger. A tab crossfades instead of scrolling past every project in between: the project in view fades out and drifts a little towards the side it is left on (140ms), then the chosen one fades in from the side it sits on (`--duration-slow`). Opacity and transform only, so it is smooth on a phone too, and the direction tells where in the row the project is. Same mechanism as the photo carousel (scroll-snap), no library.
+- **Selected work.** The projects under the tab bar are one swipeable row inside the card: on a phone a swipe moves to the next project, one per swipe, and the tab bar follows. The card itself stays put and keeps one height for every project, so the page does not jump. Its screenshot is always shown whole, never cropped (`docs/projects.md`, Screenshots); the text sits under it below 1024px and beside it from there. A swipe slides, following the finger. A tab crossfades instead of scrolling past every project in between: the project in view fades out and drifts a little towards the side it is left on (140ms), then the chosen one fades in from the side it sits on (`--duration-slow`). Opacity and transform only, so it is smooth on a phone too, and the direction tells where in the row the project is. Same mechanism as the photo carousel (scroll-snap), no library.
 - **Cards.** White, hairline border, large radius, soft shadow. A featured card can take a soft red ring (the featured-works panel).
 - **Grid texture.** The faint isometric tile appears behind the two centered moments: the hero and the CTA band.
 - **Navigation.** Desktop: links are quiet pills that grey on hover, the current page is a raised white pill (the secondary-button look), and Contact is the one primary red button at the end. Mobile: the menu is a full-screen sheet whose top row matches the header exactly, with large display-type rows separated by hairlines, a red tick on the current page (the section-frame tick), and Contact as a full-width primary button at the bottom. The sheet fades in and its rows rise in a short stagger.
@@ -29,7 +29,7 @@ Claude Code's terminal interface is the second source, after Laravel. Laravel de
 Taken from it so far:
 
 - Eyebrows written as slash commands: `/about me`, `/services`.
-- The hero terminal, laid out as a Claude Code session: the command is typed after a green `$` in a bordered prompt box at the bottom, moves up into the transcript when sent, the answer prints line by line, and a second prompt ("ready to build") is then typed into the box and left there with the cursor after it. Its title bar carries the Claude Code mascot.
+- The hero terminal, laid out as a Claude Code session: the command, a plain `whoami` with no slash, is typed in a bordered prompt box at the bottom after a small pixel chevron, moves up into the transcript when sent, where it stands after a shell's `$`, the answer prints line by line, and a second prompt ("ready to build") is then typed into the box and left there with the cursor after it. Its title bar carries the Claude Code mascot.
 - Monospace for small meta text: captions' place and date, counters, years, prices.
 - Claude Code named on the page, with its mascot icon, in the home stack strip, the toolkit, and project badges (see Positioning in `docs/content.md`).
 - A status line of short facts under the intro of the `/ai` page (`since 2022`, `main agent Claude Code`): monospace, grey keys, no box around it.
@@ -38,7 +38,7 @@ What else it offers, when a new element needs a voice: prompt lines, terse lower
 
 Limits, so it stays an accent:
 
-- Red remains the only accent color. Claude's orange appears only inside its own logo, and green only on the `$` prompt sign of the hero terminal.
+- Red remains the only accent color. Claude's orange appears only inside its own logo, and green only on the two prompt signs of the hero terminal (the `$` and the pixel chevron).
 - One blinking cursor on the site, in the hero terminal.
 - The hero terminal stays the one dark element. Do not turn other sections into terminal windows.
 - When the two sources disagree, Laravel wins.
@@ -51,9 +51,9 @@ Limits, so it stays an accent:
 - Two themes, light and dark: the visitor's system setting decides, and a switch in the header overrides it (see Dark theme). Light is the one the design was drawn in.
 - Red is the single accent (`--clr-dark-red`, `--clr-medium-red`, `--clr-light-red`), on neutral greys.
 - Typeface: Instrument Sans, self-hosted from `public/fonts/`.
-- The hero headline ends in `/ai-agents`, a slash command set in the same face as the rest of the headline. What marks it is the red slash, which is not a glyph: it is drawn in CSS as four pixels climbing a staircase, a flat echo of the cubes of the logo. It is the only pixelated mark on the page; the eyebrow slashes stay typed.
+- The hero headline ends in `/ai-agents`, a slash command set in the same face as the rest of the headline. What marks it is the red slash, which is not a glyph: it is drawn in CSS as four pixels climbing a staircase, a flat echo of the cubes of the logo. It was the only pixelated mark on the page until the prompt box of the hero terminal got a pixel chevron; the eyebrow slashes stay typed.
 - Monospace is `--font-mono`, the visitor's system monospace. No code font is loaded.
-- The hero terminal (`CliPrompt`) is the one deliberately dark element. Its palette is neutral near-black, the site red for the cursor, and one green, the `$` of the prompt, as in a real shell; the colors are defined locally in its stylesheet, not in the global tokens. It gets the same soft red ring as the featured cards.
+- The hero terminal (`CliPrompt`) is the one deliberately dark element. Its palette is neutral near-black, the site red for the cursor, and one green for its two prompt signs: the `$` before the sent command, as in a real shell, and the chevron of the prompt box, drawn as five pixels; the colors are defined locally in its stylesheet, not in the global tokens. It gets the same soft red ring as the featured cards.
 - Body copy under headings is grey (`--text-light`), not black.
 - The home hero ends at the fold. On a screen taller than its content it grows to fill the first screen, with the headline and the terminal centered in it as one group, so the stack strip starts under the fold and never shows cut off (nor does its frame line). On a screen shorter than its content (most phones) it keeps its natural height and the terminal runs past the fold.
 

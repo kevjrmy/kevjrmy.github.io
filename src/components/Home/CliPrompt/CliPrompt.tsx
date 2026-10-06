@@ -6,10 +6,19 @@ import styles from './CliPrompt.module.css'
 // the bottom, moves up into the transcript when "sent", and the answer prints below it.
 // A second prompt is then typed into the box and left there, unsent.
 
-const COMMAND = '/whoami'
+const COMMAND = 'whoami'
 const NEXT_PROMPT = 'ready to build'
 
 const NAME = 'Kevin Jeremy Gautier'
+
+// The prompt sign of the box: a chevron drawn as five pixels, a flat echo of the
+// pixel slash of the headline. Inline, as it is not an icon from a set. The sent
+// command in the transcript keeps a shell's "$".
+const PixelChevron: React.FC = () => (
+  <svg className={styles.chevron} viewBox="0 0 3 5" width={6} height={10} shapeRendering="crispEdges">
+    <path d="M0 0h1v1H0zM1 1h1v1H1zM2 2h1v1H2zM1 3h1v1H1zM0 4h1v1H0z" fill="currentColor" />
+  </svg>
+)
 
 type OutputLine = {
   key: string
@@ -139,7 +148,7 @@ const CliPrompt: React.FC = () => {
             <span className={styles.working}>✻ working…</span>
           ) : (
             <>
-              <span className={styles.sign}>$</span>
+              <PixelChevron />
               <span className={styles.typed}>{typed}</span>
               <span className={`${styles.cursor} ${phase === 'done' ? styles.cursorIdle : ''}`} />
             </>
