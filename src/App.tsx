@@ -8,6 +8,21 @@ import Portfolio from '@/pages/portfolio/Portfolio'
 import Services from './pages/services/Services'
 import Ai from '@/pages/ai/Ai'
 import Info from '@/pages/info/Info'
+import { locales, localizePath } from '@/i18n/locales'
+
+// Every page, by its English path. Each one is also served under /fr and /es
+// (src/i18n/locales.ts); the language is read from the URL by MainLayout.
+const pages = [
+  { path: '/', element: <Home /> },
+  { path: '/portfolio', element: <Portfolio /> },
+  { path: '/contact', element: <Contact /> },
+  { path: '/about', element: <About /> },
+  { path: '/services', element: <Services /> },
+  // The AI stack and the journey behind it
+  { path: '/ai', element: <Ai /> },
+  // Terms of use + privacy (linked from the footer)
+  { path: '/info', element: <Info /> },
+]
 
 export default function App() {
   return (
@@ -18,30 +33,17 @@ export default function App() {
       <Routes>
         {/* Reads the URL and matches it to a route */}
 
-        {/* Main layout for all pages */}
+        {/* Main layout for all pages, in every language */}
         <Route element={<MainLayout />}>
-
-          {/* Home page is set to render on the root route */}
-          <Route path="/" element={<Home />} />
-
-          {/* Portfolio page */}
-          <Route path="/portfolio" element={<Portfolio />} />
-
-          {/* Contact page */}
-          <Route path="/contact" element={<Contact />} />
-
-          {/* About page */}
-          <Route path="/about" element={<About />} />
-
-          {/* Services page */}
-          <Route path="/services" element={<Services />} />
-
-          {/* AI page: the AI stack and the journey behind it */}
-          <Route path="/ai" element={<Ai />} />
-
-          {/* Terms of use + privacy (linked from the footer) */}
-          <Route path="/info" element={<Info />} />
-
+          {locales.map((locale) =>
+            pages.map((page) => (
+              <Route
+                key={localizePath(page.path, locale)}
+                path={localizePath(page.path, locale)}
+                element={page.element}
+              />
+            ))
+          )}
         </Route>
       </Routes>
     </BrowserRouter>

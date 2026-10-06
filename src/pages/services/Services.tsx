@@ -1,114 +1,61 @@
-import { Link } from 'react-router-dom'
 import { Icon } from '@iconify/react'
 import Cta from '@/components/Home/CTA/Cta'
+import { useLocale } from '@/i18n/useLocale'
 import styles from './Services.module.css'
 
 // ── Service data ──────────────────────────────────────────────────────────────
+// `id` is the key of the card's title and description in the messages of each
+// language. WordPress last (docs/content.md, Positioning).
 
-type Service = {
-  icon: string
-  title: string
-  description: string
-  price: string
-}
-
-const services: Service[] = [
-  {
-    icon: 'tabler:settings-automation',
-    title: 'AI Automation',
-    description: 'Spreadsheets and repetitive admin turned into a tool that does the work for you. Built with AI agents, like the accounting app that replaced one client\'s Excel workbook.',
-    price: 'Let\'s talk',
-  },
-  {
-    icon: 'tabler:zoom-check',
-    title: 'Audit',
-    description: 'Performance, SEO, accessibility: know exactly what to fix and to optimize.',
-    price: 'From 45€ / hour',
-  },
-  {
-    icon: 'tabler:school',
-    title: 'Training & Classes',
-    description: 'Private JS/TS classes/tutoring sessions.',
-    price: 'From 45€ / hour',
-  },
-  {
-    icon: 'tabler:device-mobile-code',
-    title: 'PWA',
-    description: 'Installable, offline-ready web apps built with Vue or React.',
-    price: 'From 1500€ / project',
-  },
-  {
-    icon: 'tabler:server',
-    title: 'Web Application',
-    description: 'Full-stack apps with Laravel or Node.js, from MVP to production.',
-    price: 'From 2500€ / project',
-  },
-  {
-    icon: 'tabler:map-route',
-    title: 'Consulting',
-    description: 'Architecture review, tech choices, roadmap. Planning before building.',
-    price: 'From 150€ / session',
-  },
-  {
-    icon: 'tabler:device-mobile',
-    title: 'Mobile App',
-    description: 'Native Android or cross-platform apps with React Native.',
-    price: 'Let\'s talk',
-  },
-  {
-    icon: 'mdi:wordpress',
-    title: 'WordPress',
-    description: 'Maintenance and redesigns for existing sites, and new ones when WordPress is the right fit.',
-    price: 'From 500€ / project',
-  },
-]
+const services = [
+  { id: 'automation', icon: 'tabler:settings-automation' },
+  { id: 'audit', icon: 'tabler:zoom-check' },
+  { id: 'training', icon: 'tabler:school' },
+  { id: 'pwa', icon: 'tabler:device-mobile-code' },
+  { id: 'webapp', icon: 'tabler:server' },
+  { id: 'consulting', icon: 'tabler:map-route' },
+  { id: 'mobile', icon: 'tabler:device-mobile' },
+  { id: 'wordpress', icon: 'mdi:wordpress' },
+] as const
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
 const Services: React.FC = () => {
+  const { t } = useLocale()
+
   return (
     <>
 
       {/* ── Page header ───────────────────────────────── */}
       <section aria-labelledby="services-heading">
         <div className={styles.headerInner}>
-          <p className={styles.eyebrow}>Services</p>
-          <h1 id="services-heading" className={styles.h1}>What I can do for you</h1>
-          <p className={styles.lead}>
-            Whether you need a quick fix or a product built from scratch, I've got a service for that.
-            I build with AI agents and answer for the result, so you get it sooner with the same care.
-          </p>
-          <Link to="/contact" className={styles.headerCta}>
-            Get in touch
-            <Icon icon="tabler:arrow-right" width={16} height={16} aria-hidden="true" />
-          </Link>
+          <p className="eyebrow">{t.services.eyebrow}</p>
+          <h1 id="services-heading" className={styles.h1}>{t.services.h1}</h1>
+          <p className={styles.lead}>{t.services.lead}</p>
         </div>
       </section>
 
       {/* ── Services grid ─────────────────────────────── */}
-      <section className={styles.gridSection} aria-label="All services">
+      <section className={styles.gridSection} aria-label={t.services.gridLabel}>
         <div className={styles.gridInner}>
           <ul className={styles.grid} role="list">
             {services.map((service) => (
-              <li key={service.title} className={styles.card}>
-                <div className={styles.cardTop}>
-                  <div className={styles.iconWrap}>
-                    <Icon icon={service.icon} width={24} height={24} aria-hidden="true" />
-                  </div>
-                  <div className={styles.cardBody}>
-                    <h2 className={styles.cardTitle}>{service.title}</h2>
-                    <p className={styles.cardDescription}>{service.description}</p>
-                  </div>
+              <li key={service.id} className={styles.card}>
+                <div className={styles.iconWrap}>
+                  <Icon icon={service.icon} width={24} height={24} aria-hidden="true" />
                 </div>
-                <p className={styles.price}>{service.price}</p>
+                <div className={styles.cardBody}>
+                  <h2 className={styles.cardTitle}>{t.services.items[service.id].title}</h2>
+                  <p className={styles.cardDescription}>{t.services.items[service.id].description}</p>
+                </div>
               </li>
             ))}
           </ul>
         </div>
       </section>
 
-      {/* ── CTA ───────────────────────────────────────── */}
-      <Cta />
+      {/* ── CTA: the one call to action for every service ─ */}
+      <Cta heading={t.services.ctaHeading} subline={t.services.ctaSubline} />
 
     </>
   )

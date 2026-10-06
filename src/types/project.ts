@@ -2,6 +2,11 @@
    Project — type definition
    ══════════════════════════════════════════════════════ */
 
+import type { Messages } from '@/i18n/messages'
+
+/** A project's slug is also the key of its copy in every language (src/i18n/messages) */
+export type ProjectSlug = keyof Messages['projects']
+
 export type ProjectStatus = 'live' | 'archived' | 'wip'
 
 export type ProjectType =
@@ -15,20 +20,18 @@ export type ProjectType =
   | 'Consulting'
 
 export type Project = {
-  /** Unique identifier, used for keys and future routing */
-  slug: string
+  /**
+   * Unique identifier, used for keys and future routing. The client label, the
+   * excerpt and the screenshot's alt text are sentences: they are in the messages
+   * of each language, under this slug.
+   */
+  slug: ProjectSlug
 
   /** Display title */
   title: string
 
-  /** Client or project category (shown on the tab / card) */
-  client: string
-
   /** Service type — maps to the Services section */
   type: ProjectType
-
-  /** Short punchy description for card display (1–2 sentences max) */
-  excerpt: string
 
   /** Tech stack — displayed as badges */
   stack: string[]
@@ -57,6 +60,5 @@ export type Project = {
   /** Project thumbnail */
   image: {
     src: string
-    alt: string
   }
 }

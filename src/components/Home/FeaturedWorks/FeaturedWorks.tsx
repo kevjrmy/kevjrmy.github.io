@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { Icon } from '@iconify/react'
 import { featuredProjects } from '@/data/projects'
 import { inkLogoClass } from '@/data/inkLogos'
+import { techIcons } from '@/data/techIcons'
 import type { Project } from '@/types/project'
+import Link from '@/i18n/LocaleLink'
+import { useLocale } from '@/i18n/useLocale'
 import styles from './FeaturedWorks.module.css'
 
 // ── Placeholder image ─────────────────────────────────────────────────────────
@@ -15,33 +17,6 @@ const Placeholder: React.FC<{ title: string }> = ({ title }) => (
     <span>{title}</span>
   </div>
 )
-
-// ── Icon map (label → Iconify icon string) ────────────────────────────────────
-const techIcons: Record<string, string> = {
-  'Laravel': 'logos:laravel',
-  'Vue': 'vscode-icons:file-type-vue',
-  'React': 'vscode-icons:file-type-reactjs',
-  'TypeScript': 'vscode-icons:file-type-typescript-official',
-  'Node.js': 'vscode-icons:file-type-node',
-  'Vite': 'vscode-icons:file-type-vite',
-  'Next.js': 'logos:nextjs-icon',
-  'PHP': 'vscode-icons:file-type-php',
-  'Kotlin': 'vscode-icons:file-type-kotlin',
-  'Git': 'vscode-icons:file-type-git',
-  'WordPress': 'mdi:wordpress',
-  'Nuxt': 'vscode-icons:file-type-nuxt',
-  'JavaScript': 'vscode-icons:file-type-js-official',
-  'PWA': 'tabler:device-mobile-code',
-  'Android': 'tabler:brand-android',
-  'CSS': 'logos:css-3',
-  'Markdown': 'vscode-icons:file-type-markdown',
-  'SQLite': 'vscode-icons:file-type-sqlite',
-  'Firebase': 'logos:firebase-icon',
-  'Supabase': 'logos:supabase-icon',
-  'Astro': 'logos:astro-icon',
-  'Claude Code': 'logos:claude-code',
-  'WooCommerce': 'logos:woocommerce-icon'
-}
 
 // ── Stack badge (icon + label pill) ──────────────────────────────────────────
 const Badge: React.FC<{ label: string }> = ({ label }) => {
@@ -58,6 +33,9 @@ const Badge: React.FC<{ label: string }> = ({ label }) => {
 // `eager`: load the screenshot at once instead of waiting until it is about to be seen
 const Panel: React.FC<{ project: Project; eager: boolean }> = ({ project, eager }) => {
   const [imgError, setImgError] = useState(false)
+  const { t } = useLocale()
+  // The sentences of the project, in the language being read
+  const copy = t.projects[project.slug]
 
   return (
     <div className={styles.panel}>
@@ -69,7 +47,7 @@ const Panel: React.FC<{ project: Project; eager: boolean }> = ({ project, eager 
         ) : (
           <img
             src={project.image.src}
-            alt={project.image.alt}
+            alt={copy.alt}
             loading={eager ? 'eager' : 'lazy'}
             decoding="async"
             onError={() => setImgError(true)}
@@ -81,9 +59,9 @@ const Panel: React.FC<{ project: Project; eager: boolean }> = ({ project, eager 
       {/* Right — metadata */}
       <div className={styles.panelMeta}>
         <div className={styles.metaTop}>
-          <p className={styles.metaClient}>{project.client}</p>
+          <p className={styles.metaClient}>{copy.client}</p>
           <h3 className={styles.metaTitle}>{project.title}</h3>
-          <p className={styles.metaExcerpt}>{project.excerpt}</p>
+          <p className={styles.metaExcerpt}>{copy.excerpt}</p>
         </div>
 
         <div className={styles.metaBottom}>
@@ -101,9 +79,9 @@ const Panel: React.FC<{ project: Project; eager: boolean }> = ({ project, eager 
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.metaLink}
-                aria-label={`Visit ${project.title} — opens in a new tab`}
+                aria-label={t.common.visitLabel(project.title)}
               >
-                Visit site
+                {t.common.visitSite}
                 <Icon icon="tabler:arrow-up-right" width={15} height={15} />
               </a>
             )}
@@ -136,6 +114,7 @@ const FeaturedWorks: React.FC = () => {
   // position; a tab only scrolls the row.
   const trackRef = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
+  const { t } = useLocale()
 
   const [move, setMove] = useState<Move | null>(null)
 
@@ -215,8 +194,8 @@ const FeaturedWorks: React.FC = () => {
 
       {/* Intro */}
       <div className={styles.intro}>
-        <h2 id="work-heading" className={styles.heading}>Selected Work</h2>
-        <p className={styles.subline}>A few things I've built (see more on the portfolio page).</p>
+        <h2 id="work-heading" className={styles.heading}>{t.works.heading}</h2>
+        <p className={styles.subline}>{t.works.subline}</p>
       </div>
 
       {/* Tabbed interface */}
@@ -228,7 +207,7 @@ const FeaturedWorks: React.FC = () => {
             ref={tabBarRef}
             className={`${styles.tabBar} ${hidden.start ? styles.fadeStart : ''} ${hidden.end ? styles.fadeEnd : ''}`}
             role="tablist"
-            aria-label="Featured projects"
+            aria-label={t.works.tablist}
             onScroll={updateHidden}
           >
             {featuredProjects.map((project, i) => (
@@ -249,14 +228,14 @@ const FeaturedWorks: React.FC = () => {
           <button
             className={`${styles.tabArrow} ${styles.tabArrowPrev} ${hidden.start ? styles.tabArrowVisible : ''}`}
             onClick={() => scrollTabs(-1)}
-            aria-label="Show previous projects"
+            aria-label={t.works.prev}
           >
             <Icon icon="tabler:chevron-left" width={16} height={16} aria-hidden="true" />
           </button>
           <button
             className={`${styles.tabArrow} ${styles.tabArrowNext} ${hidden.end ? styles.tabArrowVisible : ''}`}
             onClick={() => scrollTabs(1)}
-            aria-label="Show more projects"
+            aria-label={t.works.next}
           >
             <Icon icon="tabler:chevron-right" width={16} height={16} aria-hidden="true" />
           </button>
@@ -292,8 +271,8 @@ const FeaturedWorks: React.FC = () => {
       </div>
 
       {/* CTA */}
-      <Link to="/portfolio" className={styles.cta} aria-label="See all projects">
-        See all projects
+      <Link to="/portfolio" className={`button-secondary ${styles.cta}`}>
+        {t.works.cta}
         <Icon icon="tabler:arrow-up-right" width={16} height={16} aria-hidden="true" />
       </Link>
 

@@ -1,13 +1,16 @@
 import { useEffect, useRef, useState } from 'react'
 import { Icon } from '@iconify/react'
+import { useLocale } from '@/i18n/useLocale'
 import styles from './CliPrompt.module.css'
 
 // Styled after a Claude Code session: the command is typed in the prompt box at
 // the bottom, moves up into the transcript when "sent", and the answer prints below it.
 // A second prompt is then typed into the box and left there, unsent.
+// The command and the keys of the answer are a terminal's and stay in English;
+// what is a phrase (the role, the second prompt, "working…") is translated. Home
+// gives the component a key per language, so a change of language replays it.
 
 const COMMAND = 'whoami'
-const NEXT_PROMPT = 'ready to build'
 
 const NAME = 'Kevin Jeremy Gautier'
 
@@ -25,24 +28,27 @@ type OutputLine = {
   value: string
 }
 
-const output: OutputLine[] = [
-  { key: 'role', value: 'Full-stack developer' },
-  { key: 'stack', value: 'Laravel · Vue · React · TS · Node' },
-  { key: 'ai', value: 'Claude Code · Cursor' },
-  { key: 'langs', value: 'FR · EN · ES' },
-]
-
-// The name line counts as the first line of the answer
-const LINE_COUNT = output.length + 1
+// The name line counts as the first line of the answer, before these four
+const LINE_COUNT = 5
 
 type Phase = 'idle' | 'typing' | 'running' | 'retyping' | 'done'
 
 const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 const CliPrompt: React.FC = () => {
+  const { t } = useLocale()
+  const nextPrompt = t.cli.nextPrompt
+
+  const output: OutputLine[] = [
+    { key: 'role', value: t.cli.role },
+    { key: 'stack', value: 'Laravel · Vue · React · TS · Node' },
+    { key: 'ai', value: 'Claude Code · Cursor' },
+    { key: 'langs', value: 'FR · EN · ES' },
+  ]
+
   // With reduced motion the finished session is shown straight away
   const [phase, setPhase] = useState<Phase>(() => (prefersReducedMotion() ? 'done' : 'idle'))
-  const [typed, setTyped] = useState(() => (prefersReducedMotion() ? NEXT_PROMPT : ''))
+  const [typed, setTyped] = useState(() => (prefersReducedMotion() ? nextPrompt : ''))
   const [visibleLines, setVisible] = useState(() => (prefersReducedMotion() ? LINE_COUNT : 0))
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
@@ -59,9 +65,9 @@ const CliPrompt: React.FC = () => {
 
     // Last step: type the next prompt into the box and leave the cursor after it
     const typeNextPrompt = () => {
-      if (j < NEXT_PROMPT.length) {
+      if (j < nextPrompt.length) {
         j++
-        setTyped(NEXT_PROMPT.slice(0, j))
+        setTyped(nextPrompt.slice(0, j))
         timerRef.current = setTimeout(typeNextPrompt, CHAR_DELAY)
       } else {
         setPhase('done')
@@ -101,7 +107,7 @@ const CliPrompt: React.FC = () => {
     }, INITIAL_PAUSE)
 
     return () => { if (timerRef.current) clearTimeout(timerRef.current) }
-  }, [])
+  }, [nextPrompt])
 
   const sent = phase !== 'idle' && phase !== 'typing'
   const lineClass = (i: number) => `${styles.line} ${i < visibleLines ? styles.lineVisible : ''}`
@@ -118,7 +124,7 @@ const CliPrompt: React.FC = () => {
         </div>
         <span className={styles.title}>
           <Icon icon="logos:claude-code" width={16} height={10} />
-          kevjrmy — claude code
+          kevjrmy · claude code
         </span>
       </div>
 
@@ -145,7 +151,7 @@ const CliPrompt: React.FC = () => {
         {/* Prompt box: where both prompts are typed, and where the cursor waits */}
         <div className={styles.promptBox}>
           {phase === 'running' ? (
-            <span className={styles.working}>✻ working…</span>
+            <span className={styles.working}>✻ {t.cli.working}</span>
           ) : (
             <>
               <PixelChevron />

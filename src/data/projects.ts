@@ -2,6 +2,8 @@
    projects.ts — static project data
    All portfolio projects live here.
    Featured ones (featured: true) appear on the homepage.
+   What is a sentence (client, excerpt, alt text) is in
+   src/i18n/messages, once per language, under the slug.
    ══════════════════════════════════════════════════════ */
 
 import type { Project } from '@/types/project'
@@ -10,9 +12,7 @@ export const projects: Project[] = [
   {
     slug: 'fraichup',
     title: 'Fraichup',
-    client: 'Food delivery startup',
     type: 'Web Application',
-    excerpt: 'Fresh food delivery platform for the French Riviera. Built for speed — orders, menus, and availability in one lightweight JS app.',
     stack: ['JavaScript', 'Vue', 'CSS'],
     tags: ['frontend', 'food', 'delivery'],
     year: 2024,
@@ -23,15 +23,12 @@ export const projects: Project[] = [
     order: 1,
     image: {
       src: '/images/projects/fraichup.webp',
-      alt: 'Fraichup — food delivery web app screenshot',
     },
   },
   {
     slug: 'sunspot',
     title: 'SUNspot',
-    client: 'Wellness startup',
     type: 'PWA',
-    excerpt: 'Installable app that helps people in Valencia manage their sun exposure — live UV intensity and a map of curated outdoor "sunspots". Vue 3 and Firebase, with light and dark themes.',
     stack: ['Vue', 'Firebase', 'PWA'],
     tags: ['pwa', 'maps', 'health', 'firebase'],
     year: 2026,
@@ -42,15 +39,12 @@ export const projects: Project[] = [
     order: 2,
     image: {
       src: '/images/projects/sunspot.webp',
-      alt: 'SUNspot — map and explore screens of the PWA',
     },
   },
   {
     slug: 'limpiezas-el-imperio',
     title: 'Limpiezas El Imperio',
-    client: 'Cleaning company',
     type: 'Web Application',
-    excerpt: 'New website for a cleaning company near Valencia, replacing a site-builder page. Guided quote, booking and billing forms that arrive by email or WhatsApp — static, fast, and free of cookies and tracking.',
     stack: ['Claude Code', 'Next.js', 'TypeScript', 'CSS'],
     tags: ['frontend', 'business', 'local', 'seo'],
     year: 2026,
@@ -61,15 +55,12 @@ export const projects: Project[] = [
     order: 3,
     image: {
       src: '/images/projects/limpiezas-el-imperio.webp',
-      alt: 'Limpiezas El Imperio — cleaning company website screenshot',
     },
   },
   {
     slug: 'pickleball-valencia',
     title: 'Pickleball Valencia',
-    client: 'Sports club',
     type: 'Web Application',
-    excerpt: 'Website for an indoor pickleball club in Valencia — courts, school, café, events and booking. Rebuilt from WordPress with Claude Code as a fast static Astro site.',
     stack: ['Claude Code', 'Astro'],
     tags: ['ai', 'claude-code', 'astro', 'static', 'sports', 'local', 'club'],
     year: 2026,
@@ -80,15 +71,12 @@ export const projects: Project[] = [
     order: 4,
     image: {
       src: '/images/projects/pickleball-valencia.webp',
-      alt: 'Pickleball Valencia — club website screenshot',
     },
   },
   {
     slug: 'le-petit-cours',
     title: 'Le Petit Cours',
-    client: 'Personal project',
     type: 'PWA',
-    excerpt: 'Free, open-source French course written for Spanish speakers — short lessons, drills and reading, with optional accounts that sync progress across devices. A personal project, built with Claude Code on Next.js and Supabase.',
     stack: ['Claude Code', 'Next.js', 'Supabase', 'PWA'],
     tags: ['ai', 'claude-code', 'pwa', 'education', 'french', 'open-source', 'supabase'],
     year: 2026,
@@ -99,15 +87,12 @@ export const projects: Project[] = [
     order: 5,
     image: {
       src: '/images/projects/le-petit-cours.webp',
-      alt: 'Le Petit Cours — home and lesson screens of the PWA',
     },
   },
   {
     slug: 'planetax',
     title: 'PlanetaX',
-    client: 'Radio station',
     type: 'PWA',
-    excerpt: 'Installable PWA for a Valencia-based Venezuelan radio network — three live stations, TV stream, and offline-ready shell in one lightweight Vue app.',
     stack: ['Vue', 'Vite', 'PWA'],
     tags: ['pwa', 'radio', 'media', 'streaming'],
     year: 2024,
@@ -118,15 +103,12 @@ export const projects: Project[] = [
     order: 6,
     image: {
       src: '/images/projects/planetax.webp',
-      alt: 'PlanetaX — radio PWA screenshot',
     },
   },
   {
     slug: 'el-imperio-contabilidad',
     title: 'El Imperio Contabilidad',
-    client: 'Cleaning company',
     type: 'Web Application',
-    excerpt: 'Online accounting for a cleaning company near Valencia, replacing a hand-kept Excel workbook. Services, clients, costs and real margin per client — with next month drafted from the jobs that repeat.',
     stack: ['Claude Code', 'Next.js', 'React', 'SQLite'],
     tags: ['fullstack', 'accounting', 'internal-tool', 'business'],
     year: 2026,
@@ -137,15 +119,12 @@ export const projects: Project[] = [
     order: 7,
     image: {
       src: '/images/projects/el-imperio-contabilidad.webp',
-      alt: 'Limpiezas El Imperio logo',
     },
   },
   {
     slug: 'fesma',
     title: 'Fesma',
-    client: 'Painter & photographer',
     type: 'Web Application',
-    excerpt: 'Official site for a Valencia-based painter and photographer — projects, artworks, exhibitions and press, all driven by one JSON file. First built in vanilla HTML and SCSS, then rebuilt in Nuxt.',
     stack: ['Nuxt', 'Vue', 'CSS'],
     tags: ['frontend', 'art', 'portfolio', 'gallery'],
     year: 2023,
@@ -156,15 +135,12 @@ export const projects: Project[] = [
     order: 8,
     image: {
       src: '/images/projects/fesma.webp',
-      alt: 'Fesma — artist website screenshot',
     },
   },
   {
     slug: 'rachel-blot',
     title: 'Rachel Blot',
-    client: 'Book author',
     type: 'Web Application',
-    excerpt: 'Author portfolio and book showcase for a French writer. Clean reading experience with a direct link to her Amazon KDP catalogue.',
     stack: ['Nuxt', 'Markdown'],
     tags: ['frontend', 'editorial', 'author'],
     year: 2024,
@@ -175,15 +151,12 @@ export const projects: Project[] = [
     order: 9,
     image: {
       src: '/images/projects/rachel-blot.webp',
-      alt: 'Rachel Blot — author website screenshot',
     },
   },
   {
     slug: 'ethica',
     title: 'Ethica Anabel Orzáez',
-    client: 'Beauty salon',
     type: 'WordPress',
-    excerpt: 'Website and online shop for a beauty salon in Alicante — services, appointment requests, a blog and a WooCommerce store, all on WordPress.',
     stack: ['WordPress', 'WooCommerce'],
     tags: ['wordpress', 'woocommerce', 'beauty', 'local', 'shop'],
     year: 2026,
@@ -194,7 +167,6 @@ export const projects: Project[] = [
     order: 10,
     image: {
       src: '/images/projects/ethica.webp',
-      alt: 'Ethica Anabel Orzáez — beauty salon website screenshot',
     },
   },
 ]

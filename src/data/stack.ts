@@ -4,6 +4,8 @@ import type { AiTool, StackGroup, StackItem, UpcomingAiTool } from '@/types/stac
 //   AI      — the agents and the tools around them (Claude Code)
 //   Classic — languages, frameworks and platforms (Node.js)
 // The home strip, the About toolkit and the /ai page all read from here.
+// Brand names only: what needs translating (the role of an AI tool, the title of
+// a group, the tools still to learn) is in src/i18n/messages.
 
 // ── AI stack ──────────────────────────────────────────────────────────────────
 // Claude Code first, everywhere (docs/content.md, Positioning).
@@ -13,15 +15,15 @@ import type { AiTool, StackGroup, StackItem, UpcomingAiTool } from '@/types/stac
 // work, so it is only named in that journey.
 
 export const aiStack: AiTool[] = [
-  { icon: 'logos:claude-code', label: 'Claude Code', role: 'Main agent', status: 'main' },
-  { icon: 'logos:cursor-icon', label: 'Cursor', role: 'Main editor', status: 'main' },
-  { icon: 'vscode-icons:file-type-markdown', label: 'Markdown', role: 'Context files', status: 'daily' },
-  { icon: 'logos:codex', label: 'Codex', role: 'Terminal agent', status: 'before' },
-  { icon: 'logos:opencode-icon', label: 'OpenCode', role: 'Terminal agent', status: 'before' },
-  { icon: 'logos:antigravity', label: 'Antigravity', role: 'Agentic IDE', status: 'before' },
-  { icon: 'logos:google-aistudio', label: 'Google AI Studio', role: 'Agents in the browser', status: 'before' },
-  { icon: 'logos:github-copilot', label: 'GitHub Copilot', role: 'Editor autocomplete', status: 'before' },
-  { icon: 'logos:deepseek-icon', label: 'DeepSeek', role: 'Open reasoning model', status: 'before' },
+  { icon: 'logos:claude-code', label: 'Claude Code', status: 'main' },
+  { icon: 'logos:cursor-icon', label: 'Cursor', status: 'main' },
+  { icon: 'vscode-icons:file-type-markdown', label: 'Markdown', status: 'daily' },
+  { icon: 'logos:codex', label: 'Codex', status: 'before' },
+  { icon: 'logos:opencode-icon', label: 'OpenCode', status: 'before' },
+  { icon: 'logos:antigravity', label: 'Antigravity', status: 'before' },
+  { icon: 'logos:google-aistudio', label: 'Google AI Studio', status: 'before' },
+  { icon: 'logos:github-copilot', label: 'GitHub Copilot', status: 'before' },
+  { icon: 'logos:deepseek-icon', label: 'DeepSeek', status: 'before' },
 ]
 
 // The working combo, and the only AI stack shown: the cards of the /ai page, the AI
@@ -30,25 +32,10 @@ export const currentAiStack = aiStack.filter((tool) => tool.status !== 'before')
 
 // Planned, not learned yet: shown on the /ai page only, labelled "coming soon"
 export const upcomingAiTools: UpcomingAiTool[] = [
-  {
-    label: 'Hermes',
-    role: 'The open-source agent by Nous Research, with a memory that lasts between sessions.',
-    href: 'https://hermes-agent.nousresearch.com/',
-  },
-  {
-    label: 'Jev',
-    role: 'A model by TypeSafe AI that returns typed decisions with a confidence score, instead of text.',
-    href: 'https://typesafe.ai/blog/introducing-system-one-models-and-jev',
-  },
-  {
-    label: 'Local LLMs',
-    role: 'Open-source models running on my own machine, starting with Ollama.',
-  },
-  {
-    label: 'Linear',
-    role: 'The issue tracker where the work is planned, and where tasks can be handed to coding agents.',
-    href: 'https://linear.app/',
-  },
+  { id: 'hermes', href: 'https://hermes-agent.nousresearch.com/' },
+  { id: 'jev', href: 'https://typesafe.ai/blog/introducing-system-one-models-and-jev' },
+  { id: 'local' },
+  { id: 'linear', href: 'https://linear.app/' },
 ]
 
 // ── Classic stack ─────────────────────────────────────────────────────────────
@@ -56,7 +43,7 @@ export const upcomingAiTools: UpcomingAiTool[] = [
 
 export const classicStack: StackGroup[] = [
   {
-    label: 'Backend',
+    id: 'backend',
     icon: 'tabler:server',
     items: [
       { icon: 'logos:laravel', label: 'Laravel' },
@@ -69,7 +56,7 @@ export const classicStack: StackGroup[] = [
     ],
   },
   {
-    label: 'Frontend',
+    id: 'frontend',
     icon: 'tabler:layout',
     items: [
       { icon: 'vscode-icons:file-type-vue', label: 'Vue' },
@@ -82,7 +69,7 @@ export const classicStack: StackGroup[] = [
     ],
   },
   {
-    label: 'Mobile & desktop',
+    id: 'mobile',
     icon: 'tabler:devices',
     items: [
       { icon: 'vscode-icons:file-type-kotlin', label: 'Kotlin' },
@@ -93,7 +80,7 @@ export const classicStack: StackGroup[] = [
     ],
   },
   {
-    label: 'Hosting & deploy',
+    id: 'hosting',
     icon: 'tabler:cloud-upload',
     items: [
       { icon: 'logos:github-icon', label: 'GitHub Pages' },
@@ -102,7 +89,7 @@ export const classicStack: StackGroup[] = [
     ],
   },
   {
-    label: 'Tools & other',
+    id: 'tools',
     icon: 'tabler:tools',
     items: [
       { icon: 'vscode-icons:file-type-git', label: 'Git' },

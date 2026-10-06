@@ -2,36 +2,10 @@ import { useState } from 'react'
 import { Icon } from '@iconify/react'
 import { projects } from '@/data/projects'
 import { inkLogoClass } from '@/data/inkLogos'
+import { techIcons } from '@/data/techIcons'
 import type { Project, ProjectType } from '@/types/project'
+import { useLocale } from '@/i18n/useLocale'
 import styles from './Portfolio.module.css'
-
-// ── Tech icon map ─────────────────────────────────────────────────────────────
-
-const techIcons: Record<string, string> = {
-  'Laravel': 'logos:laravel',
-  'Vue': 'vscode-icons:file-type-vue',
-  'React': 'vscode-icons:file-type-reactjs',
-  'TypeScript': 'vscode-icons:file-type-typescript-official',
-  'Node.js': 'vscode-icons:file-type-node',
-  'Vite': 'vscode-icons:file-type-vite',
-  'Next.js': 'logos:nextjs-icon',
-  'PHP': 'vscode-icons:file-type-php',
-  'Kotlin': 'vscode-icons:file-type-kotlin',
-  'Git': 'vscode-icons:file-type-git',
-  'WordPress': 'mdi:wordpress',
-  'Nuxt': 'vscode-icons:file-type-nuxt',
-  'JavaScript': 'vscode-icons:file-type-js-official',
-  'PWA': 'tabler:device-mobile-code',
-  'Android': 'tabler:brand-android',
-  'CSS': 'logos:css-3',
-  'Markdown': 'vscode-icons:file-type-markdown',
-  'SQLite': 'vscode-icons:file-type-sqlite',
-  'Firebase': 'logos:firebase-icon',
-  'Supabase': 'logos:supabase-icon',
-  'Astro': 'logos:astro-icon',
-  'Claude Code': 'logos:claude-code',
-  'WooCommerce': 'logos:woocommerce-icon'
-}
 
 // ── Filter categories ─────────────────────────────────────────────────────────
 
@@ -56,6 +30,9 @@ const Badge: React.FC<{ label: string }> = ({ label }) => {
 
 const Card: React.FC<{ project: Project }> = ({ project }) => {
   const [imgError, setImgError] = useState(false)
+  const { t } = useLocale()
+  // The sentences of the project, in the language being read
+  const copy = t.projects[project.slug]
 
   return (
     <article className={styles.card}>
@@ -69,7 +46,7 @@ const Card: React.FC<{ project: Project }> = ({ project }) => {
         ) : (
           <img
             src={project.image.src}
-            alt={project.image.alt}
+            alt={copy.alt}
             className={styles.thumbnailImg}
             loading="lazy"
             onError={() => setImgError(true)}
@@ -82,10 +59,10 @@ const Card: React.FC<{ project: Project }> = ({ project }) => {
         <div className={styles.cardTop}>
           <div className={styles.cardMeta}>
             <span className={styles.cardYear}>{project.year}</span>
-            <span className={styles.cardClient}>{project.client}</span>
+            <span className={styles.cardClient}>{copy.client}</span>
           </div>
           <h2 className={styles.cardTitle}>{project.title}</h2>
-          <p className={styles.cardExcerpt}>{project.excerpt}</p>
+          <p className={styles.cardExcerpt}>{copy.excerpt}</p>
         </div>
 
         <div className={styles.cardBottom}>
@@ -101,9 +78,9 @@ const Card: React.FC<{ project: Project }> = ({ project }) => {
               target="_blank"
               rel="noopener noreferrer"
               className={styles.cardLink}
-              aria-label={`Visit ${project.title} — opens in a new tab`}
+              aria-label={t.common.visitLabel(project.title)}
             >
-              Visit site
+              {t.common.visitSite}
               <Icon icon="tabler:arrow-up-right" width={15} height={15} aria-hidden="true" />
             </a>
           )}
@@ -118,6 +95,7 @@ const Card: React.FC<{ project: Project }> = ({ project }) => {
 
 const Portfolio: React.FC = () => {
   const [active, setActive] = useState<ProjectType>('All')
+  const { t } = useLocale()
 
   const filtered = active === 'All'
     ? projects
@@ -128,15 +106,13 @@ const Portfolio: React.FC = () => {
 
       {/* Header */}
       <div className={styles.header}>
-        <p className={styles.eyebrow}>Portfolio</p>
-        <h1 id="portfolio-heading" className={styles.h1}>Selected work</h1>
-        <p className={styles.lead}>
-          Full-stack apps, PWAs and websites. The recent ones are built with AI agents.
-        </p>
+        <p className="eyebrow">{t.portfolio.eyebrow}</p>
+        <h1 id="portfolio-heading" className={styles.h1}>{t.portfolio.h1}</h1>
+        <p className={styles.lead}>{t.portfolio.lead}</p>
       </div>
 
       {/* Filters */}
-      <div className={styles.filters} role="group" aria-label="Filter projects by category">
+      <div className={styles.filters} role="group" aria-label={t.portfolio.filterLabel}>
         {categories.map(cat => (
           <button
             key={cat}
@@ -147,7 +123,7 @@ const Portfolio: React.FC = () => {
             }}
             aria-pressed={active === cat}
           >
-            {cat}
+            {t.portfolio.types[cat]}
           </button>
         ))}
       </div>
@@ -162,7 +138,7 @@ const Portfolio: React.FC = () => {
           ))}
         </ul>
       ) : (
-        <p className={styles.empty}>No projects in this category yet.</p>
+        <p className={styles.empty}>{t.portfolio.empty}</p>
       )}
 
     </section>

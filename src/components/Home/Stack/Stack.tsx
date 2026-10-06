@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom'
 import { Icon } from '@iconify/react'
 import { inkLogoClass } from '@/data/inkLogos'
 import { classicPicks, currentAiStack } from '@/data/stack'
 import type { StackItem } from '@/types/stack'
+import Link from '@/i18n/LocaleLink'
+import { useLocale } from '@/i18n/useLocale'
 import styles from './Stack.module.css'
 
 // ── Groups ────────────────────────────────────────────────────────────────────
@@ -15,19 +16,21 @@ type Group = {
   link: { to: string; label: string }
 }
 
-const groups: Group[] = [
-  { label: 'AI stack', items: currentAiStack, link: { to: '/ai', label: 'How I work with AI' } },
-  { label: 'Classic stack', items: classicPicks, link: { to: '/about#stack', label: 'The full stack' } },
-]
-
 // ── Component ─────────────────────────────────────────────────────────────────
 
 const Stack: React.FC = () => {
+  const { t } = useLocale()
+
+  const groups: Group[] = [
+    { label: t.homeStack.ai, items: currentAiStack, link: { to: '/ai', label: t.homeStack.aiLink } },
+    { label: t.homeStack.classic, items: classicPicks, link: { to: '/about#stack', label: t.homeStack.classicLink } },
+  ]
+
   return (
-    <section className={styles.section} aria-label="Tech stack">
+    <section className={styles.section} aria-label={t.homeStack.label}>
       <div className={styles.inner}>
         {groups.map((group) => (
-          <div key={group.label} className={styles.group}>
+          <div key={group.link.to} className={styles.group}>
 
             <div className={styles.header}>
               <h2 className={styles.label}>{group.label}</h2>

@@ -111,37 +111,9 @@
   line-height: 1.5;
 }
 
-/* ── CTA link ─────────────────────────────────────────── */
+/* ── CTA link: the secondary button (index.css), at the left ─ */
 .cta {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-sm);
-  padding: 0.5rem 0.875rem;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  color: var(--text-dark);
-  background-color: var(--surface-elevated);
-  border: 1px solid var(--border-default);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-xs);
-  transition:
-    border-color var(--duration-fast) var(--ease-default),
-    box-shadow var(--duration-fast) var(--ease-default);
   align-self: flex-start;
-}
-
-.cta:hover {
-  border-color: var(--border-strong);
-  box-shadow: var(--shadow-sm);
-}
-
-.cta svg {
-  color: var(--clr-dark-red);
-  transition: transform var(--duration-fast) var(--ease-default);
-}
-
-.cta:hover svg {
-  transform: translate(2px, -2px);
 }
 
 /* ── Responsive ───────────────────────────────────────── */
@@ -161,10 +133,6 @@
   .card {
     opacity: 1;
     transform: none;
-    transition: none;
-  }
-
-  .cta svg {
     transition: none;
   }
 }

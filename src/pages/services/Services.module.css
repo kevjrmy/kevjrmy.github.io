@@ -12,20 +12,6 @@
   padding: var(--space-4xl) var(--content-padding);
 }
 
-/* Reads like a slash command typed into a CLI agent: "/about me" */
-.eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  text-transform: lowercase;
-  color: var(--text-medium);
-}
-
-.eyebrow::before {
-  content: '/';
-  color: var(--clr-dark-red);
-}
-
 .h1 {
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 500;
@@ -39,25 +25,6 @@
   color: var(--text-light);
   line-height: 1.7;
   max-width: 48ch;
-}
-
-.headerCta {
-  display: inline-flex;
-  align-items: center;
-  align-self: flex-start;
-  gap: var(--space-sm);
-  margin-top: var(--space-sm);
-  padding: 0.625rem 1.25rem;
-  border-radius: var(--radius-md);
-  font-size: 0.9375rem;
-  font-weight: 500;
-  color: var(--text-inverse);
-  background-color: var(--clr-dark-red);
-  transition: background-color var(--duration-fast) var(--ease-default);
-}
-
-.headerCta:hover {
-  background-color: var(--clr-medium-red);
 }
 
 /* ── Grid section ─────────────────────────────────────── */
@@ -81,9 +48,8 @@
 /* ── Card ─────────────────────────────────────────────── */
 .card {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: var(--space-lg);
+  align-items: flex-start;
+  gap: var(--space-md);
   padding: var(--space-xl);
   background-color: var(--surface-elevated);
   border: 1px solid var(--border-default);
@@ -97,12 +63,6 @@
 .card:hover {
   box-shadow: var(--shadow-md);
   border-color: var(--border-strong);
-}
-
-.cardTop {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-md);
 }
 
 /* ── Icon ─────────────────────────────────────────────── */
@@ -139,14 +99,6 @@
   line-height: 1.6;
 }
 
-/* ── Price ────────────────────────────────────────────── */
-.price {
-  font-size: 0.8125rem;
-  font-family: var(--font-mono);
-  font-weight: 600;
-  color: var(--clr-dark-red);
-}
-
 /* ── Responsive ───────────────────────────────────────── */
 @media screen and (min-width: 640px) {
   .grid {
@@ -159,7 +111,7 @@
     grid-template-columns: repeat(4, 1fr);
   }
 
-  .cardTop {
+  .card {
     flex-direction: column;
   }
 }
@@ -167,10 +119,6 @@
 /* ── Reduced motion ───────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .card {
-    transition: none;
-  }
-
-  .headerCta {
     transition: none;
   }
 }

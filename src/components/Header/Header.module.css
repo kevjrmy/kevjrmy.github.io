@@ -111,7 +111,8 @@
 }
 
 /* ── Theme switch ──────────────────────────────────── */
-/* An icon the size of a nav link, just before Contact. On mobile it sits beside
+/* An icon the size of a nav link, just before Contact and after the language
+   switch: the two settings of the site sit together. On mobile they sit beside
    the menu button, in the header and in the sheet, at that button's size. */
 .themeButton {
   display: flex;
@@ -135,6 +136,10 @@
   display: flex;
   align-items: center;
   gap: var(--space-xs);
+  /* the language switch (LanguageSwitch.module.css) takes the size of its neighbours */
+  --switch-size: 40px;
+  --switch-color: var(--text-dark);
+  --switch-margin: -2px 0;
 }
 
 .actions .themeButton {

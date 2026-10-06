@@ -1,33 +1,18 @@
 import { useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
 import { Icon } from '@iconify/react'
+import Link from '@/i18n/LocaleLink'
+import { useLocale } from '@/i18n/useLocale'
 import styles from './Services.module.css'
 
-type Service = {
-  icon: string
-  title: string
-  description: string
-}
-
-const services: Service[] = [
-  {
-    icon: 'tabler:settings-automation',
-    title: 'AI Automation',
-    description: 'Manual spreadsheet work, turned into a tool that does it for you.',
-  },
-  {
-    icon: 'tabler:server',
-    title: 'Web Application',
-    description: 'Full-stack products, from MVP to production.',
-  },
-  {
-    icon: 'tabler:device-mobile-code',
-    title: 'PWA',
-    description: 'Installable, offline-ready web apps.',
-  },
-]
+// `id` is the key of the card's title and description in the messages of each language
+const services = [
+  { id: 'automation', icon: 'tabler:settings-automation' },
+  { id: 'webapp', icon: 'tabler:server' },
+  { id: 'pwa', icon: 'tabler:device-mobile-code' },
+] as const
 
 const Services: React.FC = () => {
+  const { t } = useLocale()
   const gridRef = useRef<HTMLUListElement>(null)
 
   useEffect(() => {
@@ -54,14 +39,14 @@ const Services: React.FC = () => {
     <section className={styles.section} aria-labelledby="services-heading">
 
       <div className={styles.intro}>
-        <h2 id="services-heading" className={styles.heading}>My Services</h2>
-        <p className={styles.subline}>What I build most, with AI agents in the loop.</p>
+        <h2 id="services-heading" className={styles.heading}>{t.homeServices.heading}</h2>
+        <p className={styles.subline}>{t.homeServices.subline}</p>
       </div>
 
       <ul ref={gridRef} className={styles.grid} role="list">
         {services.map((service, i) => (
           <li
-            key={service.title}
+            key={service.id}
             className={styles.card}
             style={{ '--card-delay': `${i * 80}ms` } as React.CSSProperties}
           >
@@ -69,15 +54,15 @@ const Services: React.FC = () => {
               <Icon icon={service.icon} width={28} height={28} />
             </div>
             <div className={styles.cardBody}>
-              <h3 className={styles.cardTitle}>{service.title}</h3>
-              <p className={styles.cardDescription}>{service.description}</p>
+              <h3 className={styles.cardTitle}>{t.homeServices.items[service.id].title}</h3>
+              <p className={styles.cardDescription}>{t.homeServices.items[service.id].description}</p>
             </div>
           </li>
         ))}
       </ul>
 
-      <Link to="/services" className={styles.cta} aria-label="See all services">
-        See all services
+      <Link to="/services" className={`button-secondary ${styles.cta}`}>
+        {t.homeServices.cta}
         <Icon icon="tabler:arrow-up-right" width={16} height={16} aria-hidden="true" />
       </Link>
 

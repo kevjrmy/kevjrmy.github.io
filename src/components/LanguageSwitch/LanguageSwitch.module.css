@@ -1,0 +1,123 @@
+/* ══════════════════════════════════════════════════════
+   LanguageSwitch — the language code, and the list it opens
+   ══════════════════════════════════════════════════════ */
+
+/* Sized like the theme switch beside it. The header sets --switch-size and
+   --switch-color where its buttons are larger (beside the menu button). */
+.root {
+  position: relative;
+  display: flex;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: var(--switch-size, 34px);
+  padding: 0 var(--space-sm);
+  /* keeps the header at the logo's height, as the buttons around it do */
+  margin: var(--switch-margin, 0);
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--switch-color, var(--text-medium));
+  transition:
+    color var(--duration-fast) var(--ease-default),
+    background-color var(--duration-fast) var(--ease-default);
+}
+
+.button:hover,
+.button[aria-expanded='true'] {
+  color: var(--text-dark);
+  background-color: var(--surface-tertiary);
+}
+
+.button svg {
+  transition: transform var(--duration-fast) var(--ease-default);
+}
+
+.button[aria-expanded='true'] svg {
+  transform: rotate(180deg);
+}
+
+/* ── List ─────────────────────────────────────────────── */
+.list {
+  position: absolute;
+  top: calc(100% + var(--space-sm));
+  right: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 9.5rem;
+  padding: var(--space-xs);
+  background-color: var(--surface-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  animation: listIn var(--duration-fast) var(--ease-out) both;
+}
+
+@keyframes listIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: 0.5rem 0.625rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-medium);
+  transition:
+    color var(--duration-fast) var(--ease-default),
+    background-color var(--duration-fast) var(--ease-default);
+}
+
+.option:hover {
+  color: var(--text-dark);
+  background-color: var(--surface-tertiary);
+}
+
+.option[aria-current] {
+  color: var(--text-dark);
+}
+
+.code {
+  width: 2ch;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* The language being read: the red of the slash labels */
+.option[aria-current] .code {
+  color: var(--clr-dark-red);
+}
+
+/* ── Reduced motion ───────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .list {
+    animation: none;
+  }
+
+  .button,
+  .button svg,
+  .option {
+    transition: none;
+  }
+}

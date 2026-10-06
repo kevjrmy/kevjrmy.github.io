@@ -18,20 +18,6 @@
   gap: var(--space-xs);
 }
 
-/* Reads like a slash command typed into a CLI agent: "/ai stack" */
-.eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  text-transform: lowercase;
-  color: var(--text-medium);
-}
-
-.eyebrow::before {
-  content: '/';
-  color: var(--clr-dark-red);
-}
-
 .h2 {
   font-size: clamp(1.75rem, 3.5vw, 2.5rem);
   font-weight: 500;
@@ -47,37 +33,9 @@
   max-width: 56ch;
 }
 
-/* Secondary button: it leads to another page */
+/* The secondary button (index.css) starts at the left of its column */
 .link {
-  display: inline-flex;
-  align-items: center;
   align-self: flex-start;
-  gap: var(--space-sm);
-  padding: 0.5rem 0.875rem;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  color: var(--text-dark);
-  background-color: var(--surface-elevated);
-  border: 1px solid var(--border-default);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-xs);
-  transition:
-    border-color var(--duration-fast) var(--ease-default),
-    box-shadow var(--duration-fast) var(--ease-default);
-}
-
-.link:hover {
-  border-color: var(--border-strong);
-  box-shadow: var(--shadow-sm);
-}
-
-.link svg {
-  color: var(--clr-dark-red);
-  transition: transform var(--duration-fast) var(--ease-default);
-}
-
-.link:hover svg {
-  transform: translate(2px, -2px);
 }
 
 /* ══════════════════════════════════════════════════════
@@ -529,8 +487,6 @@
    ══════════════════════════════════════════════════════ */
 
 @media (prefers-reduced-motion: reduce) {
-  .link,
-  .link svg,
   .soonLink svg,
   .practice {
     transition: none;

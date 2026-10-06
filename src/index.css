@@ -46,7 +46,6 @@
   --text-inverse: #ffffff;
 
   --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: serif;
   --font-mono: ui-monospace, Consolas, monospace;
 
   /* ── Spacing scale ────────────────────────────────── */
@@ -373,12 +372,56 @@ main::after {
 
 
 /* ══════════════════════════════════════════════════════
-   Content / Markdown styling
+   Shared pieces — used as plain class names by several
+   components, so they are written once
    ══════════════════════════════════════════════════════ */
 
-.content h2,
-.content p {
-  margin: var(--space-md) 0;
+/* Eyebrow: reads like a slash command typed into a CLI agent, "/about me".
+   The slash is drawn here, not typed in the text. */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-transform: lowercase;
+  color: var(--text-medium);
+}
+
+.eyebrow::before {
+  content: '/';
+  color: var(--clr-dark-red);
+}
+
+/* Secondary button: a link that leads to another page, with a red arrow.
+   Where it sits (alignment, margin) is the component's business. */
+.button-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 0.5rem 0.875rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  background-color: var(--surface-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+  transition:
+    border-color var(--duration-fast) var(--ease-default),
+    box-shadow var(--duration-fast) var(--ease-default);
+}
+
+.button-secondary:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-sm);
+}
+
+.button-secondary svg {
+  color: var(--clr-dark-red);
+  transition: transform var(--duration-fast) var(--ease-default);
+}
+
+.button-secondary:hover svg {
+  transform: translate(2px, -2px);
 }
 
 

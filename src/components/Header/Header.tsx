@@ -1,22 +1,26 @@
 import { useState, useEffect, useRef } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { Icon } from '@iconify/react'
+import LanguageSwitch from '@/components/LanguageSwitch/LanguageSwitch'
 import { useTheme } from '@/hooks/useTheme'
+import { basePath } from '@/i18n/locales'
+import Link from '@/i18n/LocaleLink'
+import { useLocale } from '@/i18n/useLocale'
 import styles from './Header.module.css'
 
 // ── Navigation ────────────────────────────────────────────────────────────────
 
+// `id` is the key of the link's label in the messages of each language
 const navLinks = [
-  { to: '/', label: 'Home' },
-  // { to: '/blog', label: 'Blog' },
-  { to: '/portfolio', label: 'Portfolio' },
-  { to: '/services', label: 'Services' },
-  { to: '/ai', label: 'AI' },
-  { to: '/about', label: 'About' },
-]
+  { to: '/', id: 'home' },
+  { to: '/portfolio', id: 'portfolio' },
+  { to: '/services', id: 'services' },
+  { to: '/ai', id: 'ai' },
+  { to: '/about', id: 'about' },
+] as const
 
 // Contact is the call to action: a button at the end, not one more link in the row
-const cta = { to: '/contact', label: 'Contact' }
+const cta = { to: '/contact' }
 
 // The theme switch has one icon for both themes, our own drawing rather than one
 // from a set: a disc in two tones of the text color, split on a diagonal that
@@ -36,15 +40,18 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(() => window.scrollY > 8)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
-  const location = useLocation()
+  // The page being read, whatever its language: /fr/about is /about
+  const page = basePath(useLocation().pathname)
   const { theme, toggleTheme } = useTheme()
+  const { t } = useLocale()
 
-  // Rendered three times: in the desktop nav, beside the menu button, and in the menu sheet
+  // Rendered three times, each after the language switch: in the desktop nav, beside
+  // the menu button, and in the menu sheet
   const themeSwitch = (
     <button
       className={styles.themeButton}
       onClick={toggleTheme}
-      aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+      aria-label={theme === 'dark' ? t.header.toLight : t.header.toDark}
     >
       <ThemeIcon />
     </button>
@@ -104,10 +111,10 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className={styles.desktopNav} aria-label="Main navigation">
+          <nav className={styles.desktopNav} aria-label={t.header.mainNav}>
             <ul role="list" className={styles.navList}>
               {navLinks.map(link => {
-                const isActive = location.pathname === link.to
+                const isActive = page === link.to
                 return (
                   <li key={link.to}>
                     <Link
@@ -115,32 +122,34 @@ const Header = () => {
                       className={`${styles.navLink} ${isActive ? styles.activeLink : ''}`}
                       aria-current={isActive ? 'page' : undefined}
                     >
-                      {link.label}
+                      {t.header.nav[link.id]}
                     </Link>
                   </li>
                 )
               })}
+              <li><LanguageSwitch /></li>
               <li>{themeSwitch}</li>
               <li>
                 <Link
                   to={cta.to}
                   className={styles.navCta}
-                  aria-current={location.pathname === cta.to ? 'page' : undefined}
+                  aria-current={page === cta.to ? 'page' : undefined}
                 >
-                  {cta.label}
+                  {t.header.contact}
                   <Icon icon="tabler:arrow-right" width={16} height={16} aria-hidden="true" />
                 </Link>
               </li>
             </ul>
           </nav>
 
-          {/* Mobile: theme switch and menu button */}
+          {/* Mobile: language, theme switch and menu button */}
           <div className={styles.actions}>
+            <LanguageSwitch />
             {themeSwitch}
             <button
               className={styles.menuButton}
               onClick={toggleMenu}
-              aria-label="Menu"
+              aria-label={t.header.menu}
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
             >
@@ -157,7 +166,7 @@ const Header = () => {
           className={styles.mobileMenu}
           role="dialog"
           aria-modal="true"
-          aria-label="Menu"
+          aria-label={t.header.menu}
         >
           {/* Same metrics as the page header, so the logo does not move */}
           <div className={styles.mobileMenuHeader}>
@@ -165,11 +174,12 @@ const Header = () => {
               <img src="/logo.svg" alt="Kevin Jeremy Gautier" height={36} width="auto" />
             </Link>
             <div className={styles.actions}>
+              <LanguageSwitch />
               {themeSwitch}
               <button
                 ref={closeButtonRef}
                 onClick={closeMenu}
-                aria-label="Close menu"
+                aria-label={t.header.closeMenu}
                 className={styles.menuButton}
               >
                 <Icon icon="tabler:x" width={24} height={24} aria-hidden="true" />
@@ -177,10 +187,10 @@ const Header = () => {
             </div>
           </div>
 
-          <nav className={styles.mobileNav} aria-label="Mobile navigation">
+          <nav className={styles.mobileNav} aria-label={t.header.mobileNav}>
             <ul role="list" className={styles.mobileNavList}>
               {navLinks.map((link, i) => {
-                const isActive = location.pathname === link.to
+                const isActive = page === link.to
                 return (
                   <li
                     key={link.to}
@@ -193,7 +203,7 @@ const Header = () => {
                       className={`${styles.mobileNavLink} ${isActive ? styles.activeMobileLink : ''}`}
                       aria-current={isActive ? 'page' : undefined}
                     >
-                      {link.label}
+                      {t.header.nav[link.id]}
                       <Icon icon="tabler:arrow-right" width={22} height={22} aria-hidden="true" />
                     </Link>
                   </li>
@@ -204,10 +214,10 @@ const Header = () => {
 
           <div className={styles.mobileMenuFooter}>
             <Link to={cta.to} onClick={closeMenu} className={styles.mobileCta}>
-              {cta.label}
+              {t.header.contact}
               <Icon icon="tabler:arrow-right" width={18} height={18} aria-hidden="true" />
             </Link>
-            <p className={styles.mobileTagline}>Words are magic</p>
+            <p className={styles.mobileTagline}>{t.header.tagline}</p>
           </div>
         </aside>
       )}

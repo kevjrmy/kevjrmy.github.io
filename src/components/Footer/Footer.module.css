@@ -40,6 +40,37 @@
   transform: translateY(-2px);
 }
 
+/* ── Languages ─────────────────────────────────────── */
+.languages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+/* A middle dot between two languages, drawn and not typed */
+.languages li + li::before {
+  content: '·';
+  margin: 0 var(--space-sm);
+  color: var(--text-muted);
+}
+
+.languageLink {
+  color: var(--text-light);
+  transition: color var(--duration-fast) var(--ease-default);
+}
+
+.languageLink:hover {
+  color: var(--clr-dark-red);
+}
+
+/* The language being read */
+.languageLink[aria-current] {
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
 /* ── Bottom bar ────────────────────────────────────── */
 .bottom {
   display: flex;

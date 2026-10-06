@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export type Theme = 'light' | 'dark'
+type Theme = 'light' | 'dark'
 
 // Same key as the inline script in index.html, which sets data-theme before first paint
 const STORAGE_KEY = 'theme'

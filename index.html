@@ -8,6 +8,9 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="light dark" />
+  <!-- Stops Chrome from offering Google Translate on its own. The visitor can still
+       ask for a translation from the browser menu. -->
+  <meta name="google" content="notranslate" />
   <!-- Browser chrome on phones: the two --surface-primary values of src/index.css.
        useTheme.ts overwrites both when the visitor switches theme by hand. -->
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />

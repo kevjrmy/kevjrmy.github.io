@@ -1,65 +1,21 @@
 import { useRef, useState } from 'react'
 import { Icon } from '@iconify/react'
+import { useLocale } from '@/i18n/useLocale'
 import styles from './StartupWeekend.module.css'
 
 // ── Photos ────────────────────────────────────────────────────────────────────
-// Files live in public/images/startup-weekend/ as <name>.webp (1440w) and <name>-720.webp
+// Files live in public/images/startup-weekend/ as <name>.webp (1440w) and <name>-720.webp.
+// The name is also the key of the photo's alt text and caption in the messages of
+// each language; the text column (heading, body, facts) is there too.
 
-type Photo = {
-  name: string
-  alt: string
-  caption: string
-}
-
-const photos: Photo[] = [
-  {
-    name: 'team',
-    alt: 'The six members of the Cuanto Cuesta team on stage, holding the Grand Prize certificate',
-    caption: 'The Cuanto Cuesta team',
-  },
-  {
-    name: 'kevin',
-    alt: 'Kevin Jeremy Gautier holding the Grand Prize certificate in front of the Techstars Startup Weekend Valencia banner',
-    caption: '1st place, in hand',
-  },
-  {
-    name: 'certificate',
-    alt: 'Framed "Grand Prize Winner — Cuanto Cuesta" certificate on a table covered in sticky notes',
-    caption: 'Grand Prize Winner',
-  },
-  {
-    name: 'pitch-market',
-    alt: 'A teammate presenting the market-size slide during the final pitch',
-    caption: 'The final pitch',
-  },
-  {
-    name: 'pitch-product',
-    alt: 'A teammate on stage presenting the Cuanto Cuesta product on a large screen',
-    caption: 'Presenting the product',
-  },
-  {
-    name: 'pitch-room',
-    alt: 'The final pitch seen from the back of the audience',
-    caption: 'A full room',
-  },
-  {
-    name: 'teammates',
-    alt: 'Kevin and two teammates smiling with the Grand Prize certificate',
-    caption: 'With Luis and Adriano',
-  },
-]
-
-const facts = [
-  'From idea to final pitch in 54 hours',
-  'A team of six',
-  'I have kept building its web side since: landing page, consumer app and business dashboard',
-]
+const photos = ['team', 'kevin', 'certificate', 'pitch-market', 'pitch-product', 'pitch-room', 'teammates'] as const
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
 const StartupWeekend: React.FC = () => {
   const trackRef = useRef<HTMLUListElement>(null)
   const [index, setIndex] = useState(0)
+  const { t } = useLocale()
 
   // The track is a scroll-snap row, so swipe and trackpad work on their own.
   // The arrows only scroll it; the current slide is read back from the scroll position.
@@ -80,18 +36,12 @@ const StartupWeekend: React.FC = () => {
 
       {/* ── Text column ───────────────────────────────── */}
       <div className={styles.content}>
-        <p className={styles.eyebrow}>Award</p>
-        <h2 id="award-heading" className={styles.heading}>
-          1st place at Techstars Startup Weekend Valencia
-        </h2>
-        <p className={styles.body}>
-          In June 2026 our team, Cuanto Cuesta, won the competition's Grand
-          Prize with a simple idea: real, verified prices for local services in
-          Spain.
-        </p>
+        <p className="eyebrow">{t.award.eyebrow}</p>
+        <h2 id="award-heading" className={styles.heading}>{t.award.heading}</h2>
+        <p className={styles.body}>{t.award.body}</p>
 
         <ul className={styles.facts} role="list">
-          {facts.map((fact) => (
+          {t.award.facts.map((fact) => (
             <li key={fact} className={styles.fact}>
               <Icon icon="tabler:check" width={20} height={20} aria-hidden="true" />
               <span>{fact}</span>
@@ -103,10 +53,10 @@ const StartupWeekend: React.FC = () => {
           href="https://cuantocuesta.eu"
           target="_blank"
           rel="noopener noreferrer"
-          className={styles.cta}
-          aria-label="Visit Cuanto Cuesta — opens in a new tab"
+          className={`button-secondary ${styles.cta}`}
+          aria-label={t.common.newTabLabel(t.award.visit)}
         >
-          Visit Cuanto Cuesta
+          {t.award.visit}
           <Icon icon="tabler:arrow-up-right" width={16} height={16} aria-hidden="true" />
         </a>
       </div>
@@ -116,30 +66,30 @@ const StartupWeekend: React.FC = () => {
         className={styles.gallery}
         role="group"
         aria-roledescription="carousel"
-        aria-label="Photos from Techstars Startup Weekend Valencia"
+        aria-label={t.award.gallery}
       >
         <ul ref={trackRef} className={styles.track} role="list" tabIndex={0} onScroll={onScroll}>
-          {photos.map((photo, i) => (
+          {photos.map((name, i) => (
             <li
-              key={photo.name}
+              key={name}
               className={styles.slide}
               role="group"
               aria-roledescription="slide"
-              aria-label={`${i + 1} of ${photos.length}`}
+              aria-label={t.award.slideOf(i + 1, photos.length)}
             >
               <img
-                src={`/images/startup-weekend/${photo.name}.webp`}
-                srcSet={`/images/startup-weekend/${photo.name}-720.webp 720w, /images/startup-weekend/${photo.name}.webp 1440w`}
+                src={`/images/startup-weekend/${name}.webp`}
+                srcSet={`/images/startup-weekend/${name}-720.webp 720w, /images/startup-weekend/${name}.webp 1440w`}
                 sizes="(min-width: 900px) 620px, 100vw"
-                alt={photo.alt}
+                alt={t.award.photos[name].alt}
                 width={1440}
                 height={960}
                 loading={i === 0 ? undefined : 'lazy'}
                 className={styles.photo}
               />
               <p className={styles.caption}>
-                <span className={styles.captionTitle}>{photo.caption}</span>
-                <span className={styles.captionMeta}>Valencia · June 2026</span>
+                <span className={styles.captionTitle}>{t.award.photos[name].caption}</span>
+                <span className={styles.captionMeta}>{t.award.meta}</span>
               </p>
             </li>
           ))}
@@ -148,14 +98,14 @@ const StartupWeekend: React.FC = () => {
         <button
           className={`${styles.arrow} ${styles.arrowPrev}`}
           onClick={() => goTo(index - 1)}
-          aria-label="Previous photo"
+          aria-label={t.award.prev}
         >
           <Icon icon="tabler:chevron-left" width={32} height={32} aria-hidden="true" />
         </button>
         <button
           className={`${styles.arrow} ${styles.arrowNext}`}
           onClick={() => goTo(index + 1)}
-          aria-label="Next photo"
+          aria-label={t.award.next}
         >
           <Icon icon="tabler:chevron-right" width={32} height={32} aria-hidden="true" />
         </button>

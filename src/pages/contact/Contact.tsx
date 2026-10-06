@@ -1,11 +1,13 @@
 import { Icon } from '@iconify/react'
+import { useLocale } from '@/i18n/useLocale'
 import styles from './Contact.module.css'
 
 // ── Contact methods ───────────────────────────────────────────────────────────
 
+// Email has no `label`: unlike the three brand names, the word is translated
 type ContactMethod = {
   icon: string
-  label: string
+  label?: string
   value: string
   href: string
   external: boolean
@@ -35,7 +37,6 @@ const methods: ContactMethod[] = [
   },
   {
     icon: 'tabler:mail',
-    label: 'Email',
     value: 'kevin.jgnetworks@gmail.com',
     href: 'mailto:kevin.jgnetworks@gmail.com',
     external: false,
@@ -45,34 +46,34 @@ const methods: ContactMethod[] = [
 // ── Component ─────────────────────────────────────────────────────────────────
 
 const Contact: React.FC = () => {
+  const { t } = useLocale()
+
   return (
     <section className={styles.section} aria-labelledby="contact-heading">
       <div className={styles.inner}>
 
         <div className={styles.intro}>
-          <p className={styles.eyebrow}>Contact</p>
-          <h1 id="contact-heading" className={styles.h1}>Let's talk</h1>
-          <p className={styles.lead}>
-            Pick whatever channel works best for you.
-          </p>
+          <p className="eyebrow">{t.contact.eyebrow}</p>
+          <h1 id="contact-heading" className={styles.h1}>{t.contact.h1}</h1>
+          <p className={styles.lead}>{t.contact.lead}</p>
         </div>
 
         <ul className={styles.list} role="list">
-          {methods.map((method) => (
-            <li key={method.label}>
+          {methods.map(({ label = t.contact.email, ...method }) => (
+            <li key={method.href}>
               <a
                 href={method.href}
                 className={styles.item}
                 {...(method.external
                   ? { target: '_blank', rel: 'noopener noreferrer' }
                   : {})}
-                aria-label={`Contact via ${method.label}`}
+                aria-label={t.contact.via(label)}
               >
                 <div className={styles.iconWrap}>
                   <Icon icon={method.icon} width={24} height={24} aria-hidden="true" />
                 </div>
                 <div className={styles.itemText}>
-                  <span className={styles.itemLabel}>{method.label}</span>
+                  <span className={styles.itemLabel}>{label}</span>
                   <span className={styles.itemValue}>{method.value}</span>
                 </div>
                 <Icon

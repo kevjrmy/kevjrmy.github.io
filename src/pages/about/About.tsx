@@ -1,102 +1,39 @@
-import { Link } from 'react-router-dom'
 import { Icon } from '@iconify/react'
 import Cta from '@/components/Home/CTA/Cta'
 import { inkLogoClass } from '@/data/inkLogos'
 import { classicStack, creativeTools, currentAiStack } from '@/data/stack'
+import Link from '@/i18n/LocaleLink'
+import { useLocale } from '@/i18n/useLocale'
 import styles from './About.module.css'
 
+// Each list below gives the order and the icons. The words are in the messages of
+// each language (src/i18n/messages), under the keys used here.
+
 // ── Timeline ──────────────────────────────────────────────────────────────────
+// Oldest first
 
-type TimelineEntry = {
-  year: string
-  title: string
-  body: string
-}
-
-const timeline: TimelineEntry[] = [
-  {
-    year: '2021',
-    title: 'Graduated & went freelance',
-    body: 'Earned the Web Developer (Node.js) diploma from OpenClassrooms, listed in France\'s national register of professional certifications (RNCP), and immediately started taking on clients — mostly WordPress sites for small businesses and local shops.',
-  },
-  {
-    year: '2022',
-    title: 'Modern frameworks',
-    body: 'Outgrew WordPress for anything custom. Picked up Vue and Laravel as my main stack and shipped my first SPA and first REST API in production.',
-  },
-  {
-    year: '2023',
-    title: 'SSR & production-grade apps',
-    body: 'Levelled up with Nuxt and Next.js for SEO-critical projects. More complex Laravel back-ends, sharper focus on performance and accessibility.',
-  },
-  {
-    year: '2024',
-    title: 'Going full-stack & mobile',
-    body: 'Added React, TypeScript, and Kotlin to the toolkit. Built my first PWAs and a native Android app — convinced that one codebase rarely fits every problem.',
-  },
-  {
-    year: '2025 → now',
-    title: 'AI-first development',
-    body: 'Most of my work now runs through AI agents. Claude Code is my main one, after time with Codex, OpenCode and Antigravity, and Cursor is my editor. The agents write fast; I direct, review and answer for the result.',
-  },
-]
+const timeline = ['graduated', 'frameworks', 'ssr', 'fullstack', 'aiFirst'] as const
 
 // ── Credentials ───────────────────────────────────────────────────────────────
 
-type CredentialGroup = {
-  label: string
-  icon: string
-  items: { label: string; detail: string }[]
-}
-
-const credentialGroups: CredentialGroup[] = [
-  {
-    label: 'Education',
-    icon: 'tabler:certificate',
-    items: [
-      { label: 'Web Developer (Node.js)', detail: 'OpenClassrooms — RNCP-registered diploma' },
-    ],
-  },
-  {
-    label: 'Languages',
-    icon: 'tabler:language',
-    items: [
-      { label: 'French', detail: 'Native' },
-      { label: 'English', detail: 'C1 — Cambridge' },
-      { label: 'Spanish', detail: 'C1 — DELE, Instituto Cervantes' },
-    ],
-  },
-]
+const credentialGroups = [
+  { id: 'education', icon: 'tabler:certificate', items: ['diploma'] },
+  { id: 'languages', icon: 'tabler:language', items: ['french', 'english', 'spanish'] },
+] as const
 
 // ── Values ────────────────────────────────────────────────────────────────────
 
-type Value = {
-  icon: string
-  title: string
-  body: string
-}
-
-const values: Value[] = [
-  {
-    icon: 'tabler:rocket',
-    title: 'Ship, then iterate',
-    body: 'A working product in front of real users beats a perfect one on a Figma board. I push for a lean first release, then improve from feedback.',
-  },
-  {
-    icon: 'tabler:eye',
-    title: 'Readable over clever',
-    body: "Code is read far more often than it's written. I keep it straightforward so the next person (usually me, six months later) can pick it up without a manual.",
-  },
-  {
-    icon: 'tabler:message-2',
-    title: 'No ghost clients',
-    body: "If something changes, I say so early. You'll always know where the project stands — no unpleasant surprises at delivery.",
-  },
-]
+const values = [
+  { id: 'ship', icon: 'tabler:rocket' },
+  { id: 'readable', icon: 'tabler:eye' },
+  { id: 'ghost', icon: 'tabler:message-2' },
+] as const
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
 const About: React.FC = () => {
+  const { t } = useLocale()
+
   return (
     <>
 
@@ -105,22 +42,17 @@ const About: React.FC = () => {
         <div className={styles.headerInner}>
 
           <div className={styles.headerText}>
-            <p className={styles.eyebrow}>About me</p>
+            <p className="eyebrow">{t.about.eyebrow}</p>
             <h1 id="about-heading" className={styles.h1}>
-              A developer who<br />gives a damn.
+              {t.about.h1[0]}<br />{t.about.h1[1]}
             </h1>
-            <p className={styles.lead}>
-              I'm Kevin Jeremy Gautier — full-stack developer based in Valencia, Spain.
-              Certified web developer, freelance since 2021, working in French, English
-              and Spanish. These days I build with AI agents, and I still care that
-              things work well and look the part.
-            </p>
+            <p className={styles.lead}>{t.about.lead}</p>
           </div>
 
           <div className={styles.headerPhoto}>
             <img
               src="/kevjrmy.webp"
-              alt="Kevin Jeremy Gautier — full-stack developer based in Valencia, Spain"
+              alt={t.about.photoAlt}
               className={styles.photo}
               width={320}
               height={320}
@@ -135,17 +67,17 @@ const About: React.FC = () => {
         <div className={styles.sectionInner}>
 
           <div className={styles.sectionIntro}>
-            <p className={styles.eyebrow}>Background</p>
-            <h2 id="timeline-heading" className={styles.h2}>How I got here</h2>
+            <p className="eyebrow">{t.about.background.eyebrow}</p>
+            <h2 id="timeline-heading" className={styles.h2}>{t.about.background.heading}</h2>
           </div>
 
           <ol className={styles.timeline} role="list">
-            {timeline.map((entry) => (
-              <li key={entry.year} className={styles.timelineItem}>
-                <span className={styles.timelineYear}>{entry.year}</span>
+            {timeline.map((id) => (
+              <li key={id} className={styles.timelineItem}>
+                <span className={styles.timelineYear}>{t.about.timeline[id].year}</span>
                 <div className={styles.timelineContent}>
-                  <h3 className={styles.timelineTitle}>{entry.title}</h3>
-                  <p className={styles.timelineBody}>{entry.body}</p>
+                  <h3 className={styles.timelineTitle}>{t.about.timeline[id].title}</h3>
+                  <p className={styles.timelineBody}>{t.about.timeline[id].body}</p>
                 </div>
               </li>
             ))}
@@ -153,16 +85,16 @@ const About: React.FC = () => {
 
           <div className={styles.credentials}>
             {credentialGroups.map((group) => (
-              <div key={group.label} className={styles.stackGroup}>
+              <div key={group.id} className={styles.stackGroup}>
                 <div className={styles.stackGroupHeader}>
                   <Icon icon={group.icon} width={18} height={18} aria-hidden="true" />
-                  <span className={styles.stackGroupLabel}>{group.label}</span>
+                  <span className={styles.stackGroupLabel}>{t.about.credentials[group.id]}</span>
                 </div>
                 <ul className={styles.stackItems} role="list">
                   {group.items.map((item) => (
-                    <li key={item.label} className={styles.credential}>
-                      <span className={styles.credentialLabel}>{item.label}</span>
-                      <span className={styles.credentialDetail}>{item.detail}</span>
+                    <li key={item} className={styles.credential}>
+                      <span className={styles.credentialLabel}>{t.about.credentials.items[item].label}</span>
+                      <span className={styles.credentialDetail}>{t.about.credentials.items[item].detail}</span>
                     </li>
                   ))}
                 </ul>
@@ -178,19 +110,16 @@ const About: React.FC = () => {
         <div className={styles.sectionInner}>
 
           <div className={styles.sectionIntro}>
-            <p className={styles.eyebrow}>Toolkit</p>
-            <h2 id="stack-heading" className={styles.h2}>What I build with</h2>
-            <p className={styles.sectionSubline}>
-              Two stacks: the AI agents that write with me, and the classic one they write in.
-              Beside them, what I draw and edit video with.
-            </p>
+            <p className="eyebrow">{t.about.toolkit.eyebrow}</p>
+            <h2 id="stack-heading" className={styles.h2}>{t.about.toolkit.heading}</h2>
+            <p className={styles.sectionSubline}>{t.about.toolkit.subline}</p>
           </div>
 
           <div className={styles.stackBlock}>
             <div className={styles.stackBlockHeader}>
-              <h3 className={styles.stackBlockTitle}>AI stack</h3>
-              <Link to="/ai" className={styles.stackBlockLink}>
-                How I work with AI
+              <h3 className={styles.stackBlockTitle}>{t.about.toolkit.ai}</h3>
+              <Link to="/ai" className="button-secondary">
+                {t.about.toolkit.aiLink}
                 <Icon icon="tabler:arrow-up-right" width={16} height={16} aria-hidden="true" />
               </Link>
             </div>
@@ -206,14 +135,14 @@ const About: React.FC = () => {
 
           <div className={styles.stackBlock}>
             <div className={styles.stackBlockHeader}>
-              <h3 className={styles.stackBlockTitle}>Classic stack</h3>
+              <h3 className={styles.stackBlockTitle}>{t.about.toolkit.classic}</h3>
             </div>
             <div className={styles.stackGrid}>
               {classicStack.map((group) => (
-                <div key={group.label} className={styles.stackGroup}>
+                <div key={group.id} className={styles.stackGroup}>
                   <div className={styles.stackGroupHeader}>
                     <Icon icon={group.icon} width={18} height={18} aria-hidden="true" />
-                    <span className={styles.stackGroupLabel}>{group.label}</span>
+                    <span className={styles.stackGroupLabel}>{t.stack.groups[group.id]}</span>
                   </div>
                   <ul className={styles.stackItems} role="list">
                     {group.items.map((item) => (
@@ -231,7 +160,7 @@ const About: React.FC = () => {
           {/* Not a stack: the design and video tools */}
           <div className={styles.stackBlock}>
             <div className={styles.stackBlockHeader}>
-              <h3 className={styles.stackBlockTitle}>Graphics &amp; video</h3>
+              <h3 className={styles.stackBlockTitle}>{t.about.toolkit.creative}</h3>
             </div>
             <ul className={styles.aiItems} role="list">
               {creativeTools.map((item) => (
@@ -251,18 +180,18 @@ const About: React.FC = () => {
         <div className={styles.sectionInner}>
 
           <div className={styles.sectionIntro}>
-            <p className={styles.eyebrow}>How I work</p>
-            <h2 id="values-heading" className={styles.h2}>What to expect</h2>
+            <p className="eyebrow">{t.about.values.eyebrow}</p>
+            <h2 id="values-heading" className={styles.h2}>{t.about.values.heading}</h2>
           </div>
 
           <ul className={styles.valuesGrid} role="list">
             {values.map((v) => (
-              <li key={v.title} className={styles.valueCard}>
+              <li key={v.id} className={styles.valueCard}>
                 <div className={styles.valueIcon}>
                   <Icon icon={v.icon} width={22} height={22} aria-hidden="true" />
                 </div>
-                <h3 className={styles.valueTitle}>{v.title}</h3>
-                <p className={styles.valueBody}>{v.body}</p>
+                <h3 className={styles.valueTitle}>{t.about.values.items[v.id].title}</h3>
+                <p className={styles.valueBody}>{t.about.values.items[v.id].body}</p>
               </li>
             ))}
           </ul>
