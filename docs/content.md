@@ -50,7 +50,7 @@ The AI stack carries a status per tool, shown only on the `/ai` page: `main` (Cl
 What Kevin told about his path, for the journey on the `/ai` page (`src/pages/ai/Ai.tsx`). The order is his; he may add steps later.
 
 1. DALL·E 2, his first contact (2022).
-2. GitHub Copilot in VS Code, as a hint and autocompletion helper, "as soon as VS Code implemented it". He gave no year, and it could be either: the technical preview opened in June 2021 (on a waitlist) and it became available to everyone in June 2022. The page says 2022 and does not say whether it came before or after DALL·E 2. If it was the 2021 preview, the page's "since 2022" (headline and status line) becomes 2021.
+2. GitHub Copilot in VS Code, as a hint and autocompletion helper, from 2022 (the year it opened to everyone; Kevin confirmed it was not the 2021 preview). Whether it came before or after DALL·E 2 is not known, so the page says of neither that it was first.
 3. ChatGPT: account created a few days after its release, December 2022, when it ran on GPT-3.5.
 4. Image generation: Midjourney, and free models on Hugging Face.
 5. Bard, before it was renamed Gemini.
@@ -65,7 +65,7 @@ What Kevin told about his path, for the journey on the `/ai` page (`src/pages/ai
 
 Around it: he knew Markdown before any of this, he goes to AI meetups such as AI Tinkerers with friends and they share tips, and he has never used Ollama or run a model locally.
 
-The dates that are certain: December 2022 (ChatGPT), January 2025 (DeepSeek-R1), June 2024 (the Claude account), and that DALL·E 2 came before ChatGPT. The other years on the page were placed from when each product existed and from the order above, and are listed in `todo.md` for Kevin to confirm. Do not add a precise date he has not given.
+The dates that are certain: 2022 (DALL·E 2 and Copilot), December 2022 (ChatGPT), January 2025 (DeepSeek-R1), June 2024 (the Claude account), and that DALL·E 2 came before ChatGPT. The other years on the page were placed from when each product existed and from the order above, and are listed in `todo.md` for Kevin to confirm. Do not add a precise date he has not given.
 
 ## Voice
 

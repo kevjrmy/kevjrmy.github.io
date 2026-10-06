@@ -21,7 +21,6 @@
 - [ ] **Legal identification on `/info`.** The page does not give a tax ID or postal address. A site offering paid services from Spain is normally expected to (LSSI). Decide whether to add them.
 - [ ] **AI page (`/ai`, added 2026-10-06): to confirm with Kevin.**
   - The years that were inferred, not given: Midjourney and Hugging Face in 2023, Bard in 2023, Grok voice mode in 2025, Antigravity, the OpenClassrooms course, Google AI Studio, OpenCode and Codex in "2025 → 26", Claude Code from 2026.
-  - GitHub Copilot: placed in 2022. If he was in the 2021 technical preview, change its year and the "since 2022" of the headline and status line.
   - Claude: the page says "opened my Claude account in June 2024" (account data); he remembers using it around 2023. See `docs/content.md`, AI journey.
   - The one-line descriptions of Hermes and Jev under "Learning next", written from their own sites.
   - The exact title of the AI course on OpenClassrooms, and whether it gave a certificate worth listing under Education on the About page.
