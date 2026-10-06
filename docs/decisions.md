@@ -4,6 +4,9 @@ Choices that are not obvious from the code, with the reason. Read before reversi
 
 ## 2026-10-06
 
+**The selected works on the home page can be swiped.**
+Kevin asked for it on mobile. The panel used to render the one active project; it now renders every featured project as a slide in a scroll-snap row, and the active one is read back from the scroll position, as the Startup Weekend carousel does. That makes it work with a trackpad on desktop too, at no extra cost. Rejected: listening for touch events and switching on a threshold, which does not follow the finger. The cost: all slides are in the page, so the screenshots after the first load lazily, the slides not in view are `inert`, and every card is as tall as the tallest one.
+
 **The About toolkit grew to cover what Kevin really uses, and gained a block that is not a stack.**
 He noticed Nuxt was missing. A comparison with the project badges, his notes and the dependencies of his own projects gave a list, and he chose from it: in went Nuxt, Astro, Supabase, Firebase, React Native, Android Studio, Electron and a hosting group; out stayed Leaflet and Filament. Design and video tools (Inkscape, GIMP, DaVinci Resolve, Kdenlive) got their own block, "Graphics & video", because he asked that they not be filed as tech stack. This sits against "pick the 5 or 6 that matter most" (`docs/design.md`, Avoid): that rule is for the home page, where the strip shows six; the About page is the full inventory. The `simple-icons` set was installed for the marks the other sets lack.
 

@@ -184,6 +184,7 @@
 }
 
 /* ── Panel wrapper ────────────────────────────────────── */
+/* The card. It stays put; the projects slide inside it */
 .panelWrap {
   overflow: hidden;
   background-color: var(--surface-elevated);
@@ -191,6 +192,32 @@
   border-radius: var(--radius-xl);
   /* soft red ring around the card, then the drop shadow */
   box-shadow: var(--ring-accent), var(--shadow-lg);
+}
+
+/* Scroll-snap row: one project per view, swipeable, one project per swipe.
+   The slides share the height of the tallest, so the card does not jump */
+.track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.slide {
+  display: flex;
+  flex: 0 0 100%;
+  min-width: 0;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* Reached by a tab, not by a swipe */
+.slideIn {
   animation: panelIn var(--duration-normal) var(--ease-out) both;
 }
 
@@ -209,7 +236,9 @@
 /* ── Panel — split layout ─────────────────────────────── */
 .panel {
   display: flex;
+  flex: 1;
   flex-direction: column;
+  min-width: 0;
 }
 
 /* ── Left — screenshot ────────────────────────────────── */
@@ -402,7 +431,7 @@
 
 /* ── Reduced motion ───────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .panelWrap {
+  .slideIn {
     animation: none;
   }
 

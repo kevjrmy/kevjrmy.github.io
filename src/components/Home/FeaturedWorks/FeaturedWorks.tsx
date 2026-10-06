@@ -54,8 +54,10 @@ const Badge: React.FC<{ label: string }> = ({ label }) => {
   )
 }
 
-// ── Panel (active project) ────────────────────────────────────────────────────
-const Panel: React.FC<{ project: Project }> = ({ project }) => {
+// ── Panel (one project) ───────────────────────────────────────────────────────
+// `eager`: the slide shown on arrival loads its screenshot at once; the others wait
+// until they are about to be seen
+const Panel: React.FC<{ project: Project; eager: boolean }> = ({ project, eager }) => {
   const [imgError, setImgError] = useState(false)
 
   return (
@@ -69,6 +71,8 @@ const Panel: React.FC<{ project: Project }> = ({ project }) => {
           <img
             src={project.image.src}
             alt={project.image.alt}
+            loading={eager ? 'eager' : 'lazy'}
+            decoding="async"
             onError={() => setImgError(true)}
             className={styles.screenshot}
           />
@@ -114,8 +118,30 @@ const Panel: React.FC<{ project: Project }> = ({ project }) => {
 
 // ── FeaturedWorks ──────────────────────────────────────────────────────────────
 const FeaturedWorks: React.FC = () => {
-  const [activeSlug, setActiveSlug] = useState(featuredProjects[0]?.slug ?? '')
-  const activeProject = featuredProjects.find(p => p.slug === activeSlug)
+  // Every project is a slide in one scroll-snap row, so a swipe (or a trackpad)
+  // moves between them on its own. The active project is read back from the scroll
+  // position; a tab only scrolls the row.
+  const trackRef = useRef<HTMLDivElement>(null)
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  // The slide a tab jumped to fades in. One reached by a swipe does not: it slid in.
+  const [jumpedTo, setJumpedTo] = useState<number | null>(null)
+
+  const goTo = (index: number) => {
+    const track = trackRef.current
+    if (!track) return
+    setJumpedTo(index)
+    setActiveIndex(index)
+    track.scrollTo({ left: index * track.clientWidth, behavior: 'instant' })
+  }
+
+  const onTrackScroll = () => {
+    const track = trackRef.current
+    if (!track) return
+    const index = Math.round(track.scrollLeft / track.clientWidth)
+    setActiveIndex(index)
+    setJumpedTo(jumped => (jumped === index ? jumped : null))
+  }
 
   // The tab bar is one row that scrolls sideways: track which sides still hide tabs
   const tabBarRef = useRef<HTMLDivElement>(null)
@@ -136,6 +162,15 @@ const FeaturedWorks: React.FC = () => {
     observer.observe(bar)
     return () => observer.disconnect()
   }, [])
+
+  // Keep the active tab in view, whether a tap or a swipe chose it: centering it
+  // also reveals its neighbours. Only the bar scrolls, never the page.
+  useEffect(() => {
+    const bar = tabBarRef.current
+    const tab = bar?.children[activeIndex]
+    if (!bar || !(tab instanceof HTMLElement)) return
+    bar.scrollTo({ left: tab.offsetLeft - (bar.clientWidth - tab.offsetWidth) / 2 })
+  }, [activeIndex])
 
   // Chevrons, for pointers that cannot swipe: move the row by most of its width
   const scrollTabs = (direction: -1 | 1) => {
@@ -164,19 +199,15 @@ const FeaturedWorks: React.FC = () => {
             aria-label="Featured projects"
             onScroll={updateHidden}
           >
-            {featuredProjects.map(project => (
+            {featuredProjects.map((project, i) => (
               <button
                 key={project.slug}
                 role="tab"
-                aria-selected={project.slug === activeSlug}
+                aria-selected={i === activeIndex}
                 aria-controls={`panel-${project.slug}`}
                 id={`tab-${project.slug}`}
-                className={`${styles.tab} ${project.slug === activeSlug ? styles.tabActive : ''}`}
-                onClick={(e) => {
-                  setActiveSlug(project.slug)
-                  // The bar scrolls sideways: bring the chosen tab into view, which reveals its neighbours
-                  e.currentTarget.scrollIntoView({ inline: 'center', block: 'nearest' })
-                }}
+                className={`${styles.tab} ${i === activeIndex ? styles.tabActive : ''}`}
+                onClick={() => goTo(i)}
               >
                 {project.title}
               </button>
@@ -199,18 +230,23 @@ const FeaturedWorks: React.FC = () => {
           </button>
         </div>
 
-        {/* Active panel */}
-        {activeProject && (
-          <div
-            role="tabpanel"
-            id={`panel-${activeProject.slug}`}
-            aria-labelledby={`tab-${activeProject.slug}`}
-            className={styles.panelWrap}
-            key={activeProject.slug}
-          >
-            <Panel project={activeProject} />
+        {/* Panels: one slide per project, swiped on a phone */}
+        <div className={styles.panelWrap}>
+          <div ref={trackRef} className={styles.track} onScroll={onTrackScroll}>
+            {featuredProjects.map((project, i) => (
+              <div
+                key={project.slug}
+                role="tabpanel"
+                id={`panel-${project.slug}`}
+                aria-labelledby={`tab-${project.slug}`}
+                inert={i !== activeIndex}
+                className={`${styles.slide} ${i === jumpedTo ? styles.slideIn : ''}`}
+              >
+                <Panel project={project} eager={i === 0} />
+              </div>
+            ))}
           </div>
-        )}
+        </div>
 
       </div>
 

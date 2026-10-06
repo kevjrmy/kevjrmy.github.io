@@ -6,7 +6,7 @@ How portfolio projects are stored and shown, and what to do when adding one.
 
 `src/data/projects.ts` is the single source, typed by `Project` in `src/types/project.ts`. Two views read it:
 
-- Homepage tabs (`components/Home/FeaturedWorks`): `featuredProjects`, which is every project with `featured: true`, sorted by `order`.
+- Homepage tabs (`components/Home/FeaturedWorks`): `featuredProjects`, which is every project with `featured: true`, sorted by `order`. Each one is also a slide of the swipeable row under the tabs, and all the slides are as tall as the tallest: a much longer `excerpt` on one project makes every card taller on a phone.
 - Portfolio page (`pages/portfolio/Portfolio`): the full list, in array order, with filter buttons by `type`.
 
 Fields rendered today: `title`, `client`, `excerpt`, `stack`, `year`, `link`, `image`. The fields `status`, `lang`, and `tags` are stored but not displayed or used for filtering yet.
