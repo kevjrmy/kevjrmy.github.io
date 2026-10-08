@@ -45,7 +45,7 @@ Every push to `main` deploys to GitHub Pages via `.github/workflows/deploy.yml`.
 - Decorative visuals get `aria-hidden="true"`; sections are labelled with `aria-labelledby`.
 - Sections that sit directly in `<main>` get their separator line from a global rule: no `border-top` / `border-bottom`, no `overflow: hidden`, and leave `::after` free (`docs/styling.md`).
 - Everything is served from the site itself: no fonts, scripts, icons, or analytics from a third party. The privacy page promises it.
-- This repo is public on GitHub. Nothing private about Kevin or a client goes in it: not in a doc, a comment, a commit message, or a memory file. What has to stay on the device goes in `.private/`, which git ignores.
+- This repo is public on GitHub. Nothing private about Kevin or a client goes in it: not in a doc, a comment, a commit message, or a memory file. What has to stay on the device goes in `private/`, which git ignores.
 - In copy, say "Claude Code" or "AI agents", and put WordPress last in any list (`docs/content.md`, Positioning).
 - No em dash (—) in anything the visitor reads or a screen reader says, in any language (`docs/content.md`, Voice).
 - The site is in English, French and Spanish. No sentence is written in a component: copy lives in `src/i18n/messages/`, one file per language, and a change of copy is made in all three. Link to a page with `Link` from `@/i18n/LocaleLink`, not from `react-router-dom` (`docs/i18n.md`).
@@ -81,6 +81,7 @@ Read the file that matches the task before starting, and only that one. Each is 
 | `todo.md` | Looking for open work, or recording something left unfinished |
 | `to-confirm.md` | Before treating a wording, a date or a translation as settled; after writing something on Kevin's behalf |
 | `.claude/memory/` | Claude Code's memory of this project, committed so that it follows to another device. Claude Code loads it by itself once `npm install` has linked it; another agent starts from its `MEMORY.md`. It is the only copy: if a session's memory path is anywhere else, run `npm run memory:link` and save nothing until it points here |
+| `private/README.md` | A fact about Kevin changes on the site (diploma, languages, stack, award, projects, a contact link), or he asks for a change to his resume. The folder holds his French and Spanish resumes; git ignores it, so it exists only on a device where he put it, and nothing in it is published, linked from the site or copied into `public/` |
 | `README.md` | Never needed for a task: it is the short human introduction and repeats this file |
 
 Keeping them useful:

@@ -13,7 +13,7 @@ dist-ssr
 *.local
 
 # Personal documents
-.private/
+/private/
 
 # Claude Code settings of this device (the memory path, see scripts/link-memory.mjs)
 .claude/settings.local.json

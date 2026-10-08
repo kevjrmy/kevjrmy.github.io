@@ -10,6 +10,8 @@ Who the site is about, what it says and how it sounds. Where each sentence is wr
 - Core stack as presented: JavaScript (Node.js, React, TypeScript) and PHP (Laravel), plus Vue.
 - The site is in English, French and Spanish, and English is the main one (`docs/i18n.md`). Client work is in French, Spanish, and English.
 
+The site is about Kevin's development and consulting work, and nothing else. His resumes are broader: they may cover work that has no place here, so a line on a resume is not a reason to add it to the site. They are in `private/`, which git ignores: the resume is his to send, and the site neither shows it nor offers it for download. Where the two tell the same fact (those above, the stack, the award, the projects), a change on one side means a check of the other; `private/README.md` says which line matches which part.
+
 ## Positioning
 
 AI-first. Since this site was started, Kevin's work has moved from WordPress and hand-written code to building with AI agents, and the site should say so everywhere it describes how he works.

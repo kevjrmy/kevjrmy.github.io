@@ -2,6 +2,11 @@
 
 What the site says: positioning, voice, services, the terms page, what is on the portfolio. The rules in force are in `docs/content.md`.
 
+## 2026-10-08
+
+**The resume is not on the site, and its folder is not in the repo.**
+Kevin's request: the resume is for him to send, not for a visitor to download, so the site has no resume page and no PDF in `public/`. It is in `private/`, which sits beside the site so that a change to one prompts a check of the other, and which git ignores: the repo is public and a resume carries a phone number. The folder began the day as `resume/` at the root with an ignore rule of its own, and was merged with the ignored `.private/` so that everything kept off the repo is in one place; Kevin then renamed that folder `private/`, without the dot, and the ignore rule followed. The site covers his development and consulting work only; the resumes may be broader, so they are not expected to match it line for line. Rejected: a `/resume` page built from the site's data, with the PDFs exported from it, which was proposed and which he turned down; and an English resume, which he does not want. What it costs: the folder does not follow to another device, and nothing but the note in `docs/content.md` keeps the two in step.
+
 ## 2026-10-07
 
 **No em dash on the site.**
