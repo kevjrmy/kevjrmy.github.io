@@ -4,7 +4,7 @@ Choices that are not obvious from the code, with the reason: what was chosen, wh
 
 | File | Decisions about |
 |------|-----------------|
-| `design.md` | How the site looks and moves: the references, the hero and its terminal, the header and navigation, the theme switch, the selected works, screenshots |
+| `design.md` | How the site looks and moves: the references, the hero and its terminal, the header and navigation, the theme switch, the selected works, screenshots, and what the resume takes from the site |
 | `content.md` | What the site says: positioning, voice, services, the terms page, what is on the portfolio |
 | `stacks.md` | The two stacks, the `/ai` page and the dates of its journey |
 | `i18n.md` | The three languages and the language switch |

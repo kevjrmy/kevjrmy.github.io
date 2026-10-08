@@ -81,7 +81,7 @@ Read the file that matches the task before starting, and only that one. Each is 
 | `todo.md` | Looking for open work, or recording something left unfinished |
 | `to-confirm.md` | Before treating a wording, a date or a translation as settled; after writing something on Kevin's behalf |
 | `.claude/memory/` | Claude Code's memory of this project, committed so that it follows to another device. Claude Code loads it by itself once `npm install` has linked it; another agent starts from its `MEMORY.md`. It is the only copy: if a session's memory path is anywhere else, run `npm run memory:link` and save nothing until it points here |
-| `private/README.md` | A fact about Kevin changes on the site (diploma, languages, stack, award, projects, a contact link), or he asks for a change to his resume. The folder holds his French and Spanish resumes; git ignores it, so it exists only on a device where he put it, and nothing in it is published, linked from the site or copied into `public/` |
+| `private/README.md` | A fact about Kevin changes on the site (diploma, languages, award, a contact link), the picks of the stack or the list of projects change, the look of the site changes (its greys, its hairlines, the About timeline, its icons), or he asks for a change to his resume. The folder holds his French and Spanish resumes; git ignores it, so it exists only on a device where he put it, and nothing in it is published, linked from the site or copied into `public/` |
 | `README.md` | Never needed for a task: it is the short human introduction and repeats this file |
 
 Keeping them useful:

@@ -1,6 +1,11 @@
 # Decisions: design
 
-How the site looks and moves: the two references, the hero and its terminal, the header and its navigation, the theme switch, the selected works and their screenshots. What the design is today is in `docs/design.md`.
+How the site looks and moves: the two references, the hero and its terminal, the header and its navigation, the theme switch, the selected works and their screenshots, and what the resume takes from all this. What the design is today is in `docs/design.md`.
+
+## 2026-10-09
+
+**The resume takes its look from the site, and the site's red stays on the site.**
+Kevin's request: the resume should get its design from the website, with its own fonts kept. Its navy and lavender gave way to the site's greys, its sections got the hairline, its experience became the timeline of the About page, its colored icons became Tabler line icons and its flags became language codes. The site's red signatures were tried on it and he had each one removed: the ticks at the ends of the hairlines ("only for the website"), the slash-command eyebrow above his name, the soft red ring, the red dots of the timeline. A line saying the page was laid out with Claude Code went too: it could be taken for a watermark. What is left of the brand on the resume is the logo, its only color. Rejected: the site's typeface for the body text, tested on one paragraph, which made a fourth font on the page. What it costs: nothing checks the two against each other; the rule is in `docs/design.md`, The resume, and the resume itself is in `private/`, outside git.
 
 ## 2026-10-06
 
