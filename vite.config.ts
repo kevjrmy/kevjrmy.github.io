@@ -5,6 +5,9 @@ import fs from 'fs'
 
 const SRC_DIR = path.resolve(__dirname, './src')
 const ICON_SETS_DIR = path.resolve(__dirname, './node_modules/@iconify-json')
+// The marks no installed set has, as one more set: 'local:name'
+const LOCAL_PREFIX = 'local'
+const LOCAL_ICONS = path.resolve(SRC_DIR, './icons/local.json')
 
 type IconSet = {
   prefix: string
@@ -14,9 +17,10 @@ type IconSet = {
   aliases?: Record<string, { parent: string }>
 }
 
-// Every 'prefix:name' string literal in src/ whose prefix is an installed @iconify-json set
+// Every 'prefix:name' string literal in src/ whose prefix is an installed @iconify-json set,
+// or the local one
 function findUsedIcons(): Record<string, string[]> {
-  const prefixes = new Set(fs.readdirSync(ICON_SETS_DIR))
+  const prefixes = new Set([...fs.readdirSync(ICON_SETS_DIR), LOCAL_PREFIX])
   const used: Record<string, Set<string>> = {}
 
   const files = fs.readdirSync(SRC_DIR, { recursive: true, encoding: 'utf8' })
@@ -52,9 +56,10 @@ function bundledIcons(): Plugin {
 
       const used = findUsedIcons()
       lastUsed = JSON.stringify(used)
+      this.addWatchFile(LOCAL_ICONS)
 
       const collections = Object.entries(used).map(([prefix, names]) => {
-        const file = path.join(ICON_SETS_DIR, prefix, 'icons.json')
+        const file = prefix === LOCAL_PREFIX ? LOCAL_ICONS : path.join(ICON_SETS_DIR, prefix, 'icons.json')
         const set: IconSet = JSON.parse(fs.readFileSync(file, 'utf8'))
         const icons: IconSet['icons'] = {}
         const aliases: NonNullable<IconSet['aliases']> = {}

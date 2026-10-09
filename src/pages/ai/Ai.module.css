@@ -287,14 +287,14 @@
 
 /* ══════════════════════════════════════════════════════
    3. Journey
-   On a phone: one column, the rule and its dots on the
+   On a phone: one column, the rule and its rings on the
    left, the date above the title. From 640px: the date
    in its own column, as in the About timeline.
    ══════════════════════════════════════════════════════ */
 
 .journey {
   --journey-rule: 4px;
-  /* x of the rule, which is also the center of the dots */
+  /* x of the rule, which is also the center of the rings */
   display: flex;
   flex-direction: column;
   position: relative;
@@ -323,7 +323,7 @@
   border-top: 1px solid var(--border-light);
 }
 
-/* Dot on the rule */
+/* Ring on the rule, as on the resume: grey for a step that is behind */
 .journeyItem::after {
   content: '';
   position: absolute;
@@ -332,14 +332,18 @@
   width: 9px;
   height: 9px;
   border-radius: var(--radius-full);
-  background-color: var(--clr-dark-red);
-  border: 2px solid var(--surface-primary);
-  box-shadow: 0 0 0 1px var(--clr-medium-red);
+  background-color: var(--surface-primary);
+  border: 1.5px solid var(--text-muted);
 }
 
-/* What has not happened yet: a hollow dot */
+/* The step still going: the resume's dark ring, in the site's red */
+.journeyCurrent::after {
+  border-color: var(--clr-dark-red);
+}
+
+/* What has not happened yet: a dashed ring, as the outlines of "Learning next" */
 .journeyItem:last-child::after {
-  background-color: var(--surface-primary);
+  border-style: dashed;
 }
 
 .journeyWhen {

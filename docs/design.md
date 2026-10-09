@@ -80,7 +80,7 @@ Checking a change: use the header switch.
 
 Kevin's resume is not part of the site (`docs/content.md`, Facts), but it is drawn from it, so that the two read as the same person's. What it takes: the neutral greys, the hairline between sections, the timeline of the About page (dates, a rule, a mark per entry, the entry), small line icons from Tabler, and the languages by their code, not a flag. What stays on the site only: the red, in all its forms (the ticks of the section frame, the slash of the eyebrows, the ring of the featured panels), and the typeface. The resume keeps three fonts of its own, and the logo is the only color on it.
 
-So a change to one of the things it takes is a reason to look at the resume, and nothing on the resume is a reason to change the site. Its files and its own notes are in `private/`, which is not in git.
+So a change to one of the things it takes is a reason to look at the resume, and nothing on the resume is a reason to change the site, unless Kevin asks for it. He did once: the rings of the journey on `/ai` come from the resume's timeline (`docs/stacks.md`, Journey rings), with the site's red where the resume has its dark ring. The timeline of the About page keeps its red dots. Its files and its own notes are in `private/`, which is not in git.
 
 ## The two stacks and the AI page
 

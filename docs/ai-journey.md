@@ -11,10 +11,11 @@ What Kevin told about his path, for the journey on the `/ai` page, and which of 
 7. Video generators: Veo 3, Sora, Magnific. He places them in 2024; Veo 3 came out in May 2025, so the page says "2024 → 25". He also used Google Flow and Nano Banana (confirmed 2026-10-06, no date given; both are from 2025), for AI video of his own.
 8. DeepSeek: started right after DeepSeek-R1 was released (20 January 2025).
 9. Antigravity, in the IDE.
-10. The AI course on OpenClassrooms (its exact title is not known here).
+10. The AI course on OpenClassrooms (its exact title is not known here). On the page it is told in the sentence of its step and has no tag: Kevin had the tag removed on 2026-10-09 and asked for the mention to stay in the text. He gave no reason; do not bring the tag back.
 11. Grok, in voice mode.
 12. Agents: Google AI Studio in the browser, then OpenCode and Codex in the terminal.
 13. Claude Code, his main agent since (first run on his machine: April 2026). Beside it, the Claude desktop app.
+14. Hermes (Hermes Agent, by Nous Research): a first project in October 2026, to learn it by building. It is an agent for Le Petit Cours, made to prepare its classes and proofread its lessons, and that project is not finished: the page says what it is built to do, not that it does it every week. He told it on 2026-10-09, with "more projects are to come". On the page it is a sentence and a tag in the Claude Code step, not a step of its own, and not yet a tool of the stack (`docs/stacks.md`).
 
 Around it: he knew Markdown before any of this, he goes to AI meetups such as AI Tinkerers with friends and they share tips, and he has never used Ollama or run a model locally.
 

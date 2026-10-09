@@ -2,6 +2,11 @@
 
 Which tools are shown and where, the `/ai` page, and the dates of its journey. The state today is in `docs/stacks.md` and `docs/ai-journey.md`. Several entries speak of a marquee: the home strip was one until 2026-10-06.
 
+## 2026-10-09
+
+**Hermes is in the current step of the journey, and not yet a card.**
+Kevin built a first project with Hermes, to learn it, and asked for it to be in "now". It left the "Next" step of the journey for the Claude Code one, as a tag and a sentence naming the project (an agent for Le Petit Cours). It does not get a card under "What I work with": his words, "I can't add it as a tool I work with for now, but soon". So it stays under "Learning next" as "coming soon" and in the `next` fact of the status line, which now mean "next into the stack" for it. This narrows the earlier rule, "Hermes moves into the AI stack once Kevin has built something with it": a first project earns the journey, and the card waits for his word. Rejected: a step of its own after Claude Code, which would have taken the red ring from the main agent for one learning project. Its tag was plain at first, the icon sets having no mark for this Hermes; Kevin asked for the logo, and it came from the project itself (`docs/decisions/architecture.md`). What it costs: Hermes is on the page twice, once as started and once as coming, until the card exists.
+
 ## 2026-10-06
 
 **The About toolkit grew to cover what Kevin really uses, and gained a block that is not a stack.**

@@ -467,12 +467,12 @@ const fr: Messages = {
         claudeCode: {
           when: 'Depuis 2026',
           title: 'Claude Code',
-          body: "Je suis passé à Claude Code et j'y suis resté. C'est mon agent principal aujourd'hui, et les projets récents de mon portfolio sont construits avec lui. En dehors du terminal, j'utilise Claude dans son application de bureau.",
+          body: "Je suis passé à Claude Code et j'y suis resté. C'est mon agent principal aujourd'hui, et les projets récents de mon portfolio sont construits avec lui. En dehors du terminal, j'utilise Claude dans son application de bureau. J'ai aussi commencé Hermes, que j'apprends sur un cas réel\u00a0: un agent conçu pour préparer les séances du Petit Cours, mon cours de français pour hispanophones, et en relire les leçons. C'est mon premier projet avec lui, et d'autres suivront.",
         },
         next: {
           when: 'Ensuite',
           title: 'Encore sur la liste',
-          body: "Hermes, Jev et Linear viennent ensuite, et les modèles open source en général\u00a0: je n'en ai encore jamais fait tourner sur ma propre machine, et je le ferai.",
+          body: "Jev et Linear viennent ensuite, et les modèles open source en général\u00a0: je n'en ai encore jamais fait tourner sur ma propre machine, et je le ferai.",
         },
       },
     },

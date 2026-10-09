@@ -41,6 +41,7 @@ const journeyIcons: Record<string, string> = {
   'Veo 3': 'logos:google-icon',
   'Google Flow': 'logos:google-icon',
   'Nano Banana': 'logos:google-gemini-icon',
+  'Hermes': 'local:hermes',
 }
 
 // ── Tag (logo + name) ─────────────────────────────────────────────────────────
@@ -63,10 +64,14 @@ const journey = [
   { id: 'assistants', tools: ['Bard', 'Gemini', 'Claude'] },
   { id: 'video', tools: ['Magnific', 'Sora', 'Veo 3', 'Google Flow', 'Nano Banana'] },
   { id: 'deepseek', tools: ['DeepSeek', 'Grok'] },
-  { id: 'agents', tools: ['Antigravity', 'OpenClassrooms', 'Google AI Studio', 'OpenCode', 'Codex'] },
-  { id: 'claudeCode', tools: ['Claude Code', 'Cursor', 'Claude desktop'] },
-  { id: 'next', tools: ['Hermes', 'Jev', 'Ollama', 'Linear'] },
+  { id: 'agents', tools: ['Antigravity', 'Google AI Studio', 'OpenCode', 'Codex'] },
+  { id: 'claudeCode', tools: ['Claude Code', 'Cursor', 'Claude desktop', 'Hermes'] },
+  { id: 'next', tools: ['Jev', 'Ollama', 'Linear'] },
 ] as const
+
+// The step still going: its ring on the rule is red. The last step has not
+// happened yet, and its ring is dashed (Ai.module.css)
+const currentStep = 'claudeCode'
 
 // ── Practice ──────────────────────────────────────────────────────────────────
 
@@ -211,7 +216,10 @@ const Ai: React.FC = () => {
 
           <ol className={styles.journey} role="list">
             {journey.map((entry) => (
-              <li key={entry.id} className={styles.journeyItem}>
+              <li
+                key={entry.id}
+                className={`${styles.journeyItem} ${entry.id === currentStep ? styles.journeyCurrent : ''}`}
+              >
                 <span className={styles.journeyWhen}>{copy.journey.entries[entry.id].when}</span>
                 <div className={styles.journeyContent}>
                   <h3 className={styles.journeyTitle}>{copy.journey.entries[entry.id].title}</h3>

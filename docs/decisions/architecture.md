@@ -2,6 +2,11 @@
 
 How the site is built: routing, the build, icons, the CSS system and its two themes, and the context files themselves. The state today is in `docs/architecture.md` and `docs/styling.md`.
 
+## 2026-10-09
+
+**A mark no icon set has goes in a small set of the site's own, `local:`.**
+Kevin asked for the Hermes logo on its journey tag. No installed set has it: their `hermes` is a JavaScript engine in one and a brand in the other. The mark is the favicon that ships with Hermes Agent, redrawn from a 116 KB path to 3 KB of polygons, and it sits in `src/icons/local.json`, which the `bundled-icons` plugin reads as one more set. So the tag names its icon as every other does, the build still fails on a name that does not exist, and the day Hermes gets a card its data needs nothing new. Its white tile is kept: the art is black on white, and inverting a face for the dark theme, as the ink logos are, gives a negative. Rejected: the file as shipped (a quarter of the bundle's icons for a 14px mark), an image in `public/` beside the tag (a second way to show a logo), an inline SVG in the page as for the theme switch (that one is drawn in the text color and used once; a brand mark is data), and the `hermes` of the installed sets. What it costs: a redrawn mark has to be redone by hand if the project changes its logo, and the theme switch's note that one icon did not justify this plumbing no longer holds for brand marks.
+
 ## 2026-10-07
 
 **Unused code is deleted, not kept for reference, and what every page repeats is written once.**

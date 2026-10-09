@@ -475,12 +475,12 @@ const en = {
         claudeCode: {
           when: '2026 → now',
           title: 'Claude Code',
-          body: 'I switched to Claude Code and stayed. It is my main agent today, and the recent projects in my portfolio are built with it. Outside the terminal, I use Claude in its desktop app.',
+          body: 'I switched to Claude Code and stayed. It is my main agent today, and the recent projects in my portfolio are built with it. Outside the terminal, I use Claude in its desktop app. I have started on Hermes too, learning it on a real case: an agent built to prepare the classes of Le Petit Cours, my French course for Spanish speakers, and to proofread its lessons. It is my first project with it, and more will follow.',
         },
         next: {
           when: 'Next',
           title: 'Still on the list',
-          body: 'Hermes, Jev and Linear come next, and open-source models in general: I have not run one on my own machine yet, and I will.',
+          body: 'Jev and Linear come next, and open-source models in general: I have not run one on my own machine yet, and I will.',
         },
       },
     },
