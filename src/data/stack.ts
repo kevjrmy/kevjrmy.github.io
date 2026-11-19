@@ -30,12 +30,12 @@ export const aiStack: AiTool[] = [
 // group of the home strip and the About toolkit
 export const currentAiStack = aiStack.filter((tool) => tool.status !== 'before')
 
-// Planned, not learned yet: shown on the /ai page only, labelled "coming soon"
+// Planned, or started and still being learned: shown on the /ai page only,
+// labelled "coming soon" or "learning now"
 export const upcomingAiTools: UpcomingAiTool[] = [
-  { id: 'hermes', href: 'https://hermes-agent.nousresearch.com/' },
+  { id: 'hermes', href: 'https://hermes-agent.nousresearch.com/', learning: true },
   { id: 'jev', href: 'https://typesafe.ai/blog/introducing-system-one-models-and-jev' },
   { id: 'local' },
-  { id: 'linear', href: 'https://linear.app/' },
 ]
 
 // ── Classic stack ─────────────────────────────────────────────────────────────
@@ -51,6 +51,7 @@ export const classicStack: StackGroup[] = [
       { icon: 'vscode-icons:file-type-node', label: 'Node.js' },
       { icon: 'logos:express', label: 'Express' },
       { icon: 'vscode-icons:file-type-sql', label: 'SQL' },
+      { icon: 'vscode-icons:file-type-sqlite', label: 'SQLite' },
       { icon: 'logos:supabase-icon', label: 'Supabase' },
       { icon: 'logos:firebase-icon', label: 'Firebase' },
     ],

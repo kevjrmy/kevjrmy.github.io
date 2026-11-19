@@ -1,16 +1,21 @@
 import { useEffect, useRef, useState } from 'react'
 import { Icon } from '@iconify/react'
-import { useLocale } from '@/i18n/useLocale'
 import styles from './CliPrompt.module.css'
 
 // Styled after a Claude Code session: the command is typed in the prompt box at
 // the bottom, moves up into the transcript when "sent", and the answer prints below it.
 // A second prompt is then typed into the box and left there, unsent.
-// The command and the keys of the answer are a terminal's and stay in English;
-// what is a phrase (the role, the second prompt, "working…") is translated. Home
-// gives the component a key per language, so a change of language replays it.
+// The whole session is in English in every language, as a real terminal's would
+// be (Kevin's choice, 2026-11-19): its words are here, not in the messages, and a
+// change of language does not replay it.
 
 const COMMAND = 'whoami'
+
+const ROLE = 'Full-stack developer'
+
+const NEXT_PROMPT = 'ready to build'
+
+const WORKING = 'working…'
 
 const NAME = 'Kevin Jeremy Gautier'
 
@@ -36,11 +41,10 @@ type Phase = 'idle' | 'typing' | 'running' | 'retyping' | 'done'
 const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 const CliPrompt: React.FC = () => {
-  const { t } = useLocale()
-  const nextPrompt = t.cli.nextPrompt
+  const nextPrompt = NEXT_PROMPT
 
   const output: OutputLine[] = [
-    { key: 'role', value: t.cli.role },
+    { key: 'role', value: ROLE },
     { key: 'stack', value: 'Laravel · Vue · React · TS · Node' },
     { key: 'ai', value: 'Claude Code · Cursor' },
     { key: 'langs', value: 'FR · EN · ES' },
@@ -151,7 +155,7 @@ const CliPrompt: React.FC = () => {
         {/* Prompt box: where both prompts are typed, and where the cursor waits */}
         <div className={styles.promptBox}>
           {phase === 'running' ? (
-            <span className={styles.working}>✻ {t.cli.working}</span>
+            <span className={styles.working}>✻ {WORKING}</span>
           ) : (
             <>
               <PixelChevron />

@@ -2,6 +2,11 @@
 
 Which tools are shown and where, the `/ai` page, and the dates of its journey. The state today is in `docs/stacks.md` and `docs/ai-journey.md`. Several entries speak of a marquee: the home strip was one until 2026-10-06.
 
+## 2026-11-19
+
+**Linear leaves "Learning next" and the journey.**
+Kevin's answer when its one-line description came up for review ("why do you want Linear?"): drop it. "Learning next" is now three outlines, Hermes (labelled "learning now" since he has started it, through Telegram), Jev and local LLMs, laid out three across on a wide screen and in one column below, rather than two by two with one left alone. What it costs: nothing on the page says how he plans work; nothing did before Linear either.
+
 ## 2026-10-09
 
 **Hermes is in the current step of the journey, and not yet a card.**

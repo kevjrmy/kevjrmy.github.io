@@ -23,8 +23,9 @@ const extensionKinds = [
 
 // ── Journey ───────────────────────────────────────────────────────────────────
 // Logo of each tool named in the journey. The AI stack brings its own; the others
-// are here. A product with no mark of its own takes its maker's, and a tool with
-// no entry stays a plain tag: that includes what is not learned yet
+// are here. The product's own mark when an installed set has it, else its maker's
+// (Kevin's rule, 2026-11-19): none has DALL·E 2, Sora, Veo 3, Google Flow or Nano
+// Banana. A tool with no entry stays a plain tag: that is what is not learned yet
 const journeyIcons: Record<string, string> = {
   ...Object.fromEntries(aiStack.map((tool) => [tool.label, tool.icon])),
   'DALL·E 2': 'logos:openai-icon',
@@ -41,6 +42,8 @@ const journeyIcons: Record<string, string> = {
   'Veo 3': 'logos:google-icon',
   'Google Flow': 'logos:google-icon',
   'Nano Banana': 'logos:google-gemini-icon',
+  // Magnific belongs to Freepik since 2024; no set has Magnific's own mark
+  'Magnific': 'simple-icons:freepik',
   'Hermes': 'local:hermes',
 }
 
@@ -66,7 +69,7 @@ const journey = [
   { id: 'deepseek', tools: ['DeepSeek', 'Grok'] },
   { id: 'agents', tools: ['Antigravity', 'Google AI Studio', 'OpenCode', 'Codex'] },
   { id: 'claudeCode', tools: ['Claude Code', 'Cursor', 'Claude desktop', 'Hermes'] },
-  { id: 'next', tools: ['Jev', 'Ollama', 'Linear'] },
+  { id: 'next', tools: ['Jev', 'Ollama'] },
 ] as const
 
 // The step still going: its ring on the rule is red. The last step has not
@@ -94,7 +97,7 @@ const Ai: React.FC = () => {
   const facts = [
     { key: copy.facts.since, value: '2022' },
     { key: copy.facts.mainAgent, value: 'Claude Code' },
-    { key: copy.facts.next, value: upcomingAiTools.map((tool) => copy.stack.upcoming[tool.id].label).join(' · ') },
+    { key: copy.facts.next, value: upcomingAiTools.filter((tool) => !tool.learning).map((tool) => copy.stack.upcoming[tool.id].label).join(' · ') },
   ]
 
   return (
@@ -174,7 +177,7 @@ const Ai: React.FC = () => {
                       <div className={styles.soonIcon}>
                         <Icon icon="tabler:hourglass" width={20} height={20} aria-hidden="true" />
                       </div>
-                      <span className={styles.toolStatus}>{copy.stack.comingSoon}</span>
+                      <span className={styles.toolStatus}>{tool.learning ? copy.stack.learningNow : copy.stack.comingSoon}</span>
                     </div>
                     <h4 className={styles.toolName}>
                       {tool.href ? (

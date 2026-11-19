@@ -38,4 +38,7 @@ export type UpcomingAiTool = {
 
   /** Its own site, when it has one */
   href?: string
+
+  /** Started but still being learned: labelled "learning now", not "coming soon" */
+  learning?: boolean
 }

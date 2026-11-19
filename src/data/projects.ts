@@ -32,9 +32,11 @@ export const projects: Project[] = [
     stack: ['Vue', 'Firebase', 'PWA'],
     tags: ['pwa', 'maps', 'health', 'firebase'],
     year: 2026,
-    status: 'live',
+    // An MVP handed over to its founders (2026): no link, as the live site is
+    // no longer Kevin's work to answer for
+    status: 'archived',
     lang: 'es',
-    link: 'https://sunspot-vlc.netlify.app',
+    link: null,
     featured: true,
     order: 2,
     image: {
@@ -78,7 +80,7 @@ export const projects: Project[] = [
     title: 'Le Petit Cours',
     type: 'PWA',
     stack: ['Claude Code', 'Next.js', 'Supabase', 'PWA'],
-    tags: ['ai', 'claude-code', 'pwa', 'education', 'french', 'open-source', 'supabase'],
+    tags: ['ai', 'claude-code', 'pwa', 'education', 'french', 'supabase'],
     year: 2026,
     status: 'live',
     lang: 'fr',

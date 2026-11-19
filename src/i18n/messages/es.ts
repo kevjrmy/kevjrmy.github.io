@@ -1,7 +1,7 @@
 import type { Messages } from '@/i18n/messages'
 
 // Spanish, as written in Spain. Same keys as `en.ts`, which is the reference
-// (docs/i18n.md). The reader is addressed as "tú".
+// (docs/i18n.md). The reader is addressed as "usted".
 
 const es: Messages = {
   // ── Shared ──────────────────────────────────────────────────────────────────
@@ -13,13 +13,13 @@ const es: Messages = {
 
   // ── Page titles ──────────────────────────────────────────────────────────────
   titles: {
-    home: 'Kevjrmy · Desarrollador full-stack que crea con agentes de IA',
-    portfolio: 'Portfolio · Kevjrmy',
-    services: 'Servicios · Kevjrmy',
-    ai: 'Agentes de IA · Kevjrmy',
-    about: 'Sobre mí · Kevjrmy',
-    contact: 'Contacto · Kevjrmy',
-    info: 'Condiciones y privacidad · Kevjrmy',
+    home: 'Kevin Jeremy Gautier · Desarrollador full-stack que crea con agentes de IA',
+    portfolio: 'Portfolio · Kevin Jeremy Gautier',
+    services: 'Servicios · Kevin Jeremy Gautier',
+    ai: 'Agentes de IA · Kevin Jeremy Gautier',
+    about: 'Sobre mí · Kevin Jeremy Gautier',
+    contact: 'Contacto · Kevin Jeremy Gautier',
+    info: 'Condiciones y privacidad · Kevin Jeremy Gautier',
   },
 
   // ── Header and footer ───────────────────────────────────────────────────────
@@ -40,7 +40,7 @@ const es: Messages = {
     toDark: 'Cambiar al tema oscuro',
     language: 'Idioma',
     tagline: 'Las palabras son magia',
-    skipToContent: 'Saltar al contenido',
+    skipToContent: 'Saltar al contenido principal',
   },
 
   footer: {
@@ -61,12 +61,6 @@ const es: Messages = {
     contact: 'Contactar',
   },
 
-  cli: {
-    role: 'Desarrollador full-stack',
-    nextPrompt: 'listo para construir',
-    working: 'trabajando…',
-  },
-
   homeStack: {
     label: 'Stack técnico',
     ai: 'Stack de IA',
@@ -81,7 +75,7 @@ const es: Messages = {
     items: {
       automation: {
         title: 'Automatización con IA',
-        description: 'El trabajo manual en hojas de cálculo, convertido en una herramienta que lo hace por ti.',
+        description: 'El trabajo manual en hojas de cálculo, convertido en una herramienta que lo hace por usted.',
       },
       webapp: {
         title: 'Aplicación web',
@@ -111,7 +105,6 @@ const es: Messages = {
     facts: [
       'De la idea al pitch final en 54 horas',
       'Un equipo de seis',
-      'Desde entonces sigo desarrollando su parte web: landing page, app para consumidores y panel para empresas',
     ],
     visit: 'Visitar Cuanto Cuesta',
     gallery: 'Fotos de Techstars Startup Weekend Valencia',
@@ -154,21 +147,21 @@ const es: Messages = {
   homeAbout: {
     eyebrow: 'Sobre mí',
     heading: '¿Quién soy?',
-    body1: 'Soy Kevin Jeremy Gautier, desarrollador full-stack afincado en Valencia, España. Me titulé en 2021 como desarrollador web Node.js con OpenClassrooms y empecé enseguida como freelance, primero con sitios WordPress y después con frameworks web modernos. Hoy construyo con agentes de IA: Claude Code sobre todo, después de trabajar con Codex, OpenCode y Antigravity.',
+    body1: 'Soy Kevin Jeremy Gautier, desarrollador full-stack afincado en la Costa Azul, cerca de Antibes. Me titulé en 2021 como desarrollador web Node.js con OpenClassrooms y empecé enseguida como freelance, primero con sitios WordPress y después con frameworks web modernos. Hoy construyo con agentes de IA: Claude Code sobre todo, después de trabajar con Codex, OpenCode y Antigravity.',
     body2: 'Mi stack abarca Laravel, Vue, React y Android nativo, desde un MVP rápido hasta una aplicación web lista para producción. Me centro en entregar trabajo rápido, accesible y hecho para durar.',
-    photoAlt: 'Kevin Jeremy Gautier, desarrollador full-stack afincado en Valencia',
+    photoAlt: 'Kevin Jeremy Gautier, desarrollador full-stack afincado en la Costa Azul',
     signals: {
       since: { label: 'Desde 2021', detail: 'construyendo para la web' },
       satisfied: { label: '100 % satisfechos', detail: 'cada cliente, cada proyecto' },
       performance: { label: 'El rendimiento primero', detail: 'rápido por defecto, no por casualidad' },
-      replies: { label: 'Respuesta en 24 h', detail: 'no te quedarás sin respuesta' },
+      replies: { label: 'Respuesta en 24 h', detail: 'no se quedará sin respuesta' },
     },
     cta: 'Saber más sobre mí',
     ctaLabel: 'Saber más sobre Kevin Jeremy Gautier',
   },
 
   cta: {
-    heading: '¿Tienes un proyecto en mente?',
+    heading: '¿Tiene un proyecto en mente?',
     subline: 'Veamos si soy la persona adecuada: sin compromiso, sin discurso de ventas, solo una conversación.',
     button: 'Hablemos',
     label: 'Chatear por WhatsApp (se abre en una pestaña nueva)',
@@ -177,17 +170,17 @@ const es: Messages = {
   // ── Services page ───────────────────────────────────────────────────────────
   services: {
     eyebrow: 'Servicios',
-    h1: 'Lo que puedo hacer por ti',
-    lead: 'Tanto si necesitas un arreglo rápido como un producto creado desde cero, tengo un servicio para eso. Construyo con agentes de IA y respondo del resultado, así que lo tienes antes y con el mismo cuidado.',
+    h1: 'Lo que puedo hacer por usted',
+    lead: 'Tanto si necesita un arreglo rápido como un producto creado desde cero, tengo un servicio para eso. Construyo con agentes de IA y respondo del resultado: lo tiene antes, con el mismo cuidado.',
     gridLabel: 'Todos los servicios',
     items: {
       automation: {
         title: 'Automatización con IA',
-        description: 'Hojas de cálculo y tareas administrativas repetitivas convertidas en una herramienta que hace el trabajo por ti. Creada con agentes de IA, como la aplicación de contabilidad que sustituyó el libro de Excel de un cliente.',
+        description: 'Hojas de cálculo y tareas administrativas repetitivas convertidas en una herramienta que hace el trabajo por usted. Creada con agentes de IA, como la aplicación de contabilidad que sustituyó el libro de Excel de un cliente.',
       },
       audit: {
         title: 'Auditoría',
-        description: 'Rendimiento, SEO, accesibilidad: descubre exactamente qué arreglar y qué optimizar.',
+        description: 'Rendimiento, SEO, accesibilidad: descubra exactamente qué arreglar y qué optimizar.',
       },
       training: {
         title: 'Formación y clases',
@@ -214,8 +207,8 @@ const es: Messages = {
         description: 'Mantenimiento y rediseño de sitios existentes, y sitios nuevos cuando WordPress es la opción adecuada.',
       },
     },
-    ctaHeading: 'Cuéntame qué necesitas',
-    ctaSubline: 'Un proyecto, una idea, un negocio, una tarea, un encargo puntual: sea lo que sea, escríbeme y vemos qué hace falta. Sin compromiso, sin discurso de ventas, solo una conversación.',
+    ctaHeading: 'Cuénteme qué necesita',
+    ctaSubline: 'Un proyecto, una idea, un negocio, una tarea, un encargo puntual: sea lo que sea, escríbame y vemos qué hace falta. Sin compromiso, sin discurso de ventas, solo una conversación.',
   },
 
   // ── Portfolio page ──────────────────────────────────────────────────────────
@@ -244,8 +237,8 @@ const es: Messages = {
       alt: 'Fraichup: captura de la aplicación web de reparto',
     },
     'sunspot': {
-      client: 'Startup de bienestar',
-      excerpt: 'App instalable que ayuda a la gente de Valencia a gestionar su exposición al sol: intensidad UV en directo y un mapa de «sunspots» seleccionados al aire libre. Vue 3 y Firebase, con temas claro y oscuro.',
+      client: 'MVP para una startup',
+      excerpt: 'El MVP de una app instalable para una startup de Valencia, que ayuda a gestionar la exposición al sol: intensidad UV en directo y un mapa de «sunspots» seleccionados al aire libre. Vue 3 y Firebase, con temas claro y oscuro. Hecho para sus dos fundadores y entregado a ellos.',
       alt: 'SUNspot: pantallas de mapa y exploración de la PWA',
     },
     'limpiezas-el-imperio': {
@@ -260,7 +253,7 @@ const es: Messages = {
     },
     'le-petit-cours': {
       client: 'Proyecto personal',
-      excerpt: 'Curso de francés gratuito y de código abierto, escrito para hispanohablantes: lecciones cortas, ejercicios y lectura, con cuentas opcionales que sincronizan el progreso entre dispositivos. Un proyecto personal, hecho con Claude Code sobre Next.js y Supabase.',
+      excerpt: 'Un curso de francés gratuito, escrito para hispanohablantes y construido nivel a nivel hasta el B2. Cada explicación se puede leer en francés sencillo o en español, y un segundo itinerario enseña a escribir el francés a quienes lo hablan en casa. Un proyecto personal, hecho con Claude Code sobre Next.js y Supabase.',
       alt: 'Le Petit Cours: pantallas de inicio y de lección de la PWA',
     },
     'planetax': {
@@ -274,7 +267,7 @@ const es: Messages = {
       alt: 'Logo de Limpiezas El Imperio',
     },
     'fesma': {
-      client: 'Pintura y fotografía',
+      client: 'Pintor y fotógrafo',
       excerpt: 'Web oficial de Fesma, artista de Valencia que pinta y fotografía: proyectos, obras, exposiciones y prensa, todo gestionado desde un único archivo JSON. Hecha primero en HTML y SCSS puros y después reconstruida con Nuxt.',
       alt: 'Fesma: captura de la web de artista',
     },
@@ -293,9 +286,9 @@ const es: Messages = {
   // ── About page ──────────────────────────────────────────────────────────────
   about: {
     eyebrow: 'Sobre mí',
-    h1: ['Un desarrollador', 'al que le importa.'],
-    lead: 'Soy Kevin Jeremy Gautier, desarrollador full-stack afincado en Valencia, España. Desarrollador web titulado, freelance desde 2021, trabajo en francés, inglés y español. Ahora construyo con agentes de IA, y me sigue importando que las cosas funcionen bien y tengan buen aspecto.',
-    photoAlt: 'Kevin Jeremy Gautier, desarrollador full-stack afincado en Valencia, España',
+    h1: ['Un desarrollador', 'que se implica de verdad.'],
+    lead: 'Soy Kevin Jeremy Gautier, desarrollador full-stack afincado en la Costa Azul, cerca de Antibes. Desarrollador web titulado, freelance desde 2021, trabajo en francés, inglés y español. Ahora construyo con agentes de IA, y me sigue importando que las cosas funcionen bien y tengan buen aspecto.',
+    photoAlt: 'Kevin Jeremy Gautier, desarrollador full-stack afincado en la Costa Azul, cerca de Antibes',
 
     background: {
       eyebrow: 'Trayectoria',
@@ -325,7 +318,7 @@ const es: Messages = {
       aiFirst: {
         year: 'Desde 2025',
         title: 'Desarrollo con la IA primero',
-        body: 'La mayor parte de mi trabajo pasa ahora por agentes de IA. Claude Code es el principal, después de un tiempo con Codex, OpenCode y Antigravity, y Cursor es mi editor. Los agentes escriben rápido; yo dirijo, reviso y respondo del resultado.',
+        body: 'La mayor parte de mi trabajo pasa ahora por agentes de IA. Claude Code es el principal, después de un tiempo con Codex, OpenCode y Antigravity, y Cursor es mi editor. Los agentes escriben rápido. Yo decido qué construyen, reviso lo que escriben y respondo del resultado.',
       },
     },
     credentials: {
@@ -351,7 +344,7 @@ const es: Messages = {
 
     values: {
       eyebrow: 'Cómo trabajo',
-      heading: 'Qué puedes esperar',
+      heading: 'Qué puede esperar',
       items: {
         ship: {
           title: 'Entregar y luego iterar',
@@ -363,7 +356,7 @@ const es: Messages = {
         },
         ghost: {
           title: 'Nunca desaparezco',
-          body: 'Si algo cambia, lo digo pronto. Siempre sabrás en qué punto está el proyecto: sin sorpresas desagradables en la entrega.',
+          body: 'Si algo cambia, lo digo pronto. Siempre sabrá en qué punto está el proyecto: sin sorpresas desagradables en la entrega.',
         },
       },
     },
@@ -374,7 +367,7 @@ const es: Messages = {
       backend: 'Backend',
       frontend: 'Frontend',
       mobile: 'Móvil y escritorio',
-      hosting: 'Hosting y despliegue',
+      hosting: 'Alojamiento y despliegue',
       tools: 'Herramientas y otros',
     },
   },
@@ -382,8 +375,8 @@ const es: Messages = {
   // ── AI page ─────────────────────────────────────────────────────────────────
   ai: {
     eyebrow: 'IA',
-    h1: ['Uso la IA desde 2022.', 'Construyo con agentes cada día.'],
-    lead: 'No descubrí la IA el mes pasado. La sigo desde los primeros generadores de imágenes, pasando por el chat, el vídeo y la voz, hasta los agentes de programación con los que ahora trabajo todo el día. La trato como el resto del oficio: aprendida en serio, revisada con cuidado y con mi responsabilidad detrás.',
+    h1: ['Trabajo con IA desde 2022.', 'Construyo con agentes cada día.'],
+    lead: 'Sigo la IA desde los primeros generadores de imágenes, pasando por el chat, el vídeo y la voz, hasta los agentes de programación con los que ahora trabajo todo el día. La trato como el resto del oficio: aprendida en serio, revisada con cuidado y con mi nombre detrás del resultado.',
     facts: {
       since: 'desde',
       mainAgent: 'agente principal',
@@ -401,7 +394,7 @@ const es: Messages = {
         'Markdown': 'Archivos de contexto',
       },
       pluggedKey: 'conectado',
-      plugged: 'Claude Code no trabaja solo: lo amplío con el ecosistema que lo rodea.',
+      plugged: 'Nunca uso Claude Code tal cual: lo amplío con lo que ofrece su ecosistema.',
       kinds: {
         plugins: 'plugins',
         skills: 'skills',
@@ -409,6 +402,7 @@ const es: Messages = {
       },
       upcomingTitle: 'Lo próximo que voy a aprender',
       comingSoon: 'próximamente',
+      learningNow: 'aprendiendo',
       upcoming: {
         hermes: {
           label: 'Hermes',
@@ -421,10 +415,6 @@ const es: Messages = {
         local: {
           label: 'LLM locales',
           role: 'Modelos de código abierto ejecutándose en mi propia máquina, empezando por Ollama.',
-        },
-        linear: {
-          label: 'Linear',
-          role: 'El gestor de incidencias donde se planifica el trabajo y donde se pueden asignar tareas a agentes de programación.',
         },
       },
       classicLink: 'Ver el stack clásico',
@@ -448,7 +438,7 @@ const es: Messages = {
         chatgpt: {
           when: 'Dic. 2022',
           title: 'ChatGPT, desde los primeros días',
-          body: 'Creé mi cuenta pocos días después de su lanzamiento, cuando funcionaba con GPT-3.5. Desde entonces la IA fue algo con lo que trabajaba, no una demo que miraba.',
+          body: 'Abrí mi cuenta pocos días después del lanzamiento, cuando aún funcionaba con GPT-3.5, y desde entonces forma parte de mi forma de trabajar.',
         },
         imageModels: {
           when: '2023',
@@ -463,12 +453,12 @@ const es: Messages = {
         video: {
           when: '2024 → 25',
           title: 'Vídeo',
-          body: 'Fui probando los generadores de vídeo según iban saliendo, entre ellos Magnific, Sora y Veo 3. Hice mis propios vídeos con IA en Google Flow, con Nano Banana para las imágenes.',
+          body: 'Fui probando los generadores de vídeo según salían, entre ellos Magnific, Sora y Veo 3, e hice mis propios clips en Google Flow, con Nano Banana para las imágenes.',
         },
         deepseek: {
           when: '2025',
           title: 'DeepSeek-R1, y la voz',
-          body: 'Empecé con DeepSeek justo después de que saliera R1, su modelo de razonamiento abierto, en enero de 2025. También empecé a hablar con Grok en modo de voz, algo que sigo haciendo fuera del trabajo.',
+          body: 'Empecé con DeepSeek justo después de que saliera R1, su modelo de razonamiento abierto, en enero de 2025. El modo de voz de Grok llegó más o menos por la misma época, y lo sigo usando fuera del trabajo.',
         },
         agents: {
           when: '2025 → 26',
@@ -478,12 +468,12 @@ const es: Messages = {
         claudeCode: {
           when: 'Desde 2026',
           title: 'Claude Code',
-          body: 'Me pasé a Claude Code y me quedé. Hoy es mi agente principal, y los proyectos recientes de mi portfolio están hechos con él. Fuera de la terminal, uso Claude en su aplicación de escritorio. También he empezado con Hermes, y lo aprendo sobre un caso real: un agente creado para preparar las clases de Le Petit Cours, mi curso de francés para hispanohablantes, y revisar sus lecciones. Es mi primer proyecto con él, y vendrán más.',
+          body: 'Me pasé a Claude Code y me quedé. Hoy es mi agente principal, y los proyectos recientes de mi portfolio están hechos con él. Lejos de la terminal, hablo con Claude en su aplicación de escritorio. Desde octubre de 2026 también aprendo Hermes con un caso real: un agente para Le Petit Cours, mi curso de francés para hispanohablantes, con el que hablo por Telegram para preparar sus clases y revisar sus lecciones. Es mi primer proyecto con él, y sigo aprendiendo.',
         },
         next: {
           when: 'Después',
           title: 'Todavía en la lista',
-          body: 'Después vienen Jev y Linear, y los modelos de código abierto en general: todavía no he ejecutado ninguno en mi propia máquina, y lo haré.',
+          body: 'Después viene Jev, y los modelos de código abierto en general: todavía no he ejecutado ninguno en mi propia máquina, y lo haré.',
         },
       },
     },
@@ -493,20 +483,20 @@ const es: Messages = {
       heading: 'Cómo me lo tomo en serio',
       items: {
         direct: {
-          title: 'Yo dirijo, los agentes teclean',
+          title: 'Yo dirijo, los agentes escriben',
           body: 'Los agentes escriben rápido. Yo decido qué se construye, leo lo que vuelve y respondo del resultado.',
         },
         context: {
           title: 'El contexto es el oficio',
-          body: 'Un agente solo es tan bueno como lo que se le dice. Guardo ese contexto en simples archivos Markdown, un formato que yo escribía mucho antes de que los agentes lo leyeran.',
+          body: 'Un agente solo es tan bueno como lo que se le dice. Escribo ese contexto en simples archivos Markdown, un formato que usaba mucho antes de que los agentes pudieran leerlo.',
         },
         learned: {
           title: 'Aprendido, no improvisado',
-          body: 'Hice el curso de IA de OpenClassrooms, la escuela de mi título de desarrollador, además de años de práctica diaria.',
+          body: 'Años de práctica diaria, además del curso de IA de OpenClassrooms, la escuela donde obtuve mi título de desarrollador.',
         },
         room: {
           title: 'En la sala',
-          body: 'Voy a meetups de IA como AI Tinkerers con amigos desarrolladores, e intercambiamos lo que funciona y lo que no.',
+          body: 'Voy a meetups de IA como AI Tinkerers con amigos desarrolladores, para comparar lo que funciona y lo que no.',
         },
       },
     },
@@ -516,7 +506,7 @@ const es: Messages = {
   contact: {
     eyebrow: 'Contacto',
     h1: 'Hablemos',
-    lead: 'Elige el canal que más te convenga.',
+    lead: 'Elija el canal que más le convenga.',
     email: 'Correo',
     via: (label: string) => `Contactar por ${label}`,
   },
@@ -525,15 +515,26 @@ const es: Messages = {
   info: {
     eyebrow: 'Info',
     h1: 'Condiciones y privacidad',
-    lead: 'En resumen: esto es un portfolio. No te rastrea y no te pide nada.',
-    updated: 'Última actualización: 7 de octubre de 2026',
+    lead: 'En resumen: esto es un portfolio. No rastrea su visita y no le pide nada.',
+    updated: 'Última actualización: 19 de noviembre de 2026',
+    prevails: 'Esta página es una traducción. Si las versiones difieren, prevalece la versión en inglés.',
+
+    legal: {
+      heading: 'Aviso legal',
+      publisher: 'Titular',
+      location: 'Ubicación',
+      locationValue: 'Costa Azul, cerca de Antibes, Francia',
+      contact: 'Contacto',
+      host: 'Alojamiento',
+      hostValue: 'GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, Estados Unidos',
+    },
 
     terms: {
       heading: 'Condiciones de uso',
-      intro: (domain: string) => `${domain} es el portfolio personal de Kevin Jeremy Gautier, desarrollador full-stack freelance afincado en Valencia, España. Presenta mi trabajo y los servicios que ofrezco.`,
+      intro: (domain: string) => `${domain} es el portfolio personal de Kevin Jeremy Gautier, desarrollador full-stack freelance afincado en la Costa Azul, cerca de Antibes. Presenta mi trabajo y los servicios que ofrezco.`,
       using: {
         title: 'Uso del sitio',
-        body: 'Puedes navegar por él, enlazarlo y compartirlo libremente. Por favor, no copies sus textos, su diseño ni su código para presentarlos como tuyos.',
+        body: 'Puede navegar por él, enlazarlo y compartirlo libremente. Por favor, no copie sus textos, su diseño ni su código para presentarlos como suyos.',
       },
       content: {
         title: 'Contenido',
@@ -541,7 +542,7 @@ const es: Messages = {
       },
       prices: {
         title: 'Precios',
-        body: 'La página de Servicios no muestra precios. Cada trabajo se presupuesta después de hablarlo, y el precio se acuerda contigo antes de empezar.',
+        body: 'La página de Servicios no muestra precios. Cada trabajo se presupuesta después de hablarlo, y el precio se acuerda con usted antes de empezar.',
       },
       links: {
         title: 'Enlaces externos',
@@ -555,7 +556,7 @@ const es: Messages = {
 
     privacy: {
       heading: 'Privacidad',
-      intro: 'Este sitio no recoge nada sobre ti.',
+      intro: 'Este sitio no recoge nada sobre usted.',
       not: {
         title: 'Lo que el sitio no hace',
         items: [
@@ -566,28 +567,28 @@ const es: Messages = {
         ],
       },
       saved: {
-        title: 'Lo único que se guarda en tu navegador',
-        body: 'El sitio sigue el ajuste claro u oscuro de tu dispositivo. Si eliges el otro con el botón de la cabecera, esa elección se guarda en tu navegador para que el sitio la recuerde en tu próxima visita. Es la palabra «light» o «dark», nada más; nunca sale de tu dispositivo, y volver al ajuste anterior la elimina.',
+        title: 'Lo único que se guarda en su navegador',
+        body: 'El sitio sigue el ajuste claro u oscuro de su dispositivo. Si elige el otro con el botón de la cabecera, esa elección se guarda en su navegador para que el sitio la recuerde en su próxima visita. Es la palabra «light» o «dark», nada más; nunca sale de su dispositivo, y volver al ajuste anterior la elimina.',
       },
       hosting: {
         title: 'Alojamiento',
-        before: 'El sitio está alojado en GitHub Pages. Como cualquier servicio de alojamiento, GitHub recibe datos técnicos cuando tu navegador solicita una página, como tu dirección IP, y puede registrarlos por motivos de seguridad. Eso está cubierto por la ',
-        link: 'declaración de privacidad de GitHub',
+        before: 'El sitio está alojado en GitHub Pages. Como cualquier servicio de alojamiento, GitHub recibe datos técnicos cuando su navegador solicita una página, como su dirección IP, y puede registrarlos por motivos de seguridad. Eso está cubierto por la ',
+        link: 'declaración de privacidad de GitHub (en inglés)',
         after: '.',
       },
       contact: {
-        title: 'Cuando me escribes',
-        body: 'Si me escribes por correo, WhatsApp o LinkedIn, recibo lo que decidas enviar: tu nombre, tus datos de contacto y tu mensaje. Lo uso solo para responderte y, si trabajamos juntos, para llevar a cabo el proyecto. No lo vendo ni lo cedo a nadie. Esos servicios tratan tus datos según sus propias políticas de privacidad.',
+        title: 'Cuando me escribe',
+        body: 'Si me escribe por correo, WhatsApp o LinkedIn, recibo lo que decida enviar: su nombre, sus datos de contacto y su mensaje. Lo uso solo para responderle y, si trabajamos juntos, para llevar a cabo el proyecto. No lo vendo ni lo cedo a nadie. Esos servicios tratan sus datos según sus propias políticas de privacidad.',
       },
       rights: {
-        title: 'Tus derechos',
-        before: 'Puedes pedirme en cualquier momento qué información tengo sobre ti, y que la corrija o la elimine: escribe a ',
-        middle: '. Si estás en la UE, también puedes reclamar ante tu autoridad de protección de datos; en España es la ',
+        title: 'Sus derechos',
+        before: 'Puede pedirme en cualquier momento qué información tengo sobre usted, y que la corrija o la elimine: escriba a ',
+        middle: '. Si está en la UE, también puede reclamar ante su autoridad de protección de datos; en Francia es la ',
         after: '.',
       },
       changes: {
         title: 'Cambios',
-        body: 'Si el sitio cambia de una forma que afecte a tu privacidad, esta página se actualizará.',
+        body: 'Si el sitio cambia de una forma que afecte a su privacidad, esta página se actualizará.',
       },
     },
   },

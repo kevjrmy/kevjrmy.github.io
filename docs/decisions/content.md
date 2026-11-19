@@ -2,6 +2,13 @@
 
 What the site says: positioning, voice, services, the terms page, what is on the portfolio. The rules in force are in `docs/content.md`.
 
+## 2026-11-19
+
+**Kevin is presented as based on the French Riviera, near Antibes, and `/info` opens with a legal notice under French law.**
+He moved back to France from Valencia. The site says "French Riviera, near Antibes" ("Côte d'Azur, près d'Antibes", "Costa Azul, cerca de Antibes"), his choice among three wordings; the Valencia clients and the Startup Weekend stay as they are, being past work, and the privacy page now names France's CNIL instead of Spain's AEPD. French law (LCEN) expects a professional site to give its publisher's identity. Asked twice, he chose a notice with his name, his area (the same wording as the rest of the site), his email and the host, and no street address or registration number for now; those are added if and when he gives them, and nothing about his status is written in the repo. Rejected: keeping Valencia, which would now be untrue, and a wording that keeps Valencia as a past ("after five years in Valencia").
+
+**`to-confirm.md` is gone: questions for Kevin are asked in the session, and what he leaves open waits in `todo.md`.**
+It had grown to a dozen items, some from October, because nothing made anyone go through it. He answered all of them in one session on 2026-11-19, and asked for the file to go. Rejected: keeping it as an empty template, which is how it filled up the first time.
 ## 2026-10-08
 
 **The resume is not on the site, and its folder is not in the repo.**
@@ -24,7 +31,7 @@ The work shifted from WordPress to building with AI agents while this site was b
 The reference case (Limpiezas El Imperio) replaced a hand-filled spreadsheet with a custom app built with AI agents; no AI model runs inside the client's software. "Integration" would promise that. See `docs/content.md`, Services.
 
 **The terms and privacy page is short and plain, and does not list a tax ID or postal address.**
-Same choice as on a client's site. Spanish law (LSSI) normally expects a site that offers paid services to identify its owner more fully; this is noted in `to-confirm.md` as a question for Kevin.
+Same choice as on a client's site. Spanish law (LSSI) normally expects a site that offers paid services to identify its owner more fully; this is noted in `to-confirm.md` as a question for Kevin. [Answered 2026-11-19: he now works from France, so the question is French law's; see the entry of that day.]
 
 **Marcas que dejan huellas was taken off the portfolio rather than shown without a working link or image.**
 Its domain expired. See `todo.md`.

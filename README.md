@@ -1,6 +1,6 @@
 # kevjrmy.github.io
 
-Personal portfolio of Kevin Jeremy Gautier, full-stack developer in Valencia, Spain. Live at https://kevjrmy.github.io, in English, French (`/fr`) and Spanish (`/es`).
+Personal portfolio of Kevin Jeremy Gautier, full-stack developer on the French Riviera, near Antibes. Live at https://kevjrmy.github.io, in English, French (`/fr`) and Spanish (`/es`).
 
 A static single-page app: React 19, TypeScript, Vite, React Router, plain CSS Modules. No backend, no tracking, nothing loaded from third parties.
 
@@ -36,4 +36,4 @@ Every push to `main` builds and publishes to GitHub Pages through `.github/workf
 
 `AGENTS.md` is the guide for coding agents (`CLAUDE.md` imports it). What Claude Code remembers about the project between sessions is in `.claude/memory/`, in the repo, so it is not lost with a device: `npm install` points Claude Code at it (`scripts/link-memory.mjs`), from the next session on. The repo is public, so nothing private is written there.
 
-Beyond that, `AGENTS.md` links to the topic files in `docs/` (architecture, styling, design, content, languages, stacks, projects) and to the decisions behind them in `docs/decisions/`. Open work is in `todo.md`; what waits for Kevin's answer is in `to-confirm.md`.
+Beyond that, `AGENTS.md` links to the topic files in `docs/` (architecture, styling, design, content, languages, stacks, projects) and to the decisions behind them in `docs/decisions/`. Open work is in `todo.md`, including what waits for Kevin's answer.

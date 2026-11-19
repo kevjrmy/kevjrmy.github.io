@@ -263,10 +263,6 @@
 
 @media screen and (min-width: 640px) {
   .tools,
-  .soonList {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .plugged {
     display: grid;
     grid-template-columns: 8rem 1fr;
@@ -281,7 +277,7 @@
   }
 
   .soonList {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 

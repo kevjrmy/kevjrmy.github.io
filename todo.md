@@ -1,6 +1,12 @@
 # TODO
 
-Open work on the site. Wording, dates and choices that wait for Kevin's answer are not work to do: they are in `to-confirm.md`.
+Open work on the site, and what waits for Kevin.
+
+## Waiting for Kevin
+
+Wording, dates and choices only he can settle. An agent asks him during the session; what he does not answer then goes here, and is deleted once he has. Nothing here is work to start without his answer.
+
+Nothing is waiting for him at the moment.
 
 ## Waiting
 

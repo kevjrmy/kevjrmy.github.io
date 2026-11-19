@@ -18,7 +18,7 @@ Rendered today: `title`, `stack`, `year`, `link`, `image`, and from the messages
 3. Check `type`. The portfolio filter buttons are derived: a category appears only if some project uses it, in the order given by `TYPE_ORDER` in `Portfolio.tsx`. A new type must be added to both the `ProjectType` union and `TYPE_ORDER`.
 4. If the project was built with Claude Code, put `'Claude Code'` first in `stack` (see Positioning in `docs/content.md`). Then check each `stack` label against the `techIcons` map in `src/data/techIcons.ts`, which both project views read: a label missing from it renders as a badge with no icon.
 5. A project of Kevin's own, with no client, takes the client label "Personal project" ("Projet personnel", "Proyecto personal"; Le Petit Cours is the first). Client work is listed ahead of it.
-6. Set `link` to `null` for a private or offline project. The "Visit site" link is hidden when it is null.
+6. Set `link` to `null` for a private or offline project, or one handed over to a client who has since changed it (SUNspot). The "Visit site" link is hidden when it is null.
 7. Add the screenshot (below).
 
 ## Screenshots
@@ -42,7 +42,7 @@ What the portfolio is meant to cover, for writing copy and choosing projects:
 - SSR: Nuxt (Rachel Blot, Fesma), Next.js (Limpiezas El Imperio: the public website and a private accounting app for the same client, both 2026).
 - Laravel: 1 past project and 2 current (1 going to production soon, French client).
 - Kotlin Android app.
-- PWAs: PlanetaX (live), SUNspot (Vue + Firebase, live since 2026), Le Petit Cours (Next.js + Supabase, Kevin's own open-source French course for Spanish speakers, built with Claude Code, 2026).
+- PWAs: PlanetaX (live), SUNspot (Vue + Firebase: the MVP Kevin built for two founders and handed over in 2026; labelled "Startup MVP", with no link, since the live site is no longer his work), Le Petit Cours (Next.js + Supabase, Kevin's own French course for Spanish speakers (free to use; its code is private and all rights reserved, so never "open source"), built with Claude Code, 2026).
 - Vector and logo design (Inkscape), image editing (GIMP).
 - Video editing: DaVinci Resolve, Kdenlive, and AI video (Google Flow / Veo / Nano Banana).
 - AI agents: see Positioning in `docs/content.md`.

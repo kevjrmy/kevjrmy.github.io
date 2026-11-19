@@ -4,7 +4,7 @@ Who the site is about, what it says and how it sounds. Where each sentence is wr
 
 ## Facts
 
-- Kevin Jeremy Gautier, full-stack developer, based in Valencia, Spain.
+- Kevin Jeremy Gautier, full-stack developer, based on the French Riviera, near Antibes (he was in Valencia, Spain, before, which is why several clients are there). The site says "French Riviera, near Antibes" and nothing more precise.
 - Web Developer (Node.js) diploma from OpenClassrooms (RNCP-registered), freelance since 2021.
 - Languages: French (native), English C1 (Cambridge), Spanish C1 (DELE).
 - Core stack as presented: JavaScript (Node.js, React, TypeScript) and PHP (Laravel), plus Vue.
@@ -68,6 +68,10 @@ The WhatsApp number, LinkedIn, GitHub, and email are the same in every language,
 ## Privacy page
 
 `/info` states that the site uses no cookies, analytics, forms, or third-party fonts, icons, or scripts, and that the one thing it saves in the browser is the light or dark choice made with the header switch (`localStorage`, key `theme`). That is true today. Adding any of those (an analytics script, a contact form, a font or icon loaded from a CDN, anything else saved in the browser) makes the page wrong: update the `info` section of the three message files in the same change, and its "Last updated" line. The language is not saved in the browser: it is in the URL (`docs/i18n.md`), and it has to stay that way for the page to stay true.
+
+The page opens with a legal notice (`#legal`), what French law (LCEN) asks of a professional site: publisher (Kevin's name), location ("French Riviera, near Antibes, France", nothing more precise), contact (his email) and host (GitHub, Inc., with its public address). It has no street address and no registration number: Kevin's choice on 2026-11-19, until he gives them. His business status stays out of the repo (`.claude/memory/`).
+
+The page is translated, and the English version prevails: each language says so under the date (Kevin's choice, 2026-11-19). The link to GitHub's privacy statement goes to GitHub's English version in every language, and the French and Spanish link text says so.
 
 ## Startup Weekend
 

@@ -80,8 +80,7 @@ Read the file that matches the task before starting, and only that one. Each is 
 | `docs/projects.md` | Adding or editing a portfolio project or its screenshot |
 | `docs/blog.md` | Starting the blog (not built yet) |
 | `docs/decisions/` | Before reversing an existing choice, and after making a new one. One file per topic; its `README.md` says which |
-| `todo.md` | Looking for open work, or recording something left unfinished |
-| `to-confirm.md` | Before treating a wording, a date or a translation as settled; after writing something on Kevin's behalf |
+| `todo.md` | Looking for open work, or recording something left unfinished. Its first section, "Waiting for Kevin", holds what only he can settle: ask him in the session, and write there what he has not answered yet. Anything written on his behalf (a wording, a translation, a date) is shown to him before the session ends |
 | `.claude/memory/` | Claude Code's memory of this project, committed so that it follows to another device. Claude Code loads it by itself once `npm install` has linked it; another agent starts from its `MEMORY.md`. It is the only copy: if a session's memory path is anywhere else, run `npm run memory:link` and save nothing until it points here |
 | `private/README.md` | A fact about Kevin changes on the site (diploma, languages, award, a contact link), the picks of the stack or the list of projects change, the look of the site changes (its greys, its hairlines, the About timeline, its icons), or he asks for a change to his resume. The folder holds his French and Spanish resumes; git ignores it, so it exists only on a device where he put it, and nothing in it is published, linked from the site or copied into `public/` |
 | `README.md` | Never needed for a task: it is the short human introduction and repeats this file |
@@ -90,5 +89,5 @@ Keeping them useful:
 
 - When a change makes one of these files wrong, fix the file in the same change.
 - When the site gains a new area (a blog, legal pages), give it its own file in `docs/` and add a row to the table above.
-- One topic per file, short enough to read whole. When a file starts holding two topics, split it; a decision goes in `docs/decisions/`, a question for Kevin in `to-confirm.md`, and neither in a topic file.
+- One topic per file, short enough to read whole. When a file starts holding two topics, split it; a decision goes in `docs/decisions/`, a question for Kevin under "Waiting for Kevin" in `todo.md`, and neither in a topic file.
 - Record what cannot be read from the code: intent, constraints, reasons, gotchas. Do not list components or files; those go stale and the code already says it.

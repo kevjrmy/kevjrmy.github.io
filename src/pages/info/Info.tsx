@@ -5,6 +5,9 @@ import styles from './Info.module.css'
 
 const EMAIL = 'kevin.jgnetworks@gmail.com'
 
+// The publisher of the legal notice: a name, not a sentence
+const PUBLISHER = 'Kevin Jeremy Gautier'
+
 // The titled paragraphs of the terms, in order. The words of the whole page are in
 // the messages of each language (src/i18n/messages); a paragraph with a link in it
 // is cut there around the link.
@@ -13,8 +16,8 @@ const termSections = ['using', 'content', 'prices', 'links', 'accuracy'] as cons
 // ── Component ─────────────────────────────────────────────────────────────────
 
 const Info: React.FC = () => {
-  const { locale, t } = useLocale()
-  const { terms, privacy } = t.info
+  const { t } = useLocale()
+  const { legal, terms, privacy } = t.info
 
   return (
     <section className={styles.section} aria-labelledby="info-heading">
@@ -26,7 +29,25 @@ const Info: React.FC = () => {
           <h1 id="info-heading" className={styles.h1}>{t.info.h1}</h1>
           <p className={styles.lead}>{t.info.lead}</p>
           <p className={styles.updated}>{t.info.updated}</p>
+          <p className={styles.updated}>{t.info.prevails}</p>
         </div>
+
+        {/* ── Legal notice ──────────────────────────────── */}
+        {/* What French law (LCEN) asks a professional site to show. No street
+            address or registration number yet: docs/content.md, Privacy page */}
+        <article id="legal" className={styles.block} aria-labelledby="legal-heading">
+          <h2 id="legal-heading" className={styles.h2}>{legal.heading}</h2>
+          <dl className={styles.legal}>
+            <dt>{legal.publisher}</dt>
+            <dd>{PUBLISHER}</dd>
+            <dt>{legal.location}</dt>
+            <dd>{legal.locationValue}</dd>
+            <dt>{legal.contact}</dt>
+            <dd><a href={`mailto:${EMAIL}`}>{EMAIL}</a></dd>
+            <dt>{legal.host}</dt>
+            <dd>{legal.hostValue}</dd>
+          </dl>
+        </article>
 
         {/* ── Terms of use ──────────────────────────────── */}
         <article id="terms" className={styles.block} aria-labelledby="terms-heading">
@@ -60,7 +81,8 @@ const Info: React.FC = () => {
           <p>
             {privacy.hosting.before}
             <a
-              href={`https://docs.github.com/${locale}/site-policy/privacy-policies/github-general-privacy-statement`}
+              href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
+              hrefLang="en"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -77,7 +99,7 @@ const Info: React.FC = () => {
             {privacy.rights.before}
             <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
             {privacy.rights.middle}
-            <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">AEPD</a>
+            <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">CNIL</a>
             {privacy.rights.after}
           </p>
 

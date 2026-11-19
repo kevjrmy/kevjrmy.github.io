@@ -13,13 +13,13 @@ const en = {
   // ── Page titles ──────────────────────────────────────────────────────────────
   // The browser tab, history and bookmarks: one per page, set by MainLayout
   titles: {
-    home: 'Kevjrmy · Full-stack developer building with AI agents',
-    portfolio: 'Portfolio · Kevjrmy',
-    services: 'Services · Kevjrmy',
-    ai: 'AI agents · Kevjrmy',
-    about: 'About · Kevjrmy',
-    contact: 'Contact · Kevjrmy',
-    info: 'Terms & privacy · Kevjrmy',
+    home: 'Kevin Jeremy Gautier · Full-stack developer building with AI agents',
+    portfolio: 'Portfolio · Kevin Jeremy Gautier',
+    services: 'Services · Kevin Jeremy Gautier',
+    ai: 'AI agents · Kevin Jeremy Gautier',
+    about: 'About · Kevin Jeremy Gautier',
+    contact: 'Contact · Kevin Jeremy Gautier',
+    info: 'Terms & privacy · Kevin Jeremy Gautier',
   },
 
   // ── Header and footer ───────────────────────────────────────────────────────
@@ -40,7 +40,7 @@ const en = {
     toDark: 'Switch to dark theme',
     language: 'Language',
     tagline: 'Words are magic',
-    skipToContent: 'Skip to content',
+    skipToContent: 'Skip to main content',
   },
 
   footer: {
@@ -60,13 +60,6 @@ const en = {
     lead: "Hi, I'm Kevin Jeremy Gautier, a full-stack developer specialized in JavaScript (Node.js, React, TypeScript) and PHP (Laravel), now building with Claude Code.",
     viewWork: 'View My Work',
     contact: 'Contact Me',
-  },
-
-  // The keys of the terminal (role, stack, ai, langs) and its command stay in English
-  cli: {
-    role: 'Full-stack developer',
-    nextPrompt: 'ready to build',
-    working: 'working…',
   },
 
   homeStack: {
@@ -113,7 +106,6 @@ const en = {
     facts: [
       'From idea to final pitch in 54 hours',
       'A team of six',
-      'I have kept building its web side since: landing page, consumer app and business dashboard',
     ],
     visit: 'Visit Cuanto Cuesta',
     gallery: 'Photos from Techstars Startup Weekend Valencia',
@@ -156,9 +148,9 @@ const en = {
   homeAbout: {
     eyebrow: 'About me',
     heading: 'Who am I ?',
-    body1: "I'm Kevin Jeremy Gautier, a full-stack developer based in Valencia, Spain. I graduated in 2021 as a Node.js web developer with OpenClassrooms and started freelancing right away, first with WordPress sites, then with modern web frameworks. Today I build with AI agents: Claude Code above all, after working with Codex, OpenCode and Antigravity.",
+    body1: "I'm Kevin Jeremy Gautier, a full-stack developer based on the French Riviera, near Antibes. I graduated in 2021 as a Node.js web developer with OpenClassrooms and started freelancing right away, first with WordPress sites, then with modern web frameworks. Today I build with AI agents: Claude Code above all, after working with Codex, OpenCode and Antigravity.",
     body2: 'My stack spans Laravel, Vue, React, and native Android, from a quick MVP to a production-grade web app. I focus on shipping work that is fast, accessible, and built to last.',
-    photoAlt: 'Kevin Jeremy Gautier, full-stack developer based in Valencia',
+    photoAlt: 'Kevin Jeremy Gautier, full-stack developer based on the French Riviera',
     signals: {
       since: { label: 'Since 2021', detail: 'building for the web' },
       satisfied: { label: '100% satisfied', detail: 'every client, every project' },
@@ -180,7 +172,7 @@ const en = {
   services: {
     eyebrow: 'Services',
     h1: 'What I can do for you',
-    lead: "Whether you need a quick fix or a product built from scratch, I've got a service for that. I build with AI agents and answer for the result, so you get it sooner with the same care.",
+    lead: "Whether you need a quick fix or a product built from scratch, I've got a service for that. I build with AI agents and stand behind the result: you get it sooner, with the same care.",
     gridLabel: 'All services',
     items: {
       automation: {
@@ -249,8 +241,8 @@ const en = {
       alt: 'Fraichup: food delivery web app screenshot',
     },
     'sunspot': {
-      client: 'Wellness startup',
-      excerpt: 'Installable app that helps people in Valencia manage their sun exposure: live UV intensity and a map of curated outdoor "sunspots". Vue 3 and Firebase, with light and dark themes.',
+      client: 'Startup MVP',
+      excerpt: 'The MVP of an installable app for a Valencia startup, to help people manage their sun exposure: live UV intensity and a map of curated outdoor "sunspots". Vue 3 and Firebase, with light and dark themes. Built for its two founders and handed over to them.',
       alt: 'SUNspot: map and explore screens of the PWA',
     },
     'limpiezas-el-imperio': {
@@ -265,7 +257,7 @@ const en = {
     },
     'le-petit-cours': {
       client: 'Personal project',
-      excerpt: 'Free, open-source French course written for Spanish speakers: short lessons, drills and reading, with optional accounts that sync progress across devices. A personal project, built with Claude Code on Next.js and Supabase.',
+      excerpt: 'A free French course written for Spanish speakers, built level by level up to B2. Every explanation can be read in simple French or in Spanish, and a second path teaches people who speak French at home to write it. A personal project, built with Claude Code on Next.js and Supabase.',
       alt: 'Le Petit Cours: home and lesson screens of the PWA',
     },
     'planetax': {
@@ -300,8 +292,8 @@ const en = {
     eyebrow: 'About me',
     // One line of the headline per entry
     h1: ['A developer who', 'gives a damn.'],
-    lead: "I'm Kevin Jeremy Gautier, a full-stack developer based in Valencia, Spain. Certified web developer, freelance since 2021, working in French, English and Spanish. These days I build with AI agents, and I still care that things work well and look the part.",
-    photoAlt: 'Kevin Jeremy Gautier, full-stack developer based in Valencia, Spain',
+    lead: "I'm Kevin Jeremy Gautier, a full-stack developer based on the French Riviera, near Antibes. Certified web developer, freelance since 2021, working in French, English and Spanish. These days I build with AI agents, and I still care that things work well and look the part.",
+    photoAlt: 'Kevin Jeremy Gautier, full-stack developer based on the French Riviera, near Antibes',
 
     background: {
       eyebrow: 'Background',
@@ -331,7 +323,7 @@ const en = {
       aiFirst: {
         year: '2025 → now',
         title: 'AI-first development',
-        body: 'Most of my work now runs through AI agents. Claude Code is my main one, after time with Codex, OpenCode and Antigravity, and Cursor is my editor. The agents write fast; I direct, review and answer for the result.',
+        body: 'Most of my work now runs through AI agents. Claude Code is my main one, after time with Codex, OpenCode and Antigravity, and Cursor is my editor. The agents write fast. I decide what they build, review what they write, and stand behind the result.',
       },
     },
     credentials: {
@@ -389,8 +381,8 @@ const en = {
   // ── AI page ─────────────────────────────────────────────────────────────────
   ai: {
     eyebrow: 'AI',
-    h1: ['Using AI since 2022.', 'Building with agents every day.'],
-    lead: 'I did not discover AI last month. I have followed it since the first image generators, through chat, video and voice, to the coding agents I now work with all day. I treat it like the rest of the job: learned properly, reviewed carefully, and answered for.',
+    h1: ['Working with AI since 2022.', 'Building with agents every day.'],
+    lead: 'I have followed AI since the first image generators, through chat, video and voice, to the coding agents I now work with all day. I treat it like the rest of the job: learned properly, reviewed carefully, and with my name on the result.',
     // The keys of the status line under the intro
     facts: {
       since: 'since',
@@ -410,7 +402,7 @@ const en = {
         'Markdown': 'Context files',
       },
       pluggedKey: 'plugged in',
-      plugged: 'Claude Code does not work alone: I extend it with the ecosystem around it.',
+      plugged: 'I never run Claude Code bare: I extend it with what its ecosystem offers.',
       kinds: {
         plugins: 'plugins',
         skills: 'skills',
@@ -418,6 +410,7 @@ const en = {
       },
       upcomingTitle: 'Learning next',
       comingSoon: 'coming soon',
+      learningNow: 'learning now',
       upcoming: {
         hermes: {
           label: 'Hermes',
@@ -430,10 +423,6 @@ const en = {
         local: {
           label: 'Local LLMs',
           role: 'Open-source models running on my own machine, starting with Ollama.',
-        },
-        linear: {
-          label: 'Linear',
-          role: 'The issue tracker where the work is planned, and where tasks can be handed to coding agents.',
         },
       },
       classicLink: 'See the classic stack',
@@ -458,7 +447,7 @@ const en = {
         chatgpt: {
           when: 'Dec 2022',
           title: 'ChatGPT, from the first days',
-          body: 'I created my account a few days after it was released, when it ran on GPT-3.5. From then on, AI was something I worked with, not a demo I watched.',
+          body: 'I opened my account a few days after launch, when it still ran on GPT-3.5, and it has been part of how I work ever since.',
         },
         imageModels: {
           when: '2023',
@@ -473,12 +462,12 @@ const en = {
         video: {
           when: '2024 → 25',
           title: 'Video',
-          body: 'I went through the video generators as they came out, Magnific, Sora and Veo 3 among them. I made my own AI videos in Google Flow, with Nano Banana for the images.',
+          body: 'I tried the video generators as they came out, Magnific, Sora and Veo 3 among them, and made clips of my own in Google Flow, with Nano Banana for the images.',
         },
         deepseek: {
           when: '2025',
           title: 'DeepSeek-R1, and voice',
-          body: 'I started with DeepSeek right after R1, its open reasoning model, was released in January 2025. I also began talking to Grok in voice mode, which I still do outside of work.',
+          body: 'I started with DeepSeek right after R1, its open reasoning model, was released in January 2025. Grok\'s voice mode came in around then too, and I still use it away from work.',
         },
         agents: {
           when: '2025 → 26',
@@ -488,12 +477,12 @@ const en = {
         claudeCode: {
           when: '2026 → now',
           title: 'Claude Code',
-          body: 'I switched to Claude Code and stayed. It is my main agent today, and the recent projects in my portfolio are built with it. Outside the terminal, I use Claude in its desktop app. I have started on Hermes too, learning it on a real case: an agent built to prepare the classes of Le Petit Cours, my French course for Spanish speakers, and to proofread its lessons. It is my first project with it, and more will follow.',
+          body: 'I switched to Claude Code and stayed. It is my main agent today, and the recent projects in my portfolio are built with it. Away from the terminal, I talk to Claude in its desktop app. Since October 2026 I have also been learning Hermes on a real case: an agent for Le Petit Cours, my French course for Spanish speakers, that I talk to on Telegram to prepare its classes and proofread its lessons. It is my first project with it, and I am still learning.',
         },
         next: {
           when: 'Next',
           title: 'Still on the list',
-          body: 'Jev and Linear come next, and open-source models in general: I have not run one on my own machine yet, and I will.',
+          body: 'Jev comes next, and open-source models in general: I have not run one on my own machine yet, and I will.',
         },
       },
     },
@@ -503,20 +492,20 @@ const en = {
       heading: 'How I keep it serious',
       items: {
         direct: {
-          title: 'I direct, the agents type',
-          body: 'The agents write fast. I decide what gets built, read what comes back, and answer for the result.',
+          title: 'I direct, the agents write',
+          body: 'The agents write fast. I decide what gets built, read what comes back, and stand behind the result.',
         },
         context: {
           title: 'Context is the craft',
-          body: 'An agent is only as good as what it is told. I keep that context in plain Markdown files, a format I was writing long before agents read it.',
+          body: 'An agent is only as good as what it is told. I write that context in plain Markdown files, a format I used long before agents could read it.',
         },
         learned: {
           title: 'Learned, not improvised',
-          body: 'I took the AI course on OpenClassrooms, the school of my developer diploma, on top of years of daily practice.',
+          body: 'Years of daily practice, plus the AI course of OpenClassrooms, the school where I earned my developer diploma.',
         },
         room: {
           title: 'In the room',
-          body: 'I go to AI meetups such as AI Tinkerers with developer friends, and we trade what works and what does not.',
+          body: 'I go to AI meetups such as AI Tinkerers with developer friends, to compare what works and what does not.',
         },
       },
     },
@@ -537,11 +526,22 @@ const en = {
     eyebrow: 'Info',
     h1: 'Terms & privacy',
     lead: "The short version: this is a portfolio. It doesn't track you and it doesn't ask you for anything.",
-    updated: 'Last updated: 7 October 2026',
+    updated: 'Last updated: 19 November 2026',
+    prevails: 'This page also exists in French and Spanish. If the versions differ, this English one prevails.',
+
+    legal: {
+      heading: 'Legal notice',
+      publisher: 'Publisher',
+      location: 'Location',
+      locationValue: 'French Riviera, near Antibes, France',
+      contact: 'Contact',
+      host: 'Host',
+      hostValue: 'GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, United States',
+    },
 
     terms: {
       heading: 'Terms of use',
-      intro: (domain: string) => `${domain} is the personal portfolio of Kevin Jeremy Gautier, a freelance full-stack developer based in Valencia, Spain. It presents my work and the services I offer.`,
+      intro: (domain: string) => `${domain} is the personal portfolio of Kevin Jeremy Gautier, a freelance full-stack developer based on the French Riviera, near Antibes. It presents my work and the services I offer.`,
       using: {
         title: 'Using the site',
         body: "You're free to browse it, link to it and share it. Please don't copy its text, design or code and present them as your own.",
@@ -590,11 +590,11 @@ const en = {
         title: 'When you contact me',
         body: "If you write to me by email, WhatsApp or LinkedIn, I receive what you choose to send: your name, your contact details and your message. I use it only to reply and, if we work together, to carry out the project. I don't sell it or pass it on. Those services handle your data under their own privacy policies.",
       },
-      // before, the email address, middle, the link to the AEPD, after
+      // before, the email address, middle, the link to the CNIL, after
       rights: {
         title: 'Your rights',
         before: 'You can ask me at any time what information I hold about you, and to correct or delete it: write to ',
-        middle: '. If you are in the EU you can also complain to your data protection authority; in Spain that is the ',
+        middle: '. If you are in the EU you can also complain to your data protection authority; in France that is the ',
         after: '.',
       },
       changes: {
