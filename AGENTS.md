@@ -13,7 +13,7 @@ Goals: a clean, fast, professional portfolio that is mobile-first and accessible
 ## Commands
 
 ```bash
-npm run dev       # Vite dev server with HMR, on http://localhost:5180
+npm run dev       # Vite dev server with HMR, on http://localhost:5173
 npm run build     # tsc -b (type-check) then vite build -> dist/
 npm run lint      # eslint .
 npm run preview   # serve the built dist/

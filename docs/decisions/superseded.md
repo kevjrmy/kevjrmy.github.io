@@ -4,6 +4,12 @@ Decisions that are no longer in force, kept for their figures and their reasons.
 
 - The three price entries ended on 2026-10-07, when the services page stopped listing prices (`content.md`).
 - The marquee entry ended on 2026-10-06, when the home marquee became a still strip (`stacks.md`).
+- The port 5180 entry ended on 2026-11-19, when the dev server went back to Vite's default 5173 (`architecture.md`).
+
+## 2026-10-04
+
+**The dev server runs on port 5180, not Vite's default 5173.**
+Other local projects that use `vite-plugin-pwa` leave a dev service worker registered on `localhost:5173`. It stays active after that project stops and serves its own `index.html` for `/`, so this site showed a blank page with "@vitejs/plugin-react can't detect preamble". A port of its own gives this project an origin no other project's service worker can claim. `strictPort` is on so it never silently falls back to a shared port.
 
 ## 2026-10-06
 

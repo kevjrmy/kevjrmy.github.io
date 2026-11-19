@@ -8,7 +8,7 @@ A static single-page app: React 19, TypeScript, Vite, React Router, plain CSS Mo
 
 ```bash
 npm install
-npm run dev       # http://localhost:5180
+npm run dev       # http://localhost:5173
 npm run build     # type-check, then build to dist/
 npm run lint
 npm run preview   # serve the built site

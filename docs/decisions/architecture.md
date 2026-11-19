@@ -2,6 +2,11 @@
 
 How the site is built: routing, the build, icons, the CSS system and its two themes, and the context files themselves. The state today is in `docs/architecture.md` and `docs/styling.md`.
 
+## 2026-11-19
+
+**The dev server uses Vite's default port, 5173.**
+Kevin asked to drop the custom port. This replaces the 2026-10-04 choice of port 5180, which existed so a leftover `vite-plugin-pwa` service worker on `localhost:5173` could not serve another project's page. The cost of that port was a number nobody expects, written into the commands and the docs. If that blank page comes back, unregister the service worker for `localhost:5173` in the browser.
+
 ## 2026-10-09
 
 **A mark no icon set has goes in a small set of the site's own, `local:`.**
@@ -42,9 +47,6 @@ Rejected `HashRouter`, which would put `#/` in every URL. The cost is that deep 
 
 **Icons are bundled at build time, keeping the string API.**
 Previously every icon was fetched from the Iconify API at runtime. A small Vite plugin now extracts the icons used from the `@iconify-json/*` packages. Rejected importing whole icon sets (thousands of icons in the bundle) and rejected switching to per-icon component imports (would have meant rewriting every data array that stores an icon name).
-
-**The dev server runs on port 5180, not Vite's default 5173.**
-Other local projects that use `vite-plugin-pwa` leave a dev service worker registered on `localhost:5173`. It stays active after that project stops and serves its own `index.html` for `/`, so this site showed a blank page with "@vitejs/plugin-react can't detect preamble". A port of its own gives this project an origin no other project's service worker can claim. `strictPort` is on so it never silently falls back to a shared port.
 
 **Page transitions are a CSS enter animation on a re-keyed `<main>`, not the View Transitions API.**
 React has no built-in equivalent of Vue's `<Transition>`. React Router can drive the browser's View Transitions API (old page fades out as the new one fades in), but only with its data router (`createBrowserRouter`) and a `viewTransition` prop on every link; this app uses `BrowserRouter`. The other route is an animation library such as Motion. A keyed `<main>` with a CSS animation costs four lines and no dependency, at the price of having no exit animation.

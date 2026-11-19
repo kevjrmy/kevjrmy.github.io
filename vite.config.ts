@@ -3,8 +3,8 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 import fs from 'fs'
 
-const SRC_DIR = path.resolve(__dirname, './src')
-const ICON_SETS_DIR = path.resolve(__dirname, './node_modules/@iconify-json')
+const SRC_DIR = path.resolve(import.meta.dirname, './src')
+const ICON_SETS_DIR = path.resolve(import.meta.dirname, './node_modules/@iconify-json')
 // The marks no installed set has, as one more set: 'local:name'
 const LOCAL_PREFIX = 'local'
 const LOCAL_ICONS = path.resolve(SRC_DIR, './icons/local.json')
@@ -109,15 +109,9 @@ function spaFallback(): Plugin {
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), bundledIcons(), spaFallback()],
-  // Own port: on Vite's default 5173, a dev service worker left by another project
-  // (vite-plugin-pwa) keeps serving that project's index.html to the browser.
-  server: {
-    port: 5180,
-    strictPort: true
-  },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src')
+      '@': path.resolve(import.meta.dirname, './src')
     }
   }
 })
