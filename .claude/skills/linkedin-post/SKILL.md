@@ -6,7 +6,7 @@ argument-hint: "[subject: project slug, commit or free text] [en|fr|es]"
 
 # LinkedIn post
 
-Turn a change to the site into a LinkedIn post that Kevin pastes himself. You only draft: never post, never open a browser, never commit the draft. Kevin reviews every draft before it goes out, so show it and wait for his changes.
+Turn a change to the site into a LinkedIn post that Kevin pastes himself. You only draft: never post, never commit the draft. Kevin reviews every draft before it goes out, so show it and wait for his changes, then he pastes and posts himself. Posting through Claude in Chrome was tried once (2026-11-19) and took longer than doing it by hand; if he asks again, say so (`docs/decisions/architecture.md`).
 
 What Kevin wants from a post (his words, 2026-11-19): usually short, not too technical, no emojis, professional without sounding corporate, links and tags wherever possible, and a screenshot or some other image to go with it. Talk about the public product, what a visitor sees and uses, not how it is built: giving away too much of the tech is a risk.
 
@@ -29,7 +29,7 @@ One `AskUserQuestion` round, skipping what the argument already settled:
 - **Language**: English, French or Spanish. One language per post.
 - **The personal line**: what Kevin wants to say in his own words (how the work went, what he is proud of, thanks to the client), or "write it for me".
 - **Who to tag**: people (the client, a collaborator) and company or association pages. Kevin likes tags, so propose every one the subject allows.
-- **Claude Code**, for a project built with it: named in the text ("hecha con Claude Code"), or only as the `#ClaudeCode` hashtag so the text stays on the product. Kevin decides post by post.
+- **Claude Code**, for a project built with it: named in the text ("hecha con Claude Code"), or left out so the text stays on the product. Kevin decides post by post.
 
 ## 4. Write the post
 
@@ -37,10 +37,10 @@ Voice and positioning come from `docs/content.md` (Positioning, Voice) and, for 
 
 - First person, plain words, short sentences. Professional and balanced: confident, never salesy, never corporate.
 - No em dash (—), in any language. No emojis.
-- About the product, not the tech: who it is for, what it offers, what a visitor finds there. No frameworks, databases, CMS or hosting, even when `stack` lists them, and nothing about how the code is organised. Claude Code is named as Kevin chose in step 3, by that name, never a vague "AI"; that is positioning, not a tech detail, and `#ClaudeCode` is in the hashtags either way. WordPress, if it comes up at all, comes last.
+- About the product, not the tech: who it is for, what it offers, what a visitor finds there. No frameworks, databases, CMS or hosting, even when `stack` lists them, and nothing about how the code is organised. Claude Code is named as Kevin chose in step 3, by that name, never a vague "AI"; that is positioning, not a tech detail. WordPress, if it comes up at all, comes last.
 - Say what the project is for: its vision, its mission, what it offers. Not its legal form ("non-profit", "sin ánimo de lucro", "SL"). When the site's excerpt does not say enough, read the project's own public site and quote its mission or tagline as it is written there.
 - A project with `status: 'wip'` is described as live and still in progress.
-- Shape: a hook line, then 2 or 3 short paragraphs (who it is for, what it offers), the live link(s), then `https://kevjrmy.github.io` for the portfolio, then 3 or 4 hashtags. Link the home page rather than a deeper path: deep links on GitHub Pages answer with a 404 status (`docs/architecture.md`), which can break LinkedIn's link preview.
+- Shape: a hook line about the project itself ("Dos proyectos nuevos…", not "on my portfolio"), then 2 or 3 short paragraphs (who it is for, what it offers), the project's live link(s), then 3 or 4 hashtags. No link to Kevin's portfolio. The hashtags are about the project and its subject (`#ReconstrucciónHumana`), not the tech.
 - Short: about 400 to 800 characters, longer only when Kevin asks.
 - LinkedIn shows plain text: no Markdown (`**`, `#` headings, `[text](url)`). Line breaks are fine.
 - Write people to tag as `@Name` in the text. A pasted `@Name` is not a tag: Kevin retypes it in LinkedIn and picks the person from the list, so the checklist reminds him.
@@ -61,6 +61,7 @@ Voice and positioning come from `docs/content.md` (Positioning, Voice) and, for 
 - Folder: `private/linkedin/<YYYY-MM-DD>-<subject>/` (today's date, subject in kebab-case). Create `private/linkedin/` if it does not exist: `private/` is git-ignored, so drafts never reach this public repo.
 - `post.md` holds, in this order:
   1. The post text, exactly as it is to be pasted, with nothing else around it.
-  2. A line `---`, then a short checklist: images to attach, in order; people to tag; links to open once to check they work.
+  2. A line `---`, then a short checklist: attach the images first, in order, then paste the text (once LinkedIn shows a link preview card it hides the image button); people and pages to tag; links to open once to check they work.
 - Print the post text in the terminal too, with the folder's absolute path.
 - Ask Kevin to review it, and offer one more pass: shorter, warmer, more formal, or another language (a new language is a new `post.<lang>.md` in the same folder).
+- Once Kevin says it is posted, delete the draft folder: he keeps no copy, and the images are already in `public/`.

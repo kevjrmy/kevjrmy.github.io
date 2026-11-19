@@ -4,6 +4,9 @@ How the site is built: routing, the build, icons, the CSS system and its two the
 
 ## 2026-11-19
 
+**LinkedIn posts are drafted by the `/linkedin-post` skill, and Kevin posts them himself.**
+The first one (Deissy Olarte's two sites) was posted through Claude in Chrome at Kevin's request: tags and images worked, but LinkedIn's editor made every edit slow, and he finished it by hand faster. Rejected: Claude in Chrome as the default; LinkedIn's API (an app, a token to renew every 60 days, and tagging a person needs an id the basic access does not give); a scheduling tool (one more third party with access to his account); a Playwright script (LinkedIn's terms forbid automating its site). What it costs: a couple of minutes by hand per post. Worth revisiting if he starts posting often.
+
 **The mobile menu is a native modal `<dialog>`.**
 It was an `<aside role="dialog" aria-modal="true">` with a hand-written Escape listener and a scroll lock on `<body>`, and its comment promised a focus trap that did not exist: Tab walked out of it into the page behind, and closing it did not return focus to the menu button. `showModal()` gives all of that for free and puts the sheet in the top layer. The page under it can no longer scroll through `overscroll-behavior` on the dialog and its backdrop, the guide's recommendation over locking `<body>` (which shifts the layout and can jump the scroll position); Safari does not honour it on content that does not overflow, which is harmless since the sheet hides the whole page. Rejected: keeping the `<aside>` and writing the focus trap.
 
