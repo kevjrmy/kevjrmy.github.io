@@ -251,6 +251,16 @@ const es: Messages = {
       excerpt: 'Web de un club de pickleball indoor en Valencia: pistas, escuela, cafetería, eventos y reservas. Reconstruida desde WordPress con Claude Code como un sitio Astro estático y rápido.',
       alt: 'Pickleball Valencia: captura de la web del club',
     },
+    'turesiliencia-org': {
+      client: 'Asociación sin ánimo de lucro',
+      excerpt: 'Web de TuResiliencia, asociación sin ánimo de lucro dedicada a la Reconstrucción Humana y fundada por Deissy Olarte: formación, investigación, publicaciones y cooperación, en español e inglés. Hecha con Claude Code sobre Next.js, y todavía en desarrollo.',
+      alt: 'TuResiliencia: captura de la web de la asociación',
+    },
+    'turesiliencia-com': {
+      client: 'Autora y conferencista',
+      excerpt: 'Web personal de Deissy Olarte, teóloga, investigadora y conferencista, autora de «Sobrevivir no es reconstruirse»: sus conferencias, su libro y su blog. Hecha con Claude Code sobre Astro, con el blog escrito en Sanity, y todavía en desarrollo.',
+      alt: 'Deissy Olarte: captura de su web personal',
+    },
     'le-petit-cours': {
       client: 'Proyecto personal',
       excerpt: 'Un curso de francés gratuito, escrito para hispanohablantes y construido nivel a nivel hasta el B2. Cada explicación se puede leer en francés sencillo o en español, y un segundo itinerario enseña a escribir el francés a quienes lo hablan en casa. Un proyecto personal, hecho con Claude Code sobre Next.js y Supabase.',

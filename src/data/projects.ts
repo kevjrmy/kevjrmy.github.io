@@ -59,6 +59,39 @@ export const projects: Project[] = [
       src: '/images/projects/limpiezas-el-imperio.webp',
     },
   },
+  // Deissy Olarte's two sites, both still in progress and already live
+  {
+    slug: 'turesiliencia-org',
+    title: 'TuResiliencia',
+    type: 'Web Application',
+    stack: ['Claude Code', 'Next.js', 'TypeScript'],
+    tags: ['ai', 'claude-code', 'nextjs', 'association', 'non-profit', 'bilingual'],
+    year: 2026,
+    status: 'wip',
+    lang: 'es',
+    link: 'https://www.turesiliencia.org',
+    featured: true,
+    order: 4,
+    image: {
+      src: '/images/projects/turesiliencia-org.webp',
+    },
+  },
+  {
+    slug: 'turesiliencia-com',
+    title: 'Deissy Olarte',
+    type: 'Web Application',
+    stack: ['Claude Code', 'Astro', 'Sanity'],
+    tags: ['ai', 'claude-code', 'astro', 'sanity', 'blog', 'author', 'speaker'],
+    year: 2026,
+    status: 'wip',
+    lang: 'es',
+    link: 'https://turesiliencia.com',
+    featured: true,
+    order: 5,
+    image: {
+      src: '/images/projects/turesiliencia-com.webp',
+    },
+  },
   {
     slug: 'pickleball-valencia',
     title: 'Pickleball Valencia',
@@ -70,7 +103,7 @@ export const projects: Project[] = [
     lang: 'es',
     link: 'https://pickleballvalencia.es',
     featured: true,
-    order: 4,
+    order: 6,
     image: {
       src: '/images/projects/pickleball-valencia.webp',
     },
@@ -86,7 +119,7 @@ export const projects: Project[] = [
     lang: 'fr',
     link: 'https://lepetitcours.vercel.app',
     featured: true,
-    order: 5,
+    order: 7,
     image: {
       src: '/images/projects/le-petit-cours.webp',
     },
@@ -102,7 +135,7 @@ export const projects: Project[] = [
     lang: 'es',
     link: 'https://planetax.netlify.app',
     featured: true,
-    order: 6,
+    order: 8,
     image: {
       src: '/images/projects/planetax.webp',
     },
@@ -118,7 +151,7 @@ export const projects: Project[] = [
     lang: 'es',
     link: null,
     featured: true,
-    order: 7,
+    order: 9,
     image: {
       src: '/images/projects/el-imperio-contabilidad.webp',
     },
@@ -134,7 +167,7 @@ export const projects: Project[] = [
     lang: 'en',
     link: null,
     featured: true,
-    order: 8,
+    order: 10,
     image: {
       src: '/images/projects/fesma.webp',
     },
@@ -150,7 +183,7 @@ export const projects: Project[] = [
     lang: 'fr',
     link: 'https://rachel-blot.com',
     featured: true,
-    order: 9,
+    order: 11,
     image: {
       src: '/images/projects/rachel-blot.webp',
     },
@@ -166,7 +199,7 @@ export const projects: Project[] = [
     lang: 'es',
     link: 'https://ethicaanabelorzaez.com',
     featured: true,
-    order: 10,
+    order: 12,
     image: {
       src: '/images/projects/ethica.webp',
     },

@@ -14,18 +14,19 @@ Rendered today: `title`, `stack`, `year`, `link`, `image`, and from the messages
 ## Adding a project
 
 1. Add its `client`, `excerpt` and `alt` under a new slug in the `projects` section of `en.ts`, then of `fr.ts` and `es.ts`: the build fails until all three have it. Then add an entry with that `slug` to the `projects` array. The slug is unique and kebab-case; it is also the React key and the screenshot filename.
-2. Set `featured` and `order`. Every tab on the homepage is one featured project, so each `featured: true` adds a tab. Keep `order` in step with the position in the array, since the portfolio page uses array order and the homepage uses `order`. WordPress projects go last.
+2. Set `featured` and `order`. Every tab on the homepage is one featured project, so each `featured: true` adds a tab. Keep `order` in step with the position in the array, since the portfolio page uses array order and the homepage uses `order`. WordPress projects go last. Where a project goes is Kevin's call: Deissy Olarte's two sites sit fourth and fifth, the association's first, ahead of Pickleball Valencia, at his word (2026-11-19).
 3. Check `type`. The portfolio filter buttons are derived: a category appears only if some project uses it, in the order given by `TYPE_ORDER` in `Portfolio.tsx`. A new type must be added to both the `ProjectType` union and `TYPE_ORDER`.
 4. If the project was built with Claude Code, put `'Claude Code'` first in `stack` (see Positioning in `docs/content.md`). Then check each `stack` label against the `techIcons` map in `src/data/techIcons.ts`, which both project views read: a label missing from it renders as a badge with no icon.
 5. A project of Kevin's own, with no client, takes the client label "Personal project" ("Projet personnel", "Proyecto personal"; Le Petit Cours is the first). Client work is listed ahead of it.
-6. Set `link` to `null` for a private or offline project, or one handed over to a client who has since changed it (SUNspot). The "Visit site" link is hidden when it is null.
-7. Add the screenshot (below).
+6. A project that is live but not finished takes `status: 'wip'`, and its excerpt says so ("and still in progress"), since the status is not shown: Deissy Olarte's two sites, added 2026-11-19. Once finished, set `status: 'live'` and drop the phrase in the three languages. Their copy says only what the two sites say publicly: the notes about that client are private and stay out of this repo.
+7. Set `link` to `null` for a private or offline project, or one handed over to a client who has since changed it (SUNspot). The "Visit site" link is hidden when it is null.
+8. Add the screenshot (below).
 
 ## Screenshots
 
 - Path: `public/images/projects/<slug>.webp`, referenced in data as `/images/projects/<slug>.webp`.
 - **A screenshot is never cropped.** Kevin's rule (2026-10-06): the picture is shown whole, on every screen. The portfolio cards and the homepage card below 1024px hold it in a box that is 16:9 by construction. From 1024px the homepage card puts the screenshot beside the text; there it is fitted inside its box (`object-fit: contain`), which is 16:9 on a wide screen and leaves two thin bands where the text is the taller of the two. Do not let the box grow with the card under `cover`: that crops the sides.
-- A website is shown by its desktop capture on every device, phones included. That is Kevin's choice for Fraichup, Rachel Blot, Ethica and Pickleball Valencia, and the two other websites follow it. Do not swap in a mobile capture for small screens. Anything below the 16:9 frame is cropped. On desktop the homepage panel drops the fixed ratio and fills the panel height, still anchored to the top.
+- A website is shown by its desktop capture on every device, phones included. That is Kevin's choice for Fraichup, Rachel Blot, Ethica and Pickleball Valencia, and the other websites follow it. Do not swap in a mobile capture for small screens. Anything below the 16:9 frame is cropped. On desktop the homepage panel drops the fixed ratio and fills the panel height, still anchored to the top.
 - A missing file is handled: an `onError` handler swaps in a placeholder.
 - A site that is offline cannot be captured, and Wayback Machine copies often load without their styles. Take the project off the list and note it in `todo.md` rather than ship a broken image.
 - Every image is a 16:9 WebP. The conventions by kind of project:
@@ -37,9 +38,9 @@ Rendered today: `title`, `stack`, `year`, `link`, `image`, and from the messages
 
 What the portfolio is meant to cover, for writing copy and choosing projects:
 
-- Static sites: Astro (Pickleball Valencia, rebuilt from WordPress in 2026).
+- Static sites: Astro (Pickleball Valencia, rebuilt from WordPress in 2026; Deissy Olarte's personal site, turesiliencia.com, with its blog written in Sanity, 2026, in progress).
 - SPA: Vue (PlanetaX PWA), React.
-- SSR: Nuxt (Rachel Blot, Fesma), Next.js (Limpiezas El Imperio: the public website and a private accounting app for the same client, both 2026).
+- SSR: Nuxt (Rachel Blot, Fesma), Next.js (Limpiezas El Imperio: the public website and a private accounting app for the same client, both 2026; TuResiliencia, turesiliencia.org, the bilingual site of Deissy Olarte's non-profit association, 2026, in progress).
 - Laravel: 1 past project and 2 current (1 going to production soon, French client).
 - Kotlin Android app.
 - PWAs: PlanetaX (live), SUNspot (Vue + Firebase: the MVP Kevin built for two founders and handed over in 2026; labelled "Startup MVP", with no link, since the live site is no longer his work), Le Petit Cours (Next.js + Supabase, Kevin's own French course for Spanish speakers (free to use; its code is private and all rights reserved, so never "open source"), built with Claude Code, 2026).

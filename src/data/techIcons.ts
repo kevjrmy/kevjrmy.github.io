@@ -24,6 +24,7 @@ export const techIcons: Record<string, string> = {
   'Firebase': 'logos:firebase-icon',
   'Supabase': 'logos:supabase-icon',
   'Astro': 'logos:astro-icon',
+  'Sanity': 'simple-icons:sanity',
   'Claude Code': 'logos:claude-code',
   'WooCommerce': 'logos:woocommerce-icon',
 }

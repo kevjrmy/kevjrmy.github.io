@@ -4,6 +4,9 @@ What the site says: positioning, voice, services, the terms page, what is on the
 
 ## 2026-11-19
 
+**Deissy Olarte's two sites are on the portfolio while still in progress, fourth and fifth.**
+Kevin asked for turesiliencia.org (her non-profit association, Next.js, Spanish and English) and turesiliencia.com (her personal site, Astro with a blog in Sanity), both built with Claude Code, unfinished and already live, and then for them to go above Pickleball Valencia. They take `status: 'wip'`, which nothing displays, so each excerpt ends "and still in progress" (`docs/projects.md`). Their copy says only what the two sites say publicly: the notes kept about that client are private, outside this repo. Rejected: waiting until they are finished, which would hide two of his most recent Claude Code projects; one card for both, when they are two sites with two stacks and two voices. What it costs: two excerpts to update when the sites are done, and twelve tabs on the homepage.
+
 **Kevin is presented as based on the French Riviera, near Antibes, and `/info` opens with a legal notice under French law.**
 He moved back to France from Valencia. The site says "French Riviera, near Antibes" ("Côte d'Azur, près d'Antibes", "Costa Azul, cerca de Antibes"), his choice among three wordings; the Valencia clients and the Startup Weekend stay as they are, being past work, and the privacy page now names France's CNIL instead of Spain's AEPD. French law (LCEN) expects a professional site to give its publisher's identity. Asked twice, he chose a notice with his name, his area (the same wording as the rest of the site), his email and the host, and no street address or registration number for now; those are added if and when he gives them, and nothing about his status is written in the repo. Rejected: keeping Valencia, which would now be untrue, and a wording that keeps Valencia as a past ("after five years in Valencia").
 
