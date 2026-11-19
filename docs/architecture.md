@@ -12,7 +12,9 @@ Adding a page touches three places:
 
 1. The `pages` array in `App.tsx`.
 2. The `navLinks` array in `src/components/Header/Header.tsx`. One array drives both the desktop nav and the mobile menu. Contact is kept apart in `cta`, because it is rendered as the primary button in both.
-3. Its words, and its nav label under `header.nav`, in the three files of `src/i18n/messages/`.
+3. Its words, its nav label under `header.nav` and its tab title under `titles`, in the three files of `src/i18n/messages/`.
+
+The page itself needs one `<h1>`: it is where focus lands after a navigation and from the skip link.
 
 `/about` is in the nav, last of the links (since 2026-10-06; before that it was reached only from inside the pages). The homepage About section links to it too, and the home strip and the `/ai` page link to its `#stack` anchor (the classic stack). `/info` (terms of use and privacy) is reached only from the footer, which links to its `#terms` and `#privacy` anchors.
 
@@ -20,7 +22,9 @@ Adding a page touches three places:
 
 `MainLayout` also handles scrolling, which React Router does not: on navigation it jumps to the `#anchor` if the URL has one, otherwise to the top. Back and forward are left to the browser, which restores the previous position. A change of language is the same place on the same page, and does not scroll.
 
-The header is sticky (`z-index: 40`); the mobile menu is a full-screen sheet above it (`z-index: 50`), rendered next to the header, not inside it. Both carry the two switches, language then theme. The language switch is its own component (`components/LanguageSwitch`) and takes its size from custom properties the header sets (`--switch-size`, `--switch-color`, `--switch-margin`), so it matches the buttons around it in each of its three places. `html` has `scroll-padding-top: 5rem` so anchors stop below the header.
+Focus moves with the page, since a router does not move it as a page load would. After every navigation but the first load, `MainLayout` focuses the `#anchor` target if there is one, else the page's `<h1>` (`src/utils/focus.ts`), so keyboard and screen reader users start on the new page instead of on the link they used. Each page therefore needs an `<h1>`. The skip link, the first Tab stop of every page (rendered by the header), lands on the same `<h1>`. `MainLayout` also sets `document.title` from the `titles` section of the messages, one per page and language.
+
+The header is sticky (`z-index: 40`); the mobile menu is a full-screen sheet rendered next to it as a modal `<dialog>` (`showModal()`), so it sits in the browser's top layer and the browser does the rest: focus stays inside it, the page behind is hidden from screen readers, Escape closes it, and focus returns to the menu button. The language list inside it prevents its own Escape, so that Escape closes the list and not the sheet. Both carry the two switches, language then theme. The language switch is its own component (`components/LanguageSwitch`) and takes its size from custom properties the header sets (`--switch-size`, `--switch-color`, `--switch-margin`), so it matches the buttons around it in each of its three places. `html` has `scroll-padding-top: 5rem` so anchors stop below the header.
 
 The header is `--header-height` tall (70px) on every screen: `min-height` on its container and on the top row of the menu sheet holds it there. The token exists so a page can subtract the header from the screen, as the home hero does to end at the fold (`docs/design.md`, Direction). If the header's content ever grows past it, raise the token too; a header shorter than the token cannot happen.
 

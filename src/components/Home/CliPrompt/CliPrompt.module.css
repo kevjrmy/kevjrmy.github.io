@@ -12,7 +12,8 @@
   --term-line: rgb(255 255 255 / 0.09);
   --term-text: #ededed;
   --term-muted: #8b8b8b;
-  --term-faint: #5c5c5c;
+  /* The keys of the answer: still 4.5:1 on the terminal, a step under --term-muted */
+  --term-faint: #808080;
   --term-green: #4ac26b;
   /* between the $ and what is typed after it: a clear space, a little over one character */
   --prompt-gap: 1.5ch;

@@ -6,6 +6,7 @@ import { useTheme } from '@/hooks/useTheme'
 import { basePath } from '@/i18n/locales'
 import Link from '@/i18n/LocaleLink'
 import { useLocale } from '@/i18n/useLocale'
+import { focusPageStart } from '@/utils/focus'
 import styles from './Header.module.css'
 
 // ── Navigation ────────────────────────────────────────────────────────────────
@@ -39,6 +40,7 @@ const ThemeIcon = () => (
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(() => window.scrollY > 8)
+  const menuRef = useRef<HTMLDialogElement>(null)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
   // The page being read, whatever its language: /fr/about is /about
   const page = basePath(useLocation().pathname)
@@ -73,40 +75,38 @@ const Header = () => {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Handle body scroll lock
+  // The menu sheet is a modal <dialog>: the browser keeps focus inside it, hides the
+  // page behind it from screen readers, closes it on Escape, and gives focus back to
+  // the menu button when it closes. Escape reaches us through onClose.
   useEffect(() => {
-    if (isMenuOpen) {
-      const originalStyle = window.getComputedStyle(document.body).overflow
-      document.body.style.overflow = 'hidden'
-
-      // Focus trap: move focus to menu when opened
+    const menu = menuRef.current
+    if (!menu) return
+    if (isMenuOpen && !menu.open) {
+      menu.showModal()
       closeButtonRef.current?.focus()
-
-      return () => {
-        document.body.style.overflow = originalStyle
-      }
+    } else if (!isMenuOpen && menu.open) {
+      menu.close()
     }
   }, [isMenuOpen])
 
-  // Handle ESC key
-  useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isMenuOpen) {
-        closeMenu()
-      }
-    }
-
-    window.addEventListener('keydown', handleEsc)
-    return () => window.removeEventListener('keydown', handleEsc)
-  }, [isMenuOpen])
+  // The skip link: past the header, to the start of the page. A plain #anchor would
+  // go through the router and change the URL.
+  const skipToContent = (e: React.MouseEvent) => {
+    e.preventDefault()
+    focusPageStart()
+  }
 
   return (
     <>
+      <a href="#main" className={styles.skipLink} onClick={skipToContent}>
+        {t.header.skipToContent}
+      </a>
+
       <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
         <div className={styles.container}>
           <Link to="/" className={styles.logoLink} onClick={closeMenu}>
             <div id="logo">
-              <img src="/logo.svg" alt="Kevin Jeremy Gautier" height={36} width="auto" />
+              <img src="/logo.svg" alt="Kevin Jeremy Gautier" width={41} height={36} />
             </div>
           </Link>
 
@@ -159,68 +159,66 @@ const Header = () => {
         </div>
       </header>
 
-      {/* Mobile Menu — full-screen sheet */}
-      {isMenuOpen && (
-        <aside
-          id="mobile-menu"
-          className={styles.mobileMenu}
-          role="dialog"
-          aria-modal="true"
-          aria-label={t.header.menu}
-        >
-          {/* Same metrics as the page header, so the logo does not move */}
-          <div className={styles.mobileMenuHeader}>
-            <Link to="/" className={styles.logoLink} onClick={closeMenu}>
-              <img src="/logo.svg" alt="Kevin Jeremy Gautier" height={36} width="auto" />
-            </Link>
-            <div className={styles.actions}>
-              <LanguageSwitch />
-              {themeSwitch}
-              <button
-                ref={closeButtonRef}
-                onClick={closeMenu}
-                aria-label={t.header.closeMenu}
-                className={styles.menuButton}
-              >
-                <Icon icon="tabler:x" width={24} height={24} aria-hidden="true" />
-              </button>
-            </div>
+      {/* Mobile menu: full-screen sheet */}
+      <dialog
+        ref={menuRef}
+        id="mobile-menu"
+        className={styles.mobileMenu}
+        aria-label={t.header.menu}
+        onClose={closeMenu}
+      >
+        {/* Same metrics as the page header, so the logo does not move */}
+        <div className={styles.mobileMenuHeader}>
+          <Link to="/" className={styles.logoLink} onClick={closeMenu}>
+            <img src="/logo.svg" alt="Kevin Jeremy Gautier" width={41} height={36} />
+          </Link>
+          <div className={styles.actions}>
+            <LanguageSwitch />
+            {themeSwitch}
+            <button
+              ref={closeButtonRef}
+              onClick={closeMenu}
+              aria-label={t.header.closeMenu}
+              className={styles.menuButton}
+            >
+              <Icon icon="tabler:x" width={24} height={24} aria-hidden="true" />
+            </button>
           </div>
+        </div>
 
-          <nav className={styles.mobileNav} aria-label={t.header.mobileNav}>
-            <ul role="list" className={styles.mobileNavList}>
-              {navLinks.map((link, i) => {
-                const isActive = page === link.to
-                return (
-                  <li
-                    key={link.to}
-                    className={styles.mobileNavItem}
-                    style={{ '--item-delay': `${i * 40}ms` } as React.CSSProperties}
+        <nav className={styles.mobileNav} aria-label={t.header.mobileNav}>
+          <ul role="list" className={styles.mobileNavList}>
+            {navLinks.map((link, i) => {
+              const isActive = page === link.to
+              return (
+                <li
+                  key={link.to}
+                  className={styles.mobileNavItem}
+                  style={{ '--item-delay': `${i * 40}ms` } as React.CSSProperties}
+                >
+                  <Link
+                    to={link.to}
+                    onClick={closeMenu}
+                    className={`${styles.mobileNavLink} ${isActive ? styles.activeMobileLink : ''}`}
+                    aria-current={isActive ? 'page' : undefined}
                   >
-                    <Link
-                      to={link.to}
-                      onClick={closeMenu}
-                      className={`${styles.mobileNavLink} ${isActive ? styles.activeMobileLink : ''}`}
-                      aria-current={isActive ? 'page' : undefined}
-                    >
-                      {t.header.nav[link.id]}
-                      <Icon icon="tabler:arrow-right" width={22} height={22} aria-hidden="true" />
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul>
-          </nav>
+                    {t.header.nav[link.id]}
+                    <Icon icon="tabler:arrow-right" width={22} height={22} aria-hidden="true" />
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        </nav>
 
-          <div className={styles.mobileMenuFooter}>
-            <Link to={cta.to} onClick={closeMenu} className={styles.mobileCta}>
-              {t.header.contact}
-              <Icon icon="tabler:arrow-right" width={18} height={18} aria-hidden="true" />
-            </Link>
-            <p className={styles.mobileTagline}>{t.header.tagline}</p>
-          </div>
-        </aside>
-      )}
+        <div className={styles.mobileMenuFooter}>
+          <Link to={cta.to} onClick={closeMenu} className={styles.mobileCta}>
+            {t.header.contact}
+            <Icon icon="tabler:arrow-right" width={18} height={18} aria-hidden="true" />
+          </Link>
+          <p className={styles.mobileTagline}>{t.header.tagline}</p>
+        </div>
+      </dialog>
     </>
   )
 }

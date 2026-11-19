@@ -56,6 +56,7 @@ const About: React.FC = () => {
               className={styles.photo}
               width={320}
               height={320}
+              fetchPriority="high"
             />
           </div>
 

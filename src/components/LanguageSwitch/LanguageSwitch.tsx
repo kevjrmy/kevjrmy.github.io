@@ -28,9 +28,11 @@ const LanguageSwitch: React.FC = () => {
     return () => document.removeEventListener('pointerdown', onPointerDown)
   }, [isOpen])
 
-  // Escape closes the list only, not the menu sheet it may be in
+  // Escape closes the list only, not the menu sheet it may be in: the sheet is a
+  // <dialog>, which closes on any Escape that is not prevented
   const onKeyDown = (e: React.KeyboardEvent) => {
     if (e.key !== 'Escape' || !isOpen) return
+    e.preventDefault()
     e.stopPropagation()
     setIsOpen(false)
   }

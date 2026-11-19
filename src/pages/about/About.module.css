@@ -19,7 +19,7 @@
 }
 
 .h2 {
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-size: clamp(1.75rem, 0.425rem + 2.8vw, 2.5rem);
   font-weight: 500;
   color: var(--text-dark);
   line-height: 1.15;
@@ -52,7 +52,7 @@
 }
 
 .h1 {
-  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-size: clamp(2rem, 0.525rem + 4vw, 3.25rem);
   font-weight: 500;
   color: var(--text-dark);
   line-height: 1.1;

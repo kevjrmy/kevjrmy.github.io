@@ -2,6 +2,12 @@
 
 What was written or chosen on his behalf and that he has not explicitly approved, and the questions only he can answer. Nothing here is work for an agent: do not act on an item, ask him. When he confirms one, delete it. When he corrects one, change the site and delete it. Work to do is in `todo.md`.
 
+## Accessibility pass of 2026-11-19
+
+- [ ] **Page titles (2026-11-19), in the three languages: to confirm with Kevin.** In the `titles` section of `src/i18n/messages/`. The home page is "Kevjrmy · Full-stack developer building with AI agents", "Kevjrmy · Développeur full-stack qui construit avec des agents IA", "Kevjrmy · Desarrollador full-stack que crea con agentes de IA"; every other page is its name then "· Kevjrmy", with the `/ai` page as "AI agents", "Agents IA", "Agentes de IA" (not a bare "AI", `docs/content.md`).
+- [ ] **Skip link (2026-11-19): wording to confirm.** "Skip to content", "Aller au contenu", "Saltar al contenido". It shows only to keyboard users, at the top left, as the secondary button.
+- [ ] **Colors changed for contrast (2026-11-19), not seen by Kevin.** Primary buttons a deeper red (#e60000, darker on hover instead of lighter), the two lightest text greys darker, the focus ring the brand red instead of the light red, the keys of the hero terminal lighter (`docs/decisions/design.md`, 2026-11-19).
+
 ## Translations and wording of 2026-10-07
 
 - [ ] **French and Spanish translations (2026-10-07): to read and confirm with Kevin.** Both were written by Claude from the English, in `src/i18n/messages/fr.ts` and `es.ts`. French is his native language, so that one first. Choices he has not approved:

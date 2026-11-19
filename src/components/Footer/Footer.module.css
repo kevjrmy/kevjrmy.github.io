@@ -109,3 +109,10 @@
     text-align: center;
   }
 }
+
+/* ── Reduced motion ────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .socialLink:hover {
+    transform: none;
+  }
+}

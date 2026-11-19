@@ -20,7 +20,7 @@
 }
 
 .h1 {
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2rem, 0.500rem + 4vw, 3rem);
   font-weight: 500;
   color: var(--text-dark);
   line-height: 1.1;
@@ -42,7 +42,9 @@
   max-width: 100%;
   gap: var(--space-xs);
   overflow-x: auto;
-  scroll-behavior: smooth;
+  @media (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
+  }
   scrollbar-width: none;
   background-color: var(--surface-secondary);
   /* Border as inset, ring as hairline: see the tab bar in FeaturedWorks.module.css */

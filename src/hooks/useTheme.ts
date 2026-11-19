@@ -51,8 +51,18 @@ export const useTheme = () => {
       if (!readChoice()) setTheme(systemTheme())
     }
 
+    // A switch in another tab of the site: follow it here too
+    const onStorage = (e: StorageEvent) => {
+      if (e.key !== STORAGE_KEY) return
+      setTheme(e.newValue === 'dark' || e.newValue === 'light' ? e.newValue : systemTheme())
+    }
+
     query.addEventListener('change', onSystemChange)
-    return () => query.removeEventListener('change', onSystemChange)
+    window.addEventListener('storage', onStorage)
+    return () => {
+      query.removeEventListener('change', onSystemChange)
+      window.removeEventListener('storage', onStorage)
+    }
   }, [])
 
   const toggleTheme = () => {

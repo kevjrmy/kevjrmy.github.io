@@ -12,6 +12,17 @@ const fr: Messages = {
     newTabLabel: (label: string) => `${label} (s'ouvre dans un nouvel onglet)`,
   },
 
+  // ── Page titles ──────────────────────────────────────────────────────────────
+  titles: {
+    home: 'Kevjrmy · Développeur full-stack qui construit avec des agents IA',
+    portfolio: 'Portfolio · Kevjrmy',
+    services: 'Services · Kevjrmy',
+    ai: 'Agents IA · Kevjrmy',
+    about: 'À propos · Kevjrmy',
+    contact: 'Contact · Kevjrmy',
+    info: 'Conditions et confidentialité · Kevjrmy',
+  },
+
   // ── Header and footer ───────────────────────────────────────────────────────
   header: {
     nav: {
@@ -30,6 +41,7 @@ const fr: Messages = {
     toDark: 'Passer au thème sombre',
     language: 'Langue',
     tagline: 'Les mots sont magiques',
+    skipToContent: 'Aller au contenu',
   },
 
   footer: {

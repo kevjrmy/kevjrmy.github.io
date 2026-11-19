@@ -9,7 +9,7 @@ The visual reference is the laravel.com home page, as it is live: no capture of 
 - **Section frame.** Sections are separated by a full-width hairline with a small red tick at each end, against the edges of the page. No alternating colored bands needed to tell sections apart. Implemented once, in `src/index.css` (see `docs/styling.md`).
 - **Display headings.** Hero and CTA headings are large, weight 400, very tight tracking (-0.045em), centered. Section and page headings are weight 500, tracking around -0.03em, left-aligned.
 - **Eyebrows.** Styled as a slash command typed into a CLI agent: monospace, lowercase, grey, with a red `/` in front, as in `/about me`. The slash comes from `::before`, not from the text. One shared class, `eyebrow` (`docs/styling.md`). This one comes from Claude Code, not from Laravel, whose labels are bracketed and uppercase.
-- **Buttons.** Two kinds only. Primary: solid red, white text, medium radius, with an arrow. Secondary: white, hairline border, faint shadow; when it leads somewhere it carries a red up-right arrow (the shared class `button-secondary`, `docs/styling.md`). No pill buttons, no tinted buttons.
+- **Buttons.** Two kinds only. Primary: solid red, white text, medium radius, with an arrow. Its red is a deeper one than the brand red, `--clr-button-red`, and it darkens on hover (`--clr-button-red-hover`): white text on the brand red reads at 3.7:1, under the 4.5:1 that text needs. Secondary: white, hairline border, faint shadow; when it leads somewhere it carries a red up-right arrow (the shared class `button-secondary`, `docs/styling.md`). No pill buttons, no tinted buttons.
 - **Pill tab bar.** Tabs and filters sit in a rounded track; the active one is a raised white pill. No underlines. Always a single row. When the tabs do not fit, the track scrolls sideways, the side with hidden tabs fades out, and a clicked tab is brought to the center, which reveals its neighbours. A small round chevron also appears on that side, except on touch phones, where the row is swiped.
 - **Selected work.** The projects under the tab bar are one swipeable row inside the card: on a phone a swipe moves to the next project, one per swipe, and the tab bar follows. The card itself stays put and keeps one height for every project, so the page does not jump. Its screenshot is always shown whole, never cropped (`docs/projects.md`, Screenshots); the text sits under it below 1024px and beside it from there. A swipe slides, following the finger. A tab crossfades instead of scrolling past every project in between: the project in view fades out and drifts a little towards the side it is left on (140ms), then the chosen one fades in from the side it sits on (`--duration-slow`). Opacity and transform only, so it is smooth on a phone too, and the direction tells where in the row the project is. Same mechanism as the photo carousel (scroll-snap), no library.
 - **Cards.** White, hairline border, large radius, soft shadow. A featured card can take a soft red ring (the featured-works panel).
@@ -50,7 +50,8 @@ Limits, so it stays an accent:
 - Minimalist and elegant, with a warm and welcoming tone.
 - Soft colors, generous whitespace, friendly and readable typography.
 - Two themes, light and dark: the visitor's system setting decides, and a switch in the header overrides it (see Dark theme). Light is the one the design was drawn in.
-- Red is the single accent (`--clr-dark-red`, `--clr-medium-red`, `--clr-light-red`), on neutral greys.
+- Red is the single accent (`--clr-dark-red`, `--clr-medium-red`, `--clr-light-red`, and the deeper `--clr-button-red` of primary buttons), on neutral greys.
+- Contrast: text is 4.5:1 or more on its background in both themes, the greys included (`--text-light`, `--text-muted`), and the focus ring (the brand red) is 3:1 or more. A new color is checked against both pages before it ships.
 - Typeface: Instrument Sans, self-hosted from `public/fonts/`.
 - The hero headline ends in `/ai-agents`, a slash command set in the same face as the rest of the headline. What marks it is the red slash, which is not a glyph: it is drawn in CSS as four pixels climbing a staircase, a flat echo of the cubes of the logo. It was the only pixelated mark on the page until the prompt box of the hero terminal got a pixel chevron; the eyebrow slashes stay typed.
 - Monospace is `--font-mono`, the visitor's system monospace. No code font is loaded.
@@ -94,7 +95,7 @@ Conservative by default: subtle signals, not theatrical entrances.
 - Scroll reveals use a one-shot `IntersectionObserver` that adds a class. Stagger comes from a `--card-delay` custom property set inline per card.
 - Page transition: on every navigation the new page fades in and rises 8px over 250ms. Enter only; the old page does not animate out.
 - Prefer CSS animations over JS-driven ones.
-- Everything must respect `prefers-reduced-motion`. The global rule in `index.css` covers durations; elements that start hidden need their own visible fallback.
+- Everything must respect `prefers-reduced-motion`, rule by rule: there is no global switch (`docs/styling.md`). Movement stops; color fades stay. Elements that start hidden need their own visible fallback.
 
 ## Implementation habits
 

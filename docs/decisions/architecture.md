@@ -4,6 +4,22 @@ How the site is built: routing, the build, icons, the CSS system and its two the
 
 ## 2026-11-19
 
+**The mobile menu is a native modal `<dialog>`.**
+It was an `<aside role="dialog" aria-modal="true">` with a hand-written Escape listener and a scroll lock on `<body>`, and its comment promised a focus trap that did not exist: Tab walked out of it into the page behind, and closing it did not return focus to the menu button. `showModal()` gives all of that for free and puts the sheet in the top layer. The page under it can no longer scroll through `overscroll-behavior` on the dialog and its backdrop, the guide's recommendation over locking `<body>` (which shifts the layout and can jump the scroll position); Safari does not honour it on content that does not overflow, which is harmless since the sheet hides the whole page. Rejected: keeping the `<aside>` and writing the focus trap.
+
+**After a navigation, focus moves to the new page, and each page has its own title.**
+Before, every page in every language was titled "Kevjrmy", and focus stayed on the link just used: a screen reader said nothing when the page changed. `MainLayout` now sets `document.title` and focuses the `#anchor` target or the `<h1>` (not on the first load, and not on a change of language, which is the same place). A skip link to the same `<h1>` is the first Tab stop. The focused heading gets no ring: it is not a control. Rejected: an `aria-live` announcer, which tells the change without moving the reader to it.
+
+**Reduced motion is handled rule by rule, not by one global switch.**
+The global `@media (prefers-reduced-motion: reduce)` rule cut every animation and transition to 0.01ms, which the guide warns against: it stops the color fades too, which are not motion. The few animations it alone was covering are now written inside `@media (prefers-reduced-motion: no-preference)` (page-in, smooth scrolling, the press effect) or stopped in their component's own block (three hover nudges). What it costs: a new animation is not caught by a safety net any more (`docs/styling.md`).
+
+**The font is WOFF2, and the upright face is preloaded.**
+The TrueType files were 193 KB and 201 KB and were only requested once the CSS had loaded, after the script. WOFF2 halves them, and the preload starts the download with the HTML. Rejected: `font-size-adjust: from-font`, which the guide suggests against the shift when the font swaps in. It takes the measure of the font already shown, so it changes nothing during the swap; a fixed value would also resize the system monospace of the slash labels and the terminal. With the preload the font is normally there before React first paints.
+
+**The scrollbar is the browser's own width, with a thumb that stands out.**
+`scrollbar-width: thin` and the 8px `::-webkit-scrollbar` made a small target, and the thumb was 1.4:1 against its track. Only `scrollbar-color` is left, with `--text-muted` on `--surface-secondary`.
+
+
 **The dev server uses Vite's default port, 5173.**
 Kevin asked to drop the custom port. This replaces the 2026-10-04 choice of port 5180, which existed so a leftover `vite-plugin-pwa` service worker on `localhost:5173` could not serve another project's page. The cost of that port was a number nobody expects, written into the commands and the docs. If that blank page comes back, unregister the service worker for `localhost:5173` in the browser.
 
@@ -49,7 +65,7 @@ Rejected `HashRouter`, which would put `#/` in every URL. The cost is that deep 
 Previously every icon was fetched from the Iconify API at runtime. A small Vite plugin now extracts the icons used from the `@iconify-json/*` packages. Rejected importing whole icon sets (thousands of icons in the bundle) and rejected switching to per-icon component imports (would have meant rewriting every data array that stores an icon name).
 
 **Page transitions are a CSS enter animation on a re-keyed `<main>`, not the View Transitions API.**
-React has no built-in equivalent of Vue's `<Transition>`. React Router can drive the browser's View Transitions API (old page fades out as the new one fades in), but only with its data router (`createBrowserRouter`) and a `viewTransition` prop on every link; this app uses `BrowserRouter`. The other route is an animation library such as Motion. A keyed `<main>` with a CSS animation costs four lines and no dependency, at the price of having no exit animation.
+React has no built-in equivalent of Vue's `<Transition>`. React Router can drive the browser's View Transitions API (old page fades out as the new one fades in), but only with its data router (`createBrowserRouter`) and a `viewTransition` prop on every link; this app uses `BrowserRouter`. The other route is an animation library such as Motion. A keyed `<main>` with a CSS animation costs four lines and no dependency, at the price of having no exit animation. [Looked at again on 2026-11-19, with the View Transitions API now in every major browser: still true, since it would mean moving to the data router for a crossfade.]
 
 **The section frame is one global rule, not a per-component border.**
 Every page gets it without each stylesheet repeating it, and a new section cannot forget it. The cost is the constraint on top-level sections described in `docs/styling.md`.

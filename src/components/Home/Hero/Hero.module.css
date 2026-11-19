@@ -23,7 +23,7 @@
 }
 
 .h1 {
-  font-size: clamp(2.25rem, 7vw, 4.25rem);
+  font-size: clamp(2.25rem, 0.650rem + 5.6vw, 4.25rem);
   font-weight: 400;
   line-height: 1.05;
   letter-spacing: -0.045em;
@@ -70,7 +70,7 @@
 .lead {
   max-width: 46ch;
   margin: 0 auto;
-  font-size: clamp(1.0625rem, 2vw, 1.25rem);
+  font-size: clamp(1.0625rem, 0.231rem + 1.6vw, 1.25rem);
   line-height: 1.5;
   color: var(--text-light);
 }
@@ -109,12 +109,12 @@
 }
 
 .btnPrimary {
-  background-color: var(--clr-dark-red);
+  background-color: var(--clr-button-red);
   color: var(--text-inverse);
 }
 
 .btnPrimary:hover {
-  background-color: var(--clr-medium-red);
+  background-color: var(--clr-button-red-hover);
 }
 
 .btnGhost {

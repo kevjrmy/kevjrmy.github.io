@@ -38,18 +38,20 @@ Every push to `main` deploys to GitHub Pages via `.github/workflows/deploy.yml`.
 - Import from `src/` via the `@/` alias.
 - Plain CSS with CSS Modules, one `*.module.css` beside its component. No Tailwind, no CSS-in-JS. Two pieces every page has are shared classes instead, `eyebrow` and `button-secondary` (`docs/styling.md`): use them, do not copy their rules.
 - Use the design tokens (custom properties) from `src/index.css` instead of literal values.
-- The site has a light and a dark theme: the visitor's system setting decides, and a switch in the header overrides it. Anything raised above the page (card, secondary button, active pill) takes `--surface-elevated`, not `--surface-primary`, and every visual change is checked in both themes (`docs/design.md`, Dark theme).
+- The site has a light and a dark theme: the visitor's system setting decides, and a switch in the header overrides it. Anything raised above the page (card, secondary button, active pill) takes `--surface-elevated`, not `--surface-primary`, and every visual change is checked in both themes (`docs/design.md`, Dark theme). Text keeps 4.5:1 contrast on its background in both, a focus ring or a meaningful icon 3:1 (`docs/design.md`, Direction).
 - Prefer CSS-only and pseudo-element solutions over extra DOM nodes.
 - Icons are `<Icon icon="prefix:name" />` with the name written as a complete string literal. Tabler first (`tabler:*`), then MDI (`mdi:*`). Do not use Lucide.
-- Animation is conservative and must respect `prefers-reduced-motion`.
+- Animation is conservative and must respect `prefers-reduced-motion`, rule by rule: there is no global switch, so a new animation brings its own (`docs/styling.md`).
 - Decorative visuals get `aria-hidden="true"`; sections are labelled with `aria-labelledby`.
 - Sections that sit directly in `<main>` get their separator line from a global rule: no `border-top` / `border-bottom`, no `overflow: hidden`, and leave `::after` free (`docs/styling.md`).
 - Everything is served from the site itself: no fonts, scripts, icons, or analytics from a third party. The privacy page promises it.
 - This repo is public on GitHub. Nothing private about Kevin or a client goes in it: not in a doc, a comment, a commit message, or a memory file. What has to stay on the device goes in `private/`, which git ignores.
 - In copy, say "Claude Code" or "AI agents", and put WordPress last in any list (`docs/content.md`, Positioning).
 - No em dash (—) in anything the visitor reads or a screen reader says, in any language (`docs/content.md`, Voice).
+- Every page has one `<h1>` and a tab title in the `titles` messages: after each navigation, focus moves to that `<h1>` (`docs/architecture.md`).
 - The site is in English, French and Spanish. No sentence is written in a component: copy lives in `src/i18n/messages/`, one file per language, and a change of copy is made in all three. Link to a page with `Link` from `@/i18n/LocaleLink`, not from `react-router-dom` (`docs/i18n.md`).
 - The stack is two stacks, AI and classic, and a tool belongs to one of them. Both are in `src/data/stack.ts`; never mix them in one list (`docs/stacks.md`).
+- Where the `modern-web-guidance` skill is installed (it is per device, not in the repo), consult it before HTML, CSS or client-side JS work. Where it disagrees with a rule here, the rule here wins: no third party, tokens, CSS Modules.
 
 ## Map
 

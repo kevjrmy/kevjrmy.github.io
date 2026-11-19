@@ -7,6 +7,11 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- The text face, fetched with the page instead of after the script and the CSS:
+       it is there when React first paints, so the text does not change face. The URL
+       must be the one of the @font-face in src/index.css, and crossorigin is required
+       for a font even on the same origin. The italic is not preloaded. -->
+  <link rel="preload" href="/fonts/Instrument_Sans/InstrumentSans-VariableFont_wdth-wght.woff2" as="font" type="font/woff2" crossorigin />
   <meta name="color-scheme" content="light dark" />
   <!-- Stops Chrome from offering Google Translate on its own. The visitor can still
        ask for a translation from the browser menu. -->

@@ -3,7 +3,7 @@
    ══════════════════════════════════════════════════════ */
 @font-face {
   font-family: "Instrument Sans";
-  src: url('/fonts/Instrument_Sans/InstrumentSans-VariableFont_wdth-wght.ttf?v=1') format('truetype-variations'), url('/fonts/Instrument_Sans/InstrumentSans-VariableFont_wdth-wght.ttf?v=1') format('truetype');
+  src: url('/fonts/Instrument_Sans/InstrumentSans-VariableFont_wdth-wght.woff2') format('woff2');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -11,7 +11,7 @@
 
 @font-face {
   font-family: "Instrument Sans";
-  src: url('/fonts/Instrument_Sans/InstrumentSans-Italic-VariableFont_wdth-wght.ttf?v=1') format('truetype-variations'), url('/fonts/Instrument_Sans/InstrumentSans-Italic-VariableFont_wdth-wght.ttf?v=1') format('truetype');
+  src: url('/fonts/Instrument_Sans/InstrumentSans-Italic-VariableFont_wdth-wght.woff2') format('woff2');
   font-weight: 100 900;
   font-style: italic;
   font-display: swap;
@@ -25,6 +25,10 @@
   --clr-dark-red: #ff2a2a;
   --clr-medium-red: #ff8080;
   --clr-light-red: #ffd5d5;
+  /* Primary buttons: white text needs a deeper red than the brand one to be read
+     (4.8:1, and 5.9:1 on hover). Same in both themes. */
+  --clr-button-red: #e60000;
+  --clr-button-red-hover: #cc0000;
 
   /* ── Surface / background ─────────────────────────── */
   --surface-primary: #ffffff;
@@ -41,8 +45,9 @@
   /* ── Typography ───────────────────────────────────── */
   --text-dark: #171717;
   --text-medium: #525252;
-  --text-light: #737373;
-  --text-muted: #a3a3a3;
+  /* Text greys stay at 4.5:1 or more on the page and on the bands */
+  --text-light: #6b6b6b;
+  --text-muted: #707070;
   --text-inverse: #ffffff;
 
   --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
@@ -136,7 +141,7 @@
   --text-dark: #ededed;
   --text-medium: #a8a8a8;
   --text-light: #8f8f8f;
-  --text-muted: #707070;
+  --text-muted: #858585;
 
   --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.4);
@@ -168,10 +173,13 @@
 }
 
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: 5rem;
   /* keeps #anchors clear of the sticky header */
   -webkit-text-size-adjust: 100%;
+
+  @media (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
+  }
 }
 
 
@@ -262,9 +270,11 @@ button {
   background: none;
 }
 
-button:active {
-  transition: transform 200ms;
-  transform: scale(0.98);
+@media (prefers-reduced-motion: no-preference) {
+  button:active {
+    transition: transform 200ms;
+    transform: scale(0.98);
+  }
 }
 
 ::selection {
@@ -273,9 +283,16 @@ button:active {
 }
 
 :focus-visible {
-  outline: 2px solid var(--clr-medium-red);
+  /* The brand red: 3.7:1 on the light page, 5.3:1 on the dark one */
+  outline: 2px solid var(--clr-dark-red);
   outline-offset: 2px;
   border-radius: var(--radius-sm);
+}
+
+/* A heading or section that receives focus after a navigation or from the skip
+   link (src/utils/focus.ts) is not a control: no ring around it */
+[tabindex="-1"]:focus-visible {
+  outline: none;
 }
 
 
@@ -287,8 +304,11 @@ main {
   flex: 1;
   width: 100%;
   /* Page transition: MainLayout re-creates <main> on every route change, which
-     replays this. "backwards" leaves no transform behind once it has finished. */
-  animation: pageIn var(--duration-normal) var(--ease-out) backwards;
+     replays this. "backwards" leaves no transform behind once it has finished.
+     Only for visitors who have not asked their system for less motion. */
+  @media (prefers-reduced-motion: no-preference) {
+    animation: pageIn var(--duration-normal) var(--ease-out) backwards;
+  }
 }
 
 @keyframes pageIn {
@@ -343,31 +363,14 @@ main::after {
 
 
 /* ══════════════════════════════════════════════════════
-   Scrollbar (subtle, Webkit + Firefox)
+   Scrollbar
+   The browser's own, at its own width (a thin one is too
+   small a target for some), in the page's greys: the thumb
+   stands out from the track by more than 3:1 in both themes.
    ══════════════════════════════════════════════════════ */
 
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--surface-secondary);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--border-strong);
-  border-radius: var(--radius-full);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--text-muted);
-}
-
-@supports (scrollbar-width: thin) {
-  html {
-    scrollbar-width: thin;
-    scrollbar-color: var(--border-strong) var(--surface-secondary);
-  }
+html {
+  scrollbar-color: var(--text-muted) var(--surface-secondary);
 }
 
 
@@ -421,25 +424,7 @@ main::after {
 }
 
 .button-secondary:hover svg {
-  transform: translate(2px, -2px);
-}
-
-
-/* ══════════════════════════════════════════════════════
-   Accessibility — reduced motion
-   ══════════════════════════════════════════════════════ */
-
-@media (prefers-reduced-motion: reduce) {
-  html:focus-within {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  @media (prefers-reduced-motion: no-preference) {
+    transform: translate(2px, -2px);
   }
 }

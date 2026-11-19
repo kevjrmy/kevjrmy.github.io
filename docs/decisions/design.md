@@ -2,6 +2,11 @@
 
 How the site looks and moves: the two references, the hero and its terminal, the header and its navigation, the theme switch, the selected works and their screenshots, and what the resume takes from all this. What the design is today is in `docs/design.md`.
 
+## 2026-11-19
+
+**Text and controls meet the WCAG AA contrast minimums in both themes, at the cost of a deeper red on primary buttons.**
+An audit against Google's modern web guidance, which Kevin asked to apply, measured: white on the brand red 3.7:1 (2.4:1 on the lighter hover), `--text-muted` 2.5:1 on the light page and 4.0:1 on the dark one, the focus ring (`--clr-medium-red`) 2.4:1 on white, and the keys of the hero terminal 2.7:1. Text needs 4.5:1, a focus ring 3:1. So: primary buttons take `--clr-button-red` (#e60000, 4.8:1) and darken on hover (#cc0000) instead of lightening; `--text-muted` is #707070 on light and #858585 on dark, and `--text-light` steps to #6b6b6b so that it stays the darker of the two; the focus ring is the brand red (3.7:1 light, 5.3:1 dark); the terminal's `--term-faint` is #808080. The brand red is unchanged everywhere it is not under white text (ticks, slashes, the cursor). Rejected: darkening the brand red itself (every red mark of the site would change for the sake of four buttons), and bold or larger button text (the large-text threshold is 24px, or 18.7px bold). What it costs: the light theme's two lightest greys are now close to each other, and the buttons are a slightly different red from the rest of the page.
+
 ## 2026-10-09
 
 **The journey on `/ai` takes its rings from the resume.**

@@ -10,6 +10,18 @@ const en = {
     newTabLabel: (label: string) => `${label} (opens in a new tab)`,
   },
 
+  // ── Page titles ──────────────────────────────────────────────────────────────
+  // The browser tab, history and bookmarks: one per page, set by MainLayout
+  titles: {
+    home: 'Kevjrmy · Full-stack developer building with AI agents',
+    portfolio: 'Portfolio · Kevjrmy',
+    services: 'Services · Kevjrmy',
+    ai: 'AI agents · Kevjrmy',
+    about: 'About · Kevjrmy',
+    contact: 'Contact · Kevjrmy',
+    info: 'Terms & privacy · Kevjrmy',
+  },
+
   // ── Header and footer ───────────────────────────────────────────────────────
   header: {
     nav: {
@@ -28,6 +40,7 @@ const en = {
     toDark: 'Switch to dark theme',
     language: 'Language',
     tagline: 'Words are magic',
+    skipToContent: 'Skip to content',
   },
 
   footer: {

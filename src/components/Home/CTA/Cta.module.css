@@ -43,7 +43,7 @@
 }
 
 .heading {
-  font-size: clamp(2.25rem, 6vw, 3.5rem);
+  font-size: clamp(2.25rem, 0.575rem + 4.8vw, 3.5rem);
   font-weight: 400;
   color: var(--text-dark);
   line-height: 1.05;
@@ -51,7 +51,7 @@
 }
 
 .subline {
-  font-size: clamp(1rem, 2vw, 1.125rem);
+  font-size: clamp(1rem, 0.212rem + 1.6vw, 1.125rem);
   color: var(--text-light);
   max-width: 44ch;
   margin: 0 auto;
@@ -68,10 +68,10 @@
   font-weight: 500;
   font-size: 1rem;
   color: var(--text-inverse);
-  background-color: var(--clr-dark-red);
+  background-color: var(--clr-button-red);
   transition: background-color var(--duration-fast) var(--ease-default);
 }
 
 .btn:hover {
-  background-color: var(--clr-medium-red);
+  background-color: var(--clr-button-red-hover);
 }
