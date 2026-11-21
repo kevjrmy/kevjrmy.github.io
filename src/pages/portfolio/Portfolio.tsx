@@ -11,7 +11,11 @@ import styles from './Portfolio.module.css'
 
 const TYPE_ORDER: ProjectType[] = ['Web Application', 'PWA', 'Mobile App', 'Landing Page', 'Laravel', 'Consulting', 'WordPress']
 
-const usedTypes = new Set(projects.map(p => p.type))
+// Projects not online yet are shown apart, below the grid, outside the filters
+const released = projects.filter(p => p.status !== 'upcoming')
+const upcoming = projects.filter(p => p.status === 'upcoming')
+
+const usedTypes = new Set(released.map(p => p.type))
 const categories: ProjectType[] = ['All', ...TYPE_ORDER.filter(t => usedTypes.has(t))]
 
 // ── Badge ─────────────────────────────────────────────────────────────────────
@@ -58,7 +62,9 @@ const Card: React.FC<{ project: Project }> = ({ project }) => {
       <div className={styles.cardBody}>
         <div className={styles.cardTop}>
           <div className={styles.cardMeta}>
-            <span className={styles.cardYear}>{project.year}</span>
+            {project.status === 'upcoming'
+              ? <span className={styles.cardSoon}>{t.portfolio.upcoming.label}</span>
+              : <span className={styles.cardYear}>{project.year}</span>}
             <span className={styles.cardClient}>{copy.client}</span>
           </div>
           <h2 className={styles.cardTitle}>{project.title}</h2>
@@ -98,8 +104,8 @@ const Portfolio: React.FC = () => {
   const { t } = useLocale()
 
   const filtered = active === 'All'
-    ? projects
-    : projects.filter(p => p.type === active)
+    ? released
+    : released.filter(p => p.type === active)
 
   return (
     <section className={styles.section} aria-labelledby="portfolio-heading">
@@ -139,6 +145,23 @@ const Portfolio: React.FC = () => {
         </ul>
       ) : (
         <p className={styles.empty}>{t.portfolio.empty}</p>
+      )}
+
+      {/* Coming soon: the id stays the same in every language, so a link can point here */}
+      {upcoming.length > 0 && (
+        <section id="upcoming" className={styles.upcoming} aria-labelledby="upcoming-heading">
+          <div className={styles.upcomingHeader}>
+            <h2 id="upcoming-heading" className={styles.h2}>{t.portfolio.upcoming.title}</h2>
+            <p className={styles.upcomingLead}>{t.portfolio.upcoming.lead}</p>
+          </div>
+          <ul className={styles.grid} role="list">
+            {upcoming.map(project => (
+              <li key={project.slug}>
+                <Card project={project} />
+              </li>
+            ))}
+          </ul>
+        </section>
       )}
 
     </section>

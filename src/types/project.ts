@@ -7,7 +7,7 @@ import type { Messages } from '@/i18n/messages'
 /** A project's slug is also the key of its copy in every language (src/i18n/messages) */
 export type ProjectSlug = keyof Messages['projects']
 
-export type ProjectStatus = 'live' | 'archived' | 'wip'
+export type ProjectStatus = 'live' | 'archived' | 'wip' | 'upcoming'
 
 export type ProjectType =
   | 'All'
@@ -42,7 +42,10 @@ export type Project = {
   /** Year the project was delivered */
   year: number
 
-  /** Current project status */
+  /**
+   * Current project status. 'upcoming' is a project not online yet: it is shown
+   * apart, in the "Coming soon" group of the portfolio page, and never linked
+   */
   status: ProjectStatus
 
   /** Primary language of the site */

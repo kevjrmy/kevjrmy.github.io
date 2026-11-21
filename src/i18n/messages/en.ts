@@ -231,6 +231,12 @@ const en = {
       'Consulting': 'Consulting',
     },
     empty: 'No projects in this category yet.',
+    // The group below the grid, for projects not online yet (status 'upcoming')
+    upcoming: {
+      title: 'Coming soon',
+      lead: 'Projects being built right now. Their links come once they are live.',
+      label: 'Coming soon',
+    },
   },
 
   // One entry per project of src/data/projects.ts, under its slug
@@ -294,6 +300,11 @@ const en = {
       client: 'Beauty salon',
       excerpt: 'Website and online shop for a beauty salon in Alicante: services, appointment requests, a blog and a WooCommerce store, all on WordPress.',
       alt: 'Ethica Anabel Orzáez: beauty salon website screenshot',
+    },
+    'mqdh': {
+      client: 'Community of entrepreneurs',
+      excerpt: 'The meeting point for entrepreneurs in Valencia, created by Bladimir Morales: interviews, offers and coupons, an opportunities board and events, in one place, from the phone with nothing to install. Built with Claude Code on Next.js. For now a coming-soon page in Spanish and English, with the platform on the way.',
+      alt: 'Marcas Que Dejan Huellas: screenshot of the coming-soon page',
     },
   },
 

@@ -2,6 +2,11 @@
 
 What the site says: positioning, voice, services, the terms page, what is on the portfolio. The rules in force are in `docs/content.md`.
 
+## 2026-11-21
+
+**Projects that are not online yet go in a "Coming soon" group below the portfolio grid, unlinked, and Marcas Que Dejan Huellas is the first.**
+Kevin wanted the new MQDH (a Next.js platform for entrepreneurs in Valencia, built with Claude Code for Bladimir Morales) on the site before a LinkedIn post about it, while marcasquedejanhuellas.com does not serve it yet. Its card has a screenshot of the coming-soon page and no link: `mqdh.vercel.app` is only for testing. The group sits below the grid, outside the filters, with the anchor `#upcoming` that a post can link to, and it is not on the homepage tabs, which stay delivered work. Its copy says only what the coming-soon page says publicly; the product brief, in a private repo, stays out. Rejected: linking the test deployment; a homepage tab; a badge on a card inside the main grid, which would mix it with delivered work. What it costs: when the site goes live, the entry moves to `live` with its link and a new screenshot (`docs/projects.md`).
+
 ## 2026-11-19
 
 **Deissy Olarte's two sites are on the portfolio while still in progress, fourth and fifth.**

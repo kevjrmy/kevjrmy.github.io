@@ -228,6 +228,11 @@ const es: Messages = {
       'Consulting': 'Consultoría',
     },
     empty: 'Todavía no hay proyectos en esta categoría.',
+    upcoming: {
+      title: 'Próximamente',
+      lead: 'Proyectos en construcción. Sus enlaces llegarán cuando estén en línea.',
+      label: 'Próximamente',
+    },
   },
 
   projects: {
@@ -290,6 +295,11 @@ const es: Messages = {
       client: 'Centro de estética',
       excerpt: 'Web y tienda online de un centro de estética en Alicante: servicios, solicitudes de cita, un blog y una tienda WooCommerce, todo en WordPress.',
       alt: 'Ethica Anabel Orzáez: captura de la web del centro de estética',
+    },
+    'mqdh': {
+      client: 'Comunidad de emprendedores',
+      excerpt: 'El punto de encuentro de quienes emprenden en Valencia, creado por Bladimir Morales: entrevistas, ofertas y cupones, un tablón de oportunidades y eventos, en un mismo sitio, desde el móvil y sin instalar nada. Hecha con Claude Code sobre Next.js. Por ahora, una página de «muy pronto» en español e inglés, a la espera de la plataforma.',
+      alt: 'Marcas Que Dejan Huellas: captura de la página de «muy pronto»',
     },
   },
 

@@ -229,6 +229,11 @@ const fr: Messages = {
       'Consulting': 'Conseil',
     },
     empty: 'Aucun projet dans cette catégorie pour le moment.',
+    upcoming: {
+      title: 'Bientôt en ligne',
+      lead: 'Des projets en cours de construction. Leurs liens arriveront une fois en ligne.',
+      label: 'Bientôt',
+    },
   },
 
   projects: {
@@ -291,6 +296,11 @@ const fr: Messages = {
       client: 'Institut de beauté',
       excerpt: "Site et boutique en ligne d'un institut de beauté à Alicante\u00a0: prestations, demandes de rendez-vous, blog et boutique WooCommerce, le tout sur WordPress.",
       alt: "Ethica Anabel Orzáez\u00a0: capture d'écran du site de l'institut de beauté",
+    },
+    'mqdh': {
+      client: "Communauté d'entrepreneurs",
+      excerpt: "Le point de rencontre des entrepreneurs de Valencia, imaginé par Bladimir Morales\u00a0: entretiens, offres et coupons, un tableau d'opportunités et des événements, au même endroit, depuis le téléphone et sans rien installer. Construit avec Claude Code sur Next.js. Pour l'instant une page d'annonce en espagnol et en anglais, en attendant la plateforme.",
+      alt: "Marcas Que Dejan Huellas\u00a0: capture de la page d'annonce",
     },
   },
 

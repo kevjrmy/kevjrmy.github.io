@@ -204,9 +204,28 @@ export const projects: Project[] = [
       src: '/images/projects/ethica.webp',
     },
   },
+  // Upcoming: in the portfolio's "Coming soon" group, apart from the work above.
+  // No link until marcasquedejanhuellas.com serves it: mqdh.vercel.app is only
+  // for testing and is never linked
+  {
+    slug: 'mqdh',
+    title: 'Marcas Que Dejan Huellas',
+    type: 'Web Application',
+    stack: ['Claude Code', 'Next.js', 'TypeScript'],
+    tags: ['ai', 'claude-code', 'nextjs', 'community', 'entrepreneurs', 'bilingual'],
+    year: 2026,
+    status: 'upcoming',
+    lang: 'es',
+    link: null,
+    featured: false,
+    order: 13,
+    image: {
+      src: '/images/projects/mqdh.webp',
+    },
+  },
 ]
 
 /** Convenience export: homepage featured projects, sorted by order */
 export const featuredProjects = projects
-  .filter(p => p.featured)
+  .filter(p => p.featured && p.status !== 'upcoming')
   .sort((a, b) => a.order - b.order)

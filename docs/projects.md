@@ -7,9 +7,9 @@ How portfolio projects are stored and shown, and what to do when adding one.
 `src/data/projects.ts` is the single source for what is the same in every language, typed by `Project` in `src/types/project.ts`. A project's three sentences (the client label, the excerpt, the screenshot's alt text) are in the `projects` section of `src/i18n/messages/`, once per language, under the project's slug. Two views read both:
 
 - Homepage tabs (`components/Home/FeaturedWorks`): `featuredProjects`, which is every project with `featured: true`, sorted by `order`. Each one is also a slide of the swipeable row under the tabs, and all the slides are as tall as the tallest: a much longer `excerpt` on one project makes every card taller on a phone. That holds per language, and the French and Spanish excerpts run a little longer than the English.
-- Portfolio page (`pages/portfolio/Portfolio`): the full list, in array order, with filter buttons by `type`.
+- Portfolio page (`pages/portfolio/Portfolio`): the full list, in array order, with filter buttons by `type`. Projects with `status: 'upcoming'` are left out of that list and its filters, and shown below it in a "Coming soon" group of their own (anchor `#upcoming`, the same in every language), where the card shows "Coming soon" in place of the year.
 
-Rendered today: `title`, `stack`, `year`, `link`, `image`, and from the messages `client`, `excerpt`, `alt`. The fields `status`, `lang`, and `tags` are stored but not displayed or used for filtering yet.
+Rendered today: `title`, `stack`, `year`, `link`, `image`, and from the messages `client`, `excerpt`, `alt`. `status` is read only to set the upcoming projects apart; `lang` and `tags` are stored but not displayed or used for filtering yet.
 
 ## Adding a project
 
@@ -19,8 +19,9 @@ Rendered today: `title`, `stack`, `year`, `link`, `image`, and from the messages
 4. If the project was built with Claude Code, put `'Claude Code'` first in `stack` (see Positioning in `docs/content.md`). Then check each `stack` label against the `techIcons` map in `src/data/techIcons.ts`, which both project views read: a label missing from it renders as a badge with no icon.
 5. A project of Kevin's own, with no client, takes the client label "Personal project" ("Projet personnel", "Proyecto personal"; Le Petit Cours is the first). Client work is listed ahead of it.
 6. A project that is live but not finished takes `status: 'wip'`, and its excerpt says so ("and still in progress"), since the status is not shown: Deissy Olarte's two sites, added 2026-11-19. Once finished, set `status: 'live'` and drop the phrase in the three languages. Their copy says only what the two sites say publicly: the notes about that client are private and stay out of this repo.
-7. Set `link` to `null` for a private or offline project, or one handed over to a client who has since changed it (SUNspot). The "Visit site" link is hidden when it is null.
-8. Add the screenshot (below).
+7. A project that is not online yet takes `status: 'upcoming'`, `featured: false` and `link: null`: it goes in the "Coming soon" group of the portfolio page, never on the homepage tabs, and it is never linked to a test or staging URL (`mqdh.vercel.app` is only for testing). Its screenshot is the coming-soon or landing page, or a capture of the work in progress. Marcas Que Dejan Huellas is the first, added 2026-11-21. Once it is live at its own domain: set `status: 'live'`, set `link`, recapture the screenshot, decide `featured` and `order`, and reread the excerpt, which says "for now a coming-soon page".
+8. Set `link` to `null` for a private or offline project, or one handed over to a client who has since changed it (SUNspot). The "Visit site" link is hidden when it is null.
+9. Add the screenshot (below).
 
 ## Screenshots
 
@@ -47,10 +48,8 @@ What the portfolio is meant to cover, for writing copy and choosing projects:
 - Vector and logo design (Inkscape), image editing (GIMP).
 - Video editing: DaVinci Resolve, Kdenlive, and AI video (Google Flow / Veo / Nano Banana).
 - AI agents: see Positioning in `docs/content.md`.
-- WordPress (kept last): Ethica Anabel Orzáez, a beauty salon site with a WooCommerce shop (2026). Also Marcas que dejan huellas (early work), which is off the site while its domain is down; see `todo.md`.
+- WordPress (kept last): Ethica Anabel Orzáez, a beauty salon site with a WooCommerce shop (2026). Marcas Que Dejan Huellas was also a WordPress site of Kevin's (2024); it is now being rebuilt in Next.js with Claude Code, as a platform for entrepreneurs in Valencia, and is on the portfolio as upcoming (2026-11-21).
 
 ## Not yet in the data
 
 In progress and to be added once it can be shown: a Laravel app for a French client.
-
-Removed for now: Marcas que dejan huellas, whose domain has expired (see `todo.md`).
