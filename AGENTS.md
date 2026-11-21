@@ -6,7 +6,7 @@ This file holds what applies to every task. Depth lives in `docs/` and is read o
 
 ## What this is
 
-Personal portfolio site of Kevin Jeremy Gautier (kevjrmy), served at https://kevjrmy.github.io, in English, French and Spanish. React 19 + TypeScript + Vite SPA, fully static: no backend, no API calls, no environment variables.
+Personal portfolio site of Kevin Jeremy Gautier (kevjrmy), served at https://kevjrmy.github.io, in English, French and Spanish. React 19 + TypeScript + Vite SPA, fully static: no backend, no API calls, no environment variables. (The `.env` at the root holds the keys of a local LinkedIn script, `scripts/linkedin.mjs`; the site never reads it.)
 
 Goals: a clean, fast, professional portfolio that is mobile-first and accessible, and that presents Kevin as a developer who builds with AI agents (Claude Code first).
 
@@ -18,6 +18,8 @@ npm run build     # tsc -b (type-check) then vite build -> dist/
 npm run lint      # eslint .
 npm run preview   # serve the built dist/
 npm run memory:link   # point Claude Code's memory at .claude/memory/ (npm install already does it)
+npm run linkedin:auth      # sign in to LinkedIn for the publish script (lasts 2 months)
+npm run linkedin:publish -- <draft folder> [--yes]   # preview a drafted post; --yes publishes it
 ```
 
 There is no test runner. `npm run build` and `npm run lint` are the only checks, and both pass clean, so keep them that way.
@@ -45,7 +47,7 @@ Every push to `main` deploys to GitHub Pages via `.github/workflows/deploy.yml`.
 - Decorative visuals get `aria-hidden="true"`; sections are labelled with `aria-labelledby`.
 - Sections that sit directly in `<main>` get their separator line from a global rule: no `border-top` / `border-bottom`, no `overflow: hidden`, and leave `::after` free (`docs/styling.md`).
 - Everything is served from the site itself: no fonts, scripts, icons, or analytics from a third party. The privacy page promises it.
-- This repo is public on GitHub. Nothing private about Kevin or a client goes in it: not in a doc, a comment, a commit message, or a memory file. What has to stay on the device goes in `private/`, which git ignores.
+- This repo is public on GitHub. Nothing private about Kevin or a client goes in it: not in a doc, a comment, a commit message, or a memory file. What has to stay on the device goes in `private/`, which git ignores, and a secret (an API key) in `.env`, which git ignores too.
 - In copy, say "Claude Code" or "AI agents", and put WordPress last in any list (`docs/content.md`, Positioning).
 - No em dash (—) in anything the visitor reads or a screen reader says, in any language (`docs/content.md`, Voice).
 - Every page has one `<h1>` and a tab title in the `titles` messages: after each navigation, focus moves to that `<h1>` (`docs/architecture.md`).
@@ -83,7 +85,7 @@ Read the file that matches the task before starting, and only that one. Each is 
 | `todo.md` | Looking for open work, or recording something left unfinished. Its first section, "Waiting for Kevin", holds what only he can settle: ask him in the session, and write there what he has not answered yet. Anything written on his behalf (a wording, a translation, a date) is shown to him before the session ends |
 | `.claude/memory/` | Claude Code's memory of this project, committed so that it follows to another device. Claude Code loads it by itself once `npm install` has linked it; another agent starts from its `MEMORY.md`. It is the only copy: if a session's memory path is anywhere else, run `npm run memory:link` and save nothing until it points here |
 | `private/README.md` | A fact about Kevin changes on the site (diploma, languages, award, a contact link), the picks of the stack or the list of projects change, the look of the site changes (its greys, its hairlines, the About timeline, its icons), or he asks for a change to his resume. The folder holds his French and Spanish resumes; git ignores it, so it exists only on a device where he put it, and nothing in it is published, linked from the site or copied into `public/` |
-| `.claude/skills/linkedin-post/SKILL.md` | Kevin asks for a LinkedIn post about something that landed on the site. Claude Code runs it as `/linkedin-post`; another agent follows the file. It drafts only, in `private/linkedin/`: Kevin reviews and posts himself, then the draft is deleted |
+| `.claude/skills/linkedin-post/SKILL.md` | Kevin asks for a LinkedIn post about something that landed on the site. Claude Code runs it as `/linkedin-post`; another agent follows the file. It drafts in `private/linkedin/`, Kevin reviews, and only on his yes is it published through LinkedIn's API (`scripts/linkedin.mjs`); then the draft is deleted |
 | `README.md` | Never needed for a task: it is the short human introduction and repeats this file |
 
 Keeping them useful:

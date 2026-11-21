@@ -15,6 +15,10 @@ dist-ssr
 # Personal documents
 /private/
 
+# Secrets of this device (the LinkedIn app's keys): never in the public repo
+.env
+.env.*
+
 # Claude Code settings of this device (the memory path, see scripts/link-memory.mjs)
 .claude/settings.local.json
 

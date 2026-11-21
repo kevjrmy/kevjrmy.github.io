@@ -9,6 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "memory:link": "node scripts/link-memory.mjs",
+    "linkedin:auth": "node scripts/linkedin.mjs auth",
+    "linkedin:publish": "node scripts/linkedin.mjs publish",
     "prepare": "node scripts/link-memory.mjs"
   },
   "dependencies": {

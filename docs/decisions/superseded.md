@@ -5,6 +5,7 @@ Decisions that are no longer in force, kept for their figures and their reasons.
 - The three price entries ended on 2026-10-07, when the services page stopped listing prices (`content.md`).
 - The marquee entry ended on 2026-10-06, when the home marquee became a still strip (`stacks.md`).
 - The port 5180 entry ended on 2026-11-19, when the dev server went back to Vite's default 5173 (`architecture.md`).
+- The entry on posting to LinkedIn by hand ended on 2026-11-21, when posts started going out through LinkedIn's API (`architecture.md`).
 
 ## 2026-10-04
 
@@ -24,3 +25,8 @@ On a friend's advice ("double your prices"), and Kevin's decision. Audit and cla
 
 **The marquee repeats its lists instead of adding tools to fill the width.**
 Split in two, each row is shorter than a wide screen, and a marquee copy narrower than the screen shows a gap. Padding the AI row with every tool from the journey would have turned "my stack" into "everything I tried".
+
+## 2026-11-19
+
+**LinkedIn posts are drafted by the `/linkedin-post` skill, and Kevin posts them himself.**
+The first one (Deissy Olarte's two sites) was posted through Claude in Chrome at Kevin's request: tags and images worked, but LinkedIn's editor made every edit slow, and he finished it by hand faster. Rejected: Claude in Chrome as the default; LinkedIn's API (an app, a token to renew every 60 days, and tagging a person needs an id the basic access does not give); a scheduling tool (one more third party with access to his account); a Playwright script (LinkedIn's terms forbid automating its site). What it costs: a couple of minutes by hand per post. Worth revisiting if he starts posting often.
