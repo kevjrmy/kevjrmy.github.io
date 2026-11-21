@@ -8,7 +8,7 @@ argument-hint: "[subject: project slug, commit or free text] [en|fr|es]"
 
 Turn a change to the site into a LinkedIn post, and publish it on Kevin's profile with `scripts/linkedin.mjs`. Never commit the draft. Kevin reviews every draft before it goes out: show it, wait for his changes, and publish only after he says yes to the final preview (step 7). A post is public the moment it is published. Why the API and not Claude in Chrome or pasting by hand: `docs/decisions/architecture.md`, 2026-11-21.
 
-What Kevin wants from a post (his words, 2026-11-19): usually short, not too technical, no emojis, professional without sounding corporate, links and tags wherever possible, and a screenshot or some other image to go with it. Talk about the public product, what a visitor sees and uses, not how it is built: giving away too much of the tech is a risk.
+What Kevin wants from a post (his words, 2026-11-19): usually short, not too technical, no emojis, professional without sounding corporate, links and tags wherever possible, and a screenshot or some other image to go with it. What he did to the MQDH post (2026-11-21), the first published through the API: he cut it from 700 to about 470 characters, cut the hashtags, the "from the phone" line and the explanation after his personal line. Draft that short from the start. Talk about the public product, what a visitor sees and uses, not how it is built: giving away too much of the tech is a risk.
 
 ## 1. Find the subject
 
@@ -40,8 +40,10 @@ Voice and positioning come from `docs/content.md` (Positioning, Voice) and, for 
 - About the product, not the tech: who it is for, what it offers, what a visitor finds there. No frameworks, databases, CMS or hosting, even when `stack` lists them, and nothing about how the code is organised. Claude Code is named as Kevin chose in step 3, by that name, never a vague "AI"; that is positioning, not a tech detail. WordPress, if it comes up at all, comes last.
 - Say what the project is for: its vision, its mission, what it offers. Not its legal form ("non-profit", "sin ánimo de lucro", "SL"). When the site's excerpt does not say enough, read the project's own public site and quote its mission or tagline as it is written there.
 - A project with `status: 'wip'` is described as live and still in progress.
-- Shape: a hook line about the project itself ("Dos proyectos nuevos…", not "on my portfolio"), then 2 or 3 short paragraphs (who it is for, what it offers), the project's live link(s), then 3 or 4 hashtags. No link to Kevin's portfolio. The hashtags are about the project and its subject (`#ReconstrucciónHumana`), not the tech.
-- Short: about 400 to 800 characters, longer only when Kevin asks.
+- A project with `status: 'upcoming'` is announced as coming ("Muy pronto"), with no link: never its test deployment, and never its domain as plain text either, since LinkedIn turns a bare domain into a link and an upcoming project's domain may not resolve yet (marcasquedejanhuellas.com did not, 2026-11-21). The link can go in a comment once the site is live.
+- Shape: a hook line about the project itself ("Dos proyectos nuevos…", not "on my portfolio"), then 2 or 3 short paragraphs (who it is for, what it offers), Kevin's personal line as one plain sentence with nothing explained after it, then the project's live link(s). No link to Kevin's portfolio.
+- No hashtags by default: Kevin cut them from the MQDH post. Add 2 or 3 only when he asks, about the project and its subject (`#ReconstrucciónHumana`), not the tech.
+- Short: about 400 to 500 characters, longer only when Kevin asks.
 - LinkedIn shows plain text: no Markdown (`**`, `#` headings, `[text](url)`). Line breaks are fine. Write hashtags as plain `#Tag`: the script turns them into real ones, and escapes every other character the API would misread.
 - A page with a known id is written `@[Exact Page Name](urn:li:organization:<id>)`, the name exactly as on LinkedIn: the script makes it a tag. Anyone else is written `@Name`: it goes out as plain text, and Kevin turns it into a tag by editing the post, so the checklist reminds him.
 
@@ -65,6 +67,7 @@ Voice and positioning come from `docs/content.md` (Positioning, Voice) and, for 
   2. A line `---`, then a short checklist for after publishing: people and pages to tag by editing the post; links to open once to check they work. The script publishes only what is above the `---`.
 - Print the post text in the terminal too, with the folder's absolute path.
 - Ask Kevin to review it, and offer one more pass: shorter, warmer, more formal, or another language (a new language is a new `post.<lang>.md` in the same folder).
+- Kevin may edit `post.md` himself in his editor. When he says he did, check that the file changed (its text, or `stat`) before going on: on 2026-11-21 his "I edited it, publish" came before the file was saved, and the preview still showed the old text.
 
 ## 7. Publish, on Kevin's yes
 
@@ -74,3 +77,4 @@ Voice and positioning come from `docs/content.md` (Positioning, Voice) and, for 
 - It prints the post's link: give it to Kevin with the checklist (the tags to add by editing the post).
 - If it fails after "Uploaded" lines, or on the post itself, do not run it again until Kevin has checked his profile: a second run can publish the post twice.
 - Once it is published, delete the draft folder: Kevin keeps no copy, and the images are already in `public/`.
+- Kevin may still trim the post on LinkedIn after it is out. When he shows the final text, compare it with the draft and fold what he changed into this file, as the MQDH post did.
