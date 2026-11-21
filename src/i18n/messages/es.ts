@@ -298,8 +298,8 @@ const es: Messages = {
     },
     'mqdh': {
       client: 'Comunidad de emprendedores',
-      excerpt: 'El punto de encuentro de quienes emprenden en Valencia, creado por Bladimir Morales: entrevistas, ofertas y cupones, un tablón de oportunidades y eventos, en un mismo sitio, desde el móvil y sin instalar nada. Hecha con Claude Code sobre Next.js. Por ahora, una página de «muy pronto» en español e inglés, a la espera de la plataforma.',
-      alt: 'Marcas Que Dejan Huellas: captura de la página de «muy pronto»',
+      excerpt: 'El punto de encuentro de quienes emprenden en Valencia, creado por Bladimir Morales: entrevistas, ofertas y cupones, un tablón de oportunidades y eventos, en un mismo sitio, desde el móvil y sin instalar nada. Hecha con Claude Code sobre Next.js. Abre por partes: las entrevistas ya están, y lo demás llega poco a poco.',
+      alt: 'Marcas Que Dejan Huellas: captura de la página de inicio',
     },
   },
 

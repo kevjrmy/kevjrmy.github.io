@@ -299,8 +299,8 @@ const fr: Messages = {
     },
     'mqdh': {
       client: "Communauté d'entrepreneurs",
-      excerpt: "Le point de rencontre des entrepreneurs de Valencia, imaginé par Bladimir Morales\u00a0: entretiens, offres et coupons, un tableau d'opportunités et des événements, au même endroit, depuis le téléphone et sans rien installer. Construit avec Claude Code sur Next.js. Pour l'instant une page d'annonce en espagnol et en anglais, en attendant la plateforme.",
-      alt: "Marcas Que Dejan Huellas\u00a0: capture de la page d'annonce",
+      excerpt: "Le point de rencontre des entrepreneurs de Valencia, imaginé par Bladimir Morales\u00a0: entretiens, offres et coupons, un tableau d'opportunités et des événements, au même endroit, depuis le téléphone et sans rien installer. Construit avec Claude Code sur Next.js. Il ouvre par étapes\u00a0: les entretiens sont déjà en ligne, le reste suit partie par partie.",
+      alt: "Marcas Que Dejan Huellas\u00a0: capture de la page d'accueil",
     },
   },
 

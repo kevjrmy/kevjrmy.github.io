@@ -303,8 +303,8 @@ const en = {
     },
     'mqdh': {
       client: 'Community of entrepreneurs',
-      excerpt: 'The meeting point for entrepreneurs in Valencia, created by Bladimir Morales: interviews, offers and coupons, an opportunities board and events, in one place, from the phone with nothing to install. Built with Claude Code on Next.js. For now a coming-soon page in Spanish and English, with the platform on the way.',
-      alt: 'Marcas Que Dejan Huellas: screenshot of the coming-soon page',
+      excerpt: 'The meeting point for entrepreneurs in Valencia, created by Bladimir Morales: interviews, offers and coupons, an opportunities board and events, in one place, from the phone with nothing to install. Built with Claude Code on Next.js. It opens in stages: the interviews are already there, and the rest follows one part at a time.',
+      alt: 'Marcas Que Dejan Huellas: screenshot of the home page',
     },
   },
 
