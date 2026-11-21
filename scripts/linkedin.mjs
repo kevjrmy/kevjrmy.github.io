@@ -4,6 +4,7 @@
 //   npm run linkedin:auth                                      sign in; lasts 2 months
 //   npm run linkedin:publish -- <draft folder> [post file]     preview, publishes nothing
 //   npm run linkedin:publish -- <draft folder> [post file] --yes   publishes, public
+//   npm run linkedin:edit -- <draft folder> <post> [post file] [--yes]   replaces a published post's text
 //
 // The app's keys are in .env and the token in private/linkedin/token.json: both are
 // git-ignored, since this repo is public. Runs on this device only, never on the deploy runner.
@@ -172,6 +173,35 @@ function readDraft(folderArg, fileArg) {
 
 // ── Publish ──────────────────────────────────────────────────────────────────
 
+// Prints the text as it will read, and stops on what LinkedIn would refuse
+function showText(text) {
+  console.log(`${'─'.repeat(60)}\n${asShown(text)}\n${'─'.repeat(60)}`)
+  console.log(`${text.length} characters, public.`)
+  if (!text) throw new Stop('The post has no text.')
+  if (text.length > MAX_LENGTH) throw new Stop(`LinkedIn takes ${MAX_LENGTH} characters at most.`)
+}
+
+function warnUntagged(text) {
+  const untagged = text.match(/(?<!\S)@(?!\[)[\p{L}][\p{L}\p{N}.'-]*/gu)
+  if (untagged) console.log(`\nNot tags, shown as plain text: ${untagged.join(', ')}. Add them by editing the post on LinkedIn.`)
+}
+
+function whoIsSignedIn() {
+  try {
+    return `on the profile of ${readToken().name}`
+  } catch (error) {
+    if (!(error instanceof Stop)) throw error
+    return error.message.replace(/\.$/, '')
+  }
+}
+
+const apiHeaders = (token) => ({
+  Authorization: `Bearer ${token.accessToken}`,
+  'LinkedIn-Version': API_VERSION,
+  'X-Restli-Protocol-Version': '2.0.0',
+  'Content-Type': 'application/json',
+})
+
 async function publish(args) {
   const confirmed = args.includes('--yes')
   const [folderArg, fileArg = 'post.md'] = args.filter((arg) => arg !== '--yes')
@@ -179,41 +209,21 @@ async function publish(args) {
 
   const { folder, text, images, alts } = readDraft(folderArg, fileArg)
 
-  console.log(`${'─'.repeat(60)}\n${asShown(text)}\n${'─'.repeat(60)}`)
-  console.log(`${text.length} characters, public.`)
+  showText(text)
   images.forEach((name, i) => console.log(`Image ${i + 1}: ${name}${alts[i] ? `, alt: ${alts[i]}` : ', no alt text'}`))
+  if (images.length > MAX_IMAGES) throw new Stop(`LinkedIn takes ${MAX_IMAGES} images at most.`)
 
-  const problems = []
-  if (!text) problems.push('The post has no text.')
-  if (text.length > MAX_LENGTH) problems.push(`LinkedIn takes ${MAX_LENGTH} characters at most.`)
-  if (images.length > MAX_IMAGES) problems.push(`LinkedIn takes ${MAX_IMAGES} images at most.`)
-  if (problems.length) throw new Stop(problems.join('\n'))
-
-  const untagged = text.match(/(?<!\S)@(?!\[)[\p{L}][\p{L}\p{N}.'-]*/gu)
-  if (untagged) console.log(`\nNot tags, shown as plain text: ${untagged.join(', ')}. Add them by editing the post on LinkedIn.`)
+  warnUntagged(text)
   if (!images.length) console.log('\nNo image: the skill gives every post at least one.')
   if (images.length && alts.length < images.length) console.log('\nSome images have no alt text.')
 
   if (!confirmed) {
-    let signedIn
-    try {
-      signedIn = `it goes on the profile of ${readToken().name}`
-    } catch (error) {
-      if (!(error instanceof Stop)) throw error
-      signedIn = error.message.replace(/\.$/, '')
-    }
-    console.log(`\nPreview only: nothing was published. Run again with --yes to publish it (${signedIn}).`)
+    console.log(`\nPreview only: nothing was published. Run again with --yes to publish it (it goes ${whoIsSignedIn()}).`)
     return
   }
 
   const token = readToken()
-
-  const headers = {
-    Authorization: `Bearer ${token.accessToken}`,
-    'LinkedIn-Version': API_VERSION,
-    'X-Restli-Protocol-Version': '2.0.0',
-    'Content-Type': 'application/json',
-  }
+  const headers = apiHeaders(token)
 
   const media = []
   for (const [i, name] of images.entries()) {
@@ -264,13 +274,56 @@ async function publish(args) {
   console.log(`\nPublished: https://www.linkedin.com/feed/update/${urn}/`)
 }
 
+// ── Edit ─────────────────────────────────────────────────────────────────────
+
+// The post as its URN, or as the link LinkedIn gives once a short lnkd.in link is opened
+// (…-share-<id>-… or …-ugcPost-<id>-…). An "activity" id is not one the API takes.
+function postUrn(arg) {
+  const match = decodeURIComponent(arg).match(/urn:li:(share|ugcPost):(\d+)|[-_](share|ugcPost)-(\d+)/)
+  if (!match) {
+    throw new Stop(`Not a post LinkedIn's API can edit: ${arg}\nGive urn:li:share:<id>, or the full linkedin.com/posts/… link (open a lnkd.in link first to get it).`)
+  }
+  return match[1] ? `urn:li:${match[1]}:${match[2]}` : `urn:li:${match[3]}:${match[4]}`
+}
+
+// Replaces the whole text of a published post. Its images cannot be changed, and every
+// tag or hashtag in the old text is gone unless the new text has it again.
+async function edit(args) {
+  const confirmed = args.includes('--yes')
+  const [folderArg, postArg, fileArg = 'post.md'] = args.filter((arg) => arg !== '--yes')
+  if (!folderArg || !postArg) throw new Stop('Usage: npm run linkedin:edit -- <draft folder> <post link or urn> [post file] [--yes]')
+
+  const urn = postUrn(postArg)
+  const { text } = readDraft(folderArg, fileArg)
+
+  console.log(`New text for ${urn}:`)
+  showText(text)
+  console.log('The images stay as they are: the API cannot change them. Tags and hashtags of the old text are replaced too.')
+  warnUntagged(text)
+
+  if (!confirmed) {
+    console.log(`\nPreview only: nothing was changed. Run again with --yes to replace the text (${whoIsSignedIn()}).`)
+    return
+  }
+
+  const token = readToken()
+  const response = await fetch(`https://api.linkedin.com/rest/posts/${encodeURIComponent(urn)}`, {
+    method: 'POST',
+    headers: { ...apiHeaders(token), 'X-RestLi-Method': 'PARTIAL_UPDATE' },
+    body: JSON.stringify({ patch: { $set: { commentary: toLittleText(text) } } }),
+  })
+  if (!response.ok) throw new Stop(`Editing failed (${response.status}): ${await response.text()}`)
+  console.log(`\nEdited: https://www.linkedin.com/feed/update/${urn}/`)
+}
+
 // ── Main ─────────────────────────────────────────────────────────────────────
 
 const [command, ...args] = process.argv.slice(2)
 try {
   if (command === 'auth') await auth()
   else if (command === 'publish') await publish(args)
-  else throw new Stop('Usage: node scripts/linkedin.mjs auth | publish <draft folder> [post file] [--yes]')
+  else if (command === 'edit') await edit(args)
+  else throw new Stop('Usage: node scripts/linkedin.mjs auth | publish <draft folder> [post file] [--yes] | edit <draft folder> <post> [post file] [--yes]')
 } catch (error) {
   console.error(error instanceof Stop ? error.message : error)
   process.exit(1)

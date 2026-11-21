@@ -74,7 +74,18 @@ Voice and positioning come from `docs/content.md` (Positioning, Voice) and, for 
 - Run the preview: `npm run linkedin:publish -- private/linkedin/<folder> [post.<lang>.md]`. It publishes nothing: it prints the text as it will read, the images with their alt text, and warns about mentions that will not be tags. Show Kevin its output, and ask him plainly whether to publish it, public, now.
 - It says "Not signed in" or "expired": the sign-in opens a browser and waits for Kevin, so ask him to run `! npm run linkedin:auth` himself, then preview again.
 - Only after his yes to that preview, run the same command with `--yes` added. A yes to an earlier version of the text does not count: after any change, preview again and ask again.
-- It prints the post's link: give it to Kevin with the checklist (the tags to add by editing the post).
+- It prints the post's link: give it to Kevin with the checklist (the tags to add by editing the post). Write the link in the checklist under `---` too: an edit later needs it.
 - If it fails after "Uploaded" lines, or on the post itself, do not run it again until Kevin has checked his profile: a second run can publish the post twice.
 - Once it is published, delete the draft folder: Kevin keeps no copy, and the images are already in `public/`.
+## 8. Edit a published post, on Kevin's yes
+
+When the subject moves on (MQDH went from a coming-soon page to a site opening in stages, 2026-11-21), Kevin may want the published post rewritten rather than a new one.
+
+- Draft the new text as in steps 3 to 6. Ask Kevin for the post's link if the draft's checklist does not have it: a lnkd.in link is opened once (`curl -sIL`) to get the `linkedin.com/posts/…-share-<id>-…` link the script takes.
+- Read the post's current public text first (the public post page) and tell Kevin what the edit removes: the whole text is replaced, and with it every tag and hashtag the new text does not have again.
+- Preview: `npm run linkedin:edit -- private/linkedin/<folder> <post link> [post.<lang>.md]`. Then, on Kevin's yes to that preview, the same with `--yes`.
+- Only the text can change: LinkedIn lets no one change a published post's images, through the API or on the site. Say so before Kevin chooses an edit over a new post: a new screenshot needs a new post (or deleting and reposting, which loses the likes and comments). Kevin re-tags people by editing the post; then delete the draft folder.
+
+## After publishing
+
 - Kevin may still trim the post on LinkedIn after it is out. When he shows the final text, compare it with the draft and fold what he changed into this file, as the MQDH post did.

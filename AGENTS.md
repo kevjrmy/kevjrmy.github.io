@@ -20,6 +20,7 @@ npm run preview   # serve the built dist/
 npm run memory:link   # point Claude Code's memory at .claude/memory/ (npm install already does it)
 npm run linkedin:auth      # sign in to LinkedIn for the publish script (lasts 2 months)
 npm run linkedin:publish -- <draft folder> [--yes]   # preview a drafted post; --yes publishes it
+npm run linkedin:edit -- <draft folder> <post link> [--yes]   # preview a new text for a published post; --yes replaces it
 ```
 
 There is no test runner. `npm run build` and `npm run lint` are the only checks, and both pass clean, so keep them that way.

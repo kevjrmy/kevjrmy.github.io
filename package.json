@@ -11,6 +11,7 @@
     "memory:link": "node scripts/link-memory.mjs",
     "linkedin:auth": "node scripts/linkedin.mjs auth",
     "linkedin:publish": "node scripts/linkedin.mjs publish",
+    "linkedin:edit": "node scripts/linkedin.mjs edit",
     "prepare": "node scripts/link-memory.mjs"
   },
   "dependencies": {
