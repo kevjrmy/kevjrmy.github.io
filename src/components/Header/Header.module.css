@@ -13,7 +13,8 @@
   background-color: var(--surface-elevated);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
+  /* Floats over the header, as the language list does */
+  box-shadow: var(--shadow-lg);
 }
 
 .skipLink:not(:focus) {

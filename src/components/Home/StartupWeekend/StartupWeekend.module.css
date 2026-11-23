@@ -70,6 +70,9 @@
   overflow: hidden;
   border-radius: var(--radius-xl);
   background-color: var(--surface-tertiary);
+  /* An edge of its own, as the other featured panels: without it, the dark theme
+     shows only the tertiary grey until a photo is in */
+  border: 1px solid var(--border-default);
   /* soft red ring, as on the featured works card */
   box-shadow: var(--ring-accent), var(--shadow-lg);
 }

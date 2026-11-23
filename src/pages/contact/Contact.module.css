@@ -68,8 +68,8 @@
   height: 44px;
   border-radius: var(--radius-md);
   border: 1px solid var(--clr-light-red);
+  background-color: var(--surface-elevated);
   color: var(--clr-dark-red);
-  box-shadow: var(--shadow-xs);
 }
 
 /* ── Item text ────────────────────────────────────────── */

@@ -59,7 +59,9 @@
 
 .filter {
   flex-shrink: 0;
-  padding: var(--space-sm) var(--space-md);
+  /* Transparent border until chosen, given back by the padding (as the home tabs) */
+  padding: calc(var(--space-sm) - 1px) calc(var(--space-md) - 1px);
+  border: 1px solid transparent;
   border-radius: var(--radius-full);
   font-size: 0.9375rem;
   font-weight: 500;
@@ -69,6 +71,7 @@
   transition:
     color var(--duration-fast) var(--ease-default),
     background-color var(--duration-fast) var(--ease-default),
+    border-color var(--duration-fast) var(--ease-default),
     box-shadow var(--duration-fast) var(--ease-default);
 }
 
@@ -79,7 +82,8 @@
 .filterActive {
   color: var(--text-dark);
   background-color: var(--surface-elevated);
-  box-shadow: var(--shadow-sm);
+  border-color: var(--border-default);
+  box-shadow: var(--shadow-xs);
 }
 
 .filterActive:hover {

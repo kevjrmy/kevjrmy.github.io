@@ -15,6 +15,13 @@
   /* The keys of the answer: still 4.5:1 on the terminal, a step under --term-muted */
   --term-faint: #808080;
   --term-green: #4ac26b;
+  --term-edge: #2a2a2a;
+  --term-dot: #3d3d3d;
+  /* Its own shadow, not the theme's: the window is dark in both themes. Shorter and
+     denser than --shadow-xl, as under a dark object, so it stays clear of the frame
+     line under the hero. On the dark page it does not show, and need not: the edge
+     and the lit title bar carry the window there. */
+  --term-shadow: 0 1px 2px rgb(0 0 0 / 0.12), 0 8px 16px -4px rgb(0 0 0 / 0.16), 0 24px 40px -12px rgb(0 0 0 / 0.24);
   /* between the $ and what is typed after it: a clear space, a little over one character */
   --prompt-gap: 1.5ch;
 
@@ -26,10 +33,10 @@
   line-height: 1.7;
   color: var(--term-text);
   background-color: var(--term-bg);
-  border: 1px solid #2a2a2a;
+  border: 1px solid var(--term-edge);
   border-radius: var(--radius-xl);
-  /* soft red ring, as on the featured cards, then the drop shadow */
-  box-shadow: var(--ring-accent), var(--shadow-xl);
+  /* soft red ring, as on the featured panels, then the drop shadow */
+  box-shadow: var(--ring-accent), var(--term-shadow);
   /* Slightly longer, delayed entrance so the page settles first */
   animation: terminalIn 500ms cubic-bezier(0, 0, 0.2, 1) 150ms both;
 }
@@ -55,6 +62,9 @@
   padding: 0.625rem var(--space-md);
   background-color: var(--term-bar);
   border-bottom: 1px solid var(--term-line);
+  /* The top edge catches the light, as a raised dark surface does (the dark theme's
+     shadow tokens do the same; here it is always on) */
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06);
 }
 
 .dots {
@@ -68,7 +78,7 @@
   width: 10px;
   height: 10px;
   border-radius: var(--radius-full);
-  background-color: #3d3d3d;
+  background-color: var(--term-dot);
 }
 
 .title {

@@ -94,7 +94,6 @@
   border: 1px solid var(--clr-light-red);
   color: var(--clr-dark-red);
   background-color: var(--surface-elevated);
-  box-shadow: var(--shadow-xs);
 }
 
 .signalText {
@@ -138,11 +137,6 @@
   .photoWrap {
     width: 100%;
     height: auto;
-  }
-
-  /* Restore decorative offset border on desktop */
-  .photoWrap::before {
-    display: block;
   }
 
   .photo {

@@ -118,7 +118,7 @@
 
 /* The main agent and the main editor take the featured ring */
 .toolMain {
-  box-shadow: var(--shadow-sm), var(--ring-accent);
+  box-shadow: var(--ring-accent), var(--shadow-sm);
 }
 
 .toolIcon {
@@ -131,7 +131,6 @@
   border-radius: var(--radius-md);
   border: 1px solid var(--border-default);
   background-color: var(--surface-elevated);
-  box-shadow: var(--shadow-xs);
 }
 
 .toolText {
@@ -440,14 +439,6 @@
   border: 1px solid var(--border-default);
   background-color: var(--surface-elevated);
   box-shadow: var(--shadow-sm);
-  transition:
-    box-shadow var(--duration-fast) var(--ease-default),
-    border-color var(--duration-fast) var(--ease-default);
-}
-
-.practice:hover {
-  box-shadow: var(--shadow-md);
-  border-color: var(--border-strong);
 }
 
 .practiceIcon {
@@ -460,7 +451,6 @@
   border: 1px solid var(--clr-light-red);
   color: var(--clr-dark-red);
   background-color: var(--surface-elevated);
-  box-shadow: var(--shadow-xs);
   flex-shrink: 0;
 }
 
@@ -488,8 +478,7 @@
    ══════════════════════════════════════════════════════ */
 
 @media (prefers-reduced-motion: reduce) {
-  .soonLink svg,
-  .practice {
+  .soonLink svg {
     transition: none;
   }
 }

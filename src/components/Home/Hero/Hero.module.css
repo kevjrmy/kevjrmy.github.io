@@ -105,7 +105,8 @@
   transition:
     background-color var(--duration-fast) var(--ease-default),
     color var(--duration-fast) var(--ease-default),
-    border-color var(--duration-fast) var(--ease-default);
+    border-color var(--duration-fast) var(--ease-default),
+    box-shadow var(--duration-fast) var(--ease-default);
 }
 
 .btnPrimary {
@@ -126,4 +127,5 @@
 
 .btnGhost:hover {
   border-color: var(--border-strong);
+  box-shadow: var(--shadow-sm);
 }

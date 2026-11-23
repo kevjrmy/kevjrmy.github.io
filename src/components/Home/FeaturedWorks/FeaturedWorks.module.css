@@ -126,11 +126,13 @@
   transition:
     opacity var(--duration-fast) var(--ease-default),
     visibility var(--duration-fast) var(--ease-default),
-    border-color var(--duration-fast) var(--ease-default);
+    border-color var(--duration-fast) var(--ease-default),
+    box-shadow var(--duration-fast) var(--ease-default);
 }
 
 .tabArrow:hover {
   border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
 }
 
 .tabArrow:active {
@@ -160,7 +162,10 @@
 /* ── Tab button ───────────────────────────────────────── */
 .tab {
   flex-shrink: 0;
-  padding: var(--space-sm) var(--space-md);
+  /* The 1px border is transparent until the tab is chosen: the padding gives it back,
+     so the pill is the same size either way */
+  padding: calc(var(--space-sm) - 1px) calc(var(--space-md) - 1px);
+  border: 1px solid transparent;
   font-size: 0.9375rem;
   font-weight: 500;
   color: var(--text-light);
@@ -170,6 +175,7 @@
   transition:
     color var(--duration-fast) var(--ease-default),
     background-color var(--duration-fast) var(--ease-default),
+    border-color var(--duration-fast) var(--ease-default),
     box-shadow var(--duration-fast) var(--ease-default);
   white-space: nowrap;
 }
@@ -179,10 +185,13 @@
 }
 
 /* Active tab — raised white pill */
+/* A control, as the header's current page: the hairline holds its edge on the
+   dark theme, where the track and the pill are one step apart */
 .tabActive {
   color: var(--text-dark);
   background-color: var(--surface-elevated);
-  box-shadow: var(--shadow-sm);
+  border-color: var(--border-default);
+  box-shadow: var(--shadow-xs);
 }
 
 /* ── Panel wrapper ────────────────────────────────────── */

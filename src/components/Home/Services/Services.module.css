@@ -52,12 +52,11 @@
   box-shadow: var(--shadow-sm);
   border-radius: var(--radius-lg);
   background-color: var(--surface-elevated);
-  /* The stagger delays the reveal only, not the hover */
+  /* Not a link, so no hover: only clickable cards lift (docs/design.md, Surfaces) */
   transition:
-    border-color var(--duration-fast) var(--ease-default),
-    box-shadow var(--duration-fast) var(--ease-default),
-    opacity var(--duration-slow) var(--ease-out) var(--card-delay, 0ms),
-    transform var(--duration-slow) var(--ease-out) var(--card-delay, 0ms);
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+  transition-delay: var(--card-delay, 0ms);
 
   /* hidden until IntersectionObserver fires */
   opacity: 0;
@@ -69,12 +68,6 @@
   transform: translateY(0);
 }
 
-/* Lifted, as the other cards of the site: a darker background would read as pressed */
-.card:hover {
-  border-color: var(--border-strong);
-  box-shadow: var(--shadow-md);
-}
-
 /* ── Icon wrapper ─────────────────────────────────────── */
 .iconWrap {
   flex-shrink: 0;
@@ -84,8 +77,8 @@
   width: 44px;
   height: 44px;
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
   border: 1px solid var(--clr-light-red);
+  background-color: var(--surface-elevated);
   color: var(--clr-dark-red);
 }
 

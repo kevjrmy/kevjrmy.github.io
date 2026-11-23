@@ -55,14 +55,6 @@
   border: 1px solid var(--border-default);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
-  transition:
-    box-shadow var(--duration-fast) var(--ease-default),
-    border-color var(--duration-fast) var(--ease-default);
-}
-
-.card:hover {
-  box-shadow: var(--shadow-md);
-  border-color: var(--border-strong);
 }
 
 /* ── Icon ─────────────────────────────────────────────── */
@@ -75,8 +67,8 @@
   height: 44px;
   border-radius: var(--radius-md);
   border: 1px solid var(--clr-light-red);
+  background-color: var(--surface-elevated);
   color: var(--clr-dark-red);
-  box-shadow: var(--shadow-xs);
 }
 
 /* ── Card body ────────────────────────────────────────── */
@@ -116,9 +108,3 @@
   }
 }
 
-/* ── Reduced motion ───────────────────────────────────── */
-@media (prefers-reduced-motion: reduce) {
-  .card {
-    transition: none;
-  }
-}

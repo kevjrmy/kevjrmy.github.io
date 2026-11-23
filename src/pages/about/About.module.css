@@ -348,14 +348,6 @@
   border: 1px solid var(--border-default);
   background-color: var(--surface-elevated);
   box-shadow: var(--shadow-sm);
-  transition:
-    box-shadow var(--duration-fast) var(--ease-default),
-    border-color var(--duration-fast) var(--ease-default);
-}
-
-.valueCard:hover {
-  box-shadow: var(--shadow-md);
-  border-color: var(--border-strong);
 }
 
 .valueIcon {
@@ -368,7 +360,6 @@
   border: 1px solid var(--clr-light-red);
   color: var(--clr-dark-red);
   background-color: var(--surface-elevated);
-  box-shadow: var(--shadow-xs);
   flex-shrink: 0;
 }
 
@@ -388,15 +379,5 @@
 @media screen and (min-width: 640px) {
   .valuesGrid {
     grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* ══════════════════════════════════════════════════════
-   Reduced motion
-   ══════════════════════════════════════════════════════ */
-
-@media (prefers-reduced-motion: reduce) {
-  .valueCard {
-    transition: none;
   }
 }
