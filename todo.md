@@ -21,7 +21,7 @@ Nothing is waiting for him at the moment.
 
 ## Later
 
-- [ ] **Deep links answer with a 404 status** (see `docs/architecture.md`). Prerendering each route would fix it, and would matter for a blog. It now covers every French and Spanish page too, home included (`/fr`, `/es`), and prerendering is also what would let each language have its own `<html lang>` and `hreflang` links in the served HTML (`docs/i18n.md`, Limits).
+- [ ] **The HTML files hold no content.** Since 2026-11-23 each page has its own file, served with a 200, its language, title and `hreflang` links (`docs/architecture.md`, Deep links), but the text is drawn by the script. Prerendering each page's HTML at build time would put it in the file, for crawlers that do not run JavaScript; it would matter for a blog.
 - [ ] **One monospace everywhere.** The terminal and the slash labels use the visitor's system monospace, so they look different on each device. A self-hosted monospace would fix it; JetBrains Mono was used for the headline until 2026-10-05 and is in git history.
 - [ ] **Codex config import.** A Codex config exists at `~/.codex/config.toml` and has not been imported into Claude Code. To pick it up: `/import` in Claude Code to list what is importable (MCP servers, slash commands, subagents, skills, instructions), then `/import --yes=<digest>` to apply. From a terminal: `claude import`.
 

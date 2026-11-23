@@ -65,7 +65,7 @@ Every push to `main` deploys to GitHub Pages via `.github/workflows/deploy.yml`.
 - `src/i18n/`: the languages, and every sentence of the site in `messages/en.ts`, `fr.ts` and `es.ts`.
 - `src/index.css`: design tokens and global rules (section frame, page transition).
 - `public/`: self-hosted fonts, project screenshots (`images/projects/`), event photos (`images/startup-weekend/`), favicons.
-- `vite.config.ts`: two local plugins, one bundling icons and one writing the GitHub Pages deep-link fallback.
+- `vite.config.ts`: two local plugins, one bundling icons and one writing an HTML file per page and language for GitHub Pages.
 
 ## Context files
 

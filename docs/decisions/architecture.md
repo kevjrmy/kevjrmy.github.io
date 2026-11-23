@@ -2,6 +2,11 @@
 
 How the site is built: routing, the build, icons, the CSS system and its two themes, and the context files themselves. The state today is in `docs/architecture.md` and `docs/styling.md`.
 
+## 2026-11-23
+
+**Every page in every language is its own copy of the app shell (`portfolio.html`, `fr/about.html`), written by a Vite plugin after the build; `404.html` stays for unknown URLs.**
+Deep links answered with a 404 status, so for a crawler only `/` existed. GitHub Pages serves `/portfolio` from `portfolio.html` with a 200, so a copy per page fixes the status with no change to the app, and each copy can carry its own `<html lang>`, title, canonical and `hreflang` links. Rejected for now: real prerendering (React rendered to HTML at build time, then hydrated), which would also put the text in the file but means checking every component for code that needs a browser, for a site Google already reads with JavaScript; folders with `index.html` (`portfolio/index.html`), on which Pages redirects `/portfolio` to `/portfolio/`. What it costs: 23 copies of a 2 KB file, and the text is still not in them. This ends the cost of the entry "Deep links: `BrowserRouter` plus a `404.html` copy" below.
+
 ## 2026-11-21
 
 **A published LinkedIn post can have its text replaced by `npm run linkedin:edit`, never its images.**
@@ -67,7 +72,7 @@ Several coding agents are used on this repo and most read `AGENTS.md`. One file 
 `AGENTS.md` is loaded on every task, so it stays short. Topic files are read only when the task needs them.
 
 **Deep links: `BrowserRouter` plus a `404.html` copy of `index.html`.**
-Rejected `HashRouter`, which would put `#/` in every URL. The cost is that deep links return a 404 status. Prerendering would remove that cost and has not been done.
+Rejected `HashRouter`, which would put `#/` in every URL. The cost is that deep links return a 404 status. Prerendering would remove that cost and has not been done. [Since 2026-11-23 each page has its own HTML file and a 200; `404.html` serves only unknown URLs.]
 
 **Icons are bundled at build time, keeping the string API.**
 Previously every icon was fetched from the Iconify API at runtime. A small Vite plugin now extracts the icons used from the `@iconify-json/*` packages. Rejected importing whole icon sets (thousands of icons in the bundle) and rejected switching to per-icon component imports (would have meant rewriting every data array that stores an icon name).

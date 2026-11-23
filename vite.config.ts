@@ -2,6 +2,11 @@ import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 import fs from 'fs'
+import { locales, localizePath } from './src/i18n/locales'
+import { messages, type Messages } from './src/i18n/messages'
+
+// Where the site is served: the canonical and hreflang links are absolute
+const SITE = 'https://kevjrmy.github.io'
 
 const SRC_DIR = path.resolve(import.meta.dirname, './src')
 const ICON_SETS_DIR = path.resolve(import.meta.dirname, './node_modules/@iconify-json')
@@ -94,21 +99,64 @@ function bundledIcons(): Plugin {
   }
 }
 
-// GitHub Pages serves 404.html for any path that isn't a file. Shipping the app shell
-// under that name lets React Router handle deep links (/portfolio, /contact, ...).
-function spaFallback(): Plugin {
+const escapeHtml = (text: string) =>
+  text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+
+// GitHub Pages serves /portfolio from portfolio.html, with a 200, and 404.html (with a
+// 404) for any path that is not a file. So every page gets a copy of the app shell in
+// each language, carrying its own <html lang>, tab title, canonical and hreflang links,
+// and 404.html is the shell for every other URL: React Router renders the not-found page.
+// The pages are the keys of `titles` in the messages, as MainLayout reads them.
+function staticPages(): Plugin {
   return {
-    name: 'spa-fallback',
+    name: 'static-pages',
     apply: 'build',
     writeBundle({ dir }) {
-      if (dir) fs.copyFileSync(path.join(dir, 'index.html'), path.join(dir, '404.html'))
+      if (!dir) return
+      const shell = fs.readFileSync(path.join(dir, 'index.html'), 'utf8')
+      if (!shell.includes('<html lang="en">') || !/<title>.*<\/title>/.test(shell)) {
+        this.error('index.html has lost <html lang="en"> or its <title>')
+      }
+      fs.writeFileSync(path.join(dir, '404.html'), shell)
+
+      const write = (file: string, html: string) => {
+        fs.mkdirSync(path.dirname(path.join(dir, file)), { recursive: true })
+        fs.writeFileSync(path.join(dir, file), html)
+      }
+
+      const keys = Object.keys(messages.en.titles) as (keyof Messages['titles'])[]
+      for (const key of keys.filter((key) => key !== 'notFound')) {
+        const page = key === 'home' ? '/' : `/${key}`
+        const alternates = [
+          ...locales.map((locale) => [locale, localizePath(page, locale)]),
+          ['x-default', page],
+        ].map(([lang, url]) => `<link rel="alternate" hreflang="${lang}" href="${SITE}${url}" />`)
+
+        for (const locale of locales) {
+          const url = localizePath(page, locale)
+          const head = [
+            `<title>${escapeHtml(messages[locale].titles[key])}</title>`,
+            `<link rel="canonical" href="${SITE}${url}" />`,
+            ...alternates,
+          ].join('\n  ')
+          const html = shell
+            .replace('<html lang="en">', `<html lang="${locale}">`)
+            .replace(/<title>.*<\/title>/, head)
+
+          if (url === '/') write('index.html', html)
+          else write(`${url.slice(1)}.html`, html)
+          // /fr is both a file and a folder (fr/about.html): if Pages sends /fr to /fr/,
+          // the folder's index.html is the same page
+          if (url === `/${locale}`) write(`${locale}/index.html`, html)
+        }
+      }
     },
   }
 }
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), bundledIcons(), spaFallback()],
+  plugins: [react(), bundledIcons(), staticPages()],
   resolve: {
     alias: {
       '@': path.resolve(import.meta.dirname, './src')

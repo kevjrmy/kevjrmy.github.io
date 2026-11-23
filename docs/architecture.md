@@ -30,9 +30,11 @@ The header is `--header-height` tall (70px) on every screen: `min-height` on its
 
 ## Deep links on GitHub Pages
 
-The site uses `BrowserRouter`, and GitHub Pages has no rewrite rules. Deep links work because the `spa-fallback` plugin in `vite.config.ts` copies `dist/index.html` to `dist/404.html` at build time. Pages serves that file for any unknown path and React Router takes over.
+The site uses `BrowserRouter`, and GitHub Pages has no rewrite rules, but it serves `/portfolio` from a file `portfolio.html`, with a 200. So the `static-pages` plugin in `vite.config.ts` writes, after the build, one copy of `dist/index.html` per page and language: `portfolio.html`, `fr/portfolio.html`, `es.html` (with `es/index.html` beside it, the same page, in case Pages sends `/es` to `/es/`). Each copy has its own `<html lang>`, its tab title, a canonical link, and `hreflang` links to the same page in the three languages (`x-default` is English). The list of pages is the keys of `titles` in `en.ts`, as `MainLayout` reads it, so a new page gets its file by having its title. `404.html` is the plain shell: Pages serves it for every other URL, with a 404 status, and React Router renders the not-found page.
 
-The HTTP status of such a response is still 404, so only `/` is a real 200 for crawlers. Fixing that would mean prerendering each route to its own HTML file.
+The files hold the shell only, not the page: the content is still drawn by the script, as before. Search engines that run JavaScript (Google does) see it; one that does not sees an empty page with the right title. Real prerendering (each page's HTML rendered at build time) would fix that, and is the next step if it ever matters, for a blog for instance.
+
+`SITE` at the top of `vite.config.ts` is the address the canonical and `hreflang` links point to: change it with the domain.
 
 ## Pages vs. home sections
 
