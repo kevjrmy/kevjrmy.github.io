@@ -437,6 +437,10 @@ const en = {
           label: 'Hermes',
           role: 'The open-source agent by Nous Research, with a memory that lasts between sessions.',
         },
+        orca: {
+          label: 'Orca',
+          role: 'A desktop app by Stably AI that runs several coding agents side by side, each in its own Git worktree.',
+        },
         jev: {
           label: 'Jev',
           role: 'A model by TypeSafe AI that returns typed decisions with a confidence score, instead of text.',
@@ -498,7 +502,7 @@ const en = {
         claudeCode: {
           when: '2026 → now',
           title: 'Claude Code',
-          body: 'I switched to Claude Code and stayed. It is my main agent today, and the recent projects in my portfolio are built with it. Away from the terminal, I talk to Claude in its desktop app. Since October 2026 I have also been learning Hermes on a real case: an agent for Le Petit Cours, my French course for Spanish speakers, that I talk to on Telegram to prepare its classes and proofread its lessons. It is my first project with it, and I am still learning.',
+          body: 'I switched to Claude Code and stayed. It is my main agent today, and the recent projects in my portfolio are built with it. Away from the terminal, I talk to Claude in its desktop app. Since October 2026 I have also been learning Hermes on a real case: an agent for Le Petit Cours, my French course for Spanish speakers, that I talk to on Telegram to prepare its classes and proofread its lessons. It is my first project with it, and I am still learning. And in November 2026 I started using Orca, to run several agents side by side, each on its own copy of the project.',
         },
         next: {
           when: 'Next',

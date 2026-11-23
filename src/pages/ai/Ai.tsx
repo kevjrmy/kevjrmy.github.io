@@ -45,6 +45,7 @@ const journeyIcons: Record<string, string> = {
   // Magnific belongs to Freepik since 2024; no set has Magnific's own mark
   'Magnific': 'simple-icons:freepik',
   'Hermes': 'local:hermes',
+  'Orca': 'local:orca',
 }
 
 // ── Tag (logo + name) ─────────────────────────────────────────────────────────
@@ -68,7 +69,7 @@ const journey = [
   { id: 'video', tools: ['Magnific', 'Sora', 'Veo 3', 'Google Flow', 'Nano Banana'] },
   { id: 'deepseek', tools: ['DeepSeek', 'Grok'] },
   { id: 'agents', tools: ['Antigravity', 'Google AI Studio', 'OpenCode', 'Codex'] },
-  { id: 'claudeCode', tools: ['Claude Code', 'Cursor', 'Claude desktop', 'Hermes'] },
+  { id: 'claudeCode', tools: ['Claude Code', 'Cursor', 'Claude desktop', 'Hermes', 'Orca'] },
   { id: 'next', tools: ['Jev', 'Ollama'] },
 ] as const
 

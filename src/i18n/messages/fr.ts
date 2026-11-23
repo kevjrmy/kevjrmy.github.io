@@ -429,6 +429,10 @@ const fr: Messages = {
           label: 'Hermes',
           role: "L'agent open source de Nous Research, avec une mémoire qui dure d'une session à l'autre.",
         },
+        orca: {
+          label: 'Orca',
+          role: 'Une application de bureau de Stably AI qui fait tourner plusieurs agents de code côte à côte, chacun dans son propre worktree Git.',
+        },
         jev: {
           label: 'Jev',
           role: 'Un modèle de TypeSafe AI qui renvoie des décisions typées avec un score de confiance, au lieu de texte.',
@@ -489,7 +493,7 @@ const fr: Messages = {
         claudeCode: {
           when: 'Depuis 2026',
           title: 'Claude Code',
-          body: "Je suis passé à Claude Code et j'y suis resté. C'est mon agent principal aujourd'hui, et les projets récents de mon portfolio sont construits avec lui. Hors du terminal, je parle à Claude dans son application de bureau. Depuis octobre 2026, j'apprends aussi Hermes sur un cas réel\u00a0: un agent pour Le Petit Cours, mon cours de français pour hispanophones, avec qui j'échange sur Telegram pour préparer ses séances et en relire les leçons. C'est mon premier projet avec lui, et j'apprends encore.",
+          body: "Je suis passé à Claude Code et j'y suis resté. C'est mon agent principal aujourd'hui, et les projets récents de mon portfolio sont construits avec lui. Hors du terminal, je parle à Claude dans son application de bureau. Depuis octobre 2026, j'apprends aussi Hermes sur un cas réel\u00a0: un agent pour Le Petit Cours, mon cours de français pour hispanophones, avec qui j'échange sur Telegram pour préparer ses séances et en relire les leçons. C'est mon premier projet avec lui, et j'apprends encore. Et en novembre 2026, j'ai commencé à utiliser Orca, pour faire travailler plusieurs agents en parallèle, chacun sur sa propre copie du projet.",
         },
         next: {
           when: 'Ensuite',

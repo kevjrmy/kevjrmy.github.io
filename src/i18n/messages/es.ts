@@ -428,6 +428,10 @@ const es: Messages = {
           label: 'Hermes',
           role: 'El agente de código abierto de Nous Research, con una memoria que dura entre sesiones.',
         },
+        orca: {
+          label: 'Orca',
+          role: 'Una aplicación de escritorio de Stably AI que ejecuta varios agentes de código en paralelo, cada uno en su propio worktree de Git.',
+        },
         jev: {
           label: 'Jev',
           role: 'Un modelo de TypeSafe AI que devuelve decisiones tipadas con una puntuación de confianza, en lugar de texto.',
@@ -488,7 +492,7 @@ const es: Messages = {
         claudeCode: {
           when: 'Desde 2026',
           title: 'Claude Code',
-          body: 'Me pasé a Claude Code y me quedé. Hoy es mi agente principal, y los proyectos recientes de mi portfolio están hechos con él. Lejos de la terminal, hablo con Claude en su aplicación de escritorio. Desde octubre de 2026 también aprendo Hermes con un caso real: un agente para Le Petit Cours, mi curso de francés para hispanohablantes, con el que hablo por Telegram para preparar sus clases y revisar sus lecciones. Es mi primer proyecto con él, y sigo aprendiendo.',
+          body: 'Me pasé a Claude Code y me quedé. Hoy es mi agente principal, y los proyectos recientes de mi portfolio están hechos con él. Lejos de la terminal, hablo con Claude en su aplicación de escritorio. Desde octubre de 2026 también aprendo Hermes con un caso real: un agente para Le Petit Cours, mi curso de francés para hispanohablantes, con el que hablo por Telegram para preparar sus clases y revisar sus lecciones. Es mi primer proyecto con él, y sigo aprendiendo. Y en noviembre de 2026 empecé a usar Orca, para trabajar con varios agentes en paralelo, cada uno en su propia copia del proyecto.',
         },
         next: {
           when: 'Después',

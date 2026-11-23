@@ -269,14 +269,15 @@
     align-items: baseline;
     gap: var(--space-lg);
   }
+
+  /* Four cards: two by two, so none is left alone on a row */
+  .soonList {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media screen and (min-width: 1024px) {
   .tools {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .soonList {
     grid-template-columns: repeat(3, 1fr);
   }
 }

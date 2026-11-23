@@ -34,6 +34,7 @@ export const currentAiStack = aiStack.filter((tool) => tool.status !== 'before')
 // labelled "coming soon" or "learning now"
 export const upcomingAiTools: UpcomingAiTool[] = [
   { id: 'hermes', href: 'https://hermes-agent.nousresearch.com/', learning: true },
+  { id: 'orca', href: 'https://orca.dev/', learning: true },
   { id: 'jev', href: 'https://typesafe.ai/blog/introducing-system-one-models-and-jev' },
   { id: 'local' },
 ]

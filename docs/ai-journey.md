@@ -16,6 +16,7 @@ What Kevin told about his path, for the journey on the `/ai` page, and which of 
 12. Agents: Google AI Studio in the browser, then OpenCode and Codex in the terminal.
 13. Claude Code, his main agent since (first run on his machine: April 2026). Beside it, the Claude desktop app, and Cursor, his main editor, which he also started in 2026 (confirmed 2026-11-19): it is a tag of this step, not a step of its own.
 14. Hermes (Hermes Agent, by Nous Research): a first project in October 2026, to learn it by building. It is an agent for Le Petit Cours, made to prepare its classes and proofread its lessons, and that project is not finished: the page says what it is built to do, not that it does it every week. He told it on 2026-10-09, with "more projects are to come", and on 2026-11-19 that he talks to it through Telegram and is still learning it. On the page it is a sentence and a tag in the Claude Code step, not a step of its own, and not yet a tool of the stack (`docs/stacks.md`).
+15. Orca (the desktop app by Stably AI that runs coding agents side by side): he started using it on 2026-11-23 ("I'm starting to use Orca now"). On the page it is the last sentence and the last tag of the Claude Code step, dated November 2026, like Hermes.
 
 Around it: he knew Markdown before any of this, he goes to AI meetups such as AI Tinkerers with friends and they share tips, and he has never used Ollama or run a model locally.
 
