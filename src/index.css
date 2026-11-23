@@ -79,11 +79,15 @@
   --radius-full: 9999px;
 
   /* ── Shadows ──────────────────────────────────────── */
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.04);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.06), 0 4px 6px rgba(0, 0, 0, 0.04);
-  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.08), 0 8px 10px rgba(0, 0, 0, 0.04);
+  /* Each level is layers, as light falls: a tight contact shadow at the edge, then
+     wider and softer ones further down. The negative spread keeps the soft layers
+     under the surface instead of haloing its sides. One step up the scale is one
+     step higher off the page: a card goes from sm to md when hovered. */
+  --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.06);
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.05), 0 2px 6px -1px rgb(0 0 0 / 0.05), 0 8px 16px -6px rgb(0 0 0 / 0.08);
+  --shadow-md: 0 1px 2px rgb(0 0 0 / 0.05), 0 6px 12px -3px rgb(0 0 0 / 0.07), 0 16px 28px -8px rgb(0 0 0 / 0.12);
+  --shadow-lg: 0 1px 2px rgb(0 0 0 / 0.05), 0 10px 20px -5px rgb(0 0 0 / 0.08), 0 28px 48px -14px rgb(0 0 0 / 0.16);
+  --shadow-xl: 0 2px 4px rgb(0 0 0 / 0.05), 0 14px 28px -8px rgb(0 0 0 / 0.10), 0 40px 72px -20px rgb(0 0 0 / 0.22);
   /* Soft red ring around the featured panels (hero terminal, featured work, photos) */
   --ring-accent: 0 0 0 6px rgb(255 42 42 / 0.07);
 
@@ -143,11 +147,14 @@
   --text-light: #8f8f8f;
   --text-muted: #858585;
 
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5), 0 4px 6px rgba(0, 0, 0, 0.4);
-  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.6), 0 8px 10px rgba(0, 0, 0, 0.4);
+  /* A shadow barely shows on a near-black page, so each level starts with a faint
+     light along the top edge, as a raised surface catches it, and the higher the
+     surface the more of it. The shadows under it are the light theme's, deeper. */
+  --shadow-xs: inset 0 1px 0 rgb(255 255 255 / 0.03), 0 1px 2px rgb(0 0 0 / 0.5);
+  --shadow-sm: inset 0 1px 0 rgb(255 255 255 / 0.04), 0 1px 2px rgb(0 0 0 / 0.5), 0 8px 16px -6px rgb(0 0 0 / 0.5);
+  --shadow-md: inset 0 1px 0 rgb(255 255 255 / 0.06), 0 1px 2px rgb(0 0 0 / 0.5), 0 16px 28px -8px rgb(0 0 0 / 0.65);
+  --shadow-lg: inset 0 1px 0 rgb(255 255 255 / 0.06), 0 1px 2px rgb(0 0 0 / 0.5), 0 28px 48px -14px rgb(0 0 0 / 0.75);
+  --shadow-xl: inset 0 1px 0 rgb(255 255 255 / 0.07), 0 2px 4px rgb(0 0 0 / 0.5), 0 40px 72px -20px rgb(0 0 0 / 0.85);
   --ring-accent: 0 0 0 6px rgb(255 42 42 / 0.12);
 
   --grid-tile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='51.96'%3E%3Cpolygon points='30,0 60,25.98 30,51.96 0,25.98' fill='none' stroke='%232a2a2a' stroke-width='0.75'/%3E%3C/svg%3E");

@@ -2,6 +2,11 @@
 
 How the site looks and moves: the two references, the hero and its terminal, the header and its navigation, the theme switch, the selected works and their screenshots, and what the resume takes from all this. What the design is today is in `docs/design.md`.
 
+## 2026-11-23
+
+**Shadows are layered and pulled under the surface, and on the dark theme each level carries a light top edge.**
+The old scale was one or two small blurs at 4 to 8% black: against the hairline borders the cards read as outlined, not raised, and a hover from `sm` to `md` barely changed anything. On the dark theme, black on near-black showed nothing at all. Now each level is a contact shadow plus wider ones with a negative spread, darker the higher the level, and the dark theme adds an inset white line at the top edge. The home services cards stopped turning grey on hover (on the dark theme that was darker than the card, so they looked pressed) and lift like every other card. Rejected: moving cards up on hover (the reference does not, and the animation stays conservative), and tinted shadows (the greys stay neutral). What it costs: the resting cards changed little on purpose, so the difference is mostly seen on hover and on the big panels.
+
 ## 2026-11-19
 
 **Text and controls meet the WCAG AA contrast minimums in both themes, at the cost of a deeper red on primary buttons.**

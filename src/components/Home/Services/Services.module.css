@@ -49,16 +49,15 @@
   gap: var(--space-md);
   padding: var(--space-lg) var(--space-xl);
   border: 1px solid var(--border-default);
-  box-shadow: var(--shadow-xs);
+  box-shadow: var(--shadow-sm);
   border-radius: var(--radius-lg);
   background-color: var(--surface-elevated);
+  /* The stagger delays the reveal only, not the hover */
   transition:
     border-color var(--duration-fast) var(--ease-default),
     box-shadow var(--duration-fast) var(--ease-default),
-    background-color var(--duration-fast) var(--ease-default),
-    opacity var(--duration-slow) var(--ease-out),
-    transform var(--duration-slow) var(--ease-out);
-  transition-delay: var(--card-delay, 0ms);
+    opacity var(--duration-slow) var(--ease-out) var(--card-delay, 0ms),
+    transform var(--duration-slow) var(--ease-out) var(--card-delay, 0ms);
 
   /* hidden until IntersectionObserver fires */
   opacity: 0;
@@ -70,9 +69,9 @@
   transform: translateY(0);
 }
 
+/* Lifted, as the other cards of the site: a darker background would read as pressed */
 .card:hover {
   border-color: var(--border-strong);
-  background-color: var(--surface-secondary);
   box-shadow: var(--shadow-md);
 }
 
