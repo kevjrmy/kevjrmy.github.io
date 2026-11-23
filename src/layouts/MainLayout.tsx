@@ -13,11 +13,14 @@ export default function MainLayout() {
   const { pathname, hash } = useLocation()
   const locale = localeOf(pathname)
   const page = basePath(pathname)
-  // page: / -> home, /about -> about, /contact -> contact, etc
-  const pageName = page.replace('/', '') || 'home'
   const navigationType = useNavigationType()
 
   const localeValue = useMemo(() => ({ locale, t: messages[locale] }), [locale])
+
+  // page: / -> home, /about -> about, /contact -> contact, etc. Every page has a
+  // title, so a path with none is one that App.tsx renders as the not-found page.
+  const path = page.replace('/', '') || 'home'
+  const pageName = (Object.hasOwn(localeValue.t.titles, path) ? path : 'notFound') as keyof Messages['titles']
 
   // index.html is served for every language: tell the browser which one is shown
   useEffect(() => {
@@ -25,7 +28,7 @@ export default function MainLayout() {
   }, [locale])
 
   // One title per page and language, for the browser tab, history and bookmarks
-  const title = localeValue.t.titles[pageName as keyof Messages['titles']] ?? localeValue.t.titles.home
+  const title = localeValue.t.titles[pageName]
   useEffect(() => {
     document.title = title
   }, [title])

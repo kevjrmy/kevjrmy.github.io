@@ -6,7 +6,7 @@ How the app is put together, and the places where one change has to be made in t
 
 `src/App.tsx` declares every page once, in its `pages` array, and registers each one three times as a child of `MainLayout`: at its English path and under `/fr` and `/es` (`docs/i18n.md`). `MainLayout` renders `Header`, `<main>`, and `Footer`, reads the language from the URL, and sets `<main id>` from the page (`/` becomes `home`, `/about` and `/fr/about` become `about`).
 
-Current pages: `/`, `/portfolio`, `/services`, `/ai`, `/contact`, `/about`, `/info`. There is no catch-all route, so an unknown URL renders the header and footer around an empty `<main>`.
+Current pages: `/`, `/portfolio`, `/services`, `/ai`, `/contact`, `/about`, `/info`. Any other URL renders the not-found page (`pages/notFound`), from one `path="*"` route after the others: it covers the three languages at once, since `MainLayout` reads the language from the prefix, so `/fr/portfolo` is the French not-found page. `MainLayout` knows a page by its tab title: a path with no entry in `titles` (`/portfolo`, `/about/old`) is named `notFound`, which gives the tab title and `<main id>`. So a page added without its title shows the not-found title in the tab. The page is not linked from anywhere and has no nav entry.
 
 Adding a page touches three places:
 

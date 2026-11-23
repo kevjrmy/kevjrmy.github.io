@@ -1,0 +1,34 @@
+/* ══════════════════════════════════════════════════════
+   Not-found page: any URL that matches no page
+   ══════════════════════════════════════════════════════ */
+
+.section {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--space-4xl) var(--content-padding);
+}
+
+.h1 {
+  max-width: 560px;
+  font-size: clamp(2rem, 0.500rem + 4vw, 3rem);
+  font-weight: 500;
+  color: var(--text-dark);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  margin-top: var(--space-xs);
+}
+
+.lead {
+  max-width: 560px;
+  font-size: 1rem;
+  color: var(--text-light);
+  line-height: 1.7;
+  margin-top: var(--space-sm);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-xl);
+}

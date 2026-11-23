@@ -8,6 +8,7 @@ import Portfolio from '@/pages/portfolio/Portfolio'
 import Services from './pages/services/Services'
 import Ai from '@/pages/ai/Ai'
 import Info from '@/pages/info/Info'
+import NotFound from '@/pages/notFound/NotFound'
 import { locales, localizePath } from '@/i18n/locales'
 
 // Every page, by its English path. Each one is also served under /fr and /es
@@ -44,6 +45,8 @@ export default function App() {
               />
             ))
           )}
+          {/* Any other URL, in any language: MainLayout reads it from the prefix */}
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

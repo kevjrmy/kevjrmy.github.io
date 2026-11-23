@@ -20,6 +20,7 @@ const en = {
     about: 'About · Kevin Jeremy Gautier',
     contact: 'Contact · Kevin Jeremy Gautier',
     info: 'Terms & privacy · Kevin Jeremy Gautier',
+    notFound: 'Page not found · Kevin Jeremy Gautier',
   },
 
   // ── Header and footer ───────────────────────────────────────────────────────
@@ -627,6 +628,16 @@ const en = {
         body: 'If the site changes in a way that affects your privacy, this page will be updated.',
       },
     },
+  },
+
+  // ── Not-found page ──────────────────────────────────────────────────────────
+  // Any URL that matches no page
+  notFound: {
+    eyebrow: '404',
+    h1: "This page doesn't exist",
+    lead: 'The address may have a typo, or the page has moved. The rest of the site is still here.',
+    home: 'Back to home',
+    portfolio: 'View my work',
   },
 }
 

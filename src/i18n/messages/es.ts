@@ -20,6 +20,7 @@ const es: Messages = {
     about: 'Sobre mí · Kevin Jeremy Gautier',
     contact: 'Contacto · Kevin Jeremy Gautier',
     info: 'Condiciones y privacidad · Kevin Jeremy Gautier',
+    notFound: 'Página no encontrada · Kevin Jeremy Gautier',
   },
 
   // ── Header and footer ───────────────────────────────────────────────────────
@@ -615,6 +616,15 @@ const es: Messages = {
         body: 'Si el sitio cambia de una forma que afecte a su privacidad, esta página se actualizará.',
       },
     },
+  },
+
+  // ── Not-found page ──────────────────────────────────────────────────────────
+  notFound: {
+    eyebrow: '404',
+    h1: 'Esta página no existe',
+    lead: 'Puede que la dirección tenga un error, o que la página haya cambiado de sitio. El resto del sitio sigue aquí.',
+    home: 'Volver al inicio',
+    portfolio: 'Ver mis proyectos',
   },
 }
 
